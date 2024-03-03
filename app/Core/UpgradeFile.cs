@@ -7,17 +7,17 @@ using MySqlConnector;
 
 namespace app.Core.Repository
 {
-    internal class DBConnection : IDisposable
+    internal class UpgradeFile : IDisposable
     {
         internal MySqlConnection connection;
         private string connectionString;
 
 
         /// <summary>
-        /// This constructor initializes the DBConnection object with default connection parameters.
+        /// This constructor initializes the UpgradeFile object with default connection parameters.
         /// </summary>
         /// <returns>None</returns>
-        public DBConnection()
+        public UpgradeFile()
         {
             string server = "localhost";
             string userid = "root";
@@ -34,7 +34,7 @@ namespace app.Core.Repository
         /// </summary>
         /// <param name="connectionString">String represents the connection string</param>
         /// <returns>None</returns>
-        public DBConnection(string connectionString)
+        public UpgradeFile(string connectionString)
         {
             this.connectionString = connectionString;
             this.Connect();
@@ -159,7 +159,7 @@ namespace app.Core.Repository
             List<KeyValuePair<int, string>> keyValueList;
             try
             {
-                using (DBConnection db = new DBConnection())
+                using (UpgradeFile db = new UpgradeFile())
                 {
                     using (MySqlCommand cmd = new MySqlCommand(query, db.connection))
                     {
