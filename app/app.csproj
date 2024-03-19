@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=7.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.1\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
@@ -73,126 +77,135 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Model\Barangay.cs" />
-    <Compile Include="Core\Model\Breed.cs" />
-    <Compile Include="Core\Model\City.cs" />
-    <Compile Include="Core\Model\Color.cs" />
-    <Compile Include="Core\Model\Gender.cs" />
-    <Compile Include="Core\Model\Client.cs" />
-    <Compile Include="Core\Model\Pet.cs" />
-    <Compile Include="Core\Model\Province.cs" />
-    <Compile Include="Core\Model\Region.cs" />
-    <Compile Include="Core\Model\Species.cs" />
-    <Compile Include="Core\Repository\ClientRepository.cs" />
-    <Compile Include="Core\Repository\ClientRepositoryBase.cs" />
-    <Compile Include="Core\Repository\PetRepository.cs" />
-    <Compile Include="Core\UpgradeFile.cs" />
+    <Compile Include="core\model\Barangay.cs" />
+    <Compile Include="core\model\Breed.cs" />
+    <Compile Include="core\model\City.cs" />
+    <Compile Include="core\model\Color.cs" />
+    <Compile Include="core\model\Gender.cs" />
+    <Compile Include="core\model\Client.cs" />
+    <Compile Include="core\model\Pet.cs" />
+    <Compile Include="core\model\Province.cs" />
+    <Compile Include="core\model\Region.cs" />
+    <Compile Include="core\model\Species.cs" />
+    <Compile Include="core\repository\ClientRepository.cs" />
+    <Compile Include="core\repository\ClientRepositoryBase.cs" />
+    <Compile Include="core\repository\PetRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Administration\Admin.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="view\Administration\Admin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Administration\Admin.Designer.cs">
+    <Compile Include="view\Administration\Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Inventory\Inventory.cs">
+    <Compile Include="view\Client\frmClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Inventory\Inventory.Designer.cs">
+    <Compile Include="view\Client\frmClient.Designer.cs">
+      <DependentUpon>frmClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Inventory\Inventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Inventory\Inventory.Designer.cs">
       <DependentUpon>Inventory.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Login.cs">
+    <Compile Include="view\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Login.Designer.cs">
+    <Compile Include="view\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Main.cs">
+    <Compile Include="view\Patient\AddClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Patient\AddClient.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Patient\AddClient.Designer.cs">
+    <Compile Include="view\Patient\AddClient.Designer.cs">
       <DependentUpon>AddClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Patient\AddPet.cs">
+    <Compile Include="view\Patient\AddPet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Patient\AddPet.Designer.cs">
+    <Compile Include="view\Patient\AddPet.Designer.cs">
       <DependentUpon>AddPet.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Patient\PatientList.cs">
+    <Compile Include="view\Patient\PatientList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Patient\PatientList.Designer.cs">
+    <Compile Include="view\Patient\PatientList.Designer.cs">
       <DependentUpon>PatientList.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Patient\PetDetails.cs">
+    <Compile Include="view\Patient\PetDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Patient\PetDetails.Designer.cs">
+    <Compile Include="view\Patient\PetDetails.Designer.cs">
       <DependentUpon>PetDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Product\Products.cs">
+    <Compile Include="view\Product\Products.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Product\Products.Designer.cs">
+    <Compile Include="view\Product\Products.Designer.cs">
       <DependentUpon>Products.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\Report.cs">
+    <Compile Include="view\Reports\Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Reports\Report.Designer.cs">
+    <Compile Include="view\Reports\Report.Designer.cs">
       <DependentUpon>Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Transaction\Transaction.cs">
+    <Compile Include="view\Transaction\Transaction.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Transaction\Transaction.Designer.cs">
+    <Compile Include="view\Transaction\Transaction.Designer.cs">
       <DependentUpon>Transaction.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="View\Administration\Admin.resx">
+    <EmbeddedResource Include="view\Administration\Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Inventory\Inventory.resx">
+    <EmbeddedResource Include="view\Client\frmClient.resx">
+      <DependentUpon>frmClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Inventory\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Patient\AddClient.resx">
+    <EmbeddedResource Include="view\Patient\AddClient.resx">
       <DependentUpon>AddClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Patient\AddPet.resx">
+    <EmbeddedResource Include="view\Patient\AddPet.resx">
       <DependentUpon>AddPet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Patient\PatientList.resx">
+    <EmbeddedResource Include="view\Patient\PatientList.resx">
       <DependentUpon>PatientList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Patient\PetDetails.resx" />
-    <EmbeddedResource Include="View\Product\Products.resx">
+    <EmbeddedResource Include="view\Patient\PetDetails.resx" />
+    <EmbeddedResource Include="view\Product\Products.resx">
       <DependentUpon>Products.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\Report.resx">
+    <EmbeddedResource Include="view\Reports\Report.resx">
       <DependentUpon>Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Transaction\Transaction.resx">
+    <EmbeddedResource Include="view\Transaction\Transaction.resx">
       <DependentUpon>Transaction.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="lib\Core.dll.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -311,7 +324,7 @@
     <None Include="icons\transaction.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-close-window-35.png" />
+    <Content Include="lib\Core.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

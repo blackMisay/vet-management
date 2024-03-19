@@ -28,12 +28,12 @@ namespace app.View.Patient
         }
         private void Patient_Load(object sender, EventArgs e)
         {
-            using (UpgradeFile upgradeFile = new UpgradeFile())
-            {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            
                 cboRegion.DataSource = upgradeFile.Populate("SELECT regCode, regDesc FROM region;");
                 cboRegion.ValueMember = "Key";
                 cboRegion.DisplayMember = "Value";
-            }
+            
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -44,12 +44,12 @@ namespace app.View.Patient
 
         private void cboRegion_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            using (UpgradeFile upgradeFile = new UpgradeFile())
-            {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            
                 cboProvince.DataSource = upgradeFile.Populate("SELECT provCode, provDesc FROM province WHERE regCode='" + cboRegion.SelectedValue.ToString() + "';");
                 cboProvince.ValueMember = "Key";
                 cboProvince.DisplayMember = "Value";
-            }
+            
         }
 
         private void cboCity_SelectedValueChanged(object sender, EventArgs e)
@@ -59,22 +59,22 @@ namespace app.View.Patient
 
         private void cboProvince_SelectedValueChanged(object sender, EventArgs e)
         {
-            using (UpgradeFile upgradeFile = new UpgradeFile())
-            {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            
                 cboCity.DataSource = upgradeFile.Populate("SELECT citymunCode, citymunDesc FROM city where provCode='" + cboProvince.SelectedValue.ToString() + "';");
                 cboCity.ValueMember = "Key";
                 cboCity.DisplayMember = "Value";
-            }
+            
         }
 
         private void cboBrgy_Click(object sender, EventArgs e)
         {
-            using (UpgradeFile upgradeFile = new UpgradeFile())
-            {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            
                 cboBrgy.DataSource = upgradeFile.Populate("SELECT brgyID, brgyDesc FROM brgy where citymunCode='" + cboCity.SelectedValue.ToString() + "';");
                 cboBrgy.ValueMember = "Key";
                 cboBrgy.DisplayMember = "Value";
-            }
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

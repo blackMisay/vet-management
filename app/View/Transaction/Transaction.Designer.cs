@@ -140,7 +140,6 @@
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Image = global::app.Properties.Resources.icons8_close_window_35;
             this.btnExit.Location = new System.Drawing.Point(869, 18);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(108, 42);

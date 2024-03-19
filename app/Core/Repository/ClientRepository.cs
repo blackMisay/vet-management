@@ -61,8 +61,8 @@ namespace app.Core.Repository
                 { "@Id", client.Id.ToString() }
             };
 
-            using (UpgradeFile upgradeFile = new UpgradeFile())
-            {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            
                 dt = upgradeFile.Load("SELECT * FROM clients WHERE clientId=@Id;", parameters);
                 if (dt.Rows.Count > 0)
                 {
@@ -87,8 +87,9 @@ namespace app.Core.Repository
                     };
                     return clients;
                 }
-
-            }
+                
+            
+            return null;
         }
     }
 

@@ -42,8 +42,8 @@ namespace app.View.Patient
 
         private void LoadClientsPatients(int clientId)
         {
-            using (UpgradeFile upgradeFile = new UpgradeFile())
-            {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            
                 // If the provided client ID is not zero
                 if (clientId > 0)
                 {
@@ -56,7 +56,7 @@ namespace app.View.Patient
                     dgvPet.DataSource = upgradeFile.Load("SELECT * FROM vwpet;");
 
                 }
-            }
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

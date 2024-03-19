@@ -213,16 +213,6 @@ namespace app.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_close_window_35 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-close-window-35", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_dog_and_cat_35 {
             get {
                 object obj = ResourceManager.GetObject("icons8-dog-and-cat-35", resourceCulture);
@@ -286,16 +276,6 @@ namespace app.Properties {
         internal static System.Drawing.Bitmap icons8_edit_button_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-edit-button-48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_logout_35 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-logout-35", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

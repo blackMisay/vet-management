@@ -35,8 +35,7 @@ namespace app.View.Patient
         private void AddPet_Load(object sender, EventArgs e)
         {
             {
-                using (UpgradeFile upgradeFile = new UpgradeFile())
-                {
+                UpgradeFile upgradeFile = new UpgradeFile();
                     cboGender.DataSource = upgradeFile.Populate("SELECT sexID, sexName FROM gender;");
                     cboGender.ValueMember = "Key";
                     cboGender.DisplayMember = "Value";
@@ -52,8 +51,6 @@ namespace app.View.Patient
                     cboSpecies.DataSource = upgradeFile.Populate("SELECT speciesID, speciesName FROM species;");
                     cboSpecies.ValueMember = "Key";
                     cboSpecies.DisplayMember = "Value";
-
-                }
             }
         }
 
@@ -66,12 +63,12 @@ namespace app.View.Patient
 
         private void cboSpecies_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            using (UpgradeFile upgradeFile = new UpgradeFile())
-            {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            
                 cboBreed.DataSource = upgradeFile.Populate("SELECT breedID, breedDesc FROM breed WHERE speciesID='" + cboSpecies.SelectedValue.ToString() + "';");
                 cboBreed.ValueMember = "Key";
                 cboBreed.DisplayMember = "Value";
-            }
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

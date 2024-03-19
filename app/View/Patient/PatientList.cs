@@ -22,10 +22,10 @@ namespace app.View.Patient
 
         private void PatientList_Load(object sender, EventArgs e)
         {
-            using (UpgradeFile upgradeFile = new UpgradeFile())
-            {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            
                 dgvPatient.DataSource = upgradeFile.Load("SELECT * FROM vwpatient;");
-            }
+            
         }
 
         private void btnExit_Click(object sender, EventArgs e)
