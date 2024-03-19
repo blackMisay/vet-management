@@ -109,6 +109,12 @@
     <Compile Include="view\Client\frmClient.Designer.cs">
       <DependentUpon>frmClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Client\frmClientModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Client\frmClientModal.Designer.cs">
+      <DependentUpon>frmClientModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Client\frmClient.resx">
       <DependentUpon>frmClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Client\frmClientModal.resx">
+      <DependentUpon>frmClientModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
