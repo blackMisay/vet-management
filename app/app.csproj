@@ -61,6 +61,7 @@
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,7 +73,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Model\Barangay.cs" />
+    <Compile Include="Core\Model\Breed.cs" />
+    <Compile Include="Core\Model\City.cs" />
+    <Compile Include="Core\Model\Color.cs" />
+    <Compile Include="Core\Model\Gender.cs" />
+    <Compile Include="Core\Model\Client.cs" />
+    <Compile Include="Core\Model\Pet.cs" />
+    <Compile Include="Core\Model\Province.cs" />
+    <Compile Include="Core\Model\Region.cs" />
+    <Compile Include="Core\Model\Species.cs" />
+    <Compile Include="Core\Repository\ClientRepository.cs" />
+    <Compile Include="Core\Repository\ClientRepositoryBase.cs" />
+    <Compile Include="Core\Repository\PetRepository.cs" />
     <Compile Include="Core\UpgradeFile.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Administration\Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Administration\Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Inventory\Inventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Inventory\Inventory.Designer.cs">
+      <DependentUpon>Inventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,8 +113,48 @@
     <Compile Include="View\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Patient\AddClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Patient\AddClient.Designer.cs">
+      <DependentUpon>AddClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\AddPet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Patient\AddPet.Designer.cs">
+      <DependentUpon>AddPet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\PatientList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Patient\PatientList.Designer.cs">
+      <DependentUpon>PatientList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\PetDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Patient\PetDetails.Designer.cs">
+      <DependentUpon>PetDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Product\Products.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Product\Products.Designer.cs">
+      <DependentUpon>Products.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transaction\Transaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Transaction\Transaction.Designer.cs">
+      <DependentUpon>Transaction.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -95,7 +163,36 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\Administration\Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Inventory\Inventory.resx">
+      <DependentUpon>Inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Patient\AddClient.resx">
+      <DependentUpon>AddClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Patient\AddPet.resx">
+      <DependentUpon>AddPet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Patient\PatientList.resx">
+      <DependentUpon>PatientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Patient\PetDetails.resx" />
+    <EmbeddedResource Include="View\Product\Products.resx">
+      <DependentUpon>Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Transaction\Transaction.resx">
+      <DependentUpon>Transaction.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -110,15 +207,111 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Core\Model\" />
-    <Folder Include="Core\Repository\" />
-    <Folder Include="View\Administration\" />
-    <Folder Include="View\Inventory\" />
-    <Folder Include="View\Patient\" />
-    <Folder Include="View\Product\" />
-    <Folder Include="View\Reports\" />
-    <Folder Include="View\Transaction\" />
+    <None Include="icons\animal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\appointment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\customer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-add-button-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-add-button-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-animal-45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-client-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-client-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-client-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-client-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-client-70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-client-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-close-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-close-45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-dog-and-cat-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-dog-and-cat-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-dog-and-cat-45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-edit-button-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-edit-button-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-edit-button-45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-edit-button-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\icons8-save-button-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\maintenance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\medical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\patient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\patient1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\product.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\records.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\sales.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\staff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\transaction.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-35.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
