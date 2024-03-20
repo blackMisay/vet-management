@@ -26,7 +26,7 @@ namespace app.View.Patient
 
             // Pass the selected client Id to the datagrid query to use as a filter in 
             // order to return or display pets based on the client's id.
-            LoadClientsPatients(selectedClientId);// and then pinapasa ulit natin yun kay LoadClientsPatients, para iload yung data ng pets
+            //LoadClientsPatients(selectedClientId);// and then pinapasa ulit natin yun kay LoadClientsPatients, para iload yung data ng pets
             this.clientId = selectedClientId; // ipapasa rin natin dito yung value ng selected ClientId yan kasi gagamitin natin kapag iapapasa naman natin sa AddPet kapag clinic natin yung Add
         }
 
@@ -40,24 +40,7 @@ namespace app.View.Patient
             
         }
 
-        private void LoadClientsPatients(int clientId)
-        {
-            UpgradeFile upgradeFile = new UpgradeFile();
-            
-                // If the provided client ID is not zero
-                if (clientId > 0)
-                {
-                    // Use the client Id to filter out pets list
-                    dgvPet.DataSource = upgradeFile.Load("SELECT * FROM vwpet WHERE clientId=" + clientId + ";");
-                }
-                else
-                {
-                    // If there's no client Id (zero), load all pets list
-                    dgvPet.DataSource = upgradeFile.Load("SELECT * FROM vwpet;");
-
-                }
-            
-        }
+        
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -65,7 +48,7 @@ namespace app.View.Patient
             {
                 addPet.ShowDialog();
             }
-            LoadClientsPatients(this.clientId);
+            //LoadClientsPatients(this.clientId);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

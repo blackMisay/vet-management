@@ -13,11 +13,11 @@ namespace app.Core.Model
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public string Suffix { get; set; }  
-        public string DateofBirth { get; set; }
-        public string Sex { get; set; }
+        public string BirthDate { get; set; }
+        public string Gender { get; set; }
         public string CivilStatus { get; set; }
-        public string CellPhone { get; set; }
-        public string TelePhone { get; set; }
+        public string MobileNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string EmailAddress { get; set; }
         public string StreetNo { get; set; }
         public Region Region { get; set; }
@@ -25,9 +25,18 @@ namespace app.Core.Model
         public Barangay Brgy { get; set; }
         public Province Province { get; set; }
 
-        
+        public string GetFullName()
+        {
+            return this.FirstName + " " + MiddleName + ". " + LastName + " " + Suffix;
+        }
 
+        public string GetAllContact()
+        {
+            if (string.IsNullOrEmpty(this.EmailAddress) || string.IsNullOrWhiteSpace(this.EmailAddress))
+                return this.MobileNumber;
 
+            return this.MobileNumber + " / " + this.EmailAddress;
+        }
         
     }
 }

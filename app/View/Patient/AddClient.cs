@@ -1,12 +1,6 @@
 ﻿using app.Core.Model;
 using app.Core.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using app.Core;
@@ -97,10 +91,10 @@ namespace app.View.Patient
             client.MiddleName = txtmi.Text;
             client.Suffix = cmbSuffix.Text;
             client.CivilStatus = cmbCivilStat.Text;
-            client.TelePhone = txttellnum.Text;
-            client.CellPhone = txtcellnum.Text;
-            client.DateofBirth = dtpdob.Value.ToString("yyyy-MM-dd");
-            client.Sex = cmbSex.Text;
+            client.PhoneNumber = txttellnum.Text;
+            client.MobileNumber = txtcellnum.Text;
+            client.BirthDate = dtpdob.Value.ToString("yyyy-MM-dd");
+            client.Gender = cmbSex.Text;
             client.EmailAddress = txtemail.Text;
             client.StreetNo = txtstreet.Text;
             client.Region = new Region() { Id = Convert.ToInt32(cboRegion.SelectedValue) };

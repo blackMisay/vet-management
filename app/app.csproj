@@ -88,7 +88,6 @@
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Species.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
-    <Compile Include="core\repository\ClientRepositoryBase.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,6 +114,12 @@
     <Compile Include="view\Client\frmClientModal.Designer.cs">
       <DependentUpon>frmClientModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Client\frmClientPatientModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Client\frmClientPatientModal.Designer.cs">
+      <DependentUpon>frmClientPatientModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,12 +131,6 @@
     </Compile>
     <Compile Include="view\Inventory\Inventory.Designer.cs">
       <DependentUpon>Inventory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Patient\AddClient.cs">
       <SubType>Form</SubType>
@@ -188,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Client\frmClientModal.resx">
       <DependentUpon>frmClientModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Client\frmClientPatientModal.resx">
+      <DependentUpon>frmClientPatientModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

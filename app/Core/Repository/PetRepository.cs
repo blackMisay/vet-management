@@ -50,20 +50,23 @@ namespace app.Core.Repository
             return false;
         }
 
+        public DataTable LoadClientsPatients(int clientId)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
 
-        // TODO: DELETE (SOFT)
-       // public bool Delete(int Id)
-      //  {
-            //string sql = "DELETE FROM animals SET isActive = 0 WHERE petId=@Id;";
+            // If the provided client ID is not zero
+            if (clientId > 0)
+            {
+                // Use the client Id to filter out pets list
+                return upgradeFile.Load("SELECT * FROM vwpet WHERE clientId=" + clientId + ";");
+            }
+            else
+            {
+                // If there's no client Id (zero), load all pets list
+                return upgradeFile.Load("SELECT * FROM vwpet;");
 
-           // UpgradeFile upgradeFile = new UpgradeFile();
+            }
 
-            //    Dictionary<string, string> parameters = new Dictionary<string, string>()
-          //  {
-              //  {"@Id", Id.ToString() }
-          //  };
-          //  return upgradeFile.ExecuteQuery(sql, parameters);
-       
-       // }
         }
     }
+}

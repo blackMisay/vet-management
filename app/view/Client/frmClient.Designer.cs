@@ -38,22 +38,28 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPatient = new System.Windows.Forms.DataGridView();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnEditPatient = new System.Windows.Forms.Button();
+            this.btnRemovePatient = new System.Windows.Forms.Button();
+            this.btnAddPatient = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtAddress = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtContacts = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFullname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClient)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).BeginInit();
+            this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -105,9 +111,11 @@
             this.dgvClient.TabIndex = 1;
             this.dgvClient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClient_CellClick);
             this.dgvClient.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClient_CellDoubleClick);
+            this.dgvClient.DoubleClick += new System.EventHandler(this.dgvClient_DoubleClick);
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.btnAddClient);
             this.panel4.Controls.Add(this.btnSearch);
             this.panel4.Controls.Add(this.txtSearch);
@@ -158,7 +166,8 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Controls.Add(this.dgvPatient);
+            this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(295, 84);
@@ -167,22 +176,68 @@
             this.panel3.Size = new System.Drawing.Size(962, 702);
             this.panel3.TabIndex = 2;
             // 
-            // dataGridView1
+            // dgvPatient
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(5, 219);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(952, 483);
-            this.dataGridView1.TabIndex = 2;
+            this.dgvPatient.AllowUserToAddRows = false;
+            this.dgvPatient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPatient.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPatient.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvPatient.Location = new System.Drawing.Point(5, 284);
+            this.dgvPatient.Name = "dgvPatient";
+            this.dgvPatient.RowHeadersVisible = false;
+            this.dgvPatient.RowHeadersWidth = 51;
+            this.dgvPatient.RowTemplate.Height = 24;
+            this.dgvPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPatient.Size = new System.Drawing.Size(952, 418);
+            this.dgvPatient.TabIndex = 2;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.btnEditPatient);
+            this.panel6.Controls.Add(this.btnRemovePatient);
+            this.panel6.Controls.Add(this.btnAddPatient);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(5, 219);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(952, 65);
+            this.panel6.TabIndex = 3;
+            // 
+            // btnEditPatient
+            // 
+            this.btnEditPatient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditPatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditPatient.Location = new System.Drawing.Point(753, 16);
+            this.btnEditPatient.Name = "btnEditPatient";
+            this.btnEditPatient.Size = new System.Drawing.Size(87, 34);
+            this.btnEditPatient.TabIndex = 9;
+            this.btnEditPatient.Text = "&Update";
+            this.btnEditPatient.UseVisualStyleBackColor = true;
+            this.btnEditPatient.Click += new System.EventHandler(this.btnEditPatient_Click);
+            // 
+            // btnRemovePatient
+            // 
+            this.btnRemovePatient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemovePatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemovePatient.Location = new System.Drawing.Point(846, 16);
+            this.btnRemovePatient.Name = "btnRemovePatient";
+            this.btnRemovePatient.Size = new System.Drawing.Size(83, 34);
+            this.btnRemovePatient.TabIndex = 8;
+            this.btnRemovePatient.Text = "&Remove";
+            this.btnRemovePatient.UseVisualStyleBackColor = true;
+            // 
+            // btnAddPatient
+            // 
+            this.btnAddPatient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddPatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPatient.Location = new System.Drawing.Point(646, 16);
+            this.btnAddPatient.Name = "btnAddPatient";
+            this.btnAddPatient.Size = new System.Drawing.Size(101, 34);
+            this.btnAddPatient.TabIndex = 7;
+            this.btnAddPatient.Text = "&Add Pet";
+            this.btnAddPatient.UseVisualStyleBackColor = true;
+            this.btnAddPatient.Click += new System.EventHandler(this.btnAddPatient_Click);
             // 
             // panel5
             // 
@@ -197,11 +252,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnEdit);
-            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.txtAddress);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txtContacts);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtFullname);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 10);
@@ -223,16 +278,16 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // richTextBox1
+            // txtAddress
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox1.Enabled = false;
-            this.richTextBox1.Location = new System.Drawing.Point(598, 87);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(331, 80);
-            this.richTextBox1.TabIndex = 5;
-            this.richTextBox1.Text = "";
+            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress.Location = new System.Drawing.Point(598, 87);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ReadOnly = true;
+            this.txtAddress.Size = new System.Drawing.Size(331, 80);
+            this.txtAddress.TabIndex = 5;
+            this.txtAddress.Text = "";
             // 
             // label5
             // 
@@ -245,13 +300,13 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Address";
             // 
-            // textBox2
+            // txtContacts
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(156, 133);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(311, 30);
-            this.textBox2.TabIndex = 3;
+            this.txtContacts.Location = new System.Drawing.Point(156, 133);
+            this.txtContacts.Name = "txtContacts";
+            this.txtContacts.ReadOnly = true;
+            this.txtContacts.Size = new System.Drawing.Size(311, 30);
+            this.txtContacts.TabIndex = 3;
             // 
             // label4
             // 
@@ -262,13 +317,13 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Contact / Email";
             // 
-            // textBox1
+            // txtFullname
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(98, 87);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(369, 30);
-            this.textBox1.TabIndex = 1;
+            this.txtFullname.Location = new System.Drawing.Point(98, 87);
+            this.txtFullname.Name = "txtFullname";
+            this.txtFullname.ReadOnly = true;
+            this.txtFullname.Size = new System.Drawing.Size(369, 30);
+            this.txtFullname.TabIndex = 1;
             // 
             // label3
             // 
@@ -278,6 +333,17 @@
             this.label3.Size = new System.Drawing.Size(56, 23);
             this.label3.TabIndex = 0;
             this.label3.Text = "Name";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(112, 175);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(141, 20);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "double click to load";
             // 
             // frmClient
             // 
@@ -300,7 +366,8 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).EndInit();
+            this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -320,15 +387,20 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView dgvClient;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPatient;
         private System.Windows.Forms.Button btnAddClient;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFullname;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtContacts;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtAddress;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btnAddPatient;
+        private System.Windows.Forms.Button btnRemovePatient;
+        private System.Windows.Forms.Button btnEditPatient;
+        private System.Windows.Forms.Label label6;
     }
 }
