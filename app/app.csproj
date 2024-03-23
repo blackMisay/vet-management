@@ -336,6 +336,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Core.dll" />
+    <None Include="Resources\logout_24px.png" />
+    <None Include="Resources\main-menu_24px.png" />
+    <None Include="Resources\medsettings_24px.png" />
+    <None Include="Resources\healthdashboard_24px.png" />
+    <None Include="Resources\prescription_24px.png" />
+    <None Include="Resources\medinventory_24px.png" />
+    <None Include="Resources\items_24px.png" />
+    <None Include="Resources\medical-record_24px.png" />
+    <None Include="Resources\diagnosis_24px.png" />
+    <None Include="Resources\medical_24px.png" />
+    <None Include="Resources\owner_24px.png" />
+    <None Include="Resources\client_16px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

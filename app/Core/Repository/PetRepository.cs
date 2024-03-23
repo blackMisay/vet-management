@@ -58,6 +58,7 @@ namespace app.Core.Repository
             if (clientId > 0)
             {
                 // Use the client Id to filter out pets list
+
                 return upgradeFile.Load("SELECT * FROM vwpet WHERE clientId=" + clientId + ";");
             }
             else
