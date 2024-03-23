@@ -335,6 +335,7 @@
     <None Include="icons\transaction.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\vcms.sql" />
     <Content Include="lib\Core.dll" />
     <None Include="Resources\logout_24px.png" />
     <None Include="Resources\main-menu_24px.png" />
