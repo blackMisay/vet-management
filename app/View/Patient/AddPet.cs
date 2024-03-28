@@ -122,6 +122,11 @@ namespace app.View.Patient
                 picturePet.Image = Image.FromFile(ofp.FileName);
             }
         }
+
+        private void cboGender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

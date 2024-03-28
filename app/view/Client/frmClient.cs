@@ -1,4 +1,5 @@
 ﻿using app.Core.Repository;
+using app.View.Patient;
 using System;
 using System.Windows.Forms;
 
@@ -37,7 +38,7 @@ namespace app.view.Client
             if (!string.IsNullOrEmpty(txtSearch.Text) || !string.IsNullOrWhiteSpace(txtSearch.Text))
             {
                 ClientRepository repo = new ClientRepository();
-                dgvClient.DataSource =  repo.RetrieveSelectedClient(txtSearch.Text);
+                dgvClient.DataSource = repo.RetrieveSelectedClient(txtSearch.Text);
                 this.dgvClient.Columns["Id"].Visible = false;
             }
             else
@@ -67,15 +68,23 @@ namespace app.view.Client
             using (frmClientPatientModal newClientPatientForm = new frmClientPatientModal())
             {
                 newClientPatientForm.ShowDialog();
+                
             }
         }
 
         private void btnEditPatient_Click(object sender, EventArgs e)
         {
             using (frmClientPatientModal newClientPatientForm = new frmClientPatientModal())
-            {
-                newClientPatientForm.ShowDialog();
-            }
+
+                if (dgvPatient.RowCount > 0)
+                {
+                    int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
+                    MessageBox.Show(petId.ToString());
+                    frmClientPatientModal frm = new frmClientPatientModal();
+                    newClientPatientForm.ShowDialog();
+                    frm.ShowDialog();
+                    
+                }
         }
 
         private void dgvClient_DoubleClick(object sender, EventArgs e)
@@ -99,6 +108,22 @@ namespace app.view.Client
         {
             PetRepository petRepository = new PetRepository();
             dgvPatient.DataSource = petRepository.LoadClientsPatients(this.selectedClientId);
+        }
+
+        private void frmClient_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemovePatient_Click(object sender, EventArgs e)
+        {
+            if (dgvPatient.SelectedRows.Count > 0)
+            {
+                int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
+                MessageBox.Show(petId.ToString());
+                PetDetails details = new PetDetails(petId);
+                details.ShowDialog();
+            }
         }
     }
 }
