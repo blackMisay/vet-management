@@ -239,7 +239,6 @@
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(226, 29);
             this.cboGender.TabIndex = 71;
-            this.cboGender.SelectedIndexChanged += new System.EventHandler(this.cboGender_SelectedIndexChanged);
             // 
             // Label18
             // 

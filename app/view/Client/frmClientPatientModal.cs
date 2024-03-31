@@ -41,33 +41,13 @@ namespace app.view.Client
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();
+            PetDetails petDetails = new PetDetails();
+            petDetails.ShowDialog();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Pet pet = new Pet();
-
-            pet.Id = this.Id;
-            pet.Client = new Core.Model.Client() { Id = this.clientId };
-            pet.Name = txtName.Text;
-            pet.BirthDate = dtpBday.Value.ToString("yyyy-MM-dd");
-            pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
-            pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
-            pet.Breed = new Breed() { Id = Convert.ToInt32(cboBreed.SelectedValue) };
-            pet.Color = new Color() { Id = Convert.ToInt32(cboColor.SelectedValue) };
-            // pet.Image = Path.GetFileName(); //TODO: image directory
-
-            PetRepository petRepository = new PetRepository();
-            if (petRepository.Save(pet))
-            {
-                MessageBox.Show("Save successfully");
-                
-            }
-            else
-            {
-                MessageBox.Show("Unable to save record");
-            }
-
+            SavePet();
             this.Dispose();                           
         }
            
@@ -76,12 +56,6 @@ namespace app.view.Client
         {
             //TODO: Add photo
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmClientPatientModal_Load(object sender, EventArgs e)
         {
             {
@@ -112,6 +86,31 @@ namespace app.view.Client
             cboBreed.DataSource = upgradeFile.Populate("SELECT breedID, breedDesc FROM breed WHERE speciesID='" + cboSpecies.SelectedValue.ToString() + "';");
             cboBreed.ValueMember = "Key";
             cboBreed.DisplayMember = "Value";
+        }
+
+        private void SavePet()
+        {
+            Pet pet = new Pet();
+
+            pet.Id = this.Id;
+            pet.Client = new Core.Model.Client() { Id = this.clientId };
+            pet.Name = txtName.Text;
+            pet.BirthDate = dtpBday.Value.ToString("yyyy-MM-dd");
+            pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
+            pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
+            pet.Breed = new Breed() { Id = Convert.ToInt32(cboBreed.SelectedValue) };
+            pet.Color = new Color() { Id = Convert.ToInt32(cboColor.SelectedValue) };
+            // pet.Image = Path.GetFileName(); //TODO: image directory
+
+            PetRepository petRepository = new PetRepository();
+            if (petRepository.Save(pet))
+            {
+                MessageBox.Show("Save successfully");
+            }
+            else
+            {
+                MessageBox.Show("Unable to save record");
+            }
         }
     }
     }

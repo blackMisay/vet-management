@@ -9,9 +9,16 @@ namespace app.view.Client
     {
         app.Core.Model.Client client;
         int selectedClientId = 0;
+        int clientId = 0;
         public frmClient()
         {
             InitializeComponent();
+        }
+
+        public frmClient(int selectedClientId)
+        {
+            InitializeComponent();  
+            this.clientId = selectedClientId;
         }
 
         private void btnAddClient_Click(object sender, EventArgs e)
@@ -79,7 +86,7 @@ namespace app.view.Client
                 if (dgvPatient.RowCount > 0)
                 {
                     int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
-                    MessageBox.Show(petId.ToString());
+                    MessageBox.Show("Are you sure you want to UPDATE ?");
                     frmClientPatientModal frm = new frmClientPatientModal();
                     newClientPatientForm.ShowDialog();
                     frm.ShowDialog();
@@ -109,12 +116,6 @@ namespace app.view.Client
             PetRepository petRepository = new PetRepository();
             dgvPatient.DataSource = petRepository.LoadClientsPatients(this.selectedClientId);
         }
-
-        private void frmClient_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnRemovePatient_Click(object sender, EventArgs e)
         {
             if (dgvPatient.SelectedRows.Count > 0)
