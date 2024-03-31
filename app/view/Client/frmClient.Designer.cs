@@ -33,6 +33,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvClient = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnAddClient = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -52,7 +53,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtFullname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClient)).BeginInit();
@@ -125,6 +125,17 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(285, 219);
             this.panel4.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(112, 175);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(141, 20);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "double click to load";
             // 
             // btnAddClient
             // 
@@ -334,17 +345,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Name";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(112, 175);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(141, 20);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "double click to load";
-            // 
             // frmClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -359,6 +359,7 @@
             this.Name = "frmClient";
             this.Padding = new System.Windows.Forms.Padding(10, 5, 5, 10);
             this.Text = "frmCustomer";
+            this.Load += new System.EventHandler(this.frmClient_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

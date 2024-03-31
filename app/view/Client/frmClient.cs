@@ -100,5 +100,10 @@ namespace app.view.Client
             PetRepository petRepository = new PetRepository();
             dgvPatient.DataSource = petRepository.LoadClientsPatients(this.selectedClientId);
         }
+
+        private void frmClient_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

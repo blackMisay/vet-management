@@ -31,5 +31,10 @@ namespace app.view.Client
         {
             //TODO: Add photo
         }
+
+        private void frmClientPatientModal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
