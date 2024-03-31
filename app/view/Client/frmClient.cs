@@ -74,6 +74,7 @@ namespace app.view.Client
         {
             using (frmClientPatientModal newClientPatientForm = new frmClientPatientModal())
             {
+                
                 newClientPatientForm.ShowDialog();
                 
             }
@@ -81,14 +82,11 @@ namespace app.view.Client
 
         private void btnEditPatient_Click(object sender, EventArgs e)
         {
-            using (frmClientPatientModal newClientPatientForm = new frmClientPatientModal())
-
                 if (dgvPatient.RowCount > 0)
                 {
                     int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
                     MessageBox.Show("Are you sure you want to UPDATE ?");
                     frmClientPatientModal frm = new frmClientPatientModal();
-                    newClientPatientForm.ShowDialog();
                     frm.ShowDialog();
                     
                 }
