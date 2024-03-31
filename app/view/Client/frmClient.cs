@@ -65,16 +65,34 @@ namespace app.view.Client
         private void btnAddPatient_Click(object sender, EventArgs e)
         {
             using (frmClientPatientModal newClientPatientForm = new frmClientPatientModal())
-            {
-                newClientPatientForm.ShowDialog();
+            { 
+                    if (dgvClient.RowCount > 0)
+                {
+                    MessageBox.Show("Are you sure you want to ADD new pet?","Please Provide the Information Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    newClientPatientForm.ShowDialog();
+                }
+                else
+                {
+                    
+                    MessageBox.Show("No pet owner selected, please select.", "Empty Pet Owner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+            
         }
 
         private void btnEditPatient_Click(object sender, EventArgs e)
         {
             using (frmClientPatientModal newClientPatientForm = new frmClientPatientModal())
             {
-                newClientPatientForm.ShowDialog();
+                if(dgvClient.RowCount > 0)
+                {
+                    MessageBox.Show("Are you sure you want to EDIT?", "Please Provide the Information Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    newClientPatientForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("No pet owner selected, please select.", "Empty Pet Owner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -99,11 +117,6 @@ namespace app.view.Client
         {
             PetRepository petRepository = new PetRepository();
             dgvPatient.DataSource = petRepository.LoadClientsPatients(this.selectedClientId);
-        }
-
-        private void frmClient_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -359,7 +359,6 @@
             this.Name = "frmClient";
             this.Padding = new System.Windows.Forms.Padding(10, 5, 5, 10);
             this.Text = "frmCustomer";
-            this.Load += new System.EventHandler(this.frmClient_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
