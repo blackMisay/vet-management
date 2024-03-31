@@ -80,12 +80,14 @@ namespace app.view.Client
 
         private void SaveClient()
         {
+            Core.Model.Client client = new Core.Model.Client();
             client.Id = this.Id;
             client.FirstName = txtFname.Text;
             client.LastName = txtLname.Text;
             client.MiddleName = txtMname.Text;
             client.Suffix = txtSuffix.Text;
             client.CivilStatus = cboStatus.Text;
+            client.Gender = cboSex.Text;
             client.PhoneNumber = txtPhone.Text;
             client.MobileNumber = txtMobile.Text;
             client.BirthDate = dtpBday.Value.ToString("yyyy-MM-dd");

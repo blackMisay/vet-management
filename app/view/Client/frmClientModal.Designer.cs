@@ -62,6 +62,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.richHousenum = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cboSex = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -123,6 +125,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.cboSex);
+            this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.txtEmail);
             this.groupBox1.Controls.Add(this.cboStatus);
             this.groupBox1.Controls.Add(this.label8);
@@ -292,7 +296,6 @@
             this.txtFname.Name = "txtFname";
             this.txtFname.Size = new System.Drawing.Size(269, 30);
             this.txtFname.TabIndex = 10;
-            
             // 
             // groupBox2
             // 
@@ -410,6 +413,27 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "House number";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(38, 281);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(36, 23);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "Sex";
+            // 
+            // cboSex
+            // 
+            this.cboSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSex.FormattingEnabled = true;
+            this.cboSex.Items.AddRange(new object[] {
+            "Female",
+            "Male"});
+            this.cboSex.Location = new System.Drawing.Point(150, 283);
+            this.cboSex.Name = "cboSex";
+            this.cboSex.Size = new System.Drawing.Size(269, 31);
+            this.cboSex.TabIndex = 22;
+            // 
             // frmClientModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -473,5 +497,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cboBrgy;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cboSex;
     }
 }
