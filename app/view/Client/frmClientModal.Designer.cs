@@ -292,6 +292,7 @@
             this.txtFname.Name = "txtFname";
             this.txtFname.Size = new System.Drawing.Size(269, 30);
             this.txtFname.TabIndex = 10;
+            
             // 
             // groupBox2
             // 

@@ -118,5 +118,7 @@ namespace app.view.Client
             cboBrgy.ValueMember = "Key";
             cboBrgy.DisplayMember = "Value";
         }
+
+       
     }
 }
