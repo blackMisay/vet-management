@@ -41,8 +41,6 @@ namespace app.view.Client
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();
-            frmClientPatientModal frm = new frmClientPatientModal();
-            frm.Refresh();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
