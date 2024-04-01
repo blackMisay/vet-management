@@ -1,15 +1,7 @@
-﻿using app.Core.Repository;
-using app.View.Patient;
+﻿using app.Core.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using app.Core.Repository;
 using System.Windows.Forms;
-using app.Core.Model;
 using Color = app.Core.Model.Color;
 
 namespace app.view.Client
@@ -46,9 +38,9 @@ namespace app.view.Client
         private void btnSave_Click(object sender, EventArgs e)
         {
             SavePet();
-            this.Dispose();                           
+            this.Dispose();
         }
-           
+
 
         private void btnAddPhoto_Click(object sender, EventArgs e)
         {
@@ -58,7 +50,7 @@ namespace app.view.Client
         {
             {
                 UpgradeFile upgradeFile = new UpgradeFile();
-                
+
                 cboGender.DataSource = upgradeFile.Populate("SELECT sexID, sexName FROM gender;");
                 cboGender.ValueMember = "Key";
                 cboGender.DisplayMember = "Value";
@@ -75,7 +67,7 @@ namespace app.view.Client
                 cboSpecies.ValueMember = "Key";
                 cboSpecies.DisplayMember = "Value";
             }
-            }
+        }
 
         private void cboSpecies_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -111,5 +103,5 @@ namespace app.view.Client
             }
         }
     }
-    }
+}
 
