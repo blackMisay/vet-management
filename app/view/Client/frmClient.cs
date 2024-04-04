@@ -73,47 +73,56 @@ namespace app.view.Client
 
         private void btnAddPatient_Click(object sender, EventArgs e)
         {
-            if (dgvClient.SelectedRows.Count == 0)
+            if (dgvClient.SelectedRows.Count == 0 || dgvClient.Rows.Count < 0)
             {
-                DialogResult result = new DialogResult();
-
-                result = MessageBox.Show("No record is selected. Would you like to ADD a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("No record is selected. Would you like to ADD a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
-                    btnSearch.Enabled = true;
+                    // If the user wants to add a record, inform them to select a pet owner
+                    MessageBox.Show("Please select a pet owner.", "Select Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Are you sure you want to ADD new record?", "Add new Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                frmClientPatientModal frm = new frmClientPatientModal();
-                frm.ShowDialog();
+                // Confirm with the user before adding new record
+                DialogResult addConfirmation = MessageBox.Show("Are you sure you want to ADD new record?", "Add New Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (addConfirmation == DialogResult.Yes)
+                {
+                    // Proceed with adding a new record
+                    frmClientPatientModal frm = new frmClientPatientModal(this.clientId);
+                    frm.ShowDialog();
+                }
             }
+
         }
 
         private void btnEditPatient_Click(object sender, EventArgs e)
         {
             if (dgvPatient.SelectedRows.Count == 0)
             {
-                DialogResult result = new DialogResult();
-
-                result = MessageBox.Show("No record is selected. Would you like to UPDATE a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("No record is selected. Would you like to UPDATE a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
-                    btnSearch.Enabled = true;
-                    
+                    // Inform the user to select a record to update
+                    MessageBox.Show("Please select a record to update.", "Select Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Are you sure you want to UPDATE?", "Update Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
-                frmClientPatientModal frm = new frmClientPatientModal();
-                frm.ShowDialog();
+                // Confirm with the user before updating the record
+                DialogResult updateConfirmation = MessageBox.Show("Are you sure you want to UPDATE?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (updateConfirmation == DialogResult.Yes)
+                { 
+                    frmClientPatientModal frm = new frmClientPatientModal(this.clientId); 
+                    frm.ShowDialog();
+                }
             }
-        }                                                                                                                             
+
+        }
         private void dgvClient_DoubleClick(object sender, EventArgs e)
         {
             this.LoadClient();
@@ -140,21 +149,27 @@ namespace app.view.Client
         {
             if (dgvPatient.SelectedRows.Count == 0)
             {
-                DialogResult result = new DialogResult();
-
-                result = MessageBox.Show("No record is selected. Would you like to DELETE a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("No record is selected. Would you like to DELETE a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
-                    btnSearch.Enabled = true;
+                    // Inform the user to select a record to delete
+                    MessageBox.Show("Please select a record to DELETE.", "Select Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Are you sure you want to DELETE?", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
-                dgvPatient.Refresh();
+                // Confirm with the user before deleting the record
+                DialogResult deleteConfirmation = MessageBox.Show("Are you sure you want to DELETE?", "Delete Record", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (deleteConfirmation == DialogResult.OK)
+                {
+                    
+                    dgvPatient.Rows.RemoveAt(dgvPatient.SelectedRows[0].Index);
+                    dgvPatient.Refresh();
+                }
             }
+
         }
     }
 }

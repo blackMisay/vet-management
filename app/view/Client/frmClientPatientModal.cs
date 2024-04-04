@@ -16,7 +16,8 @@ namespace app.view.Client
         {
             InitializeComponent();
             this.Id = petId;
-            btnSave.Text = "Update Patient";
+            btnSave.Text = "Update Pet";
+            
         }
 
         // Use for adding new client's pet
@@ -25,12 +26,8 @@ namespace app.view.Client
             InitializeComponent();
             this.Id = petId;
             this.clientId = clientId;
-        }
-        public frmClientPatientModal()
-        {
-            InitializeComponent();
-        }
 
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();
