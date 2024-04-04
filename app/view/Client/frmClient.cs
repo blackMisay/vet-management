@@ -92,8 +92,11 @@ namespace app.view.Client
                 {
                     // Proceed with adding a new record
                     int clientId = Convert.ToInt32(dgvClient.SelectedRows[0].Cells["Id"].Value);
-                    frmClientPatientModal frm = new frmClientPatientModal(clientId);
+                    int petId = 0;
+                    frmClientPatientModal frm = new frmClientPatientModal(clientId , petId);
                     frm.ShowDialog();
+                    dgvPatient.Refresh();
+
                 }
             }
 
@@ -121,6 +124,7 @@ namespace app.view.Client
                     int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
                     frmClientPatientModal frm = new frmClientPatientModal(petId);
                     frm.ShowDialog();
+                    dgvPatient.RefreshEdit();
 
                 }
             }
