@@ -34,6 +34,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboSex = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -62,8 +64,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.richHousenum = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.cboSex = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -151,6 +151,27 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personal Information";
+            // 
+            // cboSex
+            // 
+            this.cboSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSex.FormattingEnabled = true;
+            this.cboSex.Items.AddRange(new object[] {
+            "Female",
+            "Male"});
+            this.cboSex.Location = new System.Drawing.Point(150, 283);
+            this.cboSex.Name = "cboSex";
+            this.cboSex.Size = new System.Drawing.Size(269, 31);
+            this.cboSex.TabIndex = 22;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(38, 281);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(36, 23);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "Sex";
             // 
             // txtEmail
             // 
@@ -327,7 +348,7 @@
             this.cboBrgy.Name = "cboBrgy";
             this.cboBrgy.Size = new System.Drawing.Size(269, 31);
             this.cboBrgy.TabIndex = 22;
-            this.cboBrgy.SelectedIndexChanged += new System.EventHandler(this.cboBrgy_SelectedIndexChanged);
+            this.cboBrgy.Click += new System.EventHandler(this.cboBrgy_Click);
             // 
             // label15
             // 
@@ -412,27 +433,6 @@
             this.label11.Size = new System.Drawing.Size(123, 23);
             this.label11.TabIndex = 0;
             this.label11.Text = "House number";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(38, 281);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(36, 23);
-            this.label16.TabIndex = 21;
-            this.label16.Text = "Sex";
-            // 
-            // cboSex
-            // 
-            this.cboSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSex.FormattingEnabled = true;
-            this.cboSex.Items.AddRange(new object[] {
-            "Female",
-            "Male"});
-            this.cboSex.Location = new System.Drawing.Point(150, 283);
-            this.cboSex.Name = "cboSex";
-            this.cboSex.Size = new System.Drawing.Size(269, 31);
-            this.cboSex.TabIndex = 22;
             // 
             // frmClientModal
             // 

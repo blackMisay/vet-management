@@ -237,6 +237,7 @@
             this.btnRemovePatient.TabIndex = 8;
             this.btnRemovePatient.Text = "&Remove";
             this.btnRemovePatient.UseVisualStyleBackColor = true;
+            this.btnRemovePatient.Click += new System.EventHandler(this.btnRemovePatient_Click);
             // 
             // btnAddPatient
             // 

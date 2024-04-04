@@ -1,4 +1,5 @@
-﻿using app.Core.Repository;
+﻿using app.Core.Model;
+using app.Core.Repository;
 using System;
 using System.Windows.Forms;
 
@@ -118,5 +119,23 @@ namespace app.view.Client
             PetRepository petRepository = new PetRepository();
             dgvPatient.DataSource = petRepository.LoadClientsPatients(this.selectedClientId);
         }
+
+        private void btnRemovePatient_Click(object sender, EventArgs e)
+        {
+            using (frmClientPatientModal newClientPatientForm = new frmClientPatientModal())
+            {
+                if (dgvClient.RowCount > 0)
+                {
+                    
+                    MessageBox.Show("Are you sure you want to DELETE?", "Delete Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                }
+                else
+                {
+                    MessageBox.Show("No pet owner selected, please select.", "Empty Pet Owner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+        
     }
 }

@@ -60,14 +60,6 @@ namespace app.view.Client
             cboProvince.DisplayMember = "Value";
         }
 
-        private void cboBrgy_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            cboBrgy.DataSource = upgradeFile.Populate("SELECT brgyID, brgyDesc FROM brgy where citymunCode='" + cboCity.SelectedValue.ToString() + "';");
-            cboBrgy.ValueMember = "Key";
-            cboBrgy.DisplayMember = "Value";
-        }
 
         private void cboProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -121,6 +113,13 @@ namespace app.view.Client
             cboBrgy.DisplayMember = "Value";
         }
 
-       
+        private void cboBrgy_Click(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboBrgy.DataSource = upgradeFile.Populate("SELECT brgyID, brgyDesc FROM brgy where citymunCode='" + cboCity.SelectedValue.ToString() + "';");
+            cboBrgy.ValueMember = "Key";
+            cboBrgy.DisplayMember = "Value";
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using app.Core.Model;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -124,5 +125,19 @@ namespace app.Core.Repository
                 StreetNo = dt.Rows[0][7].ToString(),
             };
         }
+        public bool Delete(Client client)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            string sql = "UPDATE client SET deleted = '1' WHERE clientId=@Id;";
+
+            using (MySqlCommand cmd =  new MySqlCommand(sql))
+            {
+                cmd.Parameters.AddWithValue("@Id", client.Id);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+        }
+
     }
 }
