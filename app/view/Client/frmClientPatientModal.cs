@@ -30,19 +30,14 @@ namespace app.view.Client
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-                // Ask the user for confirmation before canceling
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel your work?", "Confirm Cancellation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Ask the user for confirmation before canceling
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel your work?", "Confirm Cancellation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (dialogResult == DialogResult.Yes)
-                {
+            if (dialogResult == DialogResult.Yes)
+            {
                 MessageBox.Show("Work has been cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Dispose();
-                }
-                else
-                { 
-
-            }
-
+            }                  
         }
 
         private void btnSave_Click(object sender, EventArgs e)
