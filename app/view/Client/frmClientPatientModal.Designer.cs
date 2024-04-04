@@ -32,17 +32,17 @@
             this.btnBreed = new System.Windows.Forms.Button();
             this.btnAddSpecie = new System.Windows.Forms.Button();
             this.btnAddColor = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cboBreed = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cboSpecies = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cboColor = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboGender = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dtpBday = new System.Windows.Forms.DateTimePicker();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -62,17 +62,17 @@
             this.groupBox1.Controls.Add(this.btnBreed);
             this.groupBox1.Controls.Add(this.btnAddSpecie);
             this.groupBox1.Controls.Add(this.btnAddColor);
-            this.groupBox1.Controls.Add(this.comboBox4);
+            this.groupBox1.Controls.Add(this.cboBreed);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.cboSpecies);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.cboColor);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cboGender);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.dtpBday);
+            this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(339, 146);
             this.groupBox1.Name = "groupBox1";
@@ -114,14 +114,14 @@
             this.btnAddColor.Text = "+";
             this.btnAddColor.UseVisualStyleBackColor = true;
             // 
-            // comboBox4
+            // cboBreed
             // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(150, 248);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(232, 31);
-            this.comboBox4.TabIndex = 26;
+            this.cboBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBreed.FormattingEnabled = true;
+            this.cboBreed.Location = new System.Drawing.Point(150, 248);
+            this.cboBreed.Name = "cboBreed";
+            this.cboBreed.Size = new System.Drawing.Size(232, 31);
+            this.cboBreed.TabIndex = 26;
             // 
             // label4
             // 
@@ -132,14 +132,15 @@
             this.label4.TabIndex = 25;
             this.label4.Text = "Breed";
             // 
-            // comboBox3
+            // cboSpecies
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(150, 211);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(232, 31);
-            this.comboBox3.TabIndex = 24;
+            this.cboSpecies.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSpecies.FormattingEnabled = true;
+            this.cboSpecies.Location = new System.Drawing.Point(150, 211);
+            this.cboSpecies.Name = "cboSpecies";
+            this.cboSpecies.Size = new System.Drawing.Size(232, 31);
+            this.cboSpecies.TabIndex = 24;
+            this.cboSpecies.SelectionChangeCommitted += new System.EventHandler(this.cboSpecies_SelectionChangeCommitted);
             // 
             // label3
             // 
@@ -150,14 +151,14 @@
             this.label3.TabIndex = 23;
             this.label3.Text = "Specie";
             // 
-            // comboBox2
+            // cboColor
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(150, 174);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(232, 31);
-            this.comboBox2.TabIndex = 22;
+            this.cboColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboColor.FormattingEnabled = true;
+            this.cboColor.Location = new System.Drawing.Point(150, 174);
+            this.cboColor.Name = "cboColor";
+            this.cboColor.Size = new System.Drawing.Size(232, 31);
+            this.cboColor.TabIndex = 22;
             // 
             // label1
             // 
@@ -168,14 +169,15 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Color";
             // 
-            // comboBox1
+            // cboGender
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(150, 137);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(269, 31);
-            this.comboBox1.TabIndex = 20;
+            this.cboGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboGender.FormattingEnabled = true;
+            this.cboGender.Location = new System.Drawing.Point(150, 137);
+            this.cboGender.Name = "cboGender";
+            this.cboGender.Size = new System.Drawing.Size(269, 31);
+            this.cboGender.TabIndex = 20;
+           
             // 
             // label7
             // 
@@ -195,20 +197,20 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "Birth date";
             // 
-            // dateTimePicker1
+            // dtpBday
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(150, 101);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(269, 30);
-            this.dateTimePicker1.TabIndex = 17;
+            this.dtpBday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBday.Location = new System.Drawing.Point(150, 101);
+            this.dtpBday.Name = "dtpBday";
+            this.dtpBday.Size = new System.Drawing.Size(269, 30);
+            this.dtpBday.TabIndex = 17;
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(150, 65);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(269, 30);
-            this.textBox1.TabIndex = 10;
+            this.txtName.Location = new System.Drawing.Point(150, 65);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(269, 30);
+            this.txtName.TabIndex = 10;
             // 
             // label2
             // 
@@ -299,6 +301,7 @@
             this.Name = "frmClientPatientModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmClientPatientModal";
+            this.Load += new System.EventHandler(this.frmClientPatientModal_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -311,17 +314,17 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboGender;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DateTimePicker dtpBday;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboColor;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cboSpecies;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cboBreed;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;

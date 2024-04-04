@@ -69,5 +69,19 @@ namespace app.Core.Repository
             }
 
         }
+
+        public bool Delete(int petId)
+        {
+            string sql = "DELETE from animals WHERE petId=@Id";
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+            {
+                {"@Id", Convert.ToString(petId) }
+            };
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+            return upgradeFile.ExecuteQuery(sql, parameters);
+        }
+
     }
 }

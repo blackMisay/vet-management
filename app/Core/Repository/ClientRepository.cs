@@ -72,7 +72,7 @@ namespace app.Core.Repository
 
             dt = upgradeFile.Load("SELECT * FROM clients WHERE clientId=@Id;", parameters);
             if (dt.Rows.Count == 0)
-                throw new Exception("Empty DataTable");
+                    throw new Exception("Empty DataTable");
 
             return clients = new Client()
             {
@@ -109,7 +109,7 @@ namespace app.Core.Repository
 
             dt = upgradeFile.Load("SELECT * FROM vwclient WHERE clientId=@Id;", parameters);
             if (dt.Rows.Count == 0)
-                throw new Exception("Empty DataTable");
+            throw new Exception("Empty DataTable");
 
             return clients = new Client()
             {
