@@ -15,7 +15,7 @@ namespace app.view.Client
         {
             InitializeComponent();
         }
-
+       
         public frmClient(int selectedClientId)
         {
             InitializeComponent();
@@ -75,24 +75,24 @@ namespace app.view.Client
         {
             if (dgvClient.SelectedRows.Count == 0)
             {
-                DialogResult result = MessageBox.Show("No record is selected. Would you like to ADD a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("No pet owner record is selected. Would you like to ADD a new pet record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     // If the user wants to add a record, inform them to select a pet owner
-                    MessageBox.Show("Please select a pet owner.", "Select Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Please select a pet owner, you cannot add a new patient/pet if there's no selected pet owner", "Select Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
                 // Confirm with the user before adding new record
-                DialogResult addConfirmation = MessageBox.Show("Are you sure you want to ADD new record?", "Add New Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult addConfirmation = MessageBox.Show("Are you sure you want to ADD new pet record?", "Add New Pet Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (addConfirmation == DialogResult.Yes)
                 {
                     // Proceed with adding a new record
-                    int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
-                    frmClientPatientModal frm = new frmClientPatientModal(petId);
+                    int clientId = Convert.ToInt32(dgvClient.SelectedRows[0].Cells["Id"].Value);
+                    frmClientPatientModal frm = new frmClientPatientModal(clientId);
                     frm.ShowDialog();
                 }
             }
@@ -103,18 +103,18 @@ namespace app.view.Client
         {
             if (dgvPatient.SelectedRows.Count == 0)
             {
-                DialogResult result = MessageBox.Show("No record is selected. Would you like to UPDATE a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("You haven't select a pet record to update. Would you like to UPDATE a pet record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     // Inform the user to select a record to update
-                    MessageBox.Show("Please select a record to update.", "Select Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Please select a pet record first to update.", "Select Pet Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
                 // Confirm with the user before updating the record
-                DialogResult updateConfirmation = MessageBox.Show("Are you sure you want to UPDATE?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult updateConfirmation = MessageBox.Show("Are you sure you want to UPDATE the pet record?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (updateConfirmation == DialogResult.Yes)
                 {
@@ -154,18 +154,18 @@ namespace app.view.Client
             if (dgvPatient.SelectedRows.Count == 0)
             {
                 // Inform the user to select a record
-                DialogResult result = MessageBox.Show("No record is selected. Would you like to DELETE a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("No pet record is selected. Would you like to DELETE a pet record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     // Inform the user to select a record to delete
-                    MessageBox.Show("Please select a record to DELETE.", "Select Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Please select a pet record to DELETE.", "Select Pet Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
                 // Confirm with the user before deleting the record
-                DialogResult deleteConfirmation = MessageBox.Show("Are you sure you want to DELETE?", "Delete Record", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                DialogResult deleteConfirmation = MessageBox.Show("Are you sure you want to DELETE the pet record?", "Delete Record", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (deleteConfirmation == DialogResult.OK)
                 {
