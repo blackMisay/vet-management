@@ -17,7 +17,7 @@ namespace app.view.Client
             InitializeComponent();
             this.Id = petId;
             btnSave.Text = "Update Pet";
-            
+
         }
 
         // Use for adding new client's pet
@@ -30,7 +30,19 @@ namespace app.view.Client
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+                // Ask the user for confirmation before canceling
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel your work?", "Confirm Cancellation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                MessageBox.Show("Work has been cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Dispose();
+                }
+                else
+                { 
+
+            }
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -88,7 +100,7 @@ namespace app.view.Client
             pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
             pet.Breed = new Breed() { Id = Convert.ToInt32(cboBreed.SelectedValue) };
             pet.Color = new Color() { Id = Convert.ToInt32(cboColor.SelectedValue) };
-            // pet.Image = Path.GetFileName(); //TODO: image directory
+            //pet.Image = Path.GetFileName(); //TODO: image directory
 
             PetRepository petRepository = new PetRepository();
             if (petRepository.Save(pet))
@@ -100,6 +112,8 @@ namespace app.view.Client
                 MessageBox.Show("Unable to save record");
             }
         }
+        
+        }
     }
-}
+
 

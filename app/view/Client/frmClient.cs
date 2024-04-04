@@ -18,7 +18,7 @@ namespace app.view.Client
 
         public frmClient(int selectedClientId)
         {
-            InitializeComponent();  
+            InitializeComponent();
             this.clientId = selectedClientId;
         }
 
@@ -73,7 +73,7 @@ namespace app.view.Client
 
         private void btnAddPatient_Click(object sender, EventArgs e)
         {
-            if (dgvClient.SelectedRows.Count == 0 || dgvClient.Rows.Count < 0)
+            if (dgvClient.SelectedRows.Count == 0)
             {
                 DialogResult result = MessageBox.Show("No record is selected. Would you like to ADD a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -91,7 +91,8 @@ namespace app.view.Client
                 if (addConfirmation == DialogResult.Yes)
                 {
                     // Proceed with adding a new record
-                    frmClientPatientModal frm = new frmClientPatientModal(this.clientId);
+                    int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
+                    frmClientPatientModal frm = new frmClientPatientModal(petId);
                     frm.ShowDialog();
                 }
             }
@@ -116,9 +117,11 @@ namespace app.view.Client
                 DialogResult updateConfirmation = MessageBox.Show("Are you sure you want to UPDATE?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (updateConfirmation == DialogResult.Yes)
-                { 
-                    frmClientPatientModal frm = new frmClientPatientModal(this.clientId); 
+                {
+                    int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
+                    frmClientPatientModal frm = new frmClientPatientModal(petId);
                     frm.ShowDialog();
+
                 }
             }
 
@@ -145,10 +148,12 @@ namespace app.view.Client
             PetRepository petRepository = new PetRepository();
             dgvPatient.DataSource = petRepository.LoadClientsPatients(this.selectedClientId);
         }
+
         private void btnRemovePatient_Click(object sender, EventArgs e)
         {
             if (dgvPatient.SelectedRows.Count == 0)
             {
+                // Inform the user to select a record
                 DialogResult result = MessageBox.Show("No record is selected. Would you like to DELETE a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
@@ -164,12 +169,27 @@ namespace app.view.Client
 
                 if (deleteConfirmation == DialogResult.OK)
                 {
-                    
-                    dgvPatient.Rows.RemoveAt(dgvPatient.SelectedRows[0].Index);
-                    dgvPatient.Refresh();
+                    // Get the ID of the selected record
+                    int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
+
+                    // Call a method to delete the record from the database
+                    PetRepository pet = new PetRepository();
+                    bool isDeleted = pet.Delete(petId);
+
+                    if (isDeleted)
+                    {
+                        // Remove the selected row from the DataGridView
+                        dgvPatient.Rows.Remove(dgvPatient.SelectedRows[0]);
+                        dgvPatient.Refresh();
+
+                        MessageBox.Show("Record deleted successfully.", "Delete Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to delete record.", "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
-
         }
     }
 }
