@@ -344,7 +344,6 @@
             this.Label11.Size = new System.Drawing.Size(131, 21);
             this.Label11.TabIndex = 58;
             this.Label11.Text = "Telephone No.";
-            this.Label11.Click += new System.EventHandler(this.Label11_Click);
             // 
             // Label10
             // 
