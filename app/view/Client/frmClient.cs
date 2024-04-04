@@ -2,6 +2,7 @@
 using app.View.Patient;
 using System;
 using System.Windows.Forms;
+using app.Core.Model;
 
 namespace app.view.Client
 {
@@ -72,26 +73,47 @@ namespace app.view.Client
 
         private void btnAddPatient_Click(object sender, EventArgs e)
         {
-            using (frmClientPatientModal newClientPatientForm = new frmClientPatientModal())
+            if (dgvClient.SelectedRows.Count == 0)
             {
-                
-                newClientPatientForm.ShowDialog();
-                
+                DialogResult result = new DialogResult();
+
+                result = MessageBox.Show("No record is selected. Would you like to ADD a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    btnSearch.Enabled = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Are you sure you want to ADD new record?", "Add new Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frmClientPatientModal frm = new frmClientPatientModal();
+                frm.ShowDialog();
             }
         }
 
         private void btnEditPatient_Click(object sender, EventArgs e)
         {
-                if (dgvPatient.RowCount > 0)
+            if (dgvPatient.SelectedRows.Count == 0)
+            {
+                DialogResult result = new DialogResult();
+
+                result = MessageBox.Show("No record is selected. Would you like to UPDATE a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
                 {
-                    int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
-                    MessageBox.Show("Are you sure you want to UPDATE ?");
-                    frmClientPatientModal frm = new frmClientPatientModal();
-                    frm.ShowDialog();
+                    btnSearch.Enabled = true;
                     
                 }
-        }
-
+            }
+            else
+            {
+                MessageBox.Show("Are you sure you want to UPDATE?", "Update Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
+                frmClientPatientModal frm = new frmClientPatientModal();
+                frm.ShowDialog();
+            }
+        }                                                                                                                             
         private void dgvClient_DoubleClick(object sender, EventArgs e)
         {
             this.LoadClient();
@@ -116,12 +138,22 @@ namespace app.view.Client
         }
         private void btnRemovePatient_Click(object sender, EventArgs e)
         {
-            if (dgvPatient.SelectedRows.Count > 0)
+            if (dgvPatient.SelectedRows.Count == 0)
             {
+                DialogResult result = new DialogResult();
+
+                result = MessageBox.Show("No record is selected. Would you like to DELETE a record?", "No Record Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    btnSearch.Enabled = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Are you sure you want to DELETE?", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
-                MessageBox.Show(petId.ToString());
-                PetDetails details = new PetDetails(petId);
-                details.ShowDialog();
+                dgvPatient.Refresh();
             }
         }
     }

@@ -16,6 +16,7 @@ namespace app.view.Client
         {
             InitializeComponent();
             this.Id = petId;
+            btnSave.Text = "Update Patient";
         }
 
         // Use for adding new client's pet
