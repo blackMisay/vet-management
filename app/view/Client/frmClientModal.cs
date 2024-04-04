@@ -27,6 +27,7 @@ namespace app.view.Client
         {
             InitializeComponent();
             this.Id = clientId;
+            btnSave.Text = "Update Client";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -100,10 +101,7 @@ namespace app.view.Client
             {
                 MessageBox.Show("Unable to save record");
             }
-        }
-
-      
-
+        }      
         private void cboCity_Click(object sender, EventArgs e)
         {
             UpgradeFile upgradeFile = new UpgradeFile();
