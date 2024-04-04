@@ -93,7 +93,7 @@ namespace app.view.Client
                     // Proceed with adding a new record
                     int clientId = Convert.ToInt32(dgvClient.SelectedRows[0].Cells["Id"].Value);
                     int petId = 0;
-                    frmClientPatientModal frm = new frmClientPatientModal(clientId , petId);
+                    frmClientPatientModal frm = new frmClientPatientModal(petId,clientId);
                     frm.ShowDialog();
                     dgvPatient.Refresh();
 
