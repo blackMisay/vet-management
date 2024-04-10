@@ -1,8 +1,8 @@
-﻿using app.Core.Model;
-using System;
-using app.Core.Repository;
-using System.Windows.Forms;
 using Color = app.Core.Model.Color;
+using System.Windows.Forms;
+using app.Core.Repository;
+using app.Core.Model;
+using System;
 
 namespace app.view.Client
 {
@@ -28,6 +28,7 @@ namespace app.view.Client
             this.clientId = clientId;
 
         }
+        
         private void btnCancel_Click(object sender, EventArgs e)
         {
             // Ask the user for confirmation before canceling
@@ -51,6 +52,7 @@ namespace app.view.Client
         {
             //TODO: Add photo
         }
+
         private void frmClientPatientModal_Load(object sender, EventArgs e)
         {
             {
@@ -107,8 +109,7 @@ namespace app.view.Client
                 MessageBox.Show("Unable to save record");
             }
         }
-        
-        }
     }
+}
 
 
