@@ -113,10 +113,5 @@ namespace app.View.Patient
                 MessageBox.Show("Unable to save record");
             }
         }
-
-        private void Label11_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

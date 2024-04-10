@@ -1,4 +1,4 @@
-﻿using app.Core.Repository;
+using app.Core.Repository;
 using app.View.Patient;
 using System;
 using System.Windows.Forms;
@@ -11,6 +11,7 @@ namespace app.view.Client
         app.Core.Model.Client client;
         int selectedClientId = 0;
         int clientId = 0;
+        
         public frmClient()
         {
             InitializeComponent();
@@ -23,22 +24,40 @@ namespace app.view.Client
         }
 
         private void btnAddClient_Click(object sender, EventArgs e)
-        {
-            using (frmClientModal newClientForm = new frmClientModal())
-            {
-                newClientForm.ShowDialog();
+        {          
+                if (dgvClient.RowCount > 0)
+                {
+                    MessageBox.Show("Are you sure you want to ADD new pet owner record?", "Please Provide the Information Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    int clientId = Convert.ToInt32(dgvClient.SelectedRows[0].Cells["Id"].Value);
+                    frmClientModal newClientForm = new frmClientModal(clientId);
+                    newClientForm.ShowDialog();
+                }
+                else
+                {
+
+                    MessageBox.Show("No pet owner record selected, please select.", "No Selected Pet Owner Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
             }
-        }
+
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             // TODO: Create another constructor for Updating Client record by passing
             // the Id as parameter.
-            using (frmClientModal newClientForm = new frmClientModal())
+            if (dgvClient.RowCount > 0)
             {
+                MessageBox.Show("Are you sure you want to UPDATE pet owner record?", "Please Provide the Information Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int clientId = Convert.ToInt32(dgvClient.SelectedRows[0].Cells["Id"].Value);
+                frmClientModal newClientForm = new frmClientModal(clientId);
                 newClientForm.ShowDialog();
             }
+            else
+            { 
+                MessageBox.Show("No pet owner record selected, please select pet owner record first before UPDATE.", "No Selected Pet Owner Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
+           
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -104,7 +123,6 @@ namespace app.view.Client
                 // Inform the user to select a record to update
                 MessageBox.Show("Please select a pet record first to update.", "Select Pet Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
             else
             {
                 // Confirm with the user before updating the record
@@ -116,11 +134,10 @@ namespace app.view.Client
                     frmClientPatientModal frm = new frmClientPatientModal(petId);
                     frm.ShowDialog();
                     dgvPatient.RefreshEdit();
-
                 }
             }
-
         }
+        
         private void dgvClient_DoubleClick(object sender, EventArgs e)
         {
             this.LoadClient();
@@ -180,5 +197,6 @@ namespace app.view.Client
                 }
             }
         }
+        
     }
 }
