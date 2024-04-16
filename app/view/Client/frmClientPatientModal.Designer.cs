@@ -240,6 +240,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox1.Location = new System.Drawing.Point(56, 146);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -275,12 +276,14 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(887, 495);
+            this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
+            this.btnSave.Location = new System.Drawing.Point(955, 510);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(182, 51);
+            this.btnSave.Size = new System.Drawing.Size(144, 36);
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "&Create Pet";
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -289,12 +292,14 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(714, 495);
+            this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
+            this.btnCancel.Location = new System.Drawing.Point(837, 510);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(146, 51);
+            this.btnCancel.Size = new System.Drawing.Size(110, 36);
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "C&ancel";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -303,12 +308,14 @@
             this.btnAddPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddPhoto.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAddPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddPhoto.Location = new System.Drawing.Point(55, 422);
+            this.btnAddPhoto.Image = global::app.Properties.Resources.icons8_add_image_32;
+            this.btnAddPhoto.Location = new System.Drawing.Point(139, 422);
             this.btnAddPhoto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddPhoto.Name = "btnAddPhoto";
-            this.btnAddPhoto.Size = new System.Drawing.Size(347, 51);
+            this.btnAddPhoto.Size = new System.Drawing.Size(178, 51);
             this.btnAddPhoto.TabIndex = 16;
             this.btnAddPhoto.Text = "&Add photo";
+            this.btnAddPhoto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddPhoto.UseVisualStyleBackColor = false;
             this.btnAddPhoto.Click += new System.EventHandler(this.btnAddPhoto_Click);
             // 
@@ -325,7 +332,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmClientPatientModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmClientPatientModal";

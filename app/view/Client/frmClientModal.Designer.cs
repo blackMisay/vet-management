@@ -95,11 +95,13 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(842, 709);
+            this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
+            this.btnCancel.Location = new System.Drawing.Point(901, 714);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(146, 51);
+            this.btnCancel.Size = new System.Drawing.Size(110, 40);
             this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "C&ancel";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -107,11 +109,13 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(1012, 709);
+            this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
+            this.btnSave.Location = new System.Drawing.Point(1027, 714);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(182, 51);
+            this.btnSave.Size = new System.Drawing.Size(167, 40);
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "&Create Client";
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 

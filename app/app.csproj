@@ -337,6 +337,17 @@
   <ItemGroup>
     <Content Include="data\vcms.sql" />
     <Content Include="lib\Core.dll" />
+    <None Include="Resources\icons8-add-image-32.png" />
+    <None Include="Resources\icons8-add-image-16.png" />
+    <None Include="Resources\icons8-cancel-16 %281%29.png" />
+    <None Include="Resources\icons8-create-16.png" />
+    <None Include="Resources\logo1-removebg-preview %281%29.ico" />
+    <None Include="Resources\icons8-edit-16.png" />
+    <None Include="Resources\icons8-update-16.png" />
+    <None Include="Resources\icons8-remove-16.png" />
+    <None Include="Resources\icons8-google-web-search-16.png" />
+    <None Include="Resources\logo1-removebg-preview.ico" />
+    <None Include="Resources\icons8-dog-and-cat-16.png" />
     <None Include="Resources\logout_24px.png" />
     <None Include="Resources\main-menu_24px.png" />
     <None Include="Resources\medsettings_24px.png" />

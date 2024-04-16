@@ -197,6 +197,5 @@ namespace app.view.Client
                 }
             }
         }
-        
     }
 }
