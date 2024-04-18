@@ -96,12 +96,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="view\Administration\Admin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Administration\Admin.Designer.cs">
-      <DependentUpon>Admin.cs</DependentUpon>
-    </Compile>
     <Compile Include="view\Client\frmClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,12 +119,6 @@
     </Compile>
     <Compile Include="view\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\Inventory\Inventory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Inventory\Inventory.Designer.cs">
-      <DependentUpon>Inventory.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Patient\AddClient.cs">
       <SubType>Form</SubType>
@@ -156,31 +144,16 @@
     <Compile Include="view\Patient\PetDetails.Designer.cs">
       <DependentUpon>PetDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\Product\Products.cs">
+    <Compile Include="view\Transaction\frmTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\Product\Products.Designer.cs">
-      <DependentUpon>Products.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\Reports\Report.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Reports\Report.Designer.cs">
-      <DependentUpon>Report.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\Transaction\Transaction.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Transaction\Transaction.Designer.cs">
-      <DependentUpon>Transaction.cs</DependentUpon>
+    <Compile Include="view\Transaction\frmTransaction.Designer.cs">
+      <DependentUpon>frmTransaction.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="view\Administration\Admin.resx">
-      <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Client\frmClient.resx">
       <DependentUpon>frmClient.cs</DependentUpon>
@@ -194,9 +167,6 @@
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\Inventory\Inventory.resx">
-      <DependentUpon>Inventory.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="view\Patient\AddClient.resx">
       <DependentUpon>AddClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,14 +177,8 @@
       <DependentUpon>PatientList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Patient\PetDetails.resx" />
-    <EmbeddedResource Include="view\Product\Products.resx">
-      <DependentUpon>Products.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="view\Reports\Report.resx">
-      <DependentUpon>Report.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="view\Transaction\Transaction.resx">
-      <DependentUpon>Transaction.cs</DependentUpon>
+    <EmbeddedResource Include="view\Transaction\frmTransaction.resx">
+      <DependentUpon>frmTransaction.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="lib\Core.dll.config" />
     <None Include="packages.config" />
@@ -231,7 +195,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="view\Administration\" />
+    <Folder Include="view\Inventory\" />
+    <Folder Include="view\Product\" />
+    <Folder Include="view\Reports\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="icons\animal.png" />
   </ItemGroup>

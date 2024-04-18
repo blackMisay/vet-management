@@ -37,24 +37,11 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnPetDetails = new System.Windows.Forms.Button();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.tspClient = new System.Windows.Forms.ToolStripButton();
-            this.tspProduct = new System.Windows.Forms.ToolStripButton();
-            this.tspInventory = new System.Windows.Forms.ToolStripButton();
-            this.tspReport = new System.Windows.Forms.ToolStripButton();
-            this.tspTransact = new System.Windows.Forms.ToolStripButton();
-            this.tspAdmin = new System.Windows.Forms.ToolStripButton();
             this.btnEdit = new System.Windows.Forms.Button();
             this.txtSearchClient = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvPatient = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,8 +49,13 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).BeginInit();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -75,7 +67,6 @@
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.btnPetDetails);
-            this.panel1.Controls.Add(this.toolStrip2);
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.txtSearchClient);
             this.panel1.Controls.Add(this.btnAdd);
@@ -125,79 +116,6 @@
             this.btnPetDetails.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPetDetails.UseVisualStyleBackColor = true;
             this.btnPetDetails.Click += new System.EventHandler(this.btnPetDetails_Click);
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.BackColor = System.Drawing.SystemColors.Menu;
-            this.toolStrip2.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(36, 36);
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspClient,
-            this.tspProduct,
-            this.tspInventory,
-            this.tspReport,
-            this.tspTransact,
-            this.tspAdmin});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip2.Size = new System.Drawing.Size(1228, 43);
-            this.toolStrip2.TabIndex = 1;
-            this.toolStrip2.TabStop = true;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // tspClient
-            // 
-            this.tspClient.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspClient.Image = global::app.Properties.Resources.icons8_client_30;
-            this.tspClient.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tspClient.Name = "tspClient";
-            this.tspClient.Size = new System.Drawing.Size(98, 40);
-            this.tspClient.Text = "Client";
-            // 
-            // tspProduct
-            // 
-            this.tspProduct.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspProduct.Image = global::app.Properties.Resources.item;
-            this.tspProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tspProduct.Name = "tspProduct";
-            this.tspProduct.Size = new System.Drawing.Size(123, 40);
-            this.tspProduct.Text = "Products";
-            // 
-            // tspInventory
-            // 
-            this.tspInventory.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspInventory.Image = global::app.Properties.Resources.product;
-            this.tspInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tspInventory.Name = "tspInventory";
-            this.tspInventory.Size = new System.Drawing.Size(128, 40);
-            this.tspInventory.Text = "Inventory";
-            // 
-            // tspReport
-            // 
-            this.tspReport.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspReport.Image = global::app.Properties.Resources.records;
-            this.tspReport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tspReport.Name = "tspReport";
-            this.tspReport.Size = new System.Drawing.Size(113, 40);
-            this.tspReport.Text = "Reports";
-            // 
-            // tspTransact
-            // 
-            this.tspTransact.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspTransact.Image = global::app.Properties.Resources.transaction;
-            this.tspTransact.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tspTransact.Name = "tspTransact";
-            this.tspTransact.Size = new System.Drawing.Size(146, 40);
-            this.tspTransact.Text = "Transaction";
-            // 
-            // tspAdmin
-            // 
-            this.tspAdmin.Image = global::app.Properties.Resources.staff;
-            this.tspAdmin.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tspAdmin.Name = "tspAdmin";
-            this.tspAdmin.Size = new System.Drawing.Size(168, 40);
-            this.tspAdmin.Text = "Administration";
             // 
             // btnEdit
             // 
@@ -282,54 +200,6 @@
             this.dgvPatient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellClick);
             this.dgvPatient.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellContentClick);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.statusStrip1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 637);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1228, 28);
-            this.panel2.TabIndex = 7;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.SystemColors.Desktop;
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1,
-            this.toolStripStatusLabel2,
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 2);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1228, 26);
-            this.statusStrip1.TabIndex = 9;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(0, 20);
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 20);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1062, 20);
-            this.toolStripStatusLabel1.Spring = true;
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(151, 20);
-            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
-            // 
             // Id
             // 
             this.Id.DataPropertyName = "clientId";
@@ -404,6 +274,54 @@
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.statusStrip1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 637);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1228, 28);
+            this.panel2.TabIndex = 7;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar1,
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel3});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 2);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1228, 26);
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(0, 20);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 20);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1062, 20);
+            this.toolStripStatusLabel1.Spring = true;
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(151, 20);
+            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
+            // 
             // PatientList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -423,8 +341,6 @@
             this.Load += new System.EventHandler(this.PatientList_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -443,13 +359,6 @@
         private System.Windows.Forms.Button btnPetDetails;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton tspClient;
-        private System.Windows.Forms.ToolStripButton tspProduct;
-        private System.Windows.Forms.ToolStripButton tspInventory;
-        private System.Windows.Forms.ToolStripButton tspReport;
-        private System.Windows.Forms.ToolStripButton tspTransact;
-        private System.Windows.Forms.ToolStripButton tspAdmin;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Panel panel2;
