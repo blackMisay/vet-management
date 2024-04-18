@@ -97,5 +97,10 @@ namespace app.view
         {
             this.ToggleMenu();
         }
+
+        private void btnItem_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new Product.frmProducts());
+        }
     }
 }

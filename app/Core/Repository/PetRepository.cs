@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
-using app.View.Patient;
 using System.Drawing;
 using System.Data;
 using System.Xml.Linq;

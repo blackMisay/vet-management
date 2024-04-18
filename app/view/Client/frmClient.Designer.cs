@@ -30,7 +30,7 @@ namespace app.view.Client
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClient));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -157,7 +157,6 @@ namespace app.view.Client
             // 
             this.btnAddClient.BackColor = System.Drawing.Color.White;
             this.btnAddClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddClient.Image = global::app.Properties.Resources.icons8_client_30;
             this.btnAddClient.Location = new System.Drawing.Point(0, 19);
             this.btnAddClient.Name = "btnAddClient";
             this.btnAddClient.Size = new System.Drawing.Size(317, 40);
@@ -170,7 +169,6 @@ namespace app.view.Client
             // btnSearch
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
             this.btnSearch.Location = new System.Drawing.Point(7, 149);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(99, 31);
@@ -268,8 +266,8 @@ namespace app.view.Client
             // Column4
             // 
             this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column4.HeaderText = "Birthday";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -320,7 +318,6 @@ namespace app.view.Client
             this.btnEditPatient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEditPatient.BackColor = System.Drawing.Color.White;
             this.btnEditPatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditPatient.Image = global::app.Properties.Resources.icons8_update_16;
             this.btnEditPatient.Location = new System.Drawing.Point(804, 15);
             this.btnEditPatient.Name = "btnEditPatient";
             this.btnEditPatient.Size = new System.Drawing.Size(102, 31);
@@ -335,7 +332,6 @@ namespace app.view.Client
             this.btnRemovePatient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemovePatient.BackColor = System.Drawing.Color.White;
             this.btnRemovePatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemovePatient.Image = global::app.Properties.Resources.icons8_remove_16;
             this.btnRemovePatient.Location = new System.Drawing.Point(912, 15);
             this.btnRemovePatient.Name = "btnRemovePatient";
             this.btnRemovePatient.Size = new System.Drawing.Size(110, 31);
@@ -350,7 +346,6 @@ namespace app.view.Client
             this.btnAddPatient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddPatient.BackColor = System.Drawing.Color.White;
             this.btnAddPatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddPatient.Image = global::app.Properties.Resources.icons8_dog_and_cat_16;
             this.btnAddPatient.Location = new System.Drawing.Point(686, 15);
             this.btnAddPatient.Name = "btnAddPatient";
             this.btnAddPatient.Size = new System.Drawing.Size(112, 31);
@@ -393,7 +388,6 @@ namespace app.view.Client
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEdit.BackColor = System.Drawing.Color.White;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Image = global::app.Properties.Resources.icons8_edit_16;
             this.btnEdit.Location = new System.Drawing.Point(941, 41);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(81, 32);

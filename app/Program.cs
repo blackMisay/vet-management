@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using app.view;
-using app.View;
-using app.View.Patient;
 
 namespace app
 {
