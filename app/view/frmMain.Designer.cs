@@ -30,24 +30,24 @@
         {
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.pnlInventorySpacer = new System.Windows.Forms.Panel();
-            this.pnlItemSpacer = new System.Windows.Forms.Panel();
-            this.pnlDiagnosisSpacer = new System.Windows.Forms.Panel();
-            this.pnlClientSpacer = new System.Windows.Forms.Panel();
-            this.pnlViewMedicalRecordSpacer = new System.Windows.Forms.Panel();
-            this.pnlDashboardSpacer = new System.Windows.Forms.Panel();
-            this.pnlFooter = new System.Windows.Forms.Panel();
-            this.pnlBody = new System.Windows.Forms.Panel();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.pnlInventorySpacer = new System.Windows.Forms.Panel();
             this.btnInventory = new System.Windows.Forms.Button();
+            this.pnlItemSpacer = new System.Windows.Forms.Panel();
             this.btnItem = new System.Windows.Forms.Button();
+            this.pnlDiagnosisSpacer = new System.Windows.Forms.Panel();
             this.btnDiagnosis = new System.Windows.Forms.Button();
+            this.pnlClientSpacer = new System.Windows.Forms.Panel();
             this.btnClient = new System.Windows.Forms.Button();
+            this.pnlViewMedicalRecordSpacer = new System.Windows.Forms.Panel();
             this.btnMedicalRecords = new System.Windows.Forms.Button();
+            this.pnlDashboardSpacer = new System.Windows.Forms.Panel();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnToggle = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSettings = new System.Windows.Forms.Button();
+            this.pnlFooter = new System.Windows.Forms.Panel();
+            this.pnlBody = new System.Windows.Forms.Panel();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,77 +86,30 @@
             this.pnlMenu.Size = new System.Drawing.Size(70, 729);
             this.pnlMenu.TabIndex = 1;
             // 
-            // pnlInventorySpacer
+            // btnSettings
             // 
-            this.pnlInventorySpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlInventorySpacer.Location = new System.Drawing.Point(10, 403);
-            this.pnlInventorySpacer.Name = "pnlInventorySpacer";
-            this.pnlInventorySpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlInventorySpacer.Size = new System.Drawing.Size(50, 10);
-            this.pnlInventorySpacer.TabIndex = 16;
+            this.btnSettings.BackColor = System.Drawing.Color.White;
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnSettings.Image = global::app.Properties.Resources.medsettings_24px;
+            this.btnSettings.Location = new System.Drawing.Point(10, 614);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(50, 50);
+            this.btnSettings.TabIndex = 20;
+            this.btnSettings.UseVisualStyleBackColor = false;
             // 
-            // pnlItemSpacer
+            // panel1
             // 
-            this.pnlItemSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlItemSpacer.Location = new System.Drawing.Point(10, 343);
-            this.pnlItemSpacer.Name = "pnlItemSpacer";
-            this.pnlItemSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlItemSpacer.Size = new System.Drawing.Size(50, 10);
-            this.pnlItemSpacer.TabIndex = 14;
-            // 
-            // pnlDiagnosisSpacer
-            // 
-            this.pnlDiagnosisSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlDiagnosisSpacer.Location = new System.Drawing.Point(10, 283);
-            this.pnlDiagnosisSpacer.Name = "pnlDiagnosisSpacer";
-            this.pnlDiagnosisSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlDiagnosisSpacer.Size = new System.Drawing.Size(50, 10);
-            this.pnlDiagnosisSpacer.TabIndex = 12;
-            // 
-            // pnlClientSpacer
-            // 
-            this.pnlClientSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlClientSpacer.Location = new System.Drawing.Point(10, 223);
-            this.pnlClientSpacer.Name = "pnlClientSpacer";
-            this.pnlClientSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlClientSpacer.Size = new System.Drawing.Size(50, 10);
-            this.pnlClientSpacer.TabIndex = 10;
-            // 
-            // pnlViewMedicalRecordSpacer
-            // 
-            this.pnlViewMedicalRecordSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlViewMedicalRecordSpacer.Location = new System.Drawing.Point(10, 163);
-            this.pnlViewMedicalRecordSpacer.Name = "pnlViewMedicalRecordSpacer";
-            this.pnlViewMedicalRecordSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlViewMedicalRecordSpacer.Size = new System.Drawing.Size(50, 10);
-            this.pnlViewMedicalRecordSpacer.TabIndex = 8;
-            // 
-            // pnlDashboardSpacer
-            // 
-            this.pnlDashboardSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlDashboardSpacer.Location = new System.Drawing.Point(10, 103);
-            this.pnlDashboardSpacer.Name = "pnlDashboardSpacer";
-            this.pnlDashboardSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlDashboardSpacer.Size = new System.Drawing.Size(50, 10);
-            this.pnlDashboardSpacer.TabIndex = 6;
-            // 
-            // pnlFooter
-            // 
-            this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
-            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 773);
-            this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1420, 24);
-            this.pnlFooter.TabIndex = 2;
-            // 
-            // pnlBody
-            // 
-            this.pnlBody.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBody.Location = new System.Drawing.Point(70, 44);
-            this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(1350, 729);
-            this.pnlBody.TabIndex = 3;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(10, 664);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel1.Size = new System.Drawing.Size(50, 10);
+            this.panel1.TabIndex = 18;
             // 
             // btnLogout
             // 
@@ -175,6 +128,15 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // pnlInventorySpacer
+            // 
+            this.pnlInventorySpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlInventorySpacer.Location = new System.Drawing.Point(10, 403);
+            this.pnlInventorySpacer.Name = "pnlInventorySpacer";
+            this.pnlInventorySpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlInventorySpacer.Size = new System.Drawing.Size(50, 10);
+            this.pnlInventorySpacer.TabIndex = 16;
+            // 
             // btnInventory
             // 
             this.btnInventory.BackColor = System.Drawing.Color.White;
@@ -190,6 +152,16 @@
             this.btnInventory.Size = new System.Drawing.Size(50, 50);
             this.btnInventory.TabIndex = 15;
             this.btnInventory.UseVisualStyleBackColor = false;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            // 
+            // pnlItemSpacer
+            // 
+            this.pnlItemSpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlItemSpacer.Location = new System.Drawing.Point(10, 343);
+            this.pnlItemSpacer.Name = "pnlItemSpacer";
+            this.pnlItemSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlItemSpacer.Size = new System.Drawing.Size(50, 10);
+            this.pnlItemSpacer.TabIndex = 14;
             // 
             // btnItem
             // 
@@ -207,6 +179,15 @@
             this.btnItem.TabIndex = 13;
             this.btnItem.UseVisualStyleBackColor = false;
             // 
+            // pnlDiagnosisSpacer
+            // 
+            this.pnlDiagnosisSpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlDiagnosisSpacer.Location = new System.Drawing.Point(10, 283);
+            this.pnlDiagnosisSpacer.Name = "pnlDiagnosisSpacer";
+            this.pnlDiagnosisSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlDiagnosisSpacer.Size = new System.Drawing.Size(50, 10);
+            this.pnlDiagnosisSpacer.TabIndex = 12;
+            // 
             // btnDiagnosis
             // 
             this.btnDiagnosis.BackColor = System.Drawing.Color.White;
@@ -222,6 +203,15 @@
             this.btnDiagnosis.Size = new System.Drawing.Size(50, 50);
             this.btnDiagnosis.TabIndex = 11;
             this.btnDiagnosis.UseVisualStyleBackColor = false;
+            // 
+            // pnlClientSpacer
+            // 
+            this.pnlClientSpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlClientSpacer.Location = new System.Drawing.Point(10, 223);
+            this.pnlClientSpacer.Name = "pnlClientSpacer";
+            this.pnlClientSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlClientSpacer.Size = new System.Drawing.Size(50, 10);
+            this.pnlClientSpacer.TabIndex = 10;
             // 
             // btnClient
             // 
@@ -240,6 +230,15 @@
             this.btnClient.UseVisualStyleBackColor = false;
             this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
             // 
+            // pnlViewMedicalRecordSpacer
+            // 
+            this.pnlViewMedicalRecordSpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlViewMedicalRecordSpacer.Location = new System.Drawing.Point(10, 163);
+            this.pnlViewMedicalRecordSpacer.Name = "pnlViewMedicalRecordSpacer";
+            this.pnlViewMedicalRecordSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlViewMedicalRecordSpacer.Size = new System.Drawing.Size(50, 10);
+            this.pnlViewMedicalRecordSpacer.TabIndex = 8;
+            // 
             // btnMedicalRecords
             // 
             this.btnMedicalRecords.BackColor = System.Drawing.Color.White;
@@ -255,6 +254,15 @@
             this.btnMedicalRecords.Size = new System.Drawing.Size(50, 50);
             this.btnMedicalRecords.TabIndex = 7;
             this.btnMedicalRecords.UseVisualStyleBackColor = false;
+            // 
+            // pnlDashboardSpacer
+            // 
+            this.pnlDashboardSpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlDashboardSpacer.Location = new System.Drawing.Point(10, 103);
+            this.pnlDashboardSpacer.Name = "pnlDashboardSpacer";
+            this.pnlDashboardSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlDashboardSpacer.Size = new System.Drawing.Size(50, 10);
+            this.pnlDashboardSpacer.TabIndex = 6;
             // 
             // btnDashboard
             // 
@@ -286,30 +294,23 @@
             this.btnToggle.UseVisualStyleBackColor = true;
             this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
             // 
-            // panel1
+            // pnlFooter
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(10, 664);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.panel1.Size = new System.Drawing.Size(50, 10);
-            this.panel1.TabIndex = 18;
+            this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
+            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlFooter.Location = new System.Drawing.Point(0, 773);
+            this.pnlFooter.Name = "pnlFooter";
+            this.pnlFooter.Size = new System.Drawing.Size(1420, 24);
+            this.pnlFooter.TabIndex = 2;
             // 
-            // btnSettings
+            // pnlBody
             // 
-            this.btnSettings.BackColor = System.Drawing.Color.White;
-            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnSettings.Image = global::app.Properties.Resources.medsettings_24px;
-            this.btnSettings.Location = new System.Drawing.Point(10, 614);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(50, 50);
-            this.btnSettings.TabIndex = 20;
-            this.btnSettings.UseVisualStyleBackColor = false;
+            this.pnlBody.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBody.Location = new System.Drawing.Point(70, 44);
+            this.pnlBody.Name = "pnlBody";
+            this.pnlBody.Size = new System.Drawing.Size(1350, 729);
+            this.pnlBody.TabIndex = 3;
             // 
             // frmMain
             // 

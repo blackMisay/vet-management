@@ -97,5 +97,10 @@ namespace app.view
         {
             this.ToggleMenu();
         }
+
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new Inventory.frmInventory());
+        }
     }
 }
