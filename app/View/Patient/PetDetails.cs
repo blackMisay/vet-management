@@ -1,9 +1,4 @@
 ﻿using app.Core.Repository;
-using app.View.Administration;
-using app.View.Inventory;
-using app.View.Product;
-using app.View.Reports;
-using app.View.Transaction;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,10 +32,10 @@ namespace app.View.Patient
 
         private void PetDetails_Load(object sender, EventArgs e)
         {
-            
+
         }
 
-        
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -69,7 +64,7 @@ namespace app.View.Patient
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-          if (dgvPet.SelectedRows.Count > 0)
+            if (dgvPet.SelectedRows.Count > 0)
             {
                 int petId = Convert.ToInt32(dgvPet.SelectedRows[0].Cells["Id"].Value);
                 MessageBox.Show(petId.ToString());
@@ -83,36 +78,7 @@ namespace app.View.Patient
             PetDetails petDetails = new PetDetails();
             petDetails.ShowDialog();
         }
-
-        private void tspProduct_Click(object sender, EventArgs e)
-        {
-            Products products = new Products();
-            products.ShowDialog();
-        }
-
-        private void tspInventory_Click(object sender, EventArgs e)
-        {
-            FrmInventory inventory = new FrmInventory();
-            inventory.ShowDialog();
-        }
-
-        private void tspReport_Click(object sender, EventArgs e)
-        {
-            Report report = new Report();
-            report.ShowDialog();
-        }
-
-        private void tspTransact_Click(object sender, EventArgs e)
-        {
-            FrmTransaction transaction = new FrmTransaction();
-            transaction.ShowDialog();
-        }
-
-        private void tspAdmin_Click(object sender, EventArgs e)
-        {
-            Admin admin = new Admin();
-            admin.ShowDialog();
-        }
     }
-    }
+}
 
+      

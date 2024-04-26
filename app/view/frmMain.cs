@@ -97,5 +97,9 @@ namespace app.view
         {
             this.ToggleMenu();
         }
+        private void btnMedicalRecords_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new Transaction.frmTransaction());
+        }
     }
 }
