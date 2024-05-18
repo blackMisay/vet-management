@@ -144,6 +144,12 @@
     <Compile Include="view\Patient\PetDetails.Designer.cs">
       <DependentUpon>PetDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Product\frmProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Product\frmProducts.Designer.cs">
+      <DependentUpon>frmProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Transaction\frmTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
       <DependentUpon>PatientList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Patient\PetDetails.resx" />
+    <EmbeddedResource Include="view\Product\frmProducts.resx">
+      <DependentUpon>frmProducts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Transaction\frmTransaction.resx">
       <DependentUpon>frmTransaction.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,7 +207,6 @@
   <ItemGroup>
     <Folder Include="view\Administration\" />
     <Folder Include="view\Inventory\" />
-    <Folder Include="view\Product\" />
     <Folder Include="view\Reports\" />
   </ItemGroup>
   <ItemGroup>
