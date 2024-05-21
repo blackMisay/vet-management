@@ -78,18 +78,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="core\model\Barangay.cs" />
+    <Compile Include="core\model\Brand.cs" />
     <Compile Include="core\model\Breed.cs" />
     <Compile Include="core\model\City.cs" />
     <Compile Include="core\model\Color.cs" />
     <Compile Include="core\model\Gender.cs" />
     <Compile Include="core\model\Client.cs" />
     <Compile Include="core\model\Pet.cs" />
+    <Compile Include="core\model\Product.cs" />
+    <Compile Include="core\model\ProductCategory.cs" />
     <Compile Include="core\model\Province.cs" />
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Services.cs" />
     <Compile Include="core\model\Species.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
+    <Compile Include="core\repository\ProductRepository.cs" />
     <Compile Include="core\repository\ServiceRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,6 +156,12 @@
     <Compile Include="view\Patient\PetDetails.Designer.cs">
       <DependentUpon>PetDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Product\frmProductModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Product\frmProductModal.Designer.cs">
+      <DependentUpon>frmProductModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Product\frmProducts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +216,9 @@
       <DependentUpon>PatientList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Patient\PetDetails.resx" />
+    <EmbeddedResource Include="view\Product\frmProductModal.resx">
+      <DependentUpon>frmProductModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Product\frmProducts.resx">
       <DependentUpon>frmProducts.cs</DependentUpon>
     </EmbeddedResource>
