@@ -17,6 +17,7 @@ namespace app.view.Client
             InitializeComponent();
         }
 
+
         public frmClient(int selectedClientId)
         {
             InitializeComponent();

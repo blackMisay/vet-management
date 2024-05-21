@@ -101,5 +101,10 @@ namespace app.view
         {
             this.openFormModule(new Transaction.frmTransaction());
         }
+
+        private void btnDiagnosis_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new Services.frmServices());
+        }
     }
 }
