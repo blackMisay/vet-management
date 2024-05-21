@@ -202,6 +202,7 @@
             this.btnDiagnosis.Size = new System.Drawing.Size(50, 50);
             this.btnDiagnosis.TabIndex = 11;
             this.btnDiagnosis.UseVisualStyleBackColor = false;
+            this.btnDiagnosis.Click += new System.EventHandler(this.btnDiagnosis_Click);
             // 
             // pnlClientSpacer
             // 
