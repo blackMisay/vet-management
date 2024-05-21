@@ -7,14 +7,17 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using app.core.model;
 
 namespace app.core.repository
 {
     internal class ProductRepository
     {
+        
+
         public DataTable SearchProduct(string searchValue)
         {
-            string query = "SELECT * FROM product WHERE `prodID` LIKE @searchValue AND `prodDesc` LIKE @searchValue;";
+            string query = "SELECT * FROM vwproduct WHERE `amount` LIKE @searchValue OR `prodDesc` LIKE @searchValue;";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
                 {"@searchValue", "%" + searchValue + "%" }
@@ -30,11 +33,11 @@ namespace app.core.repository
 
             if (saveState)
             {
-                sql = "UPDATE product SET prodID=@Id WHERE prodId=@Id;";
+                sql = "UPDATE vwproduct SET prodID=@Id WHERE prodId=@Id;";
             }
             else
             {
-                sql = "INSERT INTO product(prodID,brandID,prodDesc,categID,qty,unitPrice,amount) VALUES(@Id,@BrandID,@Description,@CategID,@Quantity,@UnitPrice,@Amount);";
+                sql = "INSERT INTO vwproduct(prodID,brandID,prodDesc,categID,qty,unitPrice,amount) VALUES(@Id,@BrandID,@Description,@CategID,@Quantity,@UnitPrice,@Amount);";
             }
             Dictionary<string, string> parameters = new Dictionary<string, string>()
             {
@@ -42,7 +45,7 @@ namespace app.core.repository
                 {"@BrandID",Convert.ToString(product.BrandID)},
                 {"@Description", product.Description },
                 {"@CategID", Convert.ToString(product.CategID)},
-                { "@Quantity", Convert.ToString(product.Quantity) },
+                {"@Quantity", Convert.ToString(product.Quantity) },
                 {"@UnitPrice", Convert.ToString(product.UnitPrice) },
                 {"@Amount", Convert.ToString(product.Amount) },
             };
@@ -56,7 +59,7 @@ namespace app.core.repository
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            string sql = "UPDATE product SET deleted = '1' WHERE id=@Id;";
+            string sql = "UPDATE vwproduct SET deleted = '1' WHERE id=@Id;";
 
             using (MySqlCommand cmd = new MySqlCommand(sql))
             {

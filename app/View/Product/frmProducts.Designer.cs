@@ -178,6 +178,7 @@
             this.btnRemoveProduct.Text = "&Remove";
             this.btnRemoveProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRemoveProduct.UseVisualStyleBackColor = false;
+            this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
             // 
             // txtSearch
             // 
@@ -197,6 +198,7 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dgvProducts
             // 
@@ -232,7 +234,7 @@
             // 
             // Column2
             // 
-            this.Column2.DataPropertyName = "brandID";
+            this.Column2.DataPropertyName = "brandDesc";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column2.HeaderText = "Brand";
@@ -252,7 +254,7 @@
             // 
             // Column9
             // 
-            this.Column9.DataPropertyName = "categID";
+            this.Column9.DataPropertyName = "categDesc";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             this.Column9.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column9.HeaderText = "Category";
