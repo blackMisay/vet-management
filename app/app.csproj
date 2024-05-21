@@ -122,6 +122,12 @@
     <Compile Include="view\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Inventory\frmInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Inventory\frmInventory.Designer.cs">
+      <DependentUpon>frmInventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Patient\AddClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Inventory\frmInventory.resx">
+      <DependentUpon>frmInventory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Patient\AddClient.resx">
       <DependentUpon>AddClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,7 +235,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="view\Administration\" />
-    <Folder Include="view\Inventory\" />
     <Folder Include="view\Reports\" />
   </ItemGroup>
   <ItemGroup>
