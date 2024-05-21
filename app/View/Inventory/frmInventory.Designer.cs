@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,11 +54,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtStocks = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txtStocks = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.panel6.SuspendLayout();
@@ -109,7 +109,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(317, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1112, 72);
+            this.panel1.Size = new System.Drawing.Size(1158, 72);
             this.panel1.TabIndex = 6;
             // 
             // label1
@@ -145,10 +145,9 @@
             this.panel6.BackColor = System.Drawing.SystemColors.Desktop;
             this.panel6.Controls.Add(this.btnEditProduct);
             this.panel6.Controls.Add(this.btnRemoveProduct);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(6, 200);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1417, 59);
+            this.panel6.Size = new System.Drawing.Size(1465, 59);
             this.panel6.TabIndex = 3;
             // 
             // btnEditProduct
@@ -157,7 +156,7 @@
             this.btnEditProduct.BackColor = System.Drawing.Color.White;
             this.btnEditProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditProduct.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEditProduct.Location = new System.Drawing.Point(1173, 15);
+            this.btnEditProduct.Location = new System.Drawing.Point(1221, 15);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(102, 31);
             this.btnEditProduct.TabIndex = 9;
@@ -171,7 +170,7 @@
             this.btnRemoveProduct.BackColor = System.Drawing.Color.White;
             this.btnRemoveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveProduct.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemoveProduct.Location = new System.Drawing.Point(1281, 15);
+            this.btnRemoveProduct.Location = new System.Drawing.Point(1329, 15);
             this.btnRemoveProduct.Name = "btnRemoveProduct";
             this.btnRemoveProduct.Size = new System.Drawing.Size(110, 31);
             this.btnRemoveProduct.TabIndex = 8;
@@ -298,7 +297,6 @@
             this.dgvStocks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStocks.BackgroundColor = System.Drawing.Color.White;
             this.dgvStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStocks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStocks.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvStocks.Location = new System.Drawing.Point(6, 259);
             this.dgvStocks.Name = "dgvStocks";
@@ -306,14 +304,14 @@
             this.dgvStocks.RowHeadersWidth = 51;
             this.dgvStocks.RowTemplate.Height = 24;
             this.dgvStocks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStocks.Size = new System.Drawing.Size(1417, 499);
+            this.dgvStocks.Size = new System.Drawing.Size(1465, 499);
             this.dgvStocks.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(613, 37);
+            this.label5.Location = new System.Drawing.Point(625, 37);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 21);
             this.label5.TabIndex = 4;
@@ -322,11 +320,10 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.groupBox1);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(6, 0);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(0, 9, 0, 9);
-            this.panel5.Size = new System.Drawing.Size(1417, 200);
+            this.panel5.Size = new System.Drawing.Size(1465, 200);
             this.panel5.TabIndex = 0;
             // 
             // groupBox1
@@ -342,44 +339,10 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(311, 78);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1106, 122);
+            this.groupBox1.Size = new System.Drawing.Size(1118, 122);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Information";
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescription.BackColor = System.Drawing.Color.White;
-            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDescription.Location = new System.Drawing.Point(722, 37);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.ReadOnly = true;
-            this.txtDescription.Size = new System.Drawing.Size(367, 73);
-            this.txtDescription.TabIndex = 5;
-            this.txtDescription.Text = "";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column4.HeaderText = "Birthday";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 125;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dgvStocks);
-            this.panel3.Controls.Add(this.panel6);
-            this.panel3.Controls.Add(this.panel5);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.panel3.Size = new System.Drawing.Size(1429, 758);
-            this.panel3.TabIndex = 8;
             // 
             // txtStocks
             // 
@@ -401,11 +364,45 @@
             this.label7.Text = "Stocks/Unit Price";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
+            // txtDescription
+            // 
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.BackColor = System.Drawing.Color.White;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDescription.Location = new System.Drawing.Point(734, 37);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.ReadOnly = true;
+            this.txtDescription.Size = new System.Drawing.Size(367, 73);
+            this.txtDescription.TabIndex = 5;
+            this.txtDescription.Text = "";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "bday";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column4.HeaderText = "Birthday";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 125;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dgvStocks);
+            this.panel3.Controls.Add(this.panel6);
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.panel3.Size = new System.Drawing.Size(1475, 758);
+            this.panel3.TabIndex = 8;
+            // 
             // frmInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1429, 758);
+            this.ClientSize = new System.Drawing.Size(1475, 758);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
@@ -413,6 +410,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmInventory";
             this.Text = "frmInventory";
+            this.Load += new System.EventHandler(this.frmInventory_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();

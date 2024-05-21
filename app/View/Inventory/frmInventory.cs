@@ -36,5 +36,10 @@ namespace app.view.Inventory
         {
 
         }
+
+        private void frmInventory_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
