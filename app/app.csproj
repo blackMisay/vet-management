@@ -83,12 +83,14 @@
     <Compile Include="core\model\Color.cs" />
     <Compile Include="core\model\Gender.cs" />
     <Compile Include="core\model\Client.cs" />
+    <Compile Include="core\model\Inventory.cs" />
     <Compile Include="core\model\Pet.cs" />
     <Compile Include="core\model\Province.cs" />
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Services.cs" />
     <Compile Include="core\model\Species.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
+    <Compile Include="core\repository\InventoryRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
     <Compile Include="core\repository\ServiceRepository.cs" />
     <Compile Include="Program.cs" />
@@ -127,6 +129,12 @@
     </Compile>
     <Compile Include="view\Inventory\frmInventory.Designer.cs">
       <DependentUpon>frmInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Inventory\frmInventoryModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Inventory\frmInventoryModal.Designer.cs">
+      <DependentUpon>frmInventoryModal.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Patient\AddClient.cs">
       <SubType>Form</SubType>
@@ -195,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Inventory\frmInventory.resx">
       <DependentUpon>frmInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Inventory\frmInventoryModal.resx">
+      <DependentUpon>frmInventoryModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Patient\AddClient.resx">
       <DependentUpon>AddClient.cs</DependentUpon>

@@ -271,7 +271,6 @@ namespace app.view.Client
             this.txtContacts.ReadOnly = true;
             this.txtContacts.Size = new System.Drawing.Size(345, 28);
             this.txtContacts.TabIndex = 3;
-            this.txtContacts.TextChanged += new System.EventHandler(this.txtContacts_TextChanged);
             // 
             // label4
             // 
