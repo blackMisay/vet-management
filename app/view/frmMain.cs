@@ -107,6 +107,10 @@ namespace app.view
             this.openFormModule(new Services.frmServices());
         }
 
+        private void btnItem_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new Inventory.frmInventory());
+        }
         private void btnInventory_Click(object sender, EventArgs e)
         {
             this.openFormModule(new Product.frmProducts());
