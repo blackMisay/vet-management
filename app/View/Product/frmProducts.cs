@@ -17,11 +17,9 @@ namespace app.view.Product
         private void frmProducts_Load(object sender, EventArgs e)
         {
             UpgradeFile upgradeFile = new UpgradeFile();
-            dgvProducts.DataSource = upgradeFile.Load("Select * FROM vwproduct");
-        }
+            dgvProducts.DataSource = upgradeFile.Load("Select * FROM vwproduct WHERE isDeleted=0");
 
-        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            ProductRepository productRepository = new ProductRepository();
 
         }
 
@@ -41,19 +39,19 @@ namespace app.view.Product
             }
             else
             {
+                
                 // Confirm with the user before updating the record
                 DialogResult updateConfirmation = MessageBox.Show("Are you sure you want to UPDATE the Product?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (updateConfirmation == DialogResult.Yes)
                 {
-                    int id = Convert.ToInt32(dgvProducts.SelectedRows[0].Cells["Id"].Value);
-                    frmProductModal Modal = new frmProductModal();
-                    Modal.ShowDialog();
-                    dgvProducts.RefreshEdit();
+                    int productId = Convert.ToInt32(dgvProducts.SelectedRows[0].Cells["Id"].Value);
+                    frmProductModal frmProductModal = new frmProductModal(productId);
+                    frmProductModal.ShowDialog();
                 }
             }
-
-
+            UpgradeFile upgradeFile = new UpgradeFile();
+            dgvProducts.DataSource = upgradeFile.Load("Select * FROM vwproduct WHERE isDeleted=0");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -99,8 +97,8 @@ namespace app.view.Product
                     int prodId = Convert.ToInt32(dgvProducts.SelectedRows[0].Cells["Id"].Value);
 
                     // Call a method to delete the record from the database
-                    PetRepository pet = new PetRepository();
-                    bool isDeleted = pet.Delete(prodId);
+                    ProductRepository productRepository = new ProductRepository();
+                    bool isDeleted = productRepository.DeleteProduct(prodId);
 
                     if (isDeleted)
                     {
