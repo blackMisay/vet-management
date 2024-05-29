@@ -152,6 +152,7 @@
             this.btnInventory.Size = new System.Drawing.Size(50, 50);
             this.btnInventory.TabIndex = 15;
             this.btnInventory.UseVisualStyleBackColor = false;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
             // 
             // pnlItemSpacer
             // 

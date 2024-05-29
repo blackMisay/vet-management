@@ -111,5 +111,9 @@ namespace app.view
         {
             this.openFormModule(new Inventory.frmInventory());
         }
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new Product.frmProducts());
+        }
     }
 }

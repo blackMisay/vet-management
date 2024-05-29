@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="core\model\Barangay.cs" />
+    <Compile Include="core\model\Brand.cs" />
     <Compile Include="core\model\Breed.cs" />
     <Compile Include="core\model\City.cs" />
     <Compile Include="core\model\Color.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="core\model\Client.cs" />
     <Compile Include="core\model\Inventory.cs" />
     <Compile Include="core\model\Pet.cs" />
+    <Compile Include="core\model\Product.cs" />
+    <Compile Include="core\model\ProductCategory.cs" />
     <Compile Include="core\model\Province.cs" />
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Services.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="core\repository\ClientRepository.cs" />
     <Compile Include="core\repository\InventoryRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
+    <Compile Include="core\repository\ProductRepository.cs" />
     <Compile Include="core\repository\ServiceRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -136,6 +140,12 @@
     <Compile Include="view\Inventory\frmInventoryModal.Designer.cs">
       <DependentUpon>frmInventoryModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Maintenance\frmMaintenanceModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Maintenance\frmMaintenanceModal.Designer.cs">
+      <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Patient\AddClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +169,12 @@
     </Compile>
     <Compile Include="view\Patient\PetDetails.Designer.cs">
       <DependentUpon>PetDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Product\frmProductModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Product\frmProductModal.Designer.cs">
+      <DependentUpon>frmProductModal.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Product\frmProducts.cs">
       <SubType>Form</SubType>
@@ -207,6 +223,9 @@
     <EmbeddedResource Include="view\Inventory\frmInventoryModal.resx">
       <DependentUpon>frmInventoryModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Maintenance\frmMaintenanceModal.resx">
+      <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Patient\AddClient.resx">
       <DependentUpon>AddClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,6 +236,9 @@
       <DependentUpon>PatientList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Patient\PetDetails.resx" />
+    <EmbeddedResource Include="view\Product\frmProductModal.resx">
+      <DependentUpon>frmProductModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Product\frmProducts.resx">
       <DependentUpon>frmProducts.cs</DependentUpon>
     </EmbeddedResource>
@@ -353,6 +375,10 @@
   <ItemGroup>
     <Content Include="data\vcms.sql" />
     <Content Include="lib\Core.dll" />
+    <None Include="Resources\icons8-data-backup-16.png" />
+    <None Include="Resources\icons8-data-backup-32.png" />
+    <None Include="Resources\icons8-restore-32.png" />
+    <None Include="Resources\icons8-restore-16.png" />
     <None Include="Resources\icons8-add-image-32.png" />
     <None Include="Resources\icons8-add-image-16.png" />
     <None Include="Resources\icons8-cancel-16 %281%29.png" />

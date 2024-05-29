@@ -283,6 +283,26 @@ namespace app.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_data_backup_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-data-backup-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_data_backup_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-data-backup-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_dog_and_cat_16 {
             get {
                 object obj = ResourceManager.GetObject("icons8_dog_and_cat_16", resourceCulture);
@@ -386,6 +406,26 @@ namespace app.Properties {
         internal static System.Drawing.Bitmap icons8_remove_16 {
             get {
                 object obj = ResourceManager.GetObject("icons8_remove_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_restore_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-restore-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_restore_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-restore-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
