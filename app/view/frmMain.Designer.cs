@@ -30,6 +30,7 @@
         {
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnServices = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -63,6 +64,7 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.White;
+            this.pnlMenu.Controls.Add(this.btnServices);
             this.pnlMenu.Controls.Add(this.btnSettings);
             this.pnlMenu.Controls.Add(this.panel1);
             this.pnlMenu.Controls.Add(this.btnLogout);
@@ -85,6 +87,23 @@
             this.pnlMenu.Padding = new System.Windows.Forms.Padding(10, 0, 10, 5);
             this.pnlMenu.Size = new System.Drawing.Size(70, 729);
             this.pnlMenu.TabIndex = 1;
+            // 
+            // btnServices
+            // 
+            this.btnServices.BackColor = System.Drawing.Color.White;
+            this.btnServices.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnServices.FlatAppearance.BorderSize = 0;
+            this.btnServices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnServices.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServices.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnServices.Image = global::app.Properties.Resources.services_24px;
+            this.btnServices.Location = new System.Drawing.Point(10, 413);
+            this.btnServices.Name = "btnServices";
+            this.btnServices.Size = new System.Drawing.Size(50, 50);
+            this.btnServices.TabIndex = 21;
+            this.btnServices.UseVisualStyleBackColor = false;
+            this.btnServices.Click += new System.EventHandler(this.btnServices_Click);
             // 
             // btnSettings
             // 
@@ -359,5 +378,6 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnServices;
     }
 }

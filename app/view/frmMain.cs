@@ -17,6 +17,7 @@ namespace app.view
         private static readonly string DIAGNOSIS = "Diag&nosis";
         private static readonly string ITEM = "I&tems";
         private static readonly string INVENTORY = "&Inventory";
+        private static readonly string SERVICES = "Se&rvices";
         private static readonly string SETTING = "Se&ttings";
         private static readonly string LOGOUT = "Lo&gout";
 
@@ -74,6 +75,7 @@ namespace app.view
                 btnDiagnosis.Text = DIAGNOSIS;
                 btnItem.Text = ITEM;
                 btnInventory.Text = INVENTORY;
+                btnServices.Text = SERVICES;
                 btnSettings.Text = SETTING;
                 btnLogout.Text = LOGOUT;
             }
@@ -104,7 +106,6 @@ namespace app.view
 
         private void btnDiagnosis_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new Services.frmServices());
         }
 
         private void btnItem_Click(object sender, EventArgs e)
@@ -120,6 +121,11 @@ namespace app.view
         {
             view.Maintenance.frmMaintenanceModal maintenance = new view.Maintenance.frmMaintenanceModal();
             maintenance.ShowDialog();
+        }
+
+        private void btnServices_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new Services.frmServices());
         }
     }
 }
