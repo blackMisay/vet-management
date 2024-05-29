@@ -109,11 +109,11 @@ namespace app.view
 
         private void btnItem_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new Inventory.frmInventory());
+            this.openFormModule(new Product.frmProducts());
         }
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new Product.frmProducts());
+            this.openFormModule(new Inventory.frmInventory());
         }
     }
 }
