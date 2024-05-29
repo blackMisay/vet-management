@@ -115,5 +115,11 @@ namespace app.view
         {
             this.openFormModule(new Inventory.frmInventory());
         }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            view.Maintenance.frmMaintenanceModal maintenance = new view.Maintenance.frmMaintenanceModal();
+            maintenance.ShowDialog();
+        }
     }
 }
