@@ -170,7 +170,6 @@
             this.Name = "FrmServicesModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmServicesModal";
-            this.Load += new System.EventHandler(this.frmServicesModal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
