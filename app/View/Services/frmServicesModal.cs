@@ -12,16 +12,25 @@ using app.Core.Model;
 using System.Xml.Linq;
 using app.core.Repository;
 using app.view.Services;
+using app.view.Product;
 
 namespace app.view.Services
 {
     public partial class FrmServicesModal : Form
     {
-        int Id = 0;
+       private int Id = 0;
         public FrmServicesModal()   
         {
             InitializeComponent();
+            this.Load += frmServicesModal_Load;
             
+        }
+        public FrmServicesModal(int serviceId) : this()
+        {
+            this.Id = serviceId;
+            LoadServiceDetails();
+            btnSave.Text = "Update";
+            label1.Text = "Update Service Details";
         }
 
         private void frmServicesModal_Load(object sender, EventArgs e)
@@ -63,7 +72,33 @@ namespace app.view.Services
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveService();
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            // Ensure that frmServices is properly instantiated
+            frmServices services = new frmServices();
+
+            // Access the dgvServices instance correctly
+            services.dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE isDeleted = 0");
+
+            // Optional: Show the services form, if needed
+            services.Show();
+
+            // Dispose of the current form
             this.Dispose();
+        }
+
+
+        private void LoadServiceDetails()
+        {
+            ServiceRepository serviceRepository = new ServiceRepository();
+            var service = serviceRepository.GetService(new app.core.model.Services() { Id = this.Id });
+        }
+
+        private void LoadDetails(app.core.model.Services services)
+        {
+            txtCode.Text = services.ServiceCode;
+            txtDesc.Text = services.Description;
+            txtPrice.Text = services.Price;
         }
     }
 
