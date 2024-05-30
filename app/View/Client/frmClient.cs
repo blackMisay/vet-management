@@ -25,20 +25,12 @@ namespace app.view.Client
         }
 
         private void btnAddClient_Click(object sender, EventArgs e)
-        {          
-                if (dgvClient.RowCount > 0)
-                {
-                    MessageBox.Show("Are you sure you want to ADD new pet owner record?", "Please Provide the Information Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    int clientId = Convert.ToInt32(dgvClient.SelectedRows[0].Cells["Id"].Value);
-                    frmClientModal newClientForm = new frmClientModal(clientId);
-                    newClientForm.ShowDialog();
-                }
-                else
-                {
-
-                    MessageBox.Show("No pet owner record selected, please select.", "No Selected Pet Owner Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                
+        {             
+            MessageBox.Show("Are you sure you want to ADD new pet owner record?", "Please Provide the Information Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            frmClientModal newClientForm = new frmClientModal();
+            newClientForm.ShowDialog();
+            dgvClient.Refresh();
+               
             }
 
 
@@ -153,7 +145,7 @@ namespace app.view.Client
 
             txtFullname.Text = client.GetFullName();
             txtContacts.Text = client.GetAllContact();
-            txtAddress.Text = client.StreetNo;
+            txtAddress.Text = client.GetFullAddress();
         }
 
         private void LoadPets()

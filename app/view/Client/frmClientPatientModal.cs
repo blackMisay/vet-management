@@ -1,4 +1,4 @@
-using Color = app.Core.Model.Color;
+using Color = app.Core.Model.ColourPattern;
 using System.Windows.Forms;
 using app.Core.Repository;
 using app.Core.Model;
@@ -16,7 +16,8 @@ namespace app.view.Client
         {
             InitializeComponent();
             this.Id = petId;
-            btnSave.Text = "Update Pet";
+            btnSave.Text = "Update";
+            label5.Text = "Update Patient Information";
 
         }
 
@@ -58,19 +59,19 @@ namespace app.view.Client
             {
                 UpgradeFile upgradeFile = new UpgradeFile();
 
-                cboGender.DataSource = upgradeFile.Populate("SELECT sexID, sexName FROM gender;");
+                cboGender.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_gender ;");
                 cboGender.ValueMember = "Key";
                 cboGender.DisplayMember = "Value";
 
-                cboBreed.DataSource = upgradeFile.Populate("SELECT breedID, breedDesc FROM breed;");
+                cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed;");
                 cboBreed.ValueMember = "Key";
                 cboBreed.DisplayMember = "Value";
 
-                cboColor.DataSource = upgradeFile.Populate("SELECT colorID, colorName FROM color;");
+                cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern;");
                 cboColor.ValueMember = "Key";
                 cboColor.DisplayMember = "Value";
 
-                cboSpecies.DataSource = upgradeFile.Populate("SELECT speciesID, speciesName FROM species;");
+                cboSpecies.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_species;");
                 cboSpecies.ValueMember = "Key";
                 cboSpecies.DisplayMember = "Value";
             }
@@ -80,7 +81,7 @@ namespace app.view.Client
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboBreed.DataSource = upgradeFile.Populate("SELECT breedID, breedDesc FROM breed WHERE speciesID='" + cboSpecies.SelectedValue.ToString() + "';");
+            cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed WHERE id='" + cboSpecies.SelectedValue.ToString() + "';");
             cboBreed.ValueMember = "Key";
             cboBreed.DisplayMember = "Value";
         }
@@ -96,7 +97,7 @@ namespace app.view.Client
             pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
             pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
             pet.Breed = new Breed() { Id = Convert.ToInt32(cboBreed.SelectedValue) };
-            pet.Color = new Color() { Id = Convert.ToInt32(cboColor.SelectedValue) };
+            pet.ColourPattern = new Color() { Id = Convert.ToInt32(cboColor.SelectedValue) };
             //pet.Image = Path.GetFileName(); //TODO: image directory
 
             PetRepository petRepository = new PetRepository();
