@@ -1,43 +1,72 @@
 ﻿using app.core.model;
 using app.core.repository;
-using app.core.Repository;
 using app.Core.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace app.view.Product
 {
     public partial class frmProductModal : Form
     {
-        int Id = 0;
+        private int Id;
+
         public frmProductModal()
         {
             InitializeComponent();
+            this.Load += frmProductModal_Load;
+        }
+        public frmProductModal(int productId) : this()
+        {
+            this.Id = productId;
+            LoadProductDetails();
+            btnSave.Text = "Update";
+            label1.Text = "Update Product";
         }
 
         private void frmProductModal_Load(object sender, EventArgs e)
         {
-            UpgradeFile upgradeFile = new UpgradeFile();
-            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandId, brandDesc from brands");
-            cmbBrand.ValueMember = "Key";
-            cmbBrand.DisplayMember = "Value";
+            PopulateCmb();
+        }
 
-            cmbCateg.DataSource = upgradeFile.Populate("SELECT categId, categDesc from prod_categ");
-            cmbCateg.ValueMember = "Key";
-            cmbCateg.DisplayMember = "Value";
+        private void PopulateCmb()
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandID, brandDesc from brands");
+            cmbBrand.ValueMember = "KEY"; // Correct column name from query
+            cmbBrand.DisplayMember = "VALUE"; // Correct column name from query
+
+            cmbCateg.DataSource = upgradeFile.Populate("SELECT categID, categDesc from prod_categ");
+            cmbCateg.ValueMember = "KEY"; // Correct column name from query
+            cmbCateg.DisplayMember = "VALUE"; // Correct column name from query
+        }
+
+        private void LoadProductDetails()
+        {
+            ProductRepository productRepository = new ProductRepository();
+            var product = productRepository.GetProduct(new app.core.model.Product() { Id = this.Id });
+            if (product != null)
+            {
+                LoadDetails(product);
+            }
+        }
+
+        private void LoadDetails(app.core.model.Product product)
+        {
+            cmbBrand.SelectedValue = product.BrandID.Id;
+            txtDesc.Text = product.Description;
+            cmbCateg.SelectedValue = product.CategID.Id;
+            txtQty.Text = product.Quantity.ToString();
+            txtUnitPrice.Text = product.UnitPrice.ToString();
+            txtAmount.Text = product.Amount.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveProduct();
+            UpgradeFile upgradeFile = new UpgradeFile();
+            frmProducts frmProducts = new frmProducts();        
+            frmProducts.dgvProducts.DataSource = upgradeFile.Load("Select * FROM vwproduct WHERE isDeleted=0");
             this.Dispose();
         }
 
@@ -55,15 +84,16 @@ namespace app.view.Product
 
         public void SaveProduct()
         {
-            app.core.model.Product product = new app.core.model.Product();
-
-            product.Id = this.Id;
-            product.BrandID = Id = Convert.ToInt32(cmbBrand.SelectedValue);
-            product.Description = txtDesc.Text;
-            product.CategID = Id = Convert.ToInt32(cmbCateg.SelectedValue);
-            product.Quantity = Convert.ToInt32(txtQty.Text);
-            product.UnitPrice = Convert.ToInt32(txtUnitPrice.Text);
-            product.Amount = Convert.ToInt32(txtAmount.Text);
+            app.core.model.Product product = new app.core.model.Product
+            {
+                Id = this.Id,
+                BrandID = new Brand() { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
+                Description = txtDesc.Text,
+                CategID = new ProductCategory() { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
+                Quantity = Convert.ToInt32(txtQty.Text),
+                UnitPrice = Convert.ToDouble(txtUnitPrice.Text),
+                Amount = Convert.ToDouble(txtAmount.Text)
+            };
 
             ProductRepository productRepository = new ProductRepository();
             if (productRepository.SaveProduct(product))
