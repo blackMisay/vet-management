@@ -31,6 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtDesc = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtDesc = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -79,11 +79,18 @@
             this.panel2.Size = new System.Drawing.Size(423, 244);
             this.panel2.TabIndex = 1;
             // 
+            // txtDesc
+            // 
+            this.txtDesc.Location = new System.Drawing.Point(144, 87);
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(260, 28);
+            this.txtDesc.TabIndex = 9;
+            // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(148, 131);
+            this.txtPrice.Location = new System.Drawing.Point(144, 131);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(256, 28);
+            this.txtPrice.Size = new System.Drawing.Size(260, 28);
             this.txtPrice.TabIndex = 8;
             // 
             // label5
@@ -148,13 +155,6 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // txtDesc
-            // 
-            this.txtDesc.Location = new System.Drawing.Point(144, 87);
-            this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(260, 28);
-            this.txtDesc.TabIndex = 9;
-            // 
             // FrmServicesModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -168,8 +168,8 @@
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmServicesModal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmServicesModal";
-            this.Load += new System.EventHandler(this.frmServicesModal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

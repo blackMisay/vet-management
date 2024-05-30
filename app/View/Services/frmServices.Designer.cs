@@ -44,6 +44,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).BeginInit();
@@ -156,7 +157,8 @@
             this.Id,
             this.Column2,
             this.Column1,
-            this.Column3});
+            this.Column3,
+            this.Column4});
             this.dgvServices.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvServices.Location = new System.Drawing.Point(3, 146);
             this.dgvServices.Name = "dgvServices";
@@ -208,6 +210,14 @@
             this.Column3.MinimumWidth = 100;
             this.Column3.Name = "Column3";
             // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "isDeleted";
+            this.Column4.HeaderText = "isDeleted";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Visible = false;
+            // 
             // frmServices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -240,11 +250,12 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnEditService;
         private System.Windows.Forms.Button btnRemoveService;
-        private System.Windows.Forms.DataGridView dgvServices;
+        private System.Windows.Forms.Button btnSaveService;
+        public System.Windows.Forms.DataGridView dgvServices;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.Button btnSaveService;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }
