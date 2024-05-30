@@ -56,6 +56,7 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -109,7 +110,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1462, 75);
+            this.panel1.Size = new System.Drawing.Size(1482, 75);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -132,16 +133,16 @@
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Location = new System.Drawing.Point(1, 82);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1462, 65);
+            this.panel2.Size = new System.Drawing.Size(1482, 65);
             this.panel2.TabIndex = 1;
             // 
             // btnSaveProduct
             // 
-            this.btnSaveProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveProduct.BackColor = System.Drawing.Color.White;
             this.btnSaveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveProduct.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnSaveProduct.Location = new System.Drawing.Point(1026, 18);
+            this.btnSaveProduct.Location = new System.Drawing.Point(1038, 17);
             this.btnSaveProduct.Name = "btnSaveProduct";
             this.btnSaveProduct.Size = new System.Drawing.Size(202, 31);
             this.btnSaveProduct.TabIndex = 15;
@@ -152,11 +153,11 @@
             // 
             // btnEditProduct
             // 
-            this.btnEditProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEditProduct.BackColor = System.Drawing.Color.White;
             this.btnEditProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditProduct.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEditProduct.Location = new System.Drawing.Point(1234, 18);
+            this.btnEditProduct.Location = new System.Drawing.Point(1246, 17);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(102, 31);
             this.btnEditProduct.TabIndex = 14;
@@ -167,11 +168,11 @@
             // 
             // btnRemoveProduct
             // 
-            this.btnRemoveProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveProduct.BackColor = System.Drawing.Color.White;
             this.btnRemoveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveProduct.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemoveProduct.Location = new System.Drawing.Point(1342, 18);
+            this.btnRemoveProduct.Location = new System.Drawing.Point(1354, 17);
             this.btnRemoveProduct.Name = "btnRemoveProduct";
             this.btnRemoveProduct.Size = new System.Drawing.Size(110, 31);
             this.btnRemoveProduct.TabIndex = 13;
@@ -212,16 +213,16 @@
             this.Column9,
             this.Column10,
             this.Column11,
-            this.Column12});
+            this.Column12,
+            this.Column1});
             this.dgvProducts.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dgvProducts.Location = new System.Drawing.Point(1, 153);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProducts.Size = new System.Drawing.Size(1462, 664);
+            this.dgvProducts.Size = new System.Drawing.Size(1482, 664);
             this.dgvProducts.TabIndex = 2;
-            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
             // 
             // Id
             // 
@@ -229,7 +230,6 @@
             this.Id.HeaderText = "ID";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
-            this.Id.Visible = false;
             this.Id.Width = 125;
             // 
             // Column2
@@ -298,11 +298,20 @@
             this.Column12.MinimumWidth = 6;
             this.Column12.Name = "Column12";
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "isDeleted";
+            this.Column1.HeaderText = "isDeleted";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            this.Column1.Width = 125;
+            // 
             // frmProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1466, 820);
+            this.ClientSize = new System.Drawing.Size(1487, 820);
             this.Controls.Add(this.dgvProducts);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -329,7 +338,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dgvProducts;
+        public System.Windows.Forms.DataGridView dgvProducts;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnSaveProduct;
@@ -342,5 +351,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

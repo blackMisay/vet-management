@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnServices = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -48,6 +50,7 @@
             this.btnToggle = new System.Windows.Forms.Button();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlBody = new System.Windows.Forms.Panel();
+            this.toolTip_Main = new System.Windows.Forms.ToolTip(this.components);
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +66,7 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.White;
+            this.pnlMenu.Controls.Add(this.btnServices);
             this.pnlMenu.Controls.Add(this.btnSettings);
             this.pnlMenu.Controls.Add(this.panel1);
             this.pnlMenu.Controls.Add(this.btnLogout);
@@ -86,6 +90,24 @@
             this.pnlMenu.Size = new System.Drawing.Size(70, 729);
             this.pnlMenu.TabIndex = 1;
             // 
+            // btnServices
+            // 
+            this.btnServices.BackColor = System.Drawing.Color.White;
+            this.btnServices.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnServices.FlatAppearance.BorderSize = 0;
+            this.btnServices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnServices.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServices.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnServices.Image = global::app.Properties.Resources.services_24px;
+            this.btnServices.Location = new System.Drawing.Point(10, 413);
+            this.btnServices.Name = "btnServices";
+            this.btnServices.Size = new System.Drawing.Size(50, 50);
+            this.btnServices.TabIndex = 21;
+            this.toolTip_Main.SetToolTip(this.btnServices, "Services");
+            this.btnServices.UseVisualStyleBackColor = false;
+            this.btnServices.Click += new System.EventHandler(this.btnServices_Click);
+            // 
             // btnSettings
             // 
             this.btnSettings.BackColor = System.Drawing.Color.White;
@@ -100,7 +122,9 @@
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(50, 50);
             this.btnSettings.TabIndex = 20;
+            this.toolTip_Main.SetToolTip(this.btnSettings, "Settings");
             this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // panel1
             // 
@@ -125,6 +149,7 @@
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(50, 50);
             this.btnLogout.TabIndex = 17;
+            this.toolTip_Main.SetToolTip(this.btnLogout, "Logout");
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
@@ -151,6 +176,7 @@
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Size = new System.Drawing.Size(50, 50);
             this.btnInventory.TabIndex = 15;
+            this.toolTip_Main.SetToolTip(this.btnInventory, "Inventory");
             this.btnInventory.UseVisualStyleBackColor = false;
             this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
             // 
@@ -177,7 +203,9 @@
             this.btnItem.Name = "btnItem";
             this.btnItem.Size = new System.Drawing.Size(50, 50);
             this.btnItem.TabIndex = 13;
+            this.toolTip_Main.SetToolTip(this.btnItem, "Items");
             this.btnItem.UseVisualStyleBackColor = false;
+            this.btnItem.Click += new System.EventHandler(this.btnItem_Click);
             // 
             // pnlDiagnosisSpacer
             // 
@@ -202,6 +230,7 @@
             this.btnDiagnosis.Name = "btnDiagnosis";
             this.btnDiagnosis.Size = new System.Drawing.Size(50, 50);
             this.btnDiagnosis.TabIndex = 11;
+            this.toolTip_Main.SetToolTip(this.btnDiagnosis, "Diagnosis");
             this.btnDiagnosis.UseVisualStyleBackColor = false;
             this.btnDiagnosis.Click += new System.EventHandler(this.btnDiagnosis_Click);
             // 
@@ -228,6 +257,7 @@
             this.btnClient.Name = "btnClient";
             this.btnClient.Size = new System.Drawing.Size(50, 50);
             this.btnClient.TabIndex = 9;
+            this.toolTip_Main.SetToolTip(this.btnClient, "Client");
             this.btnClient.UseVisualStyleBackColor = false;
             this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
             // 
@@ -254,6 +284,7 @@
             this.btnMedicalRecords.Name = "btnMedicalRecords";
             this.btnMedicalRecords.Size = new System.Drawing.Size(50, 50);
             this.btnMedicalRecords.TabIndex = 7;
+            this.toolTip_Main.SetToolTip(this.btnMedicalRecords, "Medical Record");
             this.btnMedicalRecords.UseVisualStyleBackColor = false;
             this.btnMedicalRecords.Click += new System.EventHandler(this.btnMedicalRecords_Click);
             // 
@@ -280,6 +311,7 @@
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Size = new System.Drawing.Size(50, 50);
             this.btnDashboard.TabIndex = 1;
+            this.toolTip_Main.SetToolTip(this.btnDashboard, "Dashboard");
             this.btnDashboard.UseVisualStyleBackColor = false;
             // 
             // btnToggle
@@ -293,6 +325,7 @@
             this.btnToggle.Name = "btnToggle";
             this.btnToggle.Size = new System.Drawing.Size(50, 53);
             this.btnToggle.TabIndex = 0;
+            this.toolTip_Main.SetToolTip(this.btnToggle, "Toggle sidebar");
             this.btnToggle.UseVisualStyleBackColor = true;
             this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
             // 
@@ -316,7 +349,7 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1420, 797);
@@ -357,5 +390,7 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnServices;
+        private System.Windows.Forms.ToolTip toolTip_Main;
     }
 }
