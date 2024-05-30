@@ -37,6 +37,9 @@ namespace app.Core.Model
 
             return this.MobileNumber + " / " + this.EmailAddress;
         }
-        
+        public string GetFullAddress()
+        {
+            return this.StreetNo + " " + Region + " " + City + " " + Brgy + " " + Province;
+        }
     }
 }

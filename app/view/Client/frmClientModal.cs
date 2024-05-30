@@ -27,12 +27,20 @@ namespace app.view.Client
         {
             InitializeComponent();
             this.Id = clientId;
-            btnSave.Text = "Update Client";
+            btnSave.Text = "Update";
+            label1.Text = "Update Client Information";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            // Ask the user for confirmation before canceling
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel your work?", "Confirm Cancellation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                MessageBox.Show("Work has been cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Dispose();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -47,16 +55,28 @@ namespace app.view.Client
             //TODO: When updating load all fetch data to each components.
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboRegion.DataSource = upgradeFile.Populate("SELECT regCode, regDesc FROM region;");
+            cboRegion.DataSource = upgradeFile.Populate("SELECT code, description FROM addr_region;");
             cboRegion.ValueMember = "Key";
             cboRegion.DisplayMember = "Value";
+
+            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province;");
+            cboProvince.ValueMember = "Key";
+            cboProvince.DisplayMember = "Value";
+
+            cboBrgy.DataSource = upgradeFile.Populate("SELECT brgy_code, description FROM addr_brgy;");
+            cboBrgy.ValueMember = "Key";
+            cboBrgy.DisplayMember = "Value";
+
+            cboCity.DataSource = upgradeFile.Populate("SELECT citymun_code, description FROM addr_city;");
+            cboCity.ValueMember = "Key";
+            cboCity.DisplayMember = "Value";
         }
 
         private void cboRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboProvince.DataSource = upgradeFile.Populate("SELECT provCode, provDesc FROM province WHERE regCode='" + cboRegion.SelectedValue.ToString() + "';");
+            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='" + cboRegion.SelectedValue.ToString() + "';");
             cboProvince.ValueMember = "Key";
             cboProvince.DisplayMember = "Value";
         }
@@ -66,7 +86,7 @@ namespace app.view.Client
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboCity.DataSource = upgradeFile.Populate("SELECT citymunCode, citymunDesc FROM city where provCode='" + cboProvince.SelectedValue.ToString() + "';");
+            cboCity.DataSource = upgradeFile.Populate("SELECT citymun_code, description FROM addr_city where province_code='" + cboProvince.SelectedValue.ToString() + "';");
             cboCity.ValueMember = "Key";
             cboCity.DisplayMember = "Value";
         }
@@ -106,7 +126,7 @@ namespace app.view.Client
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboBrgy.DataSource = upgradeFile.Populate("SELECT brgyID, brgyDesc FROM brgy where citymunCode='" + cboCity.SelectedValue.ToString() + "';");
+            cboBrgy.DataSource = upgradeFile.Populate("SELECT id, description FROM addr_brgy where citymun_code='" + cboBrgy.SelectedValue.ToString() + "';");
             cboBrgy.ValueMember = "Key";
             cboBrgy.DisplayMember = "Value";
         }
@@ -115,9 +135,10 @@ namespace app.view.Client
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboBrgy.DataSource = upgradeFile.Populate("SELECT brgyID, brgyDesc FROM brgy where citymunCode='" + cboCity.SelectedValue.ToString() + "';");
+            cboBrgy.DataSource = upgradeFile.Populate("SELECT id, description FROM addr_brgy where citymun_code='" + cboCity.SelectedValue.ToString() + "';");
             cboBrgy.ValueMember = "Key";
             cboBrgy.DisplayMember = "Value";
         }
+
     }
 }

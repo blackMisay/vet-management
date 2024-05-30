@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using app.Core.Model;
 using System.IO;
 using System.Drawing;
-using Color = app.Core.Model.Color;
+using Color = app.Core.Model.ColourPattern;
 
 namespace app.View.Patient
 {
@@ -96,7 +96,7 @@ namespace app.View.Patient
             pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
             pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
             pet.Breed = new Breed() { Id = Convert.ToInt32(cboBreed.SelectedValue) };
-            pet.Color = new Color() { Id = Convert.ToInt32(cboColor.SelectedValue) };
+            pet.ColourPattern = new Color() { Id = Convert.ToInt32(cboColor.SelectedValue) };
            // pet.Image = Path.GetFileName(); //TODO: image directory
 
             PetRepository petRepository = new PetRepository();

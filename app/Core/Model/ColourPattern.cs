@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace app.Core.Model
 {
-    internal class Color
+    internal class ColourPattern
     {
         public int Id
         {

@@ -28,7 +28,7 @@ namespace app.Core.Repository
                 {"@Name", pet.Name },
                 {"@BirthDate", pet.BirthDate },
                 {"@Gender", pet.Gender.Id.ToString() },
-                {"@Color", pet.Color.Id.ToString() },
+                {"@Color", pet.ColourPattern.Id.ToString() },
                 {"@Specie", pet.Specie.Id.ToString() },
                 {"@Breed", pet.Breed.Id.ToString() },
                 {"@Image", pet.Image}
@@ -36,11 +36,11 @@ namespace app.Core.Repository
 
             if (saveState)
             {
-                sql = "UPDATE animals SET petname=@Name,bday=@BirthDate,sexid=@Gender,colorid=@Color,speciesid=@Specie,breedid=@Breed,image=@Image WHERE petid=@Id;";
+                sql = "UPDATE patient SET name=@Name,birhtdate=@BirthDate,gender_id=@Gender,color_id=@Color,species_id=@Specie,breed_id=@Breed,image=@Image WHERE id=@Id;";
             }
             else
             {
-                sql = "INSERT INTO animals(clientid,petname,bday,sexid,colorid,speciesid,breedid,image) VALUES(@Client,@Name,@BirthDate,@Gender,@Color,@Specie,@Breed,@Image);";
+                sql = "INSERT INTO patient(client_id,name,birthdate,gender_id,color_id,species_id,breed_id,image) VALUES(@Client,@Name,@BirthDate,@Gender,@Color,@Specie,@Breed,@Image);";
                 parameters.Add("@Client", pet.Client.Id.ToString());
             }
 
@@ -59,20 +59,49 @@ namespace app.Core.Repository
             {
                 // Use the client Id to filter out pets list
 
-                return upgradeFile.Load("SELECT * FROM vwpet WHERE clientId=" + clientId + ";");
+                return upgradeFile.Load("SELECT * FROM vwpatient WHERE clientId=" + clientId + ";");
             }
             else
             {
                 // If there's no client Id (zero), load all pets list
-                return upgradeFile.Load("SELECT * FROM vwpet;");
+                return upgradeFile.Load("SELECT * FROM vwpatient;");
 
             }
 
         }
+        public Pet GetClientPatientDetails(Pet pet)
+        {
+            DataTable dt;
+            Pet pets;
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                { "@Id", pet.Id.ToString() }
+            };
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            dt = upgradeFile.Load("SELECT * FROM patient WHERE id=@Id;", parameters);
+            if (dt.Rows.Count == 0)
+                throw new Exception("Empty DataTable");
+
+            return pets = new Pet()
+            {
+                Id = Convert.ToInt32(dt.Rows[0][0]),
+                Client = new Client() { Id = Convert.ToInt32(dt.Rows[0][1]) },
+                Name = dt.Rows[0][6].ToString(),
+                BirthDate= dt.Rows[0][7].ToString(),
+                ColourPattern = new ColourPattern() { Id = Convert.ToInt32(dt.Rows[0][5]) },
+                Specie = new Species() { Id = Convert.ToInt32(dt.Rows[0][2]) },
+                Gender= new Gender() { Id = Convert.ToInt32(dt.Rows[0][4]) },
+                Breed = new Breed() { Id = Convert.ToInt32(dt.Rows[0][3]) }
+               // Image = dt.Rows[0][8].ToString(),
+            };
+        }
 
         public bool Delete(int petId)
         {
-            string sql = "DELETE from animals WHERE petId=@Id";
+            string sql = "UPDATE patient SET isDeleted = '1' WHERE id=@Id";
 
             Dictionary<string, string> parameters = new Dictionary<string, string>()
             {

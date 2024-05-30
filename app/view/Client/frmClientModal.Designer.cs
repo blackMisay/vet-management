@@ -87,16 +87,16 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(25, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 37);
+            this.label1.Size = new System.Drawing.Size(272, 37);
             this.label1.TabIndex = 1;
-            this.label1.Text = "New Client";
+            this.label1.Text = "Client Information";
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(901, 714);
+            this.btnCancel.Location = new System.Drawing.Point(961, 714);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 40);
             this.btnCancel.TabIndex = 17;
@@ -110,11 +110,11 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(1027, 714);
+            this.btnSave.Location = new System.Drawing.Point(1077, 714);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(167, 40);
+            this.btnSave.Size = new System.Drawing.Size(110, 40);
             this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "&Create Client";
+            this.btnSave.Text = "&Create";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -376,7 +376,7 @@
             this.cboCity.Name = "cboCity";
             this.cboCity.Size = new System.Drawing.Size(356, 31);
             this.cboCity.TabIndex = 14;
-            this.cboCity.Click += new System.EventHandler(this.cboCity_Click);
+            this.cboCity.SelectedIndexChanged += new System.EventHandler(this.cboBrgy_Click);
             // 
             // label14
             // 
