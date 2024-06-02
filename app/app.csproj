@@ -104,6 +104,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="view\Administration\frmAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Administration\frmAdmin.Designer.cs">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Administration\frmAdminModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Administration\frmAdminModal.Designer.cs">
+      <DependentUpon>frmAdminModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Administration\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Administration\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Client\frmClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +223,15 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Administration\frmAdmin.resx">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Administration\frmAdminModal.resx">
+      <DependentUpon>frmAdminModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Administration\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Client\frmClient.resx">
       <DependentUpon>frmClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,7 +294,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="view\Administration\" />
     <Folder Include="view\Patient\Soap\" />
     <Folder Include="view\Reports\" />
   </ItemGroup>
@@ -376,6 +402,9 @@
   <ItemGroup>
     <Content Include="data\vcms.sql" />
     <Content Include="lib\Core.dll" />
+    <None Include="Resources\logo2.png" />
+    <None Include="Resources\logo1.png" />
+    <None Include="Resources\logo1-removebg-preview.png" />
     <None Include="Resources\services_24px.png" />
     <None Include="Resources\icons8-data-backup-16.png" />
     <None Include="Resources\icons8-data-backup-32.png" />
