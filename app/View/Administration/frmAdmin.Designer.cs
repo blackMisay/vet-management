@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEditUser = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -51,14 +51,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnRemoveUser = new System.Windows.Forms.Button();
             this.dgvAdmin = new System.Windows.Forms.DataGridView();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.btnAddUser = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +59,14 @@
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnAddUser = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
             this.panel2.SuspendLayout();
@@ -297,9 +297,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(17, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 38);
+            this.label1.Size = new System.Drawing.Size(299, 38);
             this.label1.TabIndex = 0;
-            this.label1.Text = "User Management";
+            this.label1.Text = "Account Management";
             // 
             // btnRemoveUser
             // 
@@ -340,11 +340,69 @@
             this.dgvAdmin.Size = new System.Drawing.Size(1090, 461);
             this.dgvAdmin.TabIndex = 2;
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "user_id";
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "username";
+            this.Column2.HeaderText = "Username";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "password";
+            this.Column3.HeaderText = "Password";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "fullname";
+            this.Column9.HeaderText = "Name";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "mobilenumber";
+            this.Column10.HeaderText = "Mobile Number";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "email";
+            this.Column11.HeaderText = "Email Address";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "user_type";
+            this.Column12.HeaderText = "User Type";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            // 
+            // Column13
+            // 
+            this.Column13.DataPropertyName = "isDeleted";
+            this.Column13.HeaderText = "isDeleted";
+            this.Column13.MinimumWidth = 6;
+            this.Column13.Name = "Column13";
+            this.Column13.Visible = false;
+            // 
             // Column4
             // 
             this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column4.HeaderText = "Birthday";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -420,64 +478,6 @@
             this.btnAddUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddUser.UseVisualStyleBackColor = false;
             // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "user_id";
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "username";
-            this.Column2.HeaderText = "Username";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "password";
-            this.Column3.HeaderText = "Password";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "fullname";
-            this.Column9.HeaderText = "Name";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "mobilenumber";
-            this.Column10.HeaderText = "Mobile Number";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "email";
-            this.Column11.HeaderText = "Email Address";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "user_type";
-            this.Column12.HeaderText = "User Type";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            // 
-            // Column13
-            // 
-            this.Column13.DataPropertyName = "isDeleted";
-            this.Column13.HeaderText = "isDeleted";
-            this.Column13.MinimumWidth = 6;
-            this.Column13.Name = "Column13";
-            this.Column13.Visible = false;
-            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -487,7 +487,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAdmin";
             this.Text = "frmAdmin";
             this.groupBox1.ResumeLayout(false);
