@@ -124,8 +124,8 @@ namespace app.view.Client
             cboColor.SelectedValue = pet.ColourPattern.Id;
             cboSpecies.SelectedValue = pet.Specie.Id;
             cboBreed.SelectedValue = pet.Breed.Id;
-            //picturePet.Image = pet.Image; rfds
-            // ito ba yun te? opo
+            //picturePet.Image = pet.Image;
+            
         }
         private void LoadPetDetails()
         {

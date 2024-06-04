@@ -569,7 +569,7 @@ namespace app.view.Client
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dgvClient;
+        public System.Windows.Forms.DataGridView dgvClient;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
