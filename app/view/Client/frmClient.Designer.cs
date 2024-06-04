@@ -33,22 +33,11 @@ namespace app.view.Client
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClient));
             this.dgvPatient = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnEditPatient = new System.Windows.Forms.Button();
@@ -73,6 +62,16 @@ namespace app.view.Client
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Species = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Breed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Color = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -96,10 +95,10 @@ namespace app.view.Client
             this.Column9,
             this.Column3,
             this.Column1,
-            this.Column10,
-            this.Column11,
-            this.Column12,
-            this.Column13,
+            this.Gender,
+            this.Species,
+            this.Breed,
+            this.Color,
             this.Column14});
             this.dgvPatient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -112,92 +111,47 @@ namespace app.view.Client
             this.dgvPatient.Size = new System.Drawing.Size(1048, 397);
             this.dgvPatient.TabIndex = 2;
             // 
-            // Id
+            // Column4
             // 
-            this.Id.DataPropertyName = "petId";
-            this.Id.HeaderText = "petId";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
+            this.Column4.DataPropertyName = "bday";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column4.HeaderText = "Birthday";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 125;
             // 
-            // Column2
+            // Column5
             // 
-            this.Column2.DataPropertyName = "clientId";
-            this.Column2.HeaderText = "clientId";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
+            this.Column5.DataPropertyName = "sexname";
+            this.Column5.HeaderText = "Gender";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 125;
             // 
-            // Column9
+            // Column6
             // 
-            this.Id.DataPropertyName = "petId";
-            this.Id.HeaderText = "petId";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
+            this.Column6.DataPropertyName = "speciesName";
+            this.Column6.HeaderText = "Species";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 125;
             // 
-            // Column3
+            // Column7
             // 
-            this.Column3.DataPropertyName = "petname";
-            this.Column3.HeaderText = "Pet Name";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
+            this.Column7.DataPropertyName = "breedDesc";
+            this.Column7.HeaderText = "Breed";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 125;
             // 
-            // Column1
+            // Column8
             // 
-            this.Column1.DataPropertyName = "bday";
-            this.Column1.HeaderText = "Birthday";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "sexname";
-            this.Column10.HeaderText = "Gender";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "speciesName";
-            this.Column11.HeaderText = "Specie";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "breedDesc";
-            this.Column12.HeaderText = "Breed";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            // 
-            // Column13
-            // 
-            this.Column13.DataPropertyName = "colorName";
-            this.Column13.HeaderText = "Color";
-            this.Column13.MinimumWidth = 6;
-            this.Column13.Name = "Column13";
-            // 
-            // Column14
-            // 
-            this.Column14.DataPropertyName = "isDeleted";
-            this.Column14.HeaderText = "isDeleted";
-            this.Column14.MinimumWidth = 6;
-            this.Column14.Name = "Column14";
-            this.Column14.Visible = false;
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "image";
-            this.Column9.HeaderText = "Image";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "petname";
-            this.Column3.HeaderText = "Pet Name";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.DataPropertyName = "colorName";
+            this.Column8.HeaderText = "Color";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
             // 
             // panel3
             // 
@@ -488,47 +442,78 @@ namespace app.view.Client
             this.panel1.Size = new System.Drawing.Size(1377, 72);
             this.panel1.TabIndex = 0;
             // 
-            // Column4
+            // Id
             // 
-            this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column4.HeaderText = "Birthday";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 125;
+            this.Id.DataPropertyName = "petId";
+            this.Id.HeaderText = "petId";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
             // 
-            // Column5
+            // Column2
             // 
-            this.Column5.DataPropertyName = "sexname";
-            this.Column5.HeaderText = "Gender";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 125;
+            this.Column2.DataPropertyName = "clientId";
+            this.Column2.HeaderText = "clientId";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
             // 
-            // Column6
+            // Column9
             // 
-            this.Column6.DataPropertyName = "speciesName";
-            this.Column6.HeaderText = "Species";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 125;
+            this.Column9.DataPropertyName = "image";
+            this.Column9.HeaderText = "Image";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
             // 
-            // Column7
+            // Column3
             // 
-            this.Column7.DataPropertyName = "breedDesc";
-            this.Column7.HeaderText = "Breed";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 125;
+            this.Column3.DataPropertyName = "petname";
+            this.Column3.HeaderText = "Pet Name";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
             // 
-            // Column8
+            // Column1
             // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.DataPropertyName = "colorName";
-            this.Column8.HeaderText = "Color";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
+            this.Column1.DataPropertyName = "bday";
+            this.Column1.HeaderText = "Birthday";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            // 
+            // Gender
+            // 
+            this.Gender.DataPropertyName = "sexname";
+            this.Gender.HeaderText = "Gender";
+            this.Gender.MinimumWidth = 6;
+            this.Gender.Name = "Gender";
+            // 
+            // Species
+            // 
+            this.Species.DataPropertyName = "speciesName";
+            this.Species.HeaderText = "Specie";
+            this.Species.MinimumWidth = 6;
+            this.Species.Name = "Species";
+            // 
+            // Breed
+            // 
+            this.Breed.DataPropertyName = "breedDesc";
+            this.Breed.HeaderText = "Breed";
+            this.Breed.MinimumWidth = 6;
+            this.Breed.Name = "Breed";
+            // 
+            // Color
+            // 
+            this.Color.DataPropertyName = "colorName";
+            this.Color.HeaderText = "Color";
+            this.Color.MinimumWidth = 6;
+            this.Color.Name = "Color";
+            // 
+            // Column14
+            // 
+            this.Column14.DataPropertyName = "isDeleted";
+            this.Column14.HeaderText = "isDeleted";
+            this.Column14.MinimumWidth = 6;
+            this.Column14.Name = "Column14";
+            this.Column14.Visible = false;
             // 
             // frmClient
             // 
@@ -563,7 +548,7 @@ namespace app.view.Client
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvPatient;
+        public System.Windows.Forms.DataGridView dgvPatient;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btnEditPatient;
@@ -598,10 +583,10 @@ namespace app.view.Client
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Species;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Breed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Color;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
     }
 }
