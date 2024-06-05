@@ -1,21 +1,23 @@
 using Color = app.Core.Model.ColourPattern;
 using System.Windows.Forms;
 using app.Core.Repository;
-using app.Core.Model;
 using System;
+using app.core.repository;
+using app.Core.Model;
 
 namespace app.view.Client
 {
     public partial class frmClientPatientModal : Form
     {
-        int Id = 0;
-        int clientId = 0;
+        private int Id = 0;
+        private int clientId = 0;
 
         //Use for updating pet record
         public frmClientPatientModal(int petId)
         {
             InitializeComponent();
             this.Id = petId;
+            this.Load += frmClientPatientModal_Load;
             btnSave.Text = "Update";
             label5.Text = "Update Patient Information";
 
@@ -27,9 +29,15 @@ namespace app.view.Client
             InitializeComponent();
             this.Id = petId;
             this.clientId = clientId;
-
+            this.Load += frmClientPatientModal_Load;
         }
-        
+
+        public frmClientPatientModal()
+        {
+            InitializeComponent();
+            this.Load += frmClientPatientModal_Load;
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             // Ask the user for confirmation before canceling
@@ -44,10 +52,22 @@ namespace app.view.Client
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SavePet();
-            this.Dispose();
-        }
+                // Save pet details
+                SavePet();
 
+                // Load the data into the DataGridView of frmClient
+                UpgradeFile upgradeFile = new UpgradeFile();
+                frmClient clientForm = new frmClient();
+
+            // Ensure dgvPatient is accessed properly
+            clientForm.dgvPatient.DataSource = upgradeFile.Load("SELECT * FROM vwpatient WHERE isDeleted = 0");
+
+                // Show the frmClient form (optional, depends on your application flow)
+                clientForm.Show();
+
+                // Dispose of the current form
+                this.Dispose();
+            }
 
         private void btnAddPhoto_Click(object sender, EventArgs e)
         {
@@ -56,24 +76,10 @@ namespace app.view.Client
 
         private void frmClientPatientModal_Load(object sender, EventArgs e)
         {
+            PopulateCmb();
+            if (this.Id > 0)
             {
-                UpgradeFile upgradeFile = new UpgradeFile();
-
-                cboGender.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_gender ;");
-                cboGender.ValueMember = "Key";
-                cboGender.DisplayMember = "Value";
-
-                cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed;");
-                cboBreed.ValueMember = "Key";
-                cboBreed.DisplayMember = "Value";
-
-                cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern;");
-                cboColor.ValueMember = "Key";
-                cboColor.DisplayMember = "Value";
-
-                cboSpecies.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_species;");
-                cboSpecies.ValueMember = "Key";
-                cboSpecies.DisplayMember = "Value";
+                LoadPetDetails();
             }
         }
 
@@ -110,6 +116,47 @@ namespace app.view.Client
                 MessageBox.Show("Unable to save record");
             }
         }
+        private void LoadDetails(app.Core.Model.Pet pet)
+        {
+            txtName.Text = pet.Name;
+            dtpBday.Text = pet.BirthDate;
+            cboGender.SelectedValue = pet.Gender.Id;
+            cboColor.SelectedValue = pet.ColourPattern.Id;
+            cboSpecies.SelectedValue = pet.Specie.Id;
+            cboBreed.SelectedValue = pet.Breed.Id;
+            //picturePet.Image = pet.Image;
+            
+        }
+        private void LoadPetDetails()
+        {
+            PetRepository petRepository = new PetRepository();
+            var pet = petRepository.GetPetDetails(new app.Core.Model.Pet() { Id = this.Id });
+            if (pet != null)
+            {
+                LoadDetails(pet);
+            } 
+        }
+        private void PopulateCmb()
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboGender.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_gender ;");
+            cboGender.ValueMember = "KEY";
+            cboGender.DisplayMember = "VALUE";
+
+            cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed;");
+            cboBreed.ValueMember = "KEY";
+            cboBreed.DisplayMember = "VALUE";
+
+            cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern;");
+            cboColor.ValueMember = "KEY";
+            cboColor.DisplayMember = "VALUE";
+
+            cboSpecies.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_species;");
+            cboSpecies.ValueMember = "KEY";
+            cboSpecies.DisplayMember = "VALUE";
+        }
+
     }
 }
 

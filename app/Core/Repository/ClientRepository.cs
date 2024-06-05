@@ -138,6 +138,54 @@ namespace app.Core.Repository
                 return true;
             }
         }
+        public Client GetClientInfoDetails(Client client)
+        {
+            // Define the query to retrieve client information based on the client ID
+            string query = "SELECT * FROM client WHERE id=@Id;";
+
+            // Create a dictionary to hold the parameters for the query
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+                {
+                     { "@Id", client.Id.ToString() }
+                };
+
+            // Initialize the UpgradeFile object to interact with the database
+            UpgradeFile upgrade = new UpgradeFile();
+
+            // Load the data from the database into a DataTable
+            DataTable dt = upgrade.Load(query, parameters);
+
+            // Check if any rows were returned
+            if (dt.Rows.Count > 0)
+            {
+                // Retrieve the first row of the DataTable
+                DataRow row = dt.Rows[0];
+
+                // Create and return a new Client object populated with data from the DataTable
+                return new Client()
+                {
+                    Id = client.Id,
+                    FirstName = row["firstname"].ToString(),
+                    MiddleName = row["middlename"].ToString(),
+                    LastName = row["lastname"].ToString(),
+                    Suffix = row["suffix"].ToString(),
+                    BirthDate = row["birthdate"].ToString(),
+                    Gender = row["gender"].ToString(),
+                    CivilStatus = row["civilstatus"].ToString(),
+                    PhoneNumber = row["phonenumber"].ToString(),
+                    MobileNumber = row["mobilenumber"].ToString(),
+                    EmailAddress = row["emailaddress"].ToString(),
+                    StreetNo = row["streetnumber"].ToString(),
+                    Brgy = new Barangay() { Id = Convert.ToInt32(row["brgy_id"]) },
+                    City = new City() { Id = Convert.ToInt32(row["city_id"]) },
+                    Province = new Province() { Id = Convert.ToInt32(row["province_id"]) },
+                    Region = new Region() { Id = Convert.ToInt32(row["region_id"]) },
+                };
+            }
+
+            // If no rows were returned, return null
+            return null;
+        }
 
     }
 }

@@ -10,6 +10,7 @@ using app.View.Patient;
 using System.Drawing;
 using System.Data;
 using System.Xml.Linq;
+using app.core.model;
 namespace app.Core.Repository
 {
     internal class PetRepository
@@ -110,6 +111,35 @@ namespace app.Core.Repository
 
             UpgradeFile upgradeFile = new UpgradeFile();
             return upgradeFile.ExecuteQuery(sql, parameters);
+        }
+
+        public Pet GetPetDetails(Pet pet)
+        {
+            string query = "SELECT * FROM patient WHERE id=@Id;";
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+            {
+                { "@Id", pet.Id.ToString() }
+            };
+
+            UpgradeFile upgrade = new UpgradeFile();
+            DataTable dt = upgrade.Load(query, parameters);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                return new Pet()
+                {
+                    Id = pet.Id,
+                    Client = new Client() { Id = Convert.ToInt32(row["client_id"]) },
+                    Name = row["name"].ToString(),
+                    BirthDate = row["birthdate"].ToString(),
+                    ColourPattern = new ColourPattern() { Id = Convert.ToInt32(row["color_id"]) },
+                    Specie = new Species() { Id = Convert.ToInt32(row["species_id"]) },
+                    Gender = new Gender() { Id = Convert.ToInt32(row["gender_id"]) },
+                    Breed = new Breed() { Id = Convert.ToInt32(row["breed_id"]) },
+                    // Image = row["image"].ToString(),
+                };
+            }
+            return null;
         }
 
     }
