@@ -1,4 +1,5 @@
-﻿using app.core.Repository;
+﻿using app.core.repository;
+using app.core.Repository;
 using app.Core.Repository;
 using System;
 using System.Windows.Forms;
@@ -7,28 +8,25 @@ namespace app.view.Inventory
 {
     public partial class frmInventoryModal : Form
     {
-        int Id = 0;
+       private int Id;
+
         public frmInventoryModal()
         {
             InitializeComponent();
+            this.Load += frmInventoryModal_Load;
+        }
+
+        public frmInventoryModal(int inventoryID) : this()
+        {
+            this.Id = inventoryID;
+            LoadInventoryDetails();
+            btnSave.Text = "Update";
+            label1.Text = "Update Item";
         }
 
         private void frmInventoryModal_Load(object sender, EventArgs e)
         {
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandID, brandDesc FROM brands;");
-            cmbBrand.ValueMember = "Key";
-            cmbBrand.DisplayMember = "Value";
-
-            cmbCateg.DataSource = upgradeFile.Populate("SELECT categId, categDesc FROM prod_categ;");
-            cmbCateg.ValueMember = "Key";
-            cmbCateg.DisplayMember = "Value";
-
-            cmbProduct.DataSource = upgradeFile.Populate("SELECT prodID, prodDesc FROM product;");
-            cmbProduct.ValueMember = "Key";
-            cmbProduct.DisplayMember = "Value";
-
+            PopulateCmb();
         }
 
         public void SaveInventory()
@@ -36,11 +34,11 @@ namespace app.view.Inventory
             app.core.model.Inventory inventory = new app.core.model.Inventory();
 
             inventory.Id = this.Id;
-            inventory.StockNumber = txtStockNum.Text;
+            inventory.StockNumber = Convert.ToInt32(txtStockNum.Text);
             inventory.Description = txtDesc.Text;
-            inventory.ProdID = Convert.ToInt32(cmbProduct.SelectedValue);
-            inventory.BrandID = Convert.ToInt32(cmbBrand.SelectedValue);
-            inventory.CategID = Convert.ToInt32(cmbCateg.SelectedValue);
+            inventory.ProdID = new app.core.model.Product() { Id = Convert.ToInt32(cmbProduct.SelectedValue) };
+            inventory.BrandID = new app.core.model.Brand() { Id = Convert.ToInt32(cmbBrand.SelectedValue) };
+            inventory.CategID = new app.core.model.ProductCategory { Id = Convert.ToInt32(cmbCateg.SelectedValue) };
             inventory.Qty = Convert.ToInt32(txtQty.Text);
             inventory.DateReceived = dtpReceived.Value.ToString("yyyy-MM-dd");
             inventory.ExpiredDate = dtpExp.Value.ToString("yyyy-MM-dd");
@@ -71,9 +69,50 @@ namespace app.view.Inventory
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveInventory();
-            this.Dispose();
+            UpgradeFile upgradeFile = new UpgradeFile();
             frmInventory frm = new frmInventory();
-            frm.Refresh();
+            frm.dgvInventory.DataSource = upgradeFile.Load("Select * FROM vwinventory WHERE isDeleted=0");
+            this.Dispose();
+        }
+
+        private void LoadDetails(app.core.model.Inventory inventory)
+        {
+            txtStockNum.Text = inventory.StockNumber.ToString();
+            cmbBrand.SelectedValue = inventory.BrandID.Id;
+            cmbProduct.SelectedValue = inventory.ProdID.Id;
+            txtDesc.Text = inventory.Description;
+            cmbCateg.SelectedValue = inventory.CategID.Id;
+            txtQty.Text = inventory.Qty.ToString();
+            dtpReceived.Text = inventory.DateReceived.ToString();
+            dtpExp.Text = inventory.ExpiredDate.ToString();
+        }
+
+        private void LoadInventoryDetails()
+        {
+            InventoryRepository inventoryRepository = new InventoryRepository();
+            var inventory = inventoryRepository.GetInventory(new app.core.model.Inventory() { Id = this.Id });
+            if (inventory != null)
+            {
+                LoadDetails(inventory);
+            }
+        }
+
+        private void PopulateCmb()
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cmbBrand.DataSource = upgradeFile.Populate("SELECT id, description FROM product_brand;");
+            cmbBrand.ValueMember = "Key";
+            cmbBrand.DisplayMember = "Value";
+
+            cmbCateg.DataSource = upgradeFile.Populate("SELECT id, description FROM product_category;");
+            cmbCateg.ValueMember = "Key";
+            cmbCateg.DisplayMember = "Value";
+
+            cmbProduct.DataSource = upgradeFile.Populate("SELECT prodID, prodDesc FROM product;");
+            cmbProduct.ValueMember = "Key";
+            cmbProduct.DisplayMember = "Value";
+
         }
     }
 }
