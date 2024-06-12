@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -92,11 +107,13 @@
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Services.cs" />
     <Compile Include="core\model\Species.cs" />
+    <Compile Include="core\model\User.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
     <Compile Include="core\repository\InventoryRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
     <Compile Include="core\repository\ProductRepository.cs" />
     <Compile Include="core\repository\ServiceRepository.cs" />
+    <Compile Include="core\repository\UserRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -402,6 +419,7 @@
   <ItemGroup>
     <Content Include="data\vcms.sql" />
     <Content Include="lib\Core.dll" />
+    <None Include="Resources\icons8-login-16.png" />
     <None Include="Resources\logo2.png" />
     <None Include="Resources\logo1.png" />
     <None Include="Resources\logo1-removebg-preview.png" />
@@ -433,6 +451,18 @@
     <None Include="Resources\medical_24px.png" />
     <None Include="Resources\owner_24px.png" />
     <None Include="Resources\client_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

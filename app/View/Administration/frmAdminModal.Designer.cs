@@ -31,24 +31,24 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.txtEmail = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtmobilenum = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtlname = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtmi = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtfname = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.cboUserType = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtpass = new System.Windows.Forms.TextBox();
-            this.cboUserType = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtfname = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtmi = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtlname = new System.Windows.Forms.TextBox();
+            this.txtmobilenum = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -69,9 +69,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(9, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(219, 27);
+            this.label1.Size = new System.Drawing.Size(139, 27);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Admin Information";
+            this.label1.Text = "Information";
             // 
             // panel2
             // 
@@ -98,128 +98,27 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // btnSave
+            // cboUserType
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(476, 438);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 40);
-            this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "&Create";
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.cboUserType.FormattingEnabled = true;
+            this.cboUserType.Items.AddRange(new object[] {
+            "Please Select User Type............",
+            "Admin",
+            "Staff",
+            "Veterinarian"});
+            this.cboUserType.Location = new System.Drawing.Point(182, 16);
+            this.cboUserType.Name = "cboUserType";
+            this.cboUserType.Size = new System.Drawing.Size(356, 29);
+            this.cboUserType.TabIndex = 1;
             // 
-            // btnCancel
+            // label6
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(363, 438);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 40);
-            this.btnCancel.TabIndex = 9;
-            this.btnCancel.Text = "C&ancel";
-            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtEmail.FormattingEnabled = true;
-            this.txtEmail.Items.AddRange(new object[] {
-            "",
-            "Single",
-            "Married",
-            "Widowed",
-            "Separated",
-            ""});
-            this.txtEmail.Location = new System.Drawing.Point(182, 280);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(356, 29);
-            this.txtEmail.TabIndex = 8;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(27, 283);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(124, 21);
-            this.label7.TabIndex = 34;
-            this.label7.Text = "Email Address";
-            // 
-            // txtmobilenum
-            // 
-            this.txtmobilenum.Location = new System.Drawing.Point(182, 242);
-            this.txtmobilenum.Name = "txtmobilenum";
-            this.txtmobilenum.Size = new System.Drawing.Size(356, 28);
-            this.txtmobilenum.TabIndex = 7;
-            this.txtmobilenum.TextChanged += new System.EventHandler(this.txtSuffix_TextChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 245);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(138, 21);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "Mobile Number";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // txtlname
-            // 
-            this.txtlname.Location = new System.Drawing.Point(182, 206);
-            this.txtlname.Name = "txtlname";
-            this.txtlname.Size = new System.Drawing.Size(356, 28);
-            this.txtlname.TabIndex = 6;
-            this.txtlname.TextChanged += new System.EventHandler(this.txtLname_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 209);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 21);
-            this.label4.TabIndex = 31;
-            this.label4.Text = "Last name";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // txtmi
-            // 
-            this.txtmi.Location = new System.Drawing.Point(182, 170);
-            this.txtmi.Name = "txtmi";
-            this.txtmi.Size = new System.Drawing.Size(356, 28);
-            this.txtmi.TabIndex = 5;
-            this.txtmi.TextChanged += new System.EventHandler(this.txtMname_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 173);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 21);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "Middle name";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // txtfname
-            // 
-            this.txtfname.Location = new System.Drawing.Point(182, 134);
-            this.txtfname.Name = "txtfname";
-            this.txtfname.Size = new System.Drawing.Size(356, 28);
-            this.txtfname.TabIndex = 4;
-            this.txtfname.TextChanged += new System.EventHandler(this.txtFname_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 137);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 21);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "First name";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(27, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 21);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "User Type";
             // 
             // label8
             // 
@@ -258,27 +157,128 @@
             this.txtpass.TabIndex = 3;
             this.txtpass.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // cboUserType
+            // label2
             // 
-            this.cboUserType.FormattingEnabled = true;
-            this.cboUserType.Items.AddRange(new object[] {
-            "Please Select User Type............",
-            "Admin",
-            "Staff",
-            "Veterinarian"});
-            this.cboUserType.Location = new System.Drawing.Point(182, 16);
-            this.cboUserType.Name = "cboUserType";
-            this.cboUserType.Size = new System.Drawing.Size(356, 29);
-            this.cboUserType.TabIndex = 1;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 137);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 21);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "First name";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label6
+            // txtfname
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 24);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 21);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "User Type";
+            this.txtfname.Location = new System.Drawing.Point(182, 134);
+            this.txtfname.Name = "txtfname";
+            this.txtfname.Size = new System.Drawing.Size(356, 28);
+            this.txtfname.TabIndex = 4;
+            this.txtfname.TextChanged += new System.EventHandler(this.txtFname_TextChanged);
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtEmail.FormattingEnabled = true;
+            this.txtEmail.Items.AddRange(new object[] {
+            "",
+            "Single",
+            "Married",
+            "Widowed",
+            "Separated",
+            ""});
+            this.txtEmail.Location = new System.Drawing.Point(182, 280);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(356, 29);
+            this.txtEmail.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(27, 173);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(121, 21);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Middle name";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(27, 283);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(124, 21);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "Email Address";
+            // 
+            // txtmi
+            // 
+            this.txtmi.Location = new System.Drawing.Point(182, 170);
+            this.txtmi.Name = "txtmi";
+            this.txtmi.Size = new System.Drawing.Size(356, 28);
+            this.txtmi.TabIndex = 5;
+            this.txtmi.TextChanged += new System.EventHandler(this.txtMname_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(27, 209);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 21);
+            this.label4.TabIndex = 31;
+            this.label4.Text = "Last name";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // txtlname
+            // 
+            this.txtlname.Location = new System.Drawing.Point(182, 206);
+            this.txtlname.Name = "txtlname";
+            this.txtlname.Size = new System.Drawing.Size(356, 28);
+            this.txtlname.TabIndex = 6;
+            this.txtlname.TextChanged += new System.EventHandler(this.txtLname_TextChanged);
+            // 
+            // txtmobilenum
+            // 
+            this.txtmobilenum.Location = new System.Drawing.Point(182, 242);
+            this.txtmobilenum.Name = "txtmobilenum";
+            this.txtmobilenum.Size = new System.Drawing.Size(356, 28);
+            this.txtmobilenum.TabIndex = 7;
+            this.txtmobilenum.TextChanged += new System.EventHandler(this.txtSuffix_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(27, 245);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(138, 21);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Mobile Number";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
+            this.btnSave.Location = new System.Drawing.Point(476, 438);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(110, 40);
+            this.btnSave.TabIndex = 10;
+            this.btnSave.Text = "&Create";
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
+            this.btnCancel.Location = new System.Drawing.Point(363, 438);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 40);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "C&ancel";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // frmAdminModal
             // 
