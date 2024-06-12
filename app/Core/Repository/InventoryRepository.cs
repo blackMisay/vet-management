@@ -12,6 +12,7 @@ namespace app.core.Repository
 {
     internal class InventoryRepository
     {
+        int inventoryId;
         UpgradeFile upgradeFile;
 
         public DataTable SearchInventory(string searchValue)
@@ -33,7 +34,7 @@ namespace app.core.Repository
 
             if (saveState)
             {
-                sql = "UPDATE prod_stocks SET stockID=@Id WHERE stockID=@Id;";
+                sql = "UPDATE prod_stocks SET stocksNum=@StockNumber, description=@Description, prodID=@ProdID, categID=@CategID, brandID=@BrandID, qty=@Qty, dateReceived=@DateReceived, expDate=@ExpiredDate WHERE stockID=@Id;";
             }
             else
             {
@@ -44,9 +45,9 @@ namespace app.core.Repository
             {"@Id", Convert.ToString(inventory.Id)},
             {"@StockNumber",Convert.ToString (inventory.StockNumber) },
             {"@Description", inventory.Description },
-            {"@ProdID", Convert.ToString (inventory.ProdID) },
-            {"@CategID", Convert.ToString(inventory.CategID)},
-            {"@BrandID", Convert.ToString(inventory.BrandID)},
+            {"@ProdID", inventory.ProdID.Id.ToString() },
+            {"@CategID", inventory.CategID.Id.ToString()},
+            {"@BrandID", inventory.BrandID.Id.ToString()},
             {"@Qty", Convert.ToString(inventory.Qty)},
             {"@DateReceived", inventory.DateReceived},
             {"@ExpiredDate", inventory.ExpiredDate},
@@ -57,18 +58,44 @@ namespace app.core.Repository
                 return true;
             return false;
         }
-        public bool DeleteInventory(Inventory inventory)
+        public bool DeleteInventory(int inventory)
         {
-            UpgradeFile upgradeFile = new UpgradeFile();
+            string sql = "UPDATE prod_stocks SET isDeleted = '1' WHERE stockID=@Id;";
 
-            string sql = "UPDATE prod_stocks SET deleted = '1' WHERE id=@Id;";
-
-            using (MySqlCommand cmd = new MySqlCommand(sql))
-            {
-                cmd.Parameters.AddWithValue("@Id", inventory.Id);
-                cmd.ExecuteNonQuery();
-                return true;
-            }
+            UpgradeFile upgrade = new UpgradeFile();
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+                {
+                    { "@Id", inventory.ToString() }
+                };
+            return upgrade.ExecuteQuery(sql, parameters);
         }
+        public Inventory GetInventory(Inventory inventory)
+        {
+            string query = "SELECT * FROM prod_stocks WHERE stockID=@Id;";
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+            {
+                { "@Id", inventory.Id.ToString() }
+            };
+
+            UpgradeFile upgrade = new UpgradeFile();
+            DataTable dt = upgrade.Load(query, parameters);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                return new Inventory()
+                {
+                    Id = inventory.Id,
+                    StockNumber = Convert.ToInt32(row["stocksNum"]),
+                    Description = row["description"].ToString(),
+                    ProdID = new Product() { Id = Convert.ToInt32(row["prodID"]) },
+                    CategID = new ProductCategory() { Id = Convert.ToInt32(row["categID"]) },
+                    BrandID = new Brand() { Id = Convert.ToInt32(row["brandID"]) },
+                    Qty = Convert.ToInt32(row["qty"]),
+                    DateReceived = row["dateReceived"].ToString(),
+                    ExpiredDate = row["expDate"].ToString(),
+                };
+            }
+            return null;
+        }         
     }
 }

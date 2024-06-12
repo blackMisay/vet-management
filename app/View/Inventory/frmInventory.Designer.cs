@@ -56,6 +56,7 @@
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
@@ -178,6 +179,7 @@
             this.btnRemove.Text = "&Remove";
             this.btnRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // txtSearch
             // 
@@ -214,7 +216,8 @@
             this.Column11,
             this.Column12,
             this.Column13,
-            this.Column14});
+            this.Column14,
+            this.Column9});
             this.dgvInventory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvInventory.Location = new System.Drawing.Point(0, 137);
             this.dgvInventory.Name = "dgvInventory";
@@ -306,6 +309,14 @@
             this.Column14.MinimumWidth = 6;
             this.Column14.Name = "Column14";
             // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "isDeleted";
+            this.Column9.HeaderText = "isDeleted";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
+            // 
             // frmInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -343,7 +354,7 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.DataGridView dgvInventory;
+        public System.Windows.Forms.DataGridView dgvInventory;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -353,5 +364,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
     }
 }

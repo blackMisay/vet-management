@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using app.core.model;
+
 
 namespace app.core.repository
 {
