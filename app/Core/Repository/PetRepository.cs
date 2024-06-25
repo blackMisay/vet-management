@@ -37,7 +37,7 @@ namespace app.Core.Repository
 
             if (saveState)
             {
-                sql = "UPDATE patient SET name=@Name,birhtdate=@BirthDate,gender_id=@Gender,color_id=@Color,species_id=@Specie,breed_id=@Breed,image=@Image WHERE id=@Id;";
+                sql = "UPDATE patient SET name=@Name,birthdate=@BirthDate,gender_id=@Gender,color_id=@Color,species_id=@Specie,breed_id=@Breed,image=@Image WHERE id=@Id;";
             }
             else
             {

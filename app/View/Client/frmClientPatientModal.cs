@@ -87,7 +87,7 @@ namespace app.view.Client
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed WHERE id='" + cboSpecies.SelectedValue.ToString() + "';");
+            cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed WHERE species_id='" + cboSpecies.SelectedValue.ToString() + "';");
             cboBreed.ValueMember = "Key";
             cboBreed.DisplayMember = "Value";
         }
@@ -157,6 +157,9 @@ namespace app.view.Client
             cboSpecies.DisplayMember = "VALUE";
         }
 
+        private void cboBreed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
     }
 }
 

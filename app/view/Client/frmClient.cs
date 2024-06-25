@@ -194,5 +194,10 @@ namespace app.view.Client
                 }
             }
         }
+
+        private void frmClient_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

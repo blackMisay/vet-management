@@ -498,13 +498,13 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.RichTextBox richHousenum;
-        private System.Windows.Forms.ComboBox cboCity;
+        public System.Windows.Forms.ComboBox cboCity;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox cboProvince;
+        public System.Windows.Forms.ComboBox cboProvince;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox cboRegion;
+        public System.Windows.Forms.ComboBox cboRegion;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cboBrgy;
+        public System.Windows.Forms.ComboBox cboBrgy;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cboSex;

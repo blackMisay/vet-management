@@ -155,9 +155,9 @@ namespace app.view.Client
             txtEmail.Text = client.EmailAddress;
             richHousenum.Text = client.StreetNo;
             cboRegion.SelectedIndex = client.Region.Id-1;
-            cboCity.SelectedIndex = client.City.Id-1;
-            cboBrgy.SelectedIndex = client.Brgy.Id - 1;
-            cboProvince.SelectedIndex = client.Province.Id - 1;
+            cboCity.SelectedItem = client.City.Id-1;
+            cboBrgy.SelectedItem = client.Brgy.Id - 1;
+            cboProvince.SelectedItem = client.Province.Id - 1;
         }
         private void LoadClientDetails()
         {

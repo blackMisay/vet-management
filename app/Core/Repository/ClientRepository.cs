@@ -3,12 +3,13 @@ using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 
 namespace app.Core.Repository
 {
     internal class ClientRepository
     {
-
+        int Id;
         UpgradeFile upgradeFile;
         public DataTable RetrieveSelectedClient(string searchValue)
         {
@@ -137,6 +138,72 @@ namespace app.Core.Repository
                 cmd.ExecuteNonQuery();
                 return true;
             }
+        }
+        public string Client()
+        {
+            app.Core.Model.Client client = new app.Core.Model.Client();
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+            {
+                { "@Id", client.Id.ToString() }
+            };
+
+            client.Id = this.Id;
+            upgradeFile = new UpgradeFile();
+
+            // Log the query and parameters for debugging
+            Console.WriteLine("Executing query: SELECT Address FROM vwclient WHERE clientId=@Id;");
+            Console.WriteLine("With parameters: @Id = " + Id.ToString());
+
+            DataTable dt = upgradeFile.Load("SELECT Address FROM vwclient WHERE clientId=@Id;", parameters);
+
+            // Check if DataTable is null
+            if (dt == null)
+            {
+                Console.WriteLine("DataTable returned is null.");
+                return string.Empty;
+            }
+
+            // Log the number of rows returned
+            Console.WriteLine("Number of rows returned: " + dt.Rows.Count);
+
+            string address = string.Empty;
+            if (dt.Rows.Count > 0)
+            {
+                // Log the address value for debugging
+                address = dt.Rows[0]["Address"].ToString();
+                Console.WriteLine("Address found: " + address);
+            }
+            else
+            {
+                Console.WriteLine("No rows found for the given clientId.");
+            }
+
+            return address;
+        }
+
+        //public string Client()
+        //{
+        //    app.Core.Model.Client client = new app.Core.Model.Client();
+        //    Dictionary<string, string> parameters = new Dictionary<string, string>()
+        //    {
+        //        { "@Id", Id.ToString() }
+        //    };
+        //    client.Id = this.Id;
+        //    upgradeFile = new UpgradeFile();
+        //    DataTable dt = upgradeFile.Load("SELECT Address FROM vwclient WHERE clientId=@Id;", parameters);
+
+        //    string address = string.Empty;
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        address = dt.Rows[0]["Address"].ToString();
+        //    }
+
+        //    return address;
+        //}
+        public string GetAddress()
+        {
+            string address = Client();
+            return address;
         }
         public Client GetClientInfoDetails(Client client)
         {

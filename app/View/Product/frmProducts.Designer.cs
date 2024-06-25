@@ -120,7 +120,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(11, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 34);
+            this.label1.Size = new System.Drawing.Size(104, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Products";
             // 
@@ -185,7 +185,7 @@
             // 
             this.txtSearch.Location = new System.Drawing.Point(118, 20);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(332, 28);
+            this.txtSearch.Size = new System.Drawing.Size(332, 24);
             this.txtSearch.TabIndex = 4;
             // 
             // btnSearch
@@ -230,6 +230,7 @@
             this.Id.HeaderText = "ID";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
+            this.Id.Visible = false;
             this.Id.Width = 125;
             // 
             // Column2
@@ -278,7 +279,7 @@
             // 
             this.Column11.DataPropertyName = "unitPrice";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.Format = "C2";
             dataGridViewCellStyle6.NullValue = null;
             this.Column11.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column11.HeaderText = "Unit Price";
@@ -309,7 +310,7 @@
             // 
             // frmProducts
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1487, 820);
             this.Controls.Add(this.dgvProducts);

@@ -128,6 +128,7 @@
             this.cboBreed.Name = "cboBreed";
             this.cboBreed.Size = new System.Drawing.Size(308, 31);
             this.cboBreed.TabIndex = 26;
+            this.cboBreed.SelectedIndexChanged += new System.EventHandler(this.cboBreed_SelectedIndexChanged);
             // 
             // label4
             // 
