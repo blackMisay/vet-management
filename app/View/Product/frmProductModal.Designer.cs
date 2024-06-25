@@ -67,7 +67,7 @@
             this.label1.Location = new System.Drawing.Point(11, 16);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 34);
+            this.label1.Size = new System.Drawing.Size(148, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "New Product";
             // 
@@ -96,7 +96,7 @@
             // 
             this.txtAmount.Location = new System.Drawing.Point(144, 255);
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(324, 28);
+            this.txtAmount.Size = new System.Drawing.Size(324, 24);
             this.txtAmount.TabIndex = 6;
             // 
             // label7
@@ -105,7 +105,7 @@
             this.label7.Location = new System.Drawing.Point(13, 255);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 21);
+            this.label7.Size = new System.Drawing.Size(63, 19);
             this.label7.TabIndex = 15;
             this.label7.Text = "Amount";
             // 
@@ -113,7 +113,7 @@
             // 
             this.txtUnitPrice.Location = new System.Drawing.Point(144, 212);
             this.txtUnitPrice.Name = "txtUnitPrice";
-            this.txtUnitPrice.Size = new System.Drawing.Size(324, 28);
+            this.txtUnitPrice.Size = new System.Drawing.Size(324, 24);
             this.txtUnitPrice.TabIndex = 5;
             // 
             // label6
@@ -122,7 +122,7 @@
             this.label6.Location = new System.Drawing.Point(13, 212);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 21);
+            this.label6.Size = new System.Drawing.Size(72, 19);
             this.label6.TabIndex = 13;
             this.label6.Text = "Unit Price";
             // 
@@ -130,7 +130,7 @@
             // 
             this.txtQty.Location = new System.Drawing.Point(144, 169);
             this.txtQty.Name = "txtQty";
-            this.txtQty.Size = new System.Drawing.Size(324, 28);
+            this.txtQty.Size = new System.Drawing.Size(324, 24);
             this.txtQty.TabIndex = 4;
             // 
             // label3
@@ -139,7 +139,7 @@
             this.label3.Location = new System.Drawing.Point(13, 169);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 21);
+            this.label3.Size = new System.Drawing.Size(70, 19);
             this.label3.TabIndex = 11;
             this.label3.Text = "Quantity";
             // 
@@ -148,7 +148,7 @@
             this.cmbCateg.FormattingEnabled = true;
             this.cmbCateg.Location = new System.Drawing.Point(144, 125);
             this.cmbCateg.Name = "cmbCateg";
-            this.cmbCateg.Size = new System.Drawing.Size(324, 29);
+            this.cmbCateg.Size = new System.Drawing.Size(324, 27);
             this.cmbCateg.TabIndex = 3;
             // 
             // cmbBrand
@@ -156,7 +156,7 @@
             this.cmbBrand.FormattingEnabled = true;
             this.cmbBrand.Location = new System.Drawing.Point(144, 29);
             this.cmbBrand.Name = "cmbBrand";
-            this.cmbBrand.Size = new System.Drawing.Size(324, 29);
+            this.cmbBrand.Size = new System.Drawing.Size(324, 27);
             this.cmbBrand.TabIndex = 1;
             // 
             // txtDesc
@@ -164,7 +164,7 @@
             this.txtDesc.Location = new System.Drawing.Point(144, 76);
             this.txtDesc.Margin = new System.Windows.Forms.Padding(4);
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(324, 28);
+            this.txtDesc.Size = new System.Drawing.Size(324, 24);
             this.txtDesc.TabIndex = 2;
             // 
             // label5
@@ -173,7 +173,7 @@
             this.label5.Location = new System.Drawing.Point(13, 125);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 21);
+            this.label5.Size = new System.Drawing.Size(74, 19);
             this.label5.TabIndex = 7;
             this.label5.Text = "Category";
             // 
@@ -183,7 +183,7 @@
             this.label4.Location = new System.Drawing.Point(13, 79);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 21);
+            this.label4.Size = new System.Drawing.Size(85, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "Description";
             // 
@@ -193,7 +193,7 @@
             this.label2.Location = new System.Drawing.Point(13, 29);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 21);
+            this.label2.Size = new System.Drawing.Size(50, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "Brand";
             // 
@@ -229,7 +229,7 @@
             // 
             // frmProductModal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(572, 492);

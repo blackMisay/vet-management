@@ -85,7 +85,7 @@ namespace app.view.Services
                 servicesForm.dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE isDeleted = 0");
 
                 // Optional: Show the services form, if needed
-                servicesForm.Show();
+                servicesForm.dgvServices.RefreshEdit();
 
                 // Dispose of the current form
                 this.Dispose();

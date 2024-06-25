@@ -61,7 +61,7 @@
             this.label1.Location = new System.Drawing.Point(13, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(185, 34);
+            this.label1.Size = new System.Drawing.Size(143, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "New Service";
             // 
@@ -83,14 +83,14 @@
             // 
             this.txtDesc.Location = new System.Drawing.Point(144, 87);
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(260, 28);
+            this.txtDesc.Size = new System.Drawing.Size(260, 24);
             this.txtDesc.TabIndex = 9;
             // 
             // txtPrice
             // 
             this.txtPrice.Location = new System.Drawing.Point(144, 131);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(260, 28);
+            this.txtPrice.Size = new System.Drawing.Size(260, 24);
             this.txtPrice.TabIndex = 8;
             // 
             // label5
@@ -98,7 +98,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(15, 131);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 21);
+            this.label5.Size = new System.Drawing.Size(42, 19);
             this.label5.TabIndex = 7;
             this.label5.Text = "Price";
             // 
@@ -107,7 +107,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(15, 86);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 21);
+            this.label4.Size = new System.Drawing.Size(85, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "Description";
             // 
@@ -115,7 +115,7 @@
             // 
             this.txtCode.Location = new System.Drawing.Point(144, 32);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(260, 28);
+            this.txtCode.Size = new System.Drawing.Size(260, 24);
             this.txtCode.TabIndex = 1;
             // 
             // label2
@@ -123,7 +123,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(15, 39);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 21);
+            this.label2.Size = new System.Drawing.Size(101, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "Service Code";
             // 
@@ -136,7 +136,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(115, 40);
             this.btnSave.TabIndex = 18;
-            this.btnSave.Text = "&Create";
+            this.btnSave.Text = "&Save";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -157,7 +157,7 @@
             // 
             // FrmServicesModal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(484, 412);

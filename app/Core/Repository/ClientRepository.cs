@@ -181,30 +181,6 @@ namespace app.Core.Repository
             return address;
         }
 
-        //public string Client()
-        //{
-        //    app.Core.Model.Client client = new app.Core.Model.Client();
-        //    Dictionary<string, string> parameters = new Dictionary<string, string>()
-        //    {
-        //        { "@Id", Id.ToString() }
-        //    };
-        //    client.Id = this.Id;
-        //    upgradeFile = new UpgradeFile();
-        //    DataTable dt = upgradeFile.Load("SELECT Address FROM vwclient WHERE clientId=@Id;", parameters);
-
-        //    string address = string.Empty;
-        //    if (dt.Rows.Count > 0)
-        //    {
-        //        address = dt.Rows[0]["Address"].ToString();
-        //    }
-
-        //    return address;
-        //}
-        public string GetAddress()
-        {
-            string address = Client();
-            return address;
-        }
         public Client GetClientInfoDetails(Client client)
         {
             // Define the query to retrieve client information based on the client ID
