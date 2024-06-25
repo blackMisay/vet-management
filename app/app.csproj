@@ -419,6 +419,7 @@
   <ItemGroup>
     <Content Include="data\vcms.sql" />
     <Content Include="lib\Core.dll" />
+    <None Include="Resources\Sahagub %282%29.png" />
     <None Include="Resources\icons8-login-16.png" />
     <None Include="Resources\logo2.png" />
     <None Include="Resources\logo1.png" />

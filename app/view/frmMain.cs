@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
+using app.view.Administration;
 
 namespace app.view
 {
@@ -32,6 +33,8 @@ namespace app.view
             {
                 // TODO: Implement activity logging for user
                 this.Dispose();
+                frmLogin frm = new frmLogin();
+                frm.ShowDialog();
             }
         }
 
