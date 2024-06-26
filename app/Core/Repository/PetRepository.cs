@@ -15,6 +15,17 @@ namespace app.Core.Repository
 {
     internal class PetRepository
     {
+        UpgradeFile file = new UpgradeFile();
+        public DataTable RetrieveSelectedPatient(string searchValue)
+        {
+            string query = "SELECT *  FROM `vwpatient` WHERE `petname` LIKE @searchValue;";
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                {"@searchValue", "%" + searchValue + "%" }
+            };
+            file = new UpgradeFile();
+            return file.Load(query, parameters);
+        }
 
         public bool Save(Pet pet)
         {

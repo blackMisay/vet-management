@@ -124,10 +124,6 @@ namespace app.view.Client
                 if (updateConfirmation == DialogResult.Yes)
                 {
                     int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
-                    //string color = dgvPatient.SelectedRows[0].Cells["Color"].Value.ToString();
-                    //string breed = dgvPatient.SelectedRows[0].Cells["Breed"].Value.ToString();
-                    //string gender = dgvPatient.SelectedRows[0].Cells["Gender"].Value.ToString();
-                    //string species = dgvPatient.SelectedRows[0].Cells["Species"].Value.ToString();
                     frmClientPatientModal frm = new frmClientPatientModal(petId);
                     frm.ShowDialog();   
                     dgvPatient.RefreshEdit();
@@ -199,5 +195,10 @@ namespace app.view.Client
         {
 
         }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+        }
     }
-}
