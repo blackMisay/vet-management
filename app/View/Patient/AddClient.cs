@@ -89,12 +89,9 @@ namespace app.View.Patient
             client.FirstName = txtfname.Text;
             client.LastName = txtlname.Text;
             client.MiddleName = txtmi.Text;
-            client.Suffix = cmbSuffix.Text;
-            client.CivilStatus = cmbCivilStat.Text;
-            client.PhoneNumber = txttellnum.Text;
+            client.Suffix = cmbSuffix.Text;          
+           client.PhoneNumber = txttellnum.Text;
             client.MobileNumber = txtcellnum.Text;
-            client.BirthDate = dtpdob.Value.ToString("yyyy-MM-dd");
-            client.Gender = cmbSex.Text;
             client.EmailAddress = txtemail.Text;
             client.StreetNo = txtstreet.Text;
             client.Region = new Region() { Id = Convert.ToInt32(cboRegion.SelectedValue) };

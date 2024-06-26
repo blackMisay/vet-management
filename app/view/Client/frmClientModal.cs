@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using app.Core;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace app.view.Client
 {
@@ -101,11 +102,8 @@ namespace app.view.Client
             client.LastName = txtLname.Text;
             client.MiddleName = txtMname.Text;
             client.Suffix = txtSuffix.Text;
-            client.CivilStatus = cboStatus.Text;
-            client.Gender = cboSex.Text;
             client.PhoneNumber = txtPhone.Text;
             client.MobileNumber = txtMobile.Text;
-            client.BirthDate = dtpBday.Value.ToString("yyyy-MM-dd");
             client.EmailAddress = txtEmail.Text;
             client.StreetNo = richHousenum.Text;
             client.Region = new Core.Model.Region() { Id = Convert.ToInt32(cboRegion.SelectedValue) };
@@ -147,11 +145,8 @@ namespace app.view.Client
             txtLname.Text = client.LastName;
             txtMname.Text = client.MiddleName;
             txtSuffix.Text = client.Suffix;
-            cboStatus.Text = client.CivilStatus;
-            cboSex.Text = client.Gender;
             txtPhone.Text = client.PhoneNumber;
             txtMobile.Text = client.MobileNumber;
-            dtpBday.Text = client.BirthDate;
             txtEmail.Text = client.EmailAddress;
             richHousenum.Text = client.StreetNo;
             cboRegion.SelectedIndex = client.Region.Id-1;
@@ -190,5 +185,6 @@ namespace app.view.Client
             cboCity.ValueMember = "Key";
             cboCity.DisplayMember = "Value";
         }
+        }
     }
-}
+    

@@ -29,11 +29,11 @@ namespace app.Core.Repository
 
             if (saveState)
             {
-                sql = "UPDATE client SET id=@ClientID,firstname=@FirstName,lastname=@LastName,middlename=@MiddleName,suffix=@Suffix,birthdate=@DateofBirth,gender=@Sex,civilstatus=@CivilStatus,phonenumber=@TelePhone,mobilenumber=@CellPhone,emailaddress=@EmailAddress,streetnumber=@StreetNo,region_id=@Region,city_id=@City,brgy_id=@Brgy,province_id=@Province WHERE id=@ClientID;";
+                sql = "UPDATE client SET id=@ClientID,firstname=@FirstName,lastname=@LastName,middlename=@MiddleName,suffix=@Suffix,phonenumber=@TelePhone,mobilenumber=@CellPhone,emailaddress=@EmailAddress,streetnumber=@StreetNo,region_id=@Region,city_id=@City,brgy_id=@Brgy,province_id=@Province WHERE id=@ClientID;";
             }
             else
             {
-                sql = "INSERT INTO client(id,firstname,lastname,middlename,suffix,birthdate,gender,civilstatus,phonenumber,mobilenumber,emailaddress,streetnumber,region_id,city_id,brgy_id,province_id) VALUES(@ClientID,@FirstName,@LastName,@MiddleName,@Suffix,@DateofBirth,@Sex,@CivilStatus,@TelePhone,@CellPhone,@EmailAddress,@StreetNo,@Region,@City,@Brgy,@Province);";
+                sql = "INSERT INTO client(id,firstname,lastname,middlename,suffix,phonenumber,mobilenumber,emailaddress,streetnumber,region_id,city_id,brgy_id,province_id) VALUES(@ClientID,@FirstName,@LastName,@MiddleName,@Suffix,@TelePhone,@CellPhone,@EmailAddress,@StreetNo,@Region,@City,@Brgy,@Province);";
             }
             Dictionary<string, string> parameters = new Dictionary<string, string>()
             {
@@ -42,9 +42,6 @@ namespace app.Core.Repository
                 {"@LastName", client.LastName },
                 {"@MiddleName", client.MiddleName },
                 {"@Suffix", client.Suffix },
-                {"@DateofBirth", client.BirthDate },
-                {"@Sex", client.Gender },
-                {"@CivilStatus", client.CivilStatus },
                 {"@CellPhone", client.MobileNumber },
                 {"@TelePhone", client.PhoneNumber },
                 {"@EmailAddress", client.EmailAddress },
@@ -83,9 +80,6 @@ namespace app.Core.Repository
                 MiddleName = dt.Rows[0][3].ToString(),
                 LastName = dt.Rows[0][4].ToString(),
                 Suffix = dt.Rows[0][5].ToString(),
-                BirthDate = dt.Rows[0][6].ToString(),
-                Gender = dt.Rows[0][7].ToString(),
-                CivilStatus = dt.Rows[0][8].ToString(),
                 PhoneNumber = dt.Rows[0][9].ToString(),
                 MobileNumber = dt.Rows[0][10].ToString(),
                 EmailAddress = dt.Rows[0][11].ToString(),
@@ -212,9 +206,6 @@ namespace app.Core.Repository
                     MiddleName = row["middlename"].ToString(),
                     LastName = row["lastname"].ToString(),
                     Suffix = row["suffix"].ToString(),
-                    BirthDate = row["birthdate"].ToString(),
-                    Gender = row["gender"].ToString(),
-                    CivilStatus = row["civilstatus"].ToString(),
                     PhoneNumber = row["phonenumber"].ToString(),
                     MobileNumber = row["mobilenumber"].ToString(),
                     EmailAddress = row["emailaddress"].ToString(),
