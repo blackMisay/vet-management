@@ -191,14 +191,18 @@ namespace app.view.Client
             }
         }
 
-        private void frmClient_Load(object sender, EventArgs e)
+        private void btnSearchPet_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtSearchPet.Text) || !string.IsNullOrWhiteSpace(txtSearchPet.Text))
+            {
+                PetRepository repo = new PetRepository();
+                dgvPatient.DataSource = repo.RetrieveSelectedPatient(txtSearchPet.Text);
+                this.dgvPatient.Columns["Id"].Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("The search field is empty, please provide.", "Empty field", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-        }
+    }
     }

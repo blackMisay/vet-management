@@ -92,7 +92,7 @@ namespace app.View.Patient
             pet.Id = this.Id;
             pet.Client = new Client() { Id = this.clientId };
             pet.Name = txtlname.Text;
-            pet.BirthDate = dtpdob.Value.ToString("yyyy-MM-dd");
+           // pet.BirthDate = dtpdob.Value.ToString("yyyy-MM-dd");
             pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
             pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
             pet.Breed = new Breed() { Id = Convert.ToInt32(cboBreed.SelectedValue) };

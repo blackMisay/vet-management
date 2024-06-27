@@ -33,6 +33,16 @@ namespace app.view.Client
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClient));
             this.dgvPatient = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Species = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Breed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Color = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,16 +72,9 @@ namespace app.view.Client
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Species = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Breed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Color = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtSearchPet = new System.Windows.Forms.TextBox();
+            this.btnSearchPet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -110,6 +113,80 @@ namespace app.view.Client
             this.dgvPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPatient.Size = new System.Drawing.Size(1048, 399);
             this.dgvPatient.TabIndex = 2;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "petId";
+            this.Id.HeaderText = "petId";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "clientId";
+            this.Column2.HeaderText = "clientId";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "image";
+            this.Column9.HeaderText = "Image";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "petname";
+            this.Column3.HeaderText = "Pet Name";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "bday";
+            this.Column1.HeaderText = "Birthday";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            // 
+            // Gender
+            // 
+            this.Gender.DataPropertyName = "sexname";
+            this.Gender.HeaderText = "Gender";
+            this.Gender.MinimumWidth = 6;
+            this.Gender.Name = "Gender";
+            // 
+            // Species
+            // 
+            this.Species.DataPropertyName = "speciesName";
+            this.Species.HeaderText = "Specie";
+            this.Species.MinimumWidth = 6;
+            this.Species.Name = "Species";
+            // 
+            // Breed
+            // 
+            this.Breed.DataPropertyName = "breedDesc";
+            this.Breed.HeaderText = "Breed";
+            this.Breed.MinimumWidth = 6;
+            this.Breed.Name = "Breed";
+            // 
+            // Color
+            // 
+            this.Color.DataPropertyName = "colorName";
+            this.Color.HeaderText = "Color";
+            this.Color.MinimumWidth = 6;
+            this.Color.Name = "Color";
+            // 
+            // Column14
+            // 
+            this.Column14.DataPropertyName = "isDeleted";
+            this.Column14.HeaderText = "isDeleted";
+            this.Column14.MinimumWidth = 6;
+            this.Column14.Name = "Column14";
+            this.Column14.Visible = false;
             // 
             // Column4
             // 
@@ -168,6 +245,9 @@ namespace app.view.Client
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel6.Controls.Add(this.btnSearchPet);
+            this.panel6.Controls.Add(this.txtSearchPet);
+            this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.btnEditPatient);
             this.panel6.Controls.Add(this.btnRemovePatient);
             this.panel6.Controls.Add(this.btnAddPatient);
@@ -442,79 +522,36 @@ namespace app.view.Client
             this.panel1.Size = new System.Drawing.Size(1377, 72);
             this.panel1.TabIndex = 0;
             // 
-            // Id
+            // label7
             // 
-            this.Id.DataPropertyName = "petId";
-            this.Id.HeaderText = "petId";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(3, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(183, 21);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Search by (full name)";
             // 
-            // Column2
+            // txtSearchPet
             // 
-            this.Column2.DataPropertyName = "clientId";
-            this.Column2.HeaderText = "clientId";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
+            this.txtSearchPet.Location = new System.Drawing.Point(7, 23);
+            this.txtSearchPet.Name = "txtSearchPet";
+            this.txtSearchPet.Size = new System.Drawing.Size(304, 28);
+            this.txtSearchPet.TabIndex = 4;
             // 
-            // Column9
+            // btnSearchPet
             // 
-            this.Column9.DataPropertyName = "image";
-            this.Column9.HeaderText = "Image";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "petname";
-            this.Column3.HeaderText = "Pet Name";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "bday";
-            this.Column1.HeaderText = "Birthday";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Gender
-            // 
-            this.Gender.DataPropertyName = "sexname";
-            this.Gender.HeaderText = "Gender";
-            this.Gender.MinimumWidth = 6;
-            this.Gender.Name = "Gender";
-            // 
-            // Species
-            // 
-            this.Species.DataPropertyName = "speciesName";
-            this.Species.HeaderText = "Specie";
-            this.Species.MinimumWidth = 6;
-            this.Species.Name = "Species";
-            // 
-            // Breed
-            // 
-            this.Breed.DataPropertyName = "breedDesc";
-            this.Breed.HeaderText = "Breed";
-            this.Breed.MinimumWidth = 6;
-            this.Breed.Name = "Breed";
-            // 
-            // Color
-            // 
-            this.Color.DataPropertyName = "colorName";
-            this.Color.HeaderText = "Color";
-            this.Color.MinimumWidth = 6;
-            this.Color.Name = "Color";
-            // 
-            // Column14
-            // 
-            this.Column14.DataPropertyName = "isDeleted";
-            this.Column14.HeaderText = "isDeleted";
-            this.Column14.MinimumWidth = 6;
-            this.Column14.Name = "Column14";
-            this.Column14.Visible = false;
+            this.btnSearchPet.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSearchPet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchPet.Image = global::app.Properties.Resources.icons8_google_web_search_16;
+            this.btnSearchPet.Location = new System.Drawing.Point(317, 21);
+            this.btnSearchPet.Name = "btnSearchPet";
+            this.btnSearchPet.Size = new System.Drawing.Size(95, 31);
+            this.btnSearchPet.TabIndex = 4;
+            this.btnSearchPet.Text = "Search";
+            this.btnSearchPet.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSearchPet.UseVisualStyleBackColor = false;
+            this.btnSearchPet.Click += new System.EventHandler(this.btnSearchPet_Click);
             // 
             // frmClient
             // 
@@ -531,10 +568,10 @@ namespace app.view.Client
             this.Name = "frmClient";
             this.Padding = new System.Windows.Forms.Padding(11, 5, 6, 9);
             this.Text = "frmCustomer";
-            this.Load += new System.EventHandler(this.frmClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -590,5 +627,8 @@ namespace app.view.Client
         private System.Windows.Forms.DataGridViewTextBoxColumn Breed;
         private System.Windows.Forms.DataGridViewTextBoxColumn Color;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.Button btnSearchPet;
+        private System.Windows.Forms.TextBox txtSearchPet;
+        private System.Windows.Forms.Label label7;
     }
 }
