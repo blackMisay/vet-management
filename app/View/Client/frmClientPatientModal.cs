@@ -19,7 +19,7 @@ namespace app.view.Client
             this.Id = petId;
             this.Load += frmClientPatientModal_Load;
             btnSave.Text = "Update";
-            label5.Text = "Update Patient Information";
+            label5.Text = "Update Pet Information";
 
         }
 
@@ -36,6 +36,7 @@ namespace app.view.Client
         {
             InitializeComponent();
             this.Load += frmClientPatientModal_Load;
+            dtpBday.ValueChanged += new EventHandler(dtpBday_ValueChanged);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -99,7 +100,9 @@ namespace app.view.Client
             pet.Id = this.Id;
             pet.Client = new Core.Model.Client() { Id = this.clientId };
             pet.Name = txtName.Text;
-            pet.BirthDate = dtpBday.Value.ToString("yyyy-MM-dd");
+            pet.BirthDate = Convert.ToDateTime(dtpBday.Value.ToString("yyyy-MM-dd"));
+            pet.Age = Convert.ToString(txtAge.Text);
+            pet.Weight = txtWeight.Text;
             pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
             pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
             pet.Breed = new Breed() { Id = Convert.ToInt32(cboBreed.SelectedValue) };
@@ -119,7 +122,9 @@ namespace app.view.Client
         private void LoadDetails(app.Core.Model.Pet pet)
         {
             txtName.Text = pet.Name;
-            dtpBday.Text = pet.BirthDate;
+            dtpBday.Value = pet.BirthDate;
+            txtAge.Text = pet.Age.ToString();
+            txtWeight.Text = pet.Weight;
             cboGender.SelectedValue = pet.Gender.Id;
             cboColor.SelectedValue = pet.ColourPattern.Id;
             cboSpecies.SelectedValue = pet.Specie.Id;
@@ -157,10 +162,45 @@ namespace app.view.Client
             cboSpecies.DisplayMember = "VALUE";
         }
 
-        private void cboBreed_SelectedIndexChanged(object sender, EventArgs e)
+        private void dtpBday_ValueChanged(object sender, EventArgs e)
         {
+            DateTime birthDate = dtpBday.Value;
+
+            if (birthDate > DateTime.Today)
+            {
+                txtAge.Text = "Invalid date of birth";
+                return;
+            }
+
+            (int years, int months, int days) = CalculateAge(birthDate);
+
+            // Update the textbox with the formatted age
+            txtAge.Text = $"{years} years, {months} months, {days} days";
         }
+        private (int, int, int) CalculateAge(DateTime birthDate)
+        {
+            DateTime today = DateTime.Today;
+
+            int years = today.Year - birthDate.Year;
+            int months = today.Month - birthDate.Month;
+            int days = today.Day - birthDate.Day;
+
+            // Adjust for months and days
+            if (days < 0)
+            {
+                months--;
+                days += DateTime.DaysInMonth(today.Year, today.AddMonths(-1).Month);
+            }
+
+            if (months < 0)
+            {
+                years--;
+                months += 12;
+            }
+
+            return (years, months, days);
+        }
+
+
     }
 }
-
-
