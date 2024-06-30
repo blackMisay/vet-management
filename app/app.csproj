@@ -108,7 +108,9 @@
     <Compile Include="core\repository\InventoryRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
     <Compile Include="core\repository\ProductRepository.cs" />
+    <Compile Include="core\repository\SecureHash.cs" />
     <Compile Include="core\repository\ServiceRepository.cs" />
+    <Compile Include="core\repository\UserAuthentication.cs" />
     <Compile Include="core\repository\UserRepository.cs" />
     <Compile Include="core\repository\UpgradeFile.cs" />
     <Compile Include="Program.cs" />

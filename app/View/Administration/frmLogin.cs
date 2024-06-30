@@ -38,7 +38,7 @@ namespace app.view.Administration
         {
             core.model.User user = new core.model.User();
             user.Id = this.Id;
-            user.UserName = txtusername.Text;
+            user.Username = txtusername.Text;
             user.Password = txtpass.Text;
 
             UserRepository userRepository = new UserRepository();

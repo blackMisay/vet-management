@@ -24,7 +24,7 @@ namespace app.core.repository
             Dictionary<string, string> parameters = new Dictionary<string, string>()
             {
                 {"@Id", Convert.ToString(user.Id)},
-                {"@UserName", user.UserName },
+                {"@UserName", user.Username },
                 {"@Password", user.Password },
             };
 
