@@ -4,6 +4,7 @@ using app.Core.Repository;
 using System;
 using app.core.repository;
 using app.Core.Model;
+using Core;
 
 namespace app.view.Client
 {
