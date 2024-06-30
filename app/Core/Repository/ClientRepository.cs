@@ -220,6 +220,5 @@ namespace app.Core.Repository
             // If no rows were returned, return null
             return null;
         }
-
-    }
+     }
 }

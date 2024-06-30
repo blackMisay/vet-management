@@ -148,10 +148,10 @@ namespace app.view.Client
             txtEmail.Text = client.EmailAddress;
             richHousenum.Text = client.StreetNo;
             //TODO: Fix fetch
-            //cboRegion.SelectedIndex = client.Region.Id;
-            //cboCity.SelectedValue = client.City.Id;
-            //cboBrgy.SelectedIndex = client.Brgy.Id;
-            //cboProvince.SelectedIndex = client.Province.Id;
+            cboRegion.SelectedValue = client.Region.Id;
+            cboCity.SelectedValue = client.City.Id;
+            cboBrgy.SelectedValue = client.Brgy.Id;
+            cboProvince.SelectedValue = client.Province.Id;
         }
         private void LoadClientDetails()
         {
