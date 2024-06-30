@@ -2,7 +2,7 @@
 using app.core.repository;
 using app.Core.Repository;
 using System;
-using System.Data;
+using Core;
 using System.Windows.Forms;
 
 namespace app.view.Product

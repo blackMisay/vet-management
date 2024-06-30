@@ -1,15 +1,7 @@
-﻿using app.core.repository;
+﻿using Core;
 using app.core.Repository;
-using app.Core.Repository;
-using app.view.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace app.view.Inventory

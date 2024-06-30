@@ -10,8 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using app.Core.Model;
-using app.core.repository;
+using Core;
 
 namespace app.view.Services
 {

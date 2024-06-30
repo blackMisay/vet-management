@@ -1,8 +1,7 @@
-﻿using app.core.repository;
-using app.core.Repository;
-using app.Core.Repository;
+﻿using app.core.Repository;
 using System;
 using System.Windows.Forms;
+using Core; 
 
 namespace app.view.Inventory
 {

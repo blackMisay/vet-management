@@ -1,12 +1,7 @@
 ﻿using app.core.model;
-using app.Core.Model;
-using app.Core.Repository;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core;
 
 namespace app.core.repository
 {

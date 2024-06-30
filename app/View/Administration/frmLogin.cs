@@ -1,15 +1,6 @@
 ﻿using app.core.repository;
-using app.Core.Model;
-using app.Core.Repository;
-using app.view.Client;
+using Core;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace app.view.Administration
@@ -24,7 +15,7 @@ namespace app.view.Administration
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            SaveLogin();
+            //SaveLogin();
             UpgradeFile upgradeFile = new UpgradeFile();
             frmMain main = new frmMain();
             main.ShowDialog();

@@ -11,6 +11,8 @@ using System.Drawing;
 using System.Data;
 using System.Xml.Linq;
 using app.core.model;
+using Core;
+
 namespace app.Core.Repository
 {
     internal class PetRepository

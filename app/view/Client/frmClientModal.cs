@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using app.Core;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using Core;
 
 namespace app.view.Client
 {
@@ -52,17 +53,6 @@ namespace app.view.Client
             // Save pet details
             SaveClient();
 
-            // Load the data into the DataGridView of frmClient
-            UpgradeFile upgradeFile = new UpgradeFile();
-            frmClient clientForm = new frmClient();
-
-            // Ensure dgvPatient is accessed properly
-            clientForm.dgvClient.DataSource = upgradeFile.Load("SELECT * FROM vwclient WHERE isDeleted = 0");
-
-            // Show the frmClient form (optional, depends on your application flow)
-            clientForm.Show();
-
-            // Dispose of the current form
             this.Dispose();
         }
 
@@ -76,6 +66,11 @@ namespace app.view.Client
         }
 
         private void cboRegion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cboRegion_SelectionChangeCommitted(object sender, EventArgs e)
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
@@ -93,6 +88,25 @@ namespace app.view.Client
             cboCity.ValueMember = "Key";
             cboCity.DisplayMember = "Value";
         }
+
+        private void cboCity_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboBrgy.DataSource = upgradeFile.Populate("SELECT brgy_code, description FROM addr_brgy where citymun_code='" + cboCity.SelectedValue.ToString() + "';");
+            cboBrgy.ValueMember = "Key";
+            cboBrgy.DisplayMember = "Value";
+        }
+
+
+        //private void cboBrgy_Click(object sender, EventArgs e)
+        //{
+        //    UpgradeFile upgradeFile = new UpgradeFile();
+
+        //    cboBrgy.DataSource = upgradeFile.Populate("SELECT id, description FROM addr_brgy where citymun_code='" + cboCity.SelectedValue.ToString() + "';");
+        //    cboBrgy.ValueMember = "Key";
+        //    cboBrgy.DisplayMember = "Value";
+        //}
 
         private void SaveClient()
         {
@@ -122,23 +136,7 @@ namespace app.view.Client
                 MessageBox.Show("Unable to save record");
             }
         }      
-        private void cboCity_Click(object sender, EventArgs e)
-        {
-            UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboBrgy.DataSource = upgradeFile.Populate("SELECT id, description FROM addr_brgy where citymun_code='" + cboCity.SelectedValue.ToString() + "';");
-            cboBrgy.ValueMember = "Key";
-            cboBrgy.DisplayMember = "Value";
-        }
-
-        private void cboBrgy_Click(object sender, EventArgs e)
-        {
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            cboBrgy.DataSource = upgradeFile.Populate("SELECT id, description FROM addr_brgy where citymun_code='" + cboCity.SelectedValue.ToString() + "';");
-            cboBrgy.ValueMember = "Key";
-            cboBrgy.DisplayMember = "Value";
-        }
         private void LoadDetails(app.Core.Model.Client client)
         {
             txtFname.Text = client.FirstName;
@@ -149,10 +147,11 @@ namespace app.view.Client
             txtMobile.Text = client.MobileNumber;
             txtEmail.Text = client.EmailAddress;
             richHousenum.Text = client.StreetNo;
-            cboRegion.SelectedIndex = client.Region.Id-1;
-            cboCity.SelectedItem = client.City.Id-1;
-            cboBrgy.SelectedItem = client.Brgy.Id - 1;
-            cboProvince.SelectedItem = client.Province.Id - 1;
+            //TODO: Fix fetch
+            //cboRegion.SelectedIndex = client.Region.Id;
+            //cboCity.SelectedValue = client.City.Id;
+            //cboBrgy.SelectedIndex = client.Brgy.Id;
+            //cboProvince.SelectedIndex = client.Province.Id;
         }
         private void LoadClientDetails()
         {
@@ -185,6 +184,8 @@ namespace app.view.Client
             cboCity.ValueMember = "Key";
             cboCity.DisplayMember = "Value";
         }
-        }
+
+
     }
+}
     

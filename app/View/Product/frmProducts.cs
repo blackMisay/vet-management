@@ -1,5 +1,5 @@
 ﻿using app.core.repository;
-using app.Core.Repository;
+using Core;
 using System;
 using System.Data;
 using System.Windows.Forms;
