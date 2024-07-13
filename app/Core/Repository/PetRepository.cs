@@ -75,12 +75,12 @@ namespace app.Core.Repository
             {
                 // Use the client Id to filter out pets list
 
-                return upgradeFile.Load("SELECT * FROM vwpatient WHERE clientId=" + clientId + ";");
+                return upgradeFile.Load("SELECT * FROM vwpatient WHERE clientId=" + clientId + " AND isDeleted = 0;");
             }
             else
             {
                 // If there's no client Id (zero), load all pets list
-                return upgradeFile.Load("SELECT * FROM vwpatient;");
+                return upgradeFile.Load("SELECT * FROM vwpatient WHERE isDeleted = 0;");
 
             }
 
@@ -106,7 +106,7 @@ namespace app.Core.Repository
                 Id = Convert.ToInt32(dt.Rows[0][0]),
                 Client = new Client() { Id = Convert.ToInt32(dt.Rows[0][1]) },
                 Name = dt.Rows[0][6].ToString(),
-                BirthDate= Convert.ToDateTime(dt.Rows[0][7]),
+                BirthDate= Convert.ToString(dt.Rows[0][7]),
                 ColourPattern = new ColourPattern() { Id = Convert.ToInt32(dt.Rows[0][5]) },
                 Specie = new Species() { Id = Convert.ToInt32(dt.Rows[0][2]) },
                 Gender= new Gender() { Id = Convert.ToInt32(dt.Rows[0][4]) },
@@ -146,7 +146,7 @@ namespace app.Core.Repository
                     Id = pet.Id,
                     Client = new Client() { Id = Convert.ToInt32(row["client_id"]) },
                     Name = row["name"].ToString(),
-                    BirthDate = Convert.ToDateTime(row["birthdate"]),
+                    BirthDate = Convert.ToString(row["birthdate"]),
                     Age = Convert.ToString(row["age"]),
                     Weight = row["weight"].ToString(),
                     ColourPattern = new ColourPattern() { Id = Convert.ToInt32(row["color_id"]) },

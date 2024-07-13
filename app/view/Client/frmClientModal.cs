@@ -13,6 +13,7 @@ using app.Core;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
 using Core;
+using System.Windows.Forms.VisualStyles;
 
 namespace app.view.Client
 {
@@ -24,6 +25,7 @@ namespace app.view.Client
         {
             InitializeComponent();
             this.Load += frmClientModal_Load;
+            PopulateCmb();
             //TODO: Populating combobox data.
         }
 
@@ -58,7 +60,7 @@ namespace app.view.Client
 
         private void frmClientModal_Load(object sender, EventArgs e)
         {
-            PopulateCmb();
+      
             if (this.Id > 0)
             {
                 LoadClientDetails();
@@ -105,40 +107,52 @@ namespace app.view.Client
 
         //    cboBrgy.DataSource = upgradeFile.Populate("SELECT id, description FROM addr_brgy where citymun_code='" + cboCity.SelectedValue.ToString() + "';");
         //    cboBrgy.ValueMember = "Key";
-        //    cboBrgy.DisplayMember = "Value";
-        //}
+        //     cboBrgy.DisplayMember = "Value";
+        // }
 
         private void SaveClient()
         {
-            Core.Model.Client client = new Core.Model.Client();
-            client.Id = this.Id;
-            client.FirstName = txtFname.Text;
-            client.LastName = txtLname.Text;
-            client.MiddleName = txtMname.Text;
-            client.Suffix = txtSuffix.Text;
-            client.PhoneNumber = txtPhone.Text;
-            client.MobileNumber = txtMobile.Text;
-            client.EmailAddress = txtEmail.Text;
-            client.StreetNo = richHousenum.Text;
-            client.Region = new Core.Model.Region() { Id = Convert.ToInt32(cboRegion.SelectedValue) };
-            client.City = new City() { Id = Convert.ToInt32(cboCity.SelectedValue) };
-            client.Brgy = new Barangay() { Id = Convert.ToInt32(cboBrgy.SelectedValue) };
-            client.Province = new Province() { Id = Convert.ToInt32(cboProvince.SelectedValue) };
+            // Create a new client instance and set properties from input fields
+            Core.Model.Client client = new Core.Model.Client
+            {
+                Id = this.Id,
+                FirstName = txtFname.Text,
+                LastName = txtLname.Text,
+                MiddleName = txtMname.Text,
+                Suffix = txtSuffix.Text,
+                PhoneNumber = txtPhone.Text,
+                MobileNumber = txtMobile.Text,
+                EmailAddress = txtEmail.Text,
+                StreetNo = richHousenum.Text,
+                Region = new Core.Model.Region() { Id = Convert.ToInt32(cboRegion.SelectedValue) },
+                City = new City() { Id = Convert.ToInt32(cboCity.SelectedValue) },
+                Brgy = new Barangay() { Id = Convert.ToInt32(cboBrgy.SelectedValue) },
+                Province = new Province() { Id = Convert.ToInt32(cboProvince.SelectedValue) }
+            };
 
+            // Validate email address format
+            if (!client.EmailAddress.Contains("@"))
+            {
+                MessageBox.Show("Invalid Email Address");
+                txtEmail.Focus(); // Set focus to the email input field
+                return; // Exit the method if the email is invalid
+            }
 
+            // Attempt to save the client
             ClientRepository clientRepository = new ClientRepository();
             if (clientRepository.Save(client))
             {
-                MessageBox.Show("Save successfully");
+                MessageBox.Show("Saved successfully");
             }
             else
             {
                 MessageBox.Show("Unable to save record");
             }
-        }      
+        }
 
         private void LoadDetails(app.Core.Model.Client client)
         {
+            PopulateCmb();
             txtFname.Text = client.FirstName;
             txtLname.Text = client.LastName;
             txtMname.Text = client.MiddleName;
@@ -148,10 +162,10 @@ namespace app.view.Client
             txtEmail.Text = client.EmailAddress;
             richHousenum.Text = client.StreetNo;
             //TODO: Fix fetch
-            //cboRegion.SelectedIndex = client.Region.Id;
-            //cboCity.SelectedValue = client.City.Id;
-            //cboBrgy.SelectedIndex = client.Brgy.Id;
-            //cboProvince.SelectedIndex = client.Province.Id;
+            cboRegion.SelectedValue = client.Region.Id;
+            cboCity.SelectedValue = client.City.Id;
+            cboBrgy.SelectedValue = client.Brgy.Id;
+            cboProvince.SelectedValue = client.Province.Id;
         }
         private void LoadClientDetails()
         {
@@ -185,7 +199,7 @@ namespace app.view.Client
             cboCity.DisplayMember = "Value";
         }
 
-
+        
     }
 }
     

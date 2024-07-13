@@ -50,6 +50,9 @@ namespace app.view.Client
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnSearchPet = new System.Windows.Forms.Button();
+            this.txtSearchPet = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnEditPatient = new System.Windows.Forms.Button();
             this.btnRemovePatient = new System.Windows.Forms.Button();
             this.btnAddPatient = new System.Windows.Forms.Button();
@@ -72,9 +75,6 @@ namespace app.view.Client
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtSearchPet = new System.Windows.Forms.TextBox();
-            this.btnSearchPet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -256,6 +256,37 @@ namespace app.view.Client
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1048, 57);
             this.panel6.TabIndex = 3;
+            // 
+            // btnSearchPet
+            // 
+            this.btnSearchPet.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSearchPet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchPet.Image = global::app.Properties.Resources.icons8_google_web_search_16;
+            this.btnSearchPet.Location = new System.Drawing.Point(317, 21);
+            this.btnSearchPet.Name = "btnSearchPet";
+            this.btnSearchPet.Size = new System.Drawing.Size(95, 31);
+            this.btnSearchPet.TabIndex = 4;
+            this.btnSearchPet.Text = "Search";
+            this.btnSearchPet.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSearchPet.UseVisualStyleBackColor = false;
+            this.btnSearchPet.Click += new System.EventHandler(this.btnSearchPet_Click);
+            // 
+            // txtSearchPet
+            // 
+            this.txtSearchPet.Location = new System.Drawing.Point(7, 23);
+            this.txtSearchPet.Name = "txtSearchPet";
+            this.txtSearchPet.Size = new System.Drawing.Size(304, 28);
+            this.txtSearchPet.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(3, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(197, 21);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Search by ( pet name)";
             // 
             // btnEditPatient
             // 
@@ -521,37 +552,6 @@ namespace app.view.Client
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1377, 72);
             this.panel1.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(3, 3);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(183, 21);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Search by (full name)";
-            // 
-            // txtSearchPet
-            // 
-            this.txtSearchPet.Location = new System.Drawing.Point(7, 23);
-            this.txtSearchPet.Name = "txtSearchPet";
-            this.txtSearchPet.Size = new System.Drawing.Size(304, 28);
-            this.txtSearchPet.TabIndex = 4;
-            // 
-            // btnSearchPet
-            // 
-            this.btnSearchPet.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSearchPet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearchPet.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearchPet.Location = new System.Drawing.Point(317, 21);
-            this.btnSearchPet.Name = "btnSearchPet";
-            this.btnSearchPet.Size = new System.Drawing.Size(95, 31);
-            this.btnSearchPet.TabIndex = 4;
-            this.btnSearchPet.Text = "Search";
-            this.btnSearchPet.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSearchPet.UseVisualStyleBackColor = false;
-            this.btnSearchPet.Click += new System.EventHandler(this.btnSearchPet_Click);
             // 
             // frmClient
             // 

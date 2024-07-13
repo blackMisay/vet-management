@@ -180,7 +180,7 @@ namespace app.view.Client
                     {
                         // Remove the selected row from the DataGridView
                         dgvPatient.Rows.Remove(dgvPatient.SelectedRows[0]);
-                        dgvPatient.Refresh();
+                        dgvPatient.RefreshEdit();
 
                         MessageBox.Show("Record deleted successfully.", "Delete Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
