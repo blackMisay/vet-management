@@ -101,7 +101,7 @@ namespace app.view.Client
             pet.Id = this.Id;
             pet.Client = new Core.Model.Client() { Id = this.clientId };
             pet.Name = txtName.Text;
-            pet.BirthDate = Convert.ToDateTime(dtpBday.Value.ToString("yyyy-MM-dd"));
+            pet.BirthDate = dtpBday.Value.ToString("yyyy-MM-dd");
             pet.Age = Convert.ToString(txtAge.Text);
             pet.Weight = txtWeight.Text;
             pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
@@ -123,7 +123,8 @@ namespace app.view.Client
         private void LoadDetails(app.Core.Model.Pet pet)
         {
             txtName.Text = pet.Name;
-            dtpBday.Value = pet.BirthDate;
+            //dtpBday.Value = pet.BirthDate;
+            MessageBox.Show(txtName.Text);
             txtAge.Text = pet.Age.ToString();
             txtWeight.Text = pet.Weight;
             cboGender.SelectedValue = pet.Gender.Id;
