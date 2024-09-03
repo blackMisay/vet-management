@@ -36,19 +36,19 @@
             this.dtpExp = new System.Windows.Forms.DateTimePicker();
             this.dtpReceived = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
-            this.cmbCateg = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmbProduct = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbBrand = new System.Windows.Forms.ComboBox();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.txtQty = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtStockNum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.cmbCateg = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbProduct = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbBrand = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -78,19 +78,19 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.dtpExp);
-            this.panel2.Controls.Add(this.dtpReceived);
-            this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.cmbCateg);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.cmbProduct);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.cmbBrand);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.dtpExp);
+            this.panel2.Controls.Add(this.dtpReceived);
+            this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.txtDesc);
             this.panel2.Controls.Add(this.txtQty);
-            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.txtStockNum);
             this.panel2.Controls.Add(this.label2);
@@ -140,51 +140,9 @@
             this.label7.TabIndex = 15;
             this.label7.Text = "Quantity";
             // 
-            // cmbCateg
-            // 
-            this.cmbCateg.FormattingEnabled = true;
-            this.cmbCateg.Location = new System.Drawing.Point(155, 216);
-            this.cmbCateg.Name = "cmbCateg";
-            this.cmbCateg.Size = new System.Drawing.Size(249, 29);
-            this.cmbCateg.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 216);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 21);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Category";
-            // 
-            // cmbProduct
-            // 
-            this.cmbProduct.FormattingEnabled = true;
-            this.cmbProduct.Location = new System.Drawing.Point(155, 170);
-            this.cmbProduct.Name = "cmbProduct";
-            this.cmbProduct.Size = new System.Drawing.Size(249, 29);
-            this.cmbProduct.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 173);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 21);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Product";
-            // 
-            // cmbBrand
-            // 
-            this.cmbBrand.FormattingEnabled = true;
-            this.cmbBrand.Location = new System.Drawing.Point(155, 124);
-            this.cmbBrand.Name = "cmbBrand";
-            this.cmbBrand.Size = new System.Drawing.Size(249, 29);
-            this.cmbBrand.TabIndex = 3;
-            // 
             // txtDesc
             // 
-            this.txtDesc.Location = new System.Drawing.Point(155, 79);
+            this.txtDesc.Location = new System.Drawing.Point(155, 214);
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(249, 28);
             this.txtDesc.TabIndex = 2;
@@ -196,19 +154,10 @@
             this.txtQty.Size = new System.Drawing.Size(249, 28);
             this.txtQty.TabIndex = 6;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 132);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 21);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Brand";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 86);
+            this.label4.Location = new System.Drawing.Point(11, 221);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 21);
             this.label4.TabIndex = 3;
@@ -258,6 +207,57 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // cmbCateg
+            // 
+            this.cmbCateg.FormattingEnabled = true;
+            this.cmbCateg.Location = new System.Drawing.Point(155, 166);
+            this.cmbCateg.Name = "cmbCateg";
+            this.cmbCateg.Size = new System.Drawing.Size(249, 29);
+            this.cmbCateg.TabIndex = 22;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 166);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 21);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Category";
+            // 
+            // cmbProduct
+            // 
+            this.cmbProduct.FormattingEnabled = true;
+            this.cmbProduct.Location = new System.Drawing.Point(155, 120);
+            this.cmbProduct.Name = "cmbProduct";
+            this.cmbProduct.Size = new System.Drawing.Size(249, 29);
+            this.cmbProduct.TabIndex = 21;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 123);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 21);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Product";
+            // 
+            // cmbBrand
+            // 
+            this.cmbBrand.FormattingEnabled = true;
+            this.cmbBrand.Location = new System.Drawing.Point(155, 74);
+            this.cmbBrand.Name = "cmbBrand";
+            this.cmbBrand.Size = new System.Drawing.Size(249, 29);
+            this.cmbBrand.TabIndex = 20;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 82);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 21);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Brand";
+            // 
             // frmInventoryModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -287,7 +287,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.TextBox txtQty;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtStockNum;
         private System.Windows.Forms.Label label2;
@@ -303,5 +302,6 @@
         private System.Windows.Forms.ComboBox cmbProduct;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbBrand;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -31,7 +31,7 @@ namespace app.view.Client
             newClientForm.ShowDialog();
             dgvClient.Refresh();
                
-            }
+        }
 
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -44,6 +44,7 @@ namespace app.view.Client
                 int clientId = Convert.ToInt32(dgvClient.SelectedRows[0].Cells["Id"].Value);
                 frmClientModal newClientForm = new frmClientModal(clientId);
                 newClientForm.ShowDialog();
+                this.LoadClient();
             }
             else
             { 
@@ -179,7 +180,7 @@ namespace app.view.Client
                     {
                         // Remove the selected row from the DataGridView
                         dgvPatient.Rows.Remove(dgvPatient.SelectedRows[0]);
-                        dgvPatient.Refresh();
+                        dgvPatient.RefreshEdit();
 
                         MessageBox.Show("Record deleted successfully.", "Delete Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

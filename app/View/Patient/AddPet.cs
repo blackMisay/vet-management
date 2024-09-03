@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 using app.Core.Model;
-using System.IO;
+using Core;
 using System.Drawing;
 using Color = app.Core.Model.ColourPattern;
 

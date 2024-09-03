@@ -34,6 +34,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -48,6 +53,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtFname = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.cboBrgy = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.cboCity = new System.Windows.Forms.ComboBox();
@@ -58,12 +64,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.richHousenum = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -158,6 +158,56 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personal Information";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.Red;
+            this.label18.Location = new System.Drawing.Point(1124, 140);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(19, 23);
+            this.label18.TabIndex = 26;
+            this.label18.Text = "*";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(1124, 75);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(19, 23);
+            this.label17.TabIndex = 26;
+            this.label17.Text = "*";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.Red;
+            this.label16.Location = new System.Drawing.Point(563, 146);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(19, 23);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "*";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(563, 110);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(19, 23);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "*";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(563, 74);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(19, 23);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "*";
             // 
             // txtEmail
             // 
@@ -286,6 +336,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Address";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.Red;
+            this.label19.Location = new System.Drawing.Point(566, 43);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(19, 23);
+            this.label19.TabIndex = 21;
+            this.label19.Text = "*";
+            // 
             // cboBrgy
             // 
             this.cboBrgy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -294,7 +354,6 @@
             this.cboBrgy.Name = "cboBrgy";
             this.cboBrgy.Size = new System.Drawing.Size(356, 31);
             this.cboBrgy.TabIndex = 15;
-            this.cboBrgy.Click += new System.EventHandler(this.cboBrgy_Click);
             // 
             // label15
             // 
@@ -313,7 +372,7 @@
             this.cboCity.Name = "cboCity";
             this.cboCity.Size = new System.Drawing.Size(356, 31);
             this.cboCity.TabIndex = 14;
-            this.cboCity.SelectedIndexChanged += new System.EventHandler(this.cboBrgy_Click);
+            this.cboCity.SelectionChangeCommitted += new System.EventHandler(this.cboCity_SelectionChangeCommitted);
             // 
             // label14
             // 
@@ -351,7 +410,7 @@
             this.cboRegion.Name = "cboRegion";
             this.cboRegion.Size = new System.Drawing.Size(356, 31);
             this.cboRegion.TabIndex = 12;
-            this.cboRegion.SelectedIndexChanged += new System.EventHandler(this.cboRegion_SelectedIndexChanged);
+            this.cboRegion.SelectionChangeCommitted += new System.EventHandler(this.cboRegion_SelectionChangeCommitted);
             // 
             // label12
             // 
@@ -379,66 +438,6 @@
             this.label11.Size = new System.Drawing.Size(152, 23);
             this.label11.TabIndex = 0;
             this.label11.Text = "House number";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(563, 74);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(19, 23);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "*";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(563, 110);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(19, 23);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "*";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.Red;
-            this.label16.Location = new System.Drawing.Point(563, 146);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(19, 23);
-            this.label16.TabIndex = 22;
-            this.label16.Text = "*";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.Color.Red;
-            this.label17.Location = new System.Drawing.Point(1124, 75);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(19, 23);
-            this.label17.TabIndex = 26;
-            this.label17.Text = "*";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.Red;
-            this.label18.Location = new System.Drawing.Point(1124, 140);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(19, 23);
-            this.label18.TabIndex = 26;
-            this.label18.Text = "*";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.Red;
-            this.label19.Location = new System.Drawing.Point(566, 43);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(19, 23);
-            this.label19.TabIndex = 21;
-            this.label19.Text = "*";
             // 
             // frmClientModal
             // 

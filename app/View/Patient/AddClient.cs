@@ -3,8 +3,8 @@ using app.Core.Repository;
 using System;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
-using app.Core;
-using System.Runtime.Remoting;
+using app.core;
+using Core;
 
 namespace app.View.Patient
 {

@@ -11,6 +11,8 @@ using System.Drawing;
 using System.Data;
 using System.Xml.Linq;
 using app.core.model;
+using Core;
+
 namespace app.Core.Repository
 {
     internal class PetRepository
@@ -40,6 +42,7 @@ namespace app.Core.Repository
                 {"@Name", pet.Name },
                 {"@BirthDate", Convert.ToString(pet.BirthDate) },
                 {"@Age", Convert.ToString(pet.Age) },
+                {"@Size", pet.Size},
                 {"@Weight", pet.Weight },
                 {"@Gender", pet.Gender.Id.ToString() },
                 {"@Color", pet.ColourPattern.Id.ToString() },
@@ -50,11 +53,11 @@ namespace app.Core.Repository
 
             if (saveState)
             {
-                sql = "UPDATE patient SET name=@Name,birthdate=@BirthDate,age=@Age,weight=@Weight,gender_id=@Gender,color_id=@Color,species_id=@Specie,breed_id=@Breed,image=@Image WHERE id=@Id;";
+                sql = "UPDATE patient SET name=@Name,birthdate=@BirthDate,age=@Age,weight=@Weight,size=@Size,gender_id=@Gender,color_id=@Color,species_id=@Specie,breed_id=@Breed,image=@Image WHERE id=@Id;";
             }
             else
             {
-                sql = "INSERT INTO patient(client_id,name,birthdate,age,weight,gender_id,color_id,species_id,breed_id,image) VALUES(@Client,@Name,@BirthDate,@Age,@Weight,@Gender,@Color,@Specie,@Breed,@Image);";
+                sql = "INSERT INTO patient(client_id,name,birthdate,age,weight,size,gender_id,color_id,species_id,breed_id,image) VALUES(@Client,@Name,@BirthDate,@Age,@Weight,@Size,@Gender,@Color,@Specie,@Breed,@Image);";
                 parameters.Add("@Client", pet.Client.Id.ToString());
             }
 
@@ -73,12 +76,12 @@ namespace app.Core.Repository
             {
                 // Use the client Id to filter out pets list
 
-                return upgradeFile.Load("SELECT * FROM vwpatient WHERE clientId=" + clientId + ";");
+                return upgradeFile.Load("SELECT * FROM vwpatient WHERE clientId=" + clientId + " AND isDeleted = 0;");
             }
             else
             {
                 // If there's no client Id (zero), load all pets list
-                return upgradeFile.Load("SELECT * FROM vwpatient;");
+                return upgradeFile.Load("SELECT * FROM vwpatient WHERE isDeleted = 0;");
 
             }
 
@@ -104,7 +107,7 @@ namespace app.Core.Repository
                 Id = Convert.ToInt32(dt.Rows[0][0]),
                 Client = new Client() { Id = Convert.ToInt32(dt.Rows[0][1]) },
                 Name = dt.Rows[0][6].ToString(),
-                BirthDate= Convert.ToDateTime(dt.Rows[0][7]),
+                BirthDate= Convert.ToString(dt.Rows[0][7]),
                 ColourPattern = new ColourPattern() { Id = Convert.ToInt32(dt.Rows[0][5]) },
                 Specie = new Species() { Id = Convert.ToInt32(dt.Rows[0][2]) },
                 Gender= new Gender() { Id = Convert.ToInt32(dt.Rows[0][4]) },
@@ -144,8 +147,9 @@ namespace app.Core.Repository
                     Id = pet.Id,
                     Client = new Client() { Id = Convert.ToInt32(row["client_id"]) },
                     Name = row["name"].ToString(),
-                    BirthDate = Convert.ToDateTime(row["birthdate"]),
+                    BirthDate = Convert.ToString(row["birthdate"]),
                     Age = Convert.ToString(row["age"]),
+                    Size = row["size"].ToString(),
                     Weight = row["weight"].ToString(),
                     ColourPattern = new ColourPattern() { Id = Convert.ToInt32(row["color_id"]) },
                     Specie = new Species() { Id = Convert.ToInt32(row["species_id"]) },

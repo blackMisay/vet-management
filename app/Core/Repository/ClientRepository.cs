@@ -3,7 +3,7 @@ using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
+using Core;
 
 namespace app.Core.Repository
 {
@@ -13,7 +13,7 @@ namespace app.Core.Repository
         UpgradeFile upgradeFile;
         public DataTable RetrieveSelectedClient(string searchValue)
         {
-            string query = "SELECT `client`.`id` AS `Id`, CONCAT(`client`.`firstname`,' ',`client`.`middlename`,' ',`client`.`lastname`) AS `Name` FROM client WHERE `firstname` LIKE @searchValue OR `middlename` LIKE @searchValue OR `lastname` LIKE @searchValue;";
+            string query = "SELECT id,`Name` FROM vw_client_search WHERE `firstname` LIKE @searchValue OR `middlename` LIKE @searchValue OR `lastname` LIKE @searchValue;";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
                 {"@searchValue", "%" + searchValue + "%" }
@@ -105,7 +105,7 @@ namespace app.Core.Repository
 
             dt = upgradeFile.Load("SELECT * FROM vwclient WHERE clientId=@Id;", parameters);
             if (dt.Rows.Count == 0)
-            throw new Exception("Empty DataTable");
+                throw new Exception("Empty DataTable");
 
             return clients = new Client()
             {
@@ -220,6 +220,5 @@ namespace app.Core.Repository
             // If no rows were returned, return null
             return null;
         }
-
-    }
+     }
 }

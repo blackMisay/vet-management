@@ -1,12 +1,7 @@
 ﻿using app.core.model;
-using app.Core.Model;
-using app.Core.Repository;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core;
 
 namespace app.core.repository
 {
@@ -29,7 +24,7 @@ namespace app.core.repository
             Dictionary<string, string> parameters = new Dictionary<string, string>()
             {
                 {"@Id", Convert.ToString(user.Id)},
-                {"@UserName", user.UserName },
+                {"@UserName", user.Username },
                 {"@Password", user.Password },
             };
 

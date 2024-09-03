@@ -2,7 +2,7 @@
 using app.core.repository;
 using app.Core.Repository;
 using System;
-using System.Data;
+using Core;
 using System.Windows.Forms;
 
 namespace app.view.Product
@@ -84,17 +84,29 @@ namespace app.view.Product
 
         public void SaveProduct()
         {
+            // Convert and validate the input values
+            int quantity = Convert.ToInt32(txtQty.Text);
+            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
+
+            // Calculate the total amount
+            double amount = quantity * unitPrice;
+
+            // Display the computed amount in the Amount field
+            txtAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
+
+            // Create the product object with the calculated amount
             app.core.model.Product product = new app.core.model.Product
             {
                 Id = this.Id,
                 BrandID = new Brand() { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
                 Description = txtDesc.Text,
                 CategID = new ProductCategory() { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
-                Quantity = Convert.ToInt32(txtQty.Text),
-                UnitPrice = Convert.ToDouble(txtUnitPrice.Text),
-                Amount = Convert.ToDouble(txtAmount.Text)
+                Quantity = quantity,
+                UnitPrice = unitPrice,
+                Amount = amount // Use the calculated amount
             };
 
+            // Save the product
             ProductRepository productRepository = new ProductRepository();
             if (productRepository.SaveProduct(product))
             {
@@ -104,6 +116,19 @@ namespace app.view.Product
             {
                 MessageBox.Show("Unable to save record");
             }
+        }
+
+        private void txtAmount_TextChanged(object sender, EventArgs e)
+        {
+            // Convert and validate the input values
+            int quantity = Convert.ToInt32(txtQty.Text);
+            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
+
+            // Calculate the total amount
+            double amount = quantity * unitPrice;
+
+            // Display the computed amount in the Amount field
+            txtAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
         }
     }
 }

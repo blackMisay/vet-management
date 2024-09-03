@@ -2,10 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using MySqlConnector;
-using app.Core.Repository;
 using app.core.model;
-using System.Runtime.InteropServices.WindowsRuntime;
+using Core;
 
 
 namespace app.core.Repository

@@ -4,6 +4,7 @@ using app.Core.Repository;
 using System;
 using app.core.repository;
 using app.Core.Model;
+using Core;
 
 namespace app.view.Client
 {
@@ -100,8 +101,9 @@ namespace app.view.Client
             pet.Id = this.Id;
             pet.Client = new Core.Model.Client() { Id = this.clientId };
             pet.Name = txtName.Text;
-            pet.BirthDate = Convert.ToDateTime(dtpBday.Value.ToString("yyyy-MM-dd"));
+            pet.BirthDate = dtpBday.Value.ToString("yyyy-MM-dd");
             pet.Age = Convert.ToString(txtAge.Text);
+            pet.Size = cmbSize.Text;
             pet.Weight = txtWeight.Text;
             pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
             pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
@@ -122,8 +124,10 @@ namespace app.view.Client
         private void LoadDetails(app.Core.Model.Pet pet)
         {
             txtName.Text = pet.Name;
-            dtpBday.Value = pet.BirthDate;
+            //dtpBday.Value = pet.BirthDate;
+            MessageBox.Show(txtName.Text);
             txtAge.Text = pet.Age.ToString();
+            cmbSize.Text = pet.Size.ToString();
             txtWeight.Text = pet.Weight;
             cboGender.SelectedValue = pet.Gender.Id;
             cboColor.SelectedValue = pet.ColourPattern.Id;
@@ -177,6 +181,7 @@ namespace app.view.Client
             // Update the textbox with the formatted age
             txtAge.Text = $"{years} years, {months} months, {days} days";
         }
+
         private (int, int, int) CalculateAge(DateTime birthDate)
         {
             DateTime today = DateTime.Today;
