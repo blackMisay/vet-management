@@ -42,6 +42,7 @@ namespace app.Core.Repository
                 {"@Name", pet.Name },
                 {"@BirthDate", Convert.ToString(pet.BirthDate) },
                 {"@Age", Convert.ToString(pet.Age) },
+                {"@Size", pet.Size},
                 {"@Weight", pet.Weight },
                 {"@Gender", pet.Gender.Id.ToString() },
                 {"@Color", pet.ColourPattern.Id.ToString() },
@@ -52,11 +53,11 @@ namespace app.Core.Repository
 
             if (saveState)
             {
-                sql = "UPDATE patient SET name=@Name,birthdate=@BirthDate,age=@Age,weight=@Weight,gender_id=@Gender,color_id=@Color,species_id=@Specie,breed_id=@Breed,image=@Image WHERE id=@Id;";
+                sql = "UPDATE patient SET name=@Name,birthdate=@BirthDate,age=@Age,weight=@Weight,size=@Size,gender_id=@Gender,color_id=@Color,species_id=@Specie,breed_id=@Breed,image=@Image WHERE id=@Id;";
             }
             else
             {
-                sql = "INSERT INTO patient(client_id,name,birthdate,age,weight,gender_id,color_id,species_id,breed_id,image) VALUES(@Client,@Name,@BirthDate,@Age,@Weight,@Gender,@Color,@Specie,@Breed,@Image);";
+                sql = "INSERT INTO patient(client_id,name,birthdate,age,weight,size,gender_id,color_id,species_id,breed_id,image) VALUES(@Client,@Name,@BirthDate,@Age,@Weight,@Size,@Gender,@Color,@Specie,@Breed,@Image);";
                 parameters.Add("@Client", pet.Client.Id.ToString());
             }
 
@@ -148,6 +149,7 @@ namespace app.Core.Repository
                     Name = row["name"].ToString(),
                     BirthDate = Convert.ToString(row["birthdate"]),
                     Age = Convert.ToString(row["age"]),
+                    Size = row["size"].ToString(),
                     Weight = row["weight"].ToString(),
                     ColourPattern = new ColourPattern() { Id = Convert.ToInt32(row["color_id"]) },
                     Specie = new Species() { Id = Convert.ToInt32(row["species_id"]) },

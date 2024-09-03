@@ -103,6 +103,7 @@ namespace app.view.Client
             pet.Name = txtName.Text;
             pet.BirthDate = dtpBday.Value.ToString("yyyy-MM-dd");
             pet.Age = Convert.ToString(txtAge.Text);
+            pet.Size = cmbSize.Text;
             pet.Weight = txtWeight.Text;
             pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
             pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
@@ -126,6 +127,7 @@ namespace app.view.Client
             //dtpBday.Value = pet.BirthDate;
             MessageBox.Show(txtName.Text);
             txtAge.Text = pet.Age.ToString();
+            cmbSize.Text = pet.Size.ToString();
             txtWeight.Text = pet.Weight;
             cboGender.SelectedValue = pet.Gender.Id;
             cboColor.SelectedValue = pet.ColourPattern.Id;
@@ -179,6 +181,7 @@ namespace app.view.Client
             // Update the textbox with the formatted age
             txtAge.Text = $"{years} years, {months} months, {days} days";
         }
+
         private (int, int, int) CalculateAge(DateTime birthDate)
         {
             DateTime today = DateTime.Today;

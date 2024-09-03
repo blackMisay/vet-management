@@ -31,6 +31,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbCateg = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtUnitPrice = new System.Windows.Forms.TextBox();
@@ -43,8 +45,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.cmbCateg = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -92,12 +92,31 @@
             this.panel2.Size = new System.Drawing.Size(570, 355);
             this.panel2.TabIndex = 21;
             // 
+            // cmbCateg
+            // 
+            this.cmbCateg.FormattingEnabled = true;
+            this.cmbCateg.Location = new System.Drawing.Point(144, 29);
+            this.cmbCateg.Name = "cmbCateg";
+            this.cmbCateg.Size = new System.Drawing.Size(324, 29);
+            this.cmbCateg.TabIndex = 16;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 29);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 21);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Category";
+            // 
             // txtAmount
             // 
             this.txtAmount.Location = new System.Drawing.Point(144, 255);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(324, 28);
             this.txtAmount.TabIndex = 6;
+            this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
             // 
             // label7
             // 
@@ -208,24 +227,6 @@
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // cmbCateg
-            // 
-            this.cmbCateg.FormattingEnabled = true;
-            this.cmbCateg.Location = new System.Drawing.Point(144, 29);
-            this.cmbCateg.Name = "cmbCateg";
-            this.cmbCateg.Size = new System.Drawing.Size(324, 29);
-            this.cmbCateg.TabIndex = 16;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 29);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 21);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Category";
             // 
             // frmProductModal
             // 

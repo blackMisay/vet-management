@@ -14,7 +14,7 @@ namespace app.Core.Model
         public string BirthDate { get; set; }
 
         public string Age { get; set; }
-
+        public string Size { get; set; }
         public string Weight { get; set; }
         public ColourPattern ColourPattern { get; set; }
         public Species Specie { get; set; }
