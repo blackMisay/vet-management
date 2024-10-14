@@ -183,7 +183,7 @@ namespace Core
                 this.Connect();
                 using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
                 {
-                    if (parameters != null || parameters.Count != 0)
+                    if (parameters != null)
                     {
                         foreach (KeyValuePair<string, string> kvp in parameters)
                         {
