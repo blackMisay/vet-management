@@ -2,18 +2,9 @@
 using app.Core.Repository;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using app.Core;
-using System.Xml.Linq;
-using System.Text.RegularExpressions;
 using Core;
-using System.Windows.Forms.VisualStyles;
 
 namespace app.view.Client
 {
@@ -66,7 +57,7 @@ namespace app.view.Client
             }
 
             UpgradeFile upgradeFile = new UpgradeFile();
-            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
+            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code=@regionCode;",
                                                            new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
             cboProvince.ValueMember = "Key";
             cboProvince.DisplayMember = "Value";
@@ -75,14 +66,14 @@ namespace app.view.Client
         }
 
 
-        private void cboProvince_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboProvince_SelectionChangeCommitted(object sender, EventArgs e)
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
             cboCity.DataSource = upgradeFile.Populate("SELECT citymun_code, description FROM addr_city where province_code=@provinceCode;",
                                                        new Dictionary<string, string> { { "@provinceCode", cboProvince.SelectedValue.ToString() } });
             cboCity.ValueMember = "Key";
-            cboCity.DisplayMember = "Value";
+            cboCity.DisplayMember = "Value";            
         }
 
         private void cboCity_SelectionChangeCommitted(object sender, EventArgs e)
