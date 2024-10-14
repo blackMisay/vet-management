@@ -66,7 +66,6 @@ namespace app.view.Client
             }
 
             UpgradeFile upgradeFile = new UpgradeFile();
-
             cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
                                                            new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
             cboProvince.ValueMember = "Key";

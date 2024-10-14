@@ -354,7 +354,6 @@
             this.cboBrgy.Name = "cboBrgy";
             this.cboBrgy.Size = new System.Drawing.Size(356, 29);
             this.cboBrgy.TabIndex = 15;
-            this.cboBrgy.SelectionChangeCommitted += new System.EventHandler(this.cboBrgy_SelectionChangeCommitted);
             // 
             // label15
             // 
