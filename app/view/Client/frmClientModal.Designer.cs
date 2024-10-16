@@ -391,7 +391,7 @@
             this.cboProvince.Name = "cboProvince";
             this.cboProvince.Size = new System.Drawing.Size(356, 29);
             this.cboProvince.TabIndex = 13;
-            this.cboProvince.SelectedIndexChanged += new System.EventHandler(this.cboProvince_SelectedIndexChanged);
+            this.cboProvince.SelectionChangeCommitted += new System.EventHandler(this.cboProvince_SelectionChangeCommitted);
             // 
             // label13
             // 
