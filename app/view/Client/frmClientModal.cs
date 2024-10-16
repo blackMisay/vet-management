@@ -60,19 +60,30 @@ namespace app.view.Client
         int SelectedRegion = 0;
         private void cboRegion_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (this.SelectedRegion.Equals(cboRegion.SelectedValue))
+            // Check if the selected value is null to avoid exceptions
+            if (cboRegion.SelectedValue == null || this.SelectedRegion.Equals(cboRegion.SelectedValue))
             {
-                return; // No need to update cboProvince, if no changes were committed in cboRegion.
+                return; // No need to update cboProvince if no changes were committed in cboRegion.
             }
 
             UpgradeFile upgradeFile = new UpgradeFile();
-            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
-                                                           new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
-            cboProvince.ValueMember = "Key";
+
+            // Correcting the SQL query for parameterized command
+            string query = "SELECT province_code, description FROM addr_province WHERE region_code = @regionCode;";
+
+            // Populate method with correct parameter usage
+            cboProvince.DataSource = upgradeFile.Populate(query, new Dictionary<string, string>
+    {
+        { "@regionCode", cboRegion.SelectedValue.ToString() }
+    });
+
+            cboProvince.ValueMember = "Key"; // Make sure DataSource returns key-value pairs
             cboProvince.DisplayMember = "Value";
 
+            // Update the selected region after successful change
             this.SelectedRegion = Convert.ToInt32(cboRegion.SelectedValue);
         }
+
 
 
         private void cboProvince_SelectedIndexChanged(object sender, EventArgs e)
