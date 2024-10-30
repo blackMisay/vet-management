@@ -2,18 +2,9 @@
 using app.Core.Repository;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using app.Core;
-using System.Xml.Linq;
-using System.Text.RegularExpressions;
 using Core;
-using System.Windows.Forms.VisualStyles;
 
 namespace app.view.Client
 {
@@ -24,19 +15,79 @@ namespace app.view.Client
         public frmClientModal()
         {
             InitializeComponent();
-            this.Load += frmClientModal_Load;
-            PopulateCmb();
-            //TODO: Populating combobox data.
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboRegion.DataSource = upgradeFile.Populate("SELECT code, description FROM addr_region;");
+            cboRegion.ValueMember = "Key";
+            cboRegion.DisplayMember = "Value";
         }
 
         public frmClientModal(int clientId)
         {
             InitializeComponent();
             this.Id = clientId;
-            this.Load += frmClientModal_Load;
             btnSave.Text = "Update";
             label1.Text = "Update Client Information";
         }
+
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // Save pet details
+            SaveClient();
+            this.Dispose();
+        }
+
+        private void frmClientModal_Load(object sender, EventArgs e)
+        {
+            if (this.Id > 0)
+            {
+                LoadClientDetails();
+            }
+        }
+
+
+        int SelectedRegion = 0;
+        private void cboRegion_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Check if the selected value is null to avoid exceptions
+            if (cboRegion.SelectedValue == null || this.SelectedRegion.Equals(cboRegion.SelectedValue))
+            {
+                return; // No need to update cboProvince if no changes were committed in cboRegion.
+            }
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
+                                                           new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
+            cboProvince.ValueMember = "Key";
+            cboProvince.DisplayMember = "Value";
+
+            // Update the selected region after successful change
+            this.SelectedRegion = Convert.ToInt32(cboRegion.SelectedValue);
+        }
+
+
+        private void cboProvince_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboCity.DataSource = upgradeFile.Populate("SELECT citymun_code, description FROM addr_city where province_code=@provinceCode;",
+                                                       new Dictionary<string, string> { { "@provinceCode", cboProvince.SelectedValue.ToString() } });
+            cboCity.ValueMember = "Key";
+            cboCity.DisplayMember = "Value";            
+        }
+
+        private void cboCity_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboBrgy.DataSource = upgradeFile.Populate("SELECT brgy_code, description FROM addr_brgy where citymun_code=@citymunCode;",
+                                                       new Dictionary<string, string> { { "@citymunCode", cboCity.SelectedValue.ToString() } });
+            cboBrgy.ValueMember = "Key";
+            cboBrgy.DisplayMember = "Value";
+        }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -49,66 +100,6 @@ namespace app.view.Client
                 this.Dispose();
             }
         }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            // Save pet details
-            SaveClient();
-
-            this.Dispose();
-        }
-
-        private void frmClientModal_Load(object sender, EventArgs e)
-        {
-      
-            if (this.Id > 0)
-            {
-                LoadClientDetails();
-            }
-        }
-
-        private void cboRegion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void cboRegion_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='" + cboRegion.SelectedValue.ToString() + "';");
-            cboProvince.ValueMember = "Key";
-            cboProvince.DisplayMember = "Value";
-        }
-
-
-        private void cboProvince_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            cboCity.DataSource = upgradeFile.Populate("SELECT citymun_code, description FROM addr_city where province_code='" + cboProvince.SelectedValue.ToString() + "';");
-            cboCity.ValueMember = "Key";
-            cboCity.DisplayMember = "Value";
-        }
-
-        private void cboCity_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            cboBrgy.DataSource = upgradeFile.Populate("SELECT brgy_code, description FROM addr_brgy where citymun_code='" + cboCity.SelectedValue.ToString() + "';");
-            cboBrgy.ValueMember = "Key";
-            cboBrgy.DisplayMember = "Value";
-        }
-
-
-        //private void cboBrgy_Click(object sender, EventArgs e)
-        //{
-        //    UpgradeFile upgradeFile = new UpgradeFile();
-
-        //    cboBrgy.DataSource = upgradeFile.Populate("SELECT id, description FROM addr_brgy where citymun_code='" + cboCity.SelectedValue.ToString() + "';");
-        //    cboBrgy.ValueMember = "Key";
-        //     cboBrgy.DisplayMember = "Value";
-        // }
 
         private void SaveClient()
         {
@@ -131,7 +122,7 @@ namespace app.view.Client
             };
 
             // Validate email address format
-            if (!client.EmailAddress.Contains("@"))
+            if (!client.EmailAddress.Contains("@") || !client.EmailAddress.Contains(".com"))
             {
                 MessageBox.Show("Invalid Email Address");
                 txtEmail.Focus(); // Set focus to the email input field
@@ -198,8 +189,6 @@ namespace app.view.Client
             cboCity.ValueMember = "Key";
             cboCity.DisplayMember = "Value";
         }
-
-        
     }
 }
     

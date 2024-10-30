@@ -2,6 +2,7 @@
 using System.Data;
 using System.Collections.Generic;
 using MySqlConnector;
+using System.Security.Cryptography;
 
 
 namespace Core
@@ -160,6 +161,10 @@ namespace Core
             finally { this.connection.Close(); }
         }
 
+        public List<KeyValuePair<int, string>> Populate(string query)
+        {
+            return Populate(query, null);
+        }
 
         /// <summary>
         /// This method executes a query against the database and populates a list of key-value pairs.
@@ -170,7 +175,7 @@ namespace Core
         /// It catches any exceptions that occur during the execution of the query and rethrows them 
         /// with a new exception containing the error message.
         /// </exception>
-        public List<KeyValuePair<int, string>> Populate(string query)
+        public List<KeyValuePair<int, string>> Populate(string query, Dictionary<string, string> parameters)
         {
             List<KeyValuePair<int, string>> keyValueList;
             try
@@ -178,6 +183,13 @@ namespace Core
                 this.Connect();
                 using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
                 {
+                    if (parameters != null)
+                    {
+                        foreach (KeyValuePair<string, string> kvp in parameters)
+                        {
+                            cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                        }
+                    }
                     using (MySqlDataReader dr = cmd.ExecuteReader())
                     {
                         keyValueList = new List<KeyValuePair<int, string>>();
@@ -190,7 +202,8 @@ namespace Core
                             keyValueList.Add(category);
                         }
 
-                        dr.Close();
+                        dr.Dispose();
+                        cmd.Dispose();
                         return keyValueList;
                     }
                 }
