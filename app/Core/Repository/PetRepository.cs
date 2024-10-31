@@ -155,7 +155,7 @@ namespace app.Core.Repository
                     Specie = new Species() { Id = Convert.ToInt32(row["species_id"]) },
                     Gender = new Gender() { Id = Convert.ToInt32(row["gender_id"]) },
                     Breed = new Breed() { Id = Convert.ToInt32(row["breed_id"]) },
-                    // Image = row["image"].ToString(),
+                    Image = row["image"].ToString(), //enhance/VCMS49
                 };
             }
             return null;
