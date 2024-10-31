@@ -86,6 +86,76 @@ namespace app.core.Repository
             return null;
         }
 
+        public bool IsDuplicateServiceCode(string serviceCode)
+        {
+            string query = "SELECT COUNT(*) FROM services WHERE serviceCode = @ServiceCode AND isDeleted = 0";
+
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+    {
+        { "@ServiceCode", serviceCode }
+    };
+
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+
+            int count = upgradeFile.ExecuteScalar(query, parameters);
+
+            return count > 0;
+        }
+
+
+        public bool UpdateServicePrice(string serviceCode, decimal newPrice)
+        {
+            string query = "UPDATE services SET Price = @NewPrice WHERE ServiceCode = @ServiceCode AND isDeleted = 0";
+
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+    {
+        { "@NewPrice", newPrice },
+        { "@ServiceCode", serviceCode }
+    };
+
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+
+            int rowsAffected = upgradeFile.ExecuteScalar(query, parameters);
+
+            return rowsAffected > 0;
+        }
+
+        public bool UpdateService(app.core.model.Services service)
+        {
+            string query = "UPDATE services SET Description = @Description, Price = @Price WHERE Id = @Id AND isDeleted = 0";
+
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+    {
+        { "@Description", service.Description },
+        { "@Price", service.Price },
+        { "@Id", service.Id }
+    };
+
+            try
+            {
+
+                UpgradeFile upgradeFile = new UpgradeFile();
+
+
+                int rowsAffected = upgradeFile.ExecuteQuery(query, parameters);
+
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"Error updating service: {ex.Message}");
+            }
+        }
+
+
     }
 }
 
