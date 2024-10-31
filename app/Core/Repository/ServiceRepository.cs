@@ -53,7 +53,7 @@ namespace app.core.Repository
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            string sql = "UPDATE services SET deleted = '1' WHERE id=@Id;";
+            string sql = "UPDATE services SET isDeleted = '1' WHERE id=@Id;";
 
             UpgradeFile upgrade = new UpgradeFile();
             Dictionary<string, string> parameters = new Dictionary<string, string>()
