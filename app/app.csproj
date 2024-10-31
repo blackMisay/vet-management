@@ -417,6 +417,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\vcms.sql" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\Sahagun_logo_1.jpg" />
+    <None Include="Resources\Sahagun_logo_2.jpg" />
     <None Include="Resources\Sahagub %282%29.png" />
     <None Include="Resources\icons8-login-16.png" />
     <None Include="Resources\logo2.png" />

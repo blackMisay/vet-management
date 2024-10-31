@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnAccount = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btnServices = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -67,6 +69,8 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.White;
+            this.pnlMenu.Controls.Add(this.btnAccount);
+            this.pnlMenu.Controls.Add(this.panel2);
             this.pnlMenu.Controls.Add(this.btnServices);
             this.pnlMenu.Controls.Add(this.btnSettings);
             this.pnlMenu.Controls.Add(this.panel1);
@@ -88,8 +92,35 @@
             this.pnlMenu.Location = new System.Drawing.Point(0, 44);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Padding = new System.Windows.Forms.Padding(10, 0, 10, 5);
-            this.pnlMenu.Size = new System.Drawing.Size(70, 599);
+            this.pnlMenu.Size = new System.Drawing.Size(70, 741);
             this.pnlMenu.TabIndex = 1;
+            // 
+            // btnAccount
+            // 
+            this.btnAccount.BackColor = System.Drawing.Color.White;
+            this.btnAccount.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAccount.FlatAppearance.BorderSize = 0;
+            this.btnAccount.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccount.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnAccount.Image = global::app.Properties.Resources.user;
+            this.btnAccount.Location = new System.Drawing.Point(10, 473);
+            this.btnAccount.Name = "btnAccount";
+            this.btnAccount.Size = new System.Drawing.Size(50, 50);
+            this.btnAccount.TabIndex = 23;
+            this.toolTip_Main.SetToolTip(this.btnAccount, "Accounts");
+            this.btnAccount.UseVisualStyleBackColor = false;
+            this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(10, 463);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel2.Size = new System.Drawing.Size(50, 10);
+            this.panel2.TabIndex = 22;
             // 
             // btnServices
             // 
@@ -119,7 +150,7 @@
             this.btnSettings.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnSettings.Image = global::app.Properties.Resources.medsettings_24px;
-            this.btnSettings.Location = new System.Drawing.Point(10, 484);
+            this.btnSettings.Location = new System.Drawing.Point(10, 626);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(50, 50);
             this.btnSettings.TabIndex = 20;
@@ -130,7 +161,7 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(10, 534);
+            this.panel1.Location = new System.Drawing.Point(10, 676);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
             this.panel1.Size = new System.Drawing.Size(50, 10);
@@ -146,7 +177,7 @@
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnLogout.Image = global::app.Properties.Resources.logout_24px;
-            this.btnLogout.Location = new System.Drawing.Point(10, 544);
+            this.btnLogout.Location = new System.Drawing.Point(10, 686);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(50, 50);
             this.btnLogout.TabIndex = 17;
@@ -334,7 +365,7 @@
             // 
             this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 643);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 785);
             this.pnlFooter.Name = "pnlFooter";
             this.pnlFooter.Size = new System.Drawing.Size(1420, 24);
             this.pnlFooter.TabIndex = 2;
@@ -345,7 +376,7 @@
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBody.Location = new System.Drawing.Point(70, 44);
             this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(1350, 599);
+            this.pnlBody.Size = new System.Drawing.Size(1350, 741);
             this.pnlBody.TabIndex = 3;
             // 
             // frmMain
@@ -353,7 +384,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1420, 667);
+            this.ClientSize = new System.Drawing.Size(1420, 809);
             this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlHeader);
@@ -394,5 +425,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnServices;
         private System.Windows.Forms.ToolTip toolTip_Main;
+        private System.Windows.Forms.Button btnAccount;
+        private System.Windows.Forms.Panel panel2;
     }
 }

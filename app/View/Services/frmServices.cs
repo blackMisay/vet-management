@@ -25,9 +25,7 @@ namespace app.view.Services
         private void frmServices_Load(object sender, EventArgs e)
         {
             UpgradeFile upgradeFile = new UpgradeFile();
-
             dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE isDeleted=0;");
-
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

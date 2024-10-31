@@ -24,7 +24,7 @@ namespace app.core.repository
 
         private bool Authenticate(User account)
         {
-            string commandText = "SELECT * FROM User WHERE Username=@Username;";
+            string commandText = "SELECT * FROM User WHERE Username=@Username and `Status`='Active';";
 
             UpgradeFile db = new UpgradeFile();
             Dictionary<string, string> parameters = new Dictionary<string, string>

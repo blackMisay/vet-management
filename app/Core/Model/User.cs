@@ -21,5 +21,7 @@ namespace app.core.model
 
         public string MiddleName { get; set; }
 
+        public string Status { get; set; }
+
     }
 }
