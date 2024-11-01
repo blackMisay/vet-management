@@ -24,10 +24,7 @@ namespace app.view.Services
 
         private void frmServices_Load(object sender, EventArgs e)
         {
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE isDeleted=0;");
-
+            RefreshDataGridView();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -41,6 +38,7 @@ namespace app.view.Services
             }
             else
             {
+                MessageBox.Show("The search field is empty, please provide.", "Empty field", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 RefreshDataGridView();
             }
 
@@ -50,7 +48,7 @@ namespace app.view.Services
                 UpgradeFile upgradeFile = new UpgradeFile();
 
                 dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE isDeleted = 0");
-                dgvServices.Refresh();
+               
             }
 
 
