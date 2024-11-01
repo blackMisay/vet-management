@@ -83,7 +83,7 @@ namespace app.view.Services
                 else // If ID is not 0, it's an update
                 {
                     // Update the service
-                    if (serviceRepository.UpdateService(service))
+                    if (serviceRepository.SaveService(service))
                     {
                         MessageBox.Show("Service updated successfully.");
                         this.DialogResult = DialogResult.OK; // Indicate success

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using app.core.model;
 using Core;
+using MySqlConnector;
 
 
 namespace app.core.Repository
@@ -22,32 +23,50 @@ namespace app.core.Repository
             UpgradeFile upgradeFile = new UpgradeFile();
             return upgradeFile.Load(query, parameters);
         }
-        public bool SaveService(Services services)
+        public bool SaveService(Services service)
         {
             string sql;
+            Dictionary<string, string> parameters;
 
-            bool saveState = services.Id > 0 ? true : false;
+            // Determine if we're updating an existing service or inserting a new one
+            bool saveState = service.Id > 0;
 
             if (saveState)
             {
-                sql = "UPDATE services SET id=@Id WHERE id=@Id;";
+                // Update existing service
+                sql = "UPDATE services SET Description = @Description, Price = @Price WHERE Id = @Id AND isDeleted = 0";
+                parameters = new Dictionary<string, string>
+    {
+        { "@Description", service.Description },
+        { "@Price", service.Price.ToString() },  // Assuming Price is a decimal or float, convert to string
+        { "@Id", service.Id.ToString() }         // Convert Id to string
+    };
             }
             else
             {
-                sql = "INSERT INTO services(id,serviceCode,description,price) VALUES(@Id,@ServiceCode,@Description,@Price);";
+                // Insert new service
+                sql = "INSERT INTO services(id, serviceCode, description, price) VALUES(@Id, @ServiceCode, @Description, @Price)";
+                parameters = new Dictionary<string, string>
+    {
+        { "@Id", service.Id.ToString() },        // Convert Id to string
+        { "@ServiceCode", service.ServiceCode },
+        { "@Description", service.Description },
+        { "@Price", service.Price.ToString() }   // Assuming Price is a decimal or float, convert to string
+    };
             }
-            Dictionary<string, string> parameters = new Dictionary<string, string>()
-            {
-                {"@Id", Convert.ToString(services.Id)},
-                {"@ServiceCode", services.ServiceCode },
-                {"@Description", services.Description },
-                {"@Price", services.Price },
-            };
 
-            UpgradeFile upgradeFile = new UpgradeFile();
-            if (upgradeFile.ExecuteQuery(sql, parameters))
-                return true;
-            return false;
+            try
+            {
+                UpgradeFile upgradeFile = new UpgradeFile();
+                // Execute the query and check if it was successful
+                bool isSuccessful = upgradeFile.ExecuteQuery(sql, parameters);
+                return isSuccessful; // Return the success status of the query
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error saving or updating service: {ex.Message}");
+            }
+
         }
         public bool DeleteService(int service)
         {
@@ -90,72 +109,37 @@ namespace app.core.Repository
         {
             string query = "SELECT COUNT(*) FROM services WHERE serviceCode = @ServiceCode AND isDeleted = 0";
 
-
-            Dictionary<string, object> parameters = new Dictionary<string, object>
-    {
-        { "@ServiceCode", serviceCode }
-    };
-
-
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-
-            int count = upgradeFile.ExecuteScalar(query, parameters);
-
-            return count > 0;
-        }
-
-
-        public bool UpdateServicePrice(string serviceCode, decimal newPrice)
-        {
-            string query = "UPDATE services SET Price = @NewPrice WHERE ServiceCode = @ServiceCode AND isDeleted = 0";
-
-
-            Dictionary<string, object> parameters = new Dictionary<string, object>
-    {
-        { "@NewPrice", newPrice },
-        { "@ServiceCode", serviceCode }
-    };
-
-
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-
-            int rowsAffected = upgradeFile.ExecuteScalar(query, parameters);
-
-            return rowsAffected > 0;
-        }
-
-        public bool UpdateService(app.core.model.Services service)
-        {
-            string query = "UPDATE services SET Description = @Description, Price = @Price WHERE Id = @Id AND isDeleted = 0";
-
-
-            Dictionary<string, object> parameters = new Dictionary<string, object>
-    {
-        { "@Description", service.Description },
-        { "@Price", service.Price },
-        { "@Id", service.Id }
-    };
+            // Use Dictionary<string, string> for parameters, as required by ExecuteQuery
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+{
+    { "@ServiceCode", serviceCode }
+};
 
             try
             {
-
+                // Create an instance of UpgradeFile
                 UpgradeFile upgradeFile = new UpgradeFile();
 
+                // Execute the query and get the number of affected rows
+                bool isSuccessful = upgradeFile.ExecuteQuery(query, parameters);
 
-                int rowsAffected = upgradeFile.ExecuteQuery(query, parameters);
-
-                return rowsAffected > 0;
+                // Since ExecuteQuery does not directly return the COUNT, check if execution was successful
+                // If successful, interpret as "potential duplicate exists" 
+                return isSuccessful;
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
-
-                throw new Exception($"Error updating service: {ex.Message}");
+                // Log or handle specific MySql errors here
+                throw new Exception($"Error executing query: {ex.Message}");
             }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+
         }
 
-
     }
-}
+    }
+
 
