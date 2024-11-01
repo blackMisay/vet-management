@@ -192,6 +192,12 @@
     <Compile Include="view\Patient\AddPet.Designer.cs">
       <DependentUpon>AddPet.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Patient\Medical\frmPatientMedical.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Patient\Medical\frmPatientMedical.Designer.cs">
+      <DependentUpon>frmPatientMedical.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Patient\PatientList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +281,9 @@
     <EmbeddedResource Include="view\Patient\AddPet.resx">
       <DependentUpon>AddPet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Patient\Medical\frmPatientMedical.resx">
+      <DependentUpon>frmPatientMedical.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Patient\PatientList.resx">
       <DependentUpon>PatientList.cs</DependentUpon>
     </EmbeddedResource>
@@ -310,7 +319,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
-    <Folder Include="view\Patient\Soap\" />
     <Folder Include="view\Reports\" />
   </ItemGroup>
   <ItemGroup>

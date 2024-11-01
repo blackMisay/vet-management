@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Drawing;
 using app.view.Administration;
+using app.view.Patient.Medical;
 
 namespace app.view
 {
@@ -104,7 +105,7 @@ namespace app.view
         }
         private void btnMedicalRecords_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new Transaction.frmTransaction());
+            this.openFormModule(new frmPatientMedical());
         }
 
         private void btnDiagnosis_Click(object sender, EventArgs e)
