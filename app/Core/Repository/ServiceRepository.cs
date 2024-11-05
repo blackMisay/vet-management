@@ -14,7 +14,7 @@ namespace app.core.Repository
 
         public DataTable SearchService(string searchValue)
         {
-            string query = "SELECT * FROM services WHERE `serviceCode` LIKE @searchValue AND `description` LIKE @searchValue;";
+            string query = "SELECT * FROM services WHERE `serviceCode` LIKE @searchValue OR `description` LIKE @searchValue;";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
                 {"@searchValue", "%" + searchValue + "%" }
