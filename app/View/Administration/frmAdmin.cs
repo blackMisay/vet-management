@@ -38,6 +38,7 @@ namespace app.view.Administration
                 {
                     modal.ShowDialog();
                 }
+                LoadAccounts();
             }
             this.selectedAccountId = 0;
         }

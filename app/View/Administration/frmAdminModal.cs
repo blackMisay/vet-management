@@ -7,8 +7,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace app.view.Administration
 {
@@ -17,9 +21,14 @@ namespace app.view.Administration
         public frmAdminModal()
         {
             InitializeComponent();
+            // Hide the Status dropdown, this must be defaulted to Active for New Users.
+            lblStatus.Visible = false;
+            cbStatus.Visible = false;
+            cboUserType.SelectedIndex = 0;
         }
 
         private int selectedId = 0;
+        private readonly string UserKey = "";
         public frmAdminModal(int selectedAccountId)
         {
             InitializeComponent();
@@ -40,11 +49,8 @@ namespace app.view.Administration
             // Password will not be loaded during update 
             cboUserType.Text = user.UserType;
             cbStatus.Text = user.Status;
-        }
 
-        private void frmAdminModal_Load(object sender, EventArgs e)
-        {
-
+            this.UserKey = user.UniqueKey();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -57,10 +63,17 @@ namespace app.view.Administration
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (this.selectedId == 0)
+            string userKey = string.Concat(cboUserType.Text, txtUsername.Text, txtfname.Text, txtmi.Text, txtlname.Text, txtmobilenum.Text, txtEmail.Text, cbStatus.Text);
+            if (this.UserKey.Equals(userKey))
             {
-                MessageBox.Show("New user requires account password.\nKindly provide a password to proceed.","Password is required.",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-                txtpass.Focus();
+                MessageBox.Show("No update was done\nCannot proceed on the update.", "No changes detected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (cboUserType.SelectedIndex == 0)
+            {
+                MessageBox.Show("User type is required.\nKindly provide a `User type` to proceed.", "User type is required.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                cboUserType.Focus();
                 return;
             }
 
@@ -69,6 +82,45 @@ namespace app.view.Administration
                 MessageBox.Show("The Username is invalid.\nKindly provide a valid username to proceed.", "Username is required.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtUsername.Focus();
                 return;
+            }
+            
+            if (this.selectedId == 0)
+            {
+                if (string.IsNullOrEmpty(txtpass.Text) || string.IsNullOrWhiteSpace(txtpass.Text))
+                {
+                    MessageBox.Show("New user requires account password.\nKindly provide a password to proceed.", "Password is required.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtpass.Focus();
+                    return;
+                }
+            }
+
+            if (string.IsNullOrEmpty(txtfname.Text) || string.IsNullOrWhiteSpace(txtfname.Text) &&
+                string.IsNullOrEmpty(txtlname.Text) || string.IsNullOrWhiteSpace(txtlname.Text))
+            {
+                MessageBox.Show("Kindly provide a valid user details (Name) to proceed.", "User detail is required", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (!isValidEmail)
+            {
+                MessageBox.Show("The email you provided is not valid.\nPlease provide a valid email address.", "Incorrect email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return;
+            }
+
+            if (this.selectedId == 0)
+            {
+                if (MessageBox.Show("Do you want to create a new user record?", "Confirm to create", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("Do you want to update the record?", "Confirm to update", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
             }
 
             User user = new User();
@@ -86,9 +138,36 @@ namespace app.view.Administration
             UserRepository userRepository = new UserRepository();
             if (userRepository.Save(user))
             {
-                MessageBox.Show("A user details has been saved successfully.","Saved Successfully",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show((this.selectedId == 0) ? "New User has been successfully created." : "User details has been successfully updated.", "Saved Successfully",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 this.Dispose();
             }
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEmail.Text))
+            {
+                isValidEmail = true;
+            }
+            else if (string.IsNullOrWhiteSpace(txtEmail.Text) || !IsValidEmail(txtEmail.Text)) 
+            {
+                MessageBox.Show("The email you provided is not valid.\nPlease provide a valid email address.", "Incorrect email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                isValidEmail = false;
+            }
+            else
+            {
+                isValidEmail = true;
+            }
+        }
+
+        private bool isValidEmail = true;
+        private bool IsValidEmail(string email)
+        {
+            // Define a regular expression for validating an email address
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(email);
         }
     }
 }

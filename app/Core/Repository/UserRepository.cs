@@ -57,22 +57,20 @@ namespace app.core.repository
             }
             else
             {
-                sql = "INSERT INTO user(user_id,username,password,key,fname,mi,lastname,email,mobilenumber,user_type) VALUES(@Id,@UserName,@Password,@Key,@FirstName,@MiddleName,@LastName,@Email,@MobileNumber,@UserType);";
+                sql = "INSERT INTO user(username,`password`,`key`,fname,mi,lastname,email,mobilenumber,user_type) VALUES(@UserName,@Password,@Key,@FirstName,@MiddleName,@LastName,@Email,@MobileNumber,@UserType);";
 
                 string key = SecureHash.GenerateSalt();
                 parameters = new Dictionary<string, string>()
                     {
-                        {"@Id", Convert.ToString(user.Id)},
                         {"@UserName", user.Username },
-                        {"@Password", SecureHash.HashPassword(user.Password, key) },
+                        {"@Password", SecureHash.HashPassword(user.Password, key)},
                         {"@Key", key },
                         {"@FirstName", user.FirstName },
                         {"@MiddleName", user.MiddleName },
                         {"@LastName", user.LastName },
                         {"@Email", user.Email },
                         {"@MobileNumber", user.MobilePhone },
-                        {"@UserType", user.UserType },
-                        {"@Status", user.Status}
+                        {"@UserType", user.UserType }
                     };
             }
 
