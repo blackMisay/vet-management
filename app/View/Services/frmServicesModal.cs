@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using app.Core.Model;
 using app.core.Repository;
-using Core;
 
 namespace app.view.Services
 {

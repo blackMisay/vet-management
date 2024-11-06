@@ -1,11 +1,8 @@
-﻿using app.Core.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using app.core.model;
 using Core;
-using MySqlConnector;
-using System.Windows.Forms;
 
 
 namespace app.core.Repository
