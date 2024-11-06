@@ -14,7 +14,7 @@ namespace app.core.Repository
 
         public DataTable SearchService(string searchValue)
         {
-            string query = "SELECT * FROM services WHERE `serviceCode` LIKE @searchValue AND `description` LIKE @searchValue;";
+            string query = "SELECT * FROM services WHERE `serviceCode` LIKE @searchValue OR `description` LIKE @searchValue;";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
                 {"@searchValue", "%" + searchValue + "%" }
@@ -53,7 +53,7 @@ namespace app.core.Repository
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            string sql = "UPDATE services SET deleted = '1' WHERE id=@Id;";
+            string sql = "UPDATE services SET isDeleted = '1' WHERE id=@Id;";
 
             UpgradeFile upgrade = new UpgradeFile();
             Dictionary<string, string> parameters = new Dictionary<string, string>()
