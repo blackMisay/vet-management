@@ -15,7 +15,38 @@ namespace app.view.Administration
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
-        {            
+        {
+            AuthenticateUserCredential();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if ((MessageBox.Show("Do you want to exit the application?", "Confirm to exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                AuthenticateUserCredential();
+            }
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                AuthenticateUserCredential();
+            }
+        }
+
+        private void AuthenticateUserCredential()
+        {
             if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrWhiteSpace(txtUsername.Text))
             {
                 MessageBox.Show("Kindly provide your correct username.", "Username is required", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -41,32 +72,7 @@ namespace app.view.Administration
                 main.ShowDialog();
                 this.Show();
                 txtPassword.Text = String.Empty;
-            }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            if ((MessageBox.Show("Do you want to exit the application?", "Confirm to exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)) == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
-
-        public void SaveLogin()
-        {
-            core.model.User user = new core.model.User();
-            user.Id = this.Id;
-            user.Username = txtUsername.Text;
-            user.Password = txtPassword.Text;
-
-            UserRepository userRepository = new UserRepository();
-            if (userRepository.Save(user))
-            {
-                MessageBox.Show("Login successfully");
-            }
-            else
-            {
-                MessageBox.Show("Unable to Login.", "Username or Password not Match",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                txtUsername.Focus();
             }
         }
     }
