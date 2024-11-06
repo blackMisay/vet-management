@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbSize = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -56,17 +59,14 @@
             this.dtpBday = new System.Windows.Forms.DateTimePicker();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.picturePet = new System.Windows.Forms.PictureBox();
+            this.pbPetPhoto = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAddPhoto = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.cmbSize = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picturePet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPetPhoto)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,6 +114,40 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General Information";
+            // 
+            // cmbSize
+            // 
+            this.cmbSize.FormattingEnabled = true;
+            this.cmbSize.Items.AddRange(new object[] {
+            "Small",
+            "Medium ",
+            "Large"});
+            this.cmbSize.Location = new System.Drawing.Point(200, 231);
+            this.cmbSize.Name = "cmbSize";
+            this.cmbSize.Size = new System.Drawing.Size(357, 35);
+            this.cmbSize.TabIndex = 5;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(46, 247);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(45, 23);
+            this.label24.TabIndex = 46;
+            this.label24.Text = "Size";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(564, 397);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(22, 27);
+            this.label10.TabIndex = 45;
+            this.label10.Text = "*";
             // 
             // label21
             // 
@@ -405,15 +439,17 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Name";
             // 
-            // picturePet
+            // pbPetPhoto
             // 
-            this.picturePet.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picturePet.Location = new System.Drawing.Point(56, 146);
-            this.picturePet.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.picturePet.Name = "picturePet";
-            this.picturePet.Size = new System.Drawing.Size(347, 260);
-            this.picturePet.TabIndex = 12;
-            this.picturePet.TabStop = false;
+            this.pbPetPhoto.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pbPetPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbPetPhoto.Location = new System.Drawing.Point(85, 146);
+            this.pbPetPhoto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pbPetPhoto.Name = "pbPetPhoto";
+            this.pbPetPhoto.Size = new System.Drawing.Size(280, 280);
+            this.pbPetPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPetPhoto.TabIndex = 12;
+            this.pbPetPhoto.TabStop = false;
             // 
             // panel1
             // 
@@ -476,7 +512,7 @@
             this.btnAddPhoto.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAddPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPhoto.Image = global::app.Properties.Resources.icons8_add_image_32;
-            this.btnAddPhoto.Location = new System.Drawing.Point(128, 422);
+            this.btnAddPhoto.Location = new System.Drawing.Point(140, 443);
             this.btnAddPhoto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddPhoto.Name = "btnAddPhoto";
             this.btnAddPhoto.Size = new System.Drawing.Size(178, 51);
@@ -485,40 +521,6 @@
             this.btnAddPhoto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddPhoto.UseVisualStyleBackColor = false;
             this.btnAddPhoto.Click += new System.EventHandler(this.btnAddPhoto_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(564, 397);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(22, 27);
-            this.label10.TabIndex = 45;
-            this.label10.Text = "*";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(46, 247);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 23);
-            this.label24.TabIndex = 46;
-            this.label24.Text = "Size";
-            // 
-            // cmbSize
-            // 
-            this.cmbSize.FormattingEnabled = true;
-            this.cmbSize.Items.AddRange(new object[] {
-            "Small",
-            "Medium ",
-            "Large"});
-            this.cmbSize.Location = new System.Drawing.Point(200, 231);
-            this.cmbSize.Name = "cmbSize";
-            this.cmbSize.Size = new System.Drawing.Size(357, 35);
-            this.cmbSize.TabIndex = 5;
             // 
             // frmClientPatientModal
             // 
@@ -531,7 +533,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.picturePet);
+            this.Controls.Add(this.pbPetPhoto);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmClientPatientModal";
@@ -540,7 +542,7 @@
             this.Load += new System.EventHandler(this.frmClientPatientModal_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picturePet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPetPhoto)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -562,7 +564,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboBreed;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox picturePet;
+        private System.Windows.Forms.PictureBox pbPetPhoto;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSave;
