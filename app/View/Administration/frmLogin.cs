@@ -1,4 +1,5 @@
-﻿using app.core.repository;
+﻿using app.core.model;
+using app.core.repository;
 using Core;
 using System;
 using System.Windows.Forms;
@@ -15,40 +16,63 @@ namespace app.view.Administration
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //SaveLogin();
-            UpgradeFile upgradeFile = new UpgradeFile();
-            frmMain main = new frmMain();
-            main.ShowDialog();
-            this.Dispose();
+            AuthenticateUserCredential();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // Ask the user for confirmation before canceling
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel your work?", "Confirm Cancellation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (dialogResult == DialogResult.Yes)
+            if ((MessageBox.Show("Do you want to exit the application?", "Confirm to exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)) == DialogResult.Yes)
             {
-                MessageBox.Show("Work has been cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                Application.Exit();
             }
         }
 
-        public void SaveLogin()
+        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
         {
-            core.model.User user = new core.model.User();
-            user.Id = this.Id;
-            user.Username = txtusername.Text;
-            user.Password = txtpass.Text;
-
-            UserRepository userRepository = new UserRepository();
-            if (userRepository.Save(user))
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                MessageBox.Show("Login successfully");
+                e.Handled = true;
+                AuthenticateUserCredential();
             }
-            else
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                MessageBox.Show("Unable to Login.", "Username or Password not Match",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                e.Handled = true;
+                AuthenticateUserCredential();
+            }
+        }
+
+        private void AuthenticateUserCredential()
+        {
+            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                MessageBox.Show("Kindly provide your correct username.", "Username is required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                MessageBox.Show("Kindly provide your correct password.", "Password is required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            User account = new User() { Username = txtUsername.Text, Password = txtPassword.Text };
+            if (!UserAuthentication.IsAuthenticated(account))
+            {
+                MessageBox.Show("The username or password you've entered is invalid.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (frmMain main = new frmMain())
+            {
+                this.Hide();
+                main.ShowDialog();
+                this.Show();
+                txtPassword.Text = String.Empty;
+                txtUsername.Focus();
             }
         }
     }

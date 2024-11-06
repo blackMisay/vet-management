@@ -31,6 +31,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.cboUserType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -39,7 +42,6 @@
             this.txtpass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtfname = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtmi = new System.Windows.Forms.TextBox();
@@ -76,6 +78,9 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.cbStatus);
+            this.panel2.Controls.Add(this.lblStatus);
+            this.panel2.Controls.Add(this.txtEmail);
             this.panel2.Controls.Add(this.cboUserType);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label8);
@@ -84,7 +89,6 @@
             this.panel2.Controls.Add(this.txtpass);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtfname);
-            this.panel2.Controls.Add(this.txtEmail);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.txtmi);
@@ -94,12 +98,41 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(27, 90);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(559, 334);
+            this.panel2.Size = new System.Drawing.Size(559, 363);
             this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // cbStatus
+            // 
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "Active",
+            "Inactive"});
+            this.cbStatus.Location = new System.Drawing.Point(182, 310);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(356, 29);
+            this.cbStatus.TabIndex = 8;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(27, 318);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(61, 21);
+            this.lblStatus.TabIndex = 44;
+            this.lblStatus.Text = "Status";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(182, 280);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(356, 28);
+            this.txtEmail.TabIndex = 7;
+            this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // cboUserType
             // 
+            this.cboUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUserType.FormattingEnabled = true;
             this.cboUserType.Items.AddRange(new object[] {
             "Please Select User Type............",
@@ -109,7 +142,7 @@
             this.cboUserType.Location = new System.Drawing.Point(182, 16);
             this.cboUserType.Name = "cboUserType";
             this.cboUserType.Size = new System.Drawing.Size(356, 29);
-            this.cboUserType.TabIndex = 1;
+            this.cboUserType.TabIndex = 0;
             // 
             // label6
             // 
@@ -128,15 +161,13 @@
             this.label8.Size = new System.Drawing.Size(93, 21);
             this.label8.TabIndex = 38;
             this.label8.Text = "Username";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(182, 56);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(356, 28);
-            this.txtUsername.TabIndex = 2;
-            this.txtUsername.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtUsername.TabIndex = 1;
             // 
             // label9
             // 
@@ -146,16 +177,14 @@
             this.label9.Size = new System.Drawing.Size(88, 21);
             this.label9.TabIndex = 39;
             this.label9.Text = "Password";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // txtpass
             // 
             this.txtpass.Location = new System.Drawing.Point(182, 92);
             this.txtpass.Name = "txtpass";
-            this.txtpass.PasswordChar = '*';
+            this.txtpass.PasswordChar = '•';
             this.txtpass.Size = new System.Drawing.Size(356, 28);
-            this.txtpass.TabIndex = 3;
-            this.txtpass.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtpass.TabIndex = 2;
             // 
             // label2
             // 
@@ -165,31 +194,13 @@
             this.label2.Size = new System.Drawing.Size(93, 21);
             this.label2.TabIndex = 29;
             this.label2.Text = "First name";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtfname
             // 
             this.txtfname.Location = new System.Drawing.Point(182, 134);
             this.txtfname.Name = "txtfname";
             this.txtfname.Size = new System.Drawing.Size(356, 28);
-            this.txtfname.TabIndex = 4;
-            this.txtfname.TextChanged += new System.EventHandler(this.txtFname_TextChanged);
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtEmail.FormattingEnabled = true;
-            this.txtEmail.Items.AddRange(new object[] {
-            "",
-            "Single",
-            "Married",
-            "Widowed",
-            "Separated",
-            ""});
-            this.txtEmail.Location = new System.Drawing.Point(182, 280);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(356, 29);
-            this.txtEmail.TabIndex = 8;
+            this.txtfname.TabIndex = 3;
             // 
             // label3
             // 
@@ -199,7 +210,6 @@
             this.label3.Size = new System.Drawing.Size(121, 21);
             this.label3.TabIndex = 30;
             this.label3.Text = "Middle name";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label7
             // 
@@ -215,8 +225,7 @@
             this.txtmi.Location = new System.Drawing.Point(182, 170);
             this.txtmi.Name = "txtmi";
             this.txtmi.Size = new System.Drawing.Size(356, 28);
-            this.txtmi.TabIndex = 5;
-            this.txtmi.TextChanged += new System.EventHandler(this.txtMname_TextChanged);
+            this.txtmi.TabIndex = 4;
             // 
             // label4
             // 
@@ -226,23 +235,20 @@
             this.label4.Size = new System.Drawing.Size(97, 21);
             this.label4.TabIndex = 31;
             this.label4.Text = "Last name";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtlname
             // 
             this.txtlname.Location = new System.Drawing.Point(182, 206);
             this.txtlname.Name = "txtlname";
             this.txtlname.Size = new System.Drawing.Size(356, 28);
-            this.txtlname.TabIndex = 6;
-            this.txtlname.TextChanged += new System.EventHandler(this.txtLname_TextChanged);
+            this.txtlname.TabIndex = 5;
             // 
             // txtmobilenum
             // 
             this.txtmobilenum.Location = new System.Drawing.Point(182, 242);
             this.txtmobilenum.Name = "txtmobilenum";
             this.txtmobilenum.Size = new System.Drawing.Size(356, 28);
-            this.txtmobilenum.TabIndex = 7;
-            this.txtmobilenum.TextChanged += new System.EventHandler(this.txtSuffix_TextChanged);
+            this.txtmobilenum.TabIndex = 6;
             // 
             // label5
             // 
@@ -252,40 +258,41 @@
             this.label5.Size = new System.Drawing.Size(138, 21);
             this.label5.TabIndex = 32;
             this.label5.Text = "Mobile Number";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(476, 438);
+            this.btnSave.Location = new System.Drawing.Point(476, 491);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 40);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 9;
             this.btnSave.Text = "&Create";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(363, 438);
+            this.btnCancel.Location = new System.Drawing.Point(363, 491);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 40);
-            this.btnCancel.TabIndex = 9;
+            this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "C&ancel";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmAdminModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(614, 490);
+            this.ClientSize = new System.Drawing.Size(614, 543);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnCancel);
@@ -293,7 +300,8 @@
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAdminModal";
-            this.Text = "frmAdminModal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "User Account Details";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -315,7 +323,6 @@
         private System.Windows.Forms.TextBox txtpass;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtfname;
-        private System.Windows.Forms.ComboBox txtEmail;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtmi;
@@ -325,5 +332,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboUserType;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.ComboBox cbStatus;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

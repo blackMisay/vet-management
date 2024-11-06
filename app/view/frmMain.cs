@@ -19,6 +19,7 @@ namespace app.view
         private static readonly string ITEM = "I&tems";
         private static readonly string INVENTORY = "&Inventory";
         private static readonly string SERVICES = "Se&rvices";
+        private static readonly string ACCOUNT = "&Accounts";
         private static readonly string SETTING = "Se&ttings";
         private static readonly string LOGOUT = "Lo&gout";
 
@@ -29,12 +30,9 @@ namespace app.view
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirm to logout","You're logging out, are you sure do you want to proceed?",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("You're logging out, are you sure do you want to proceed?", "Confirm to logout",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                // TODO: Implement activity logging for user
                 this.Dispose();
-                frmLogin frm = new frmLogin();
-                frm.ShowDialog();
             }
         }
 
@@ -79,6 +77,7 @@ namespace app.view
                 btnItem.Text = ITEM;
                 btnInventory.Text = INVENTORY;
                 btnServices.Text = SERVICES;
+                btnAccount.Text = ACCOUNT;
                 btnSettings.Text = SETTING;
                 btnLogout.Text = LOGOUT;
             }
@@ -129,6 +128,11 @@ namespace app.view
         private void btnServices_Click(object sender, EventArgs e)
         {
             this.openFormModule(new Services.frmServices());
+        }
+
+        private void btnAccount_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new frmAdmin());
         }
     }
 }
