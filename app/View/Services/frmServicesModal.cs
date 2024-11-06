@@ -40,10 +40,11 @@ namespace app.view.Services
                     return;
                 }
 
-                // Try to parse price
-                if (!decimal.TryParse(txtPrice.Text, out decimal price))
+                // Remove spaces from the price text and try to parse it
+                string priceText = txtPrice.Text.Replace(" ", string.Empty);
+                if (!decimal.TryParse(priceText, out decimal price))
                 {
-                    MessageBox.Show("Price must be a valid number.");
+                    MessageBox.Show("Price must be a valid number without spaces.");
                     return;
                 }
 
@@ -61,8 +62,8 @@ namespace app.view.Services
 
                 if (service.Id == 0) // If ID is 0, it's a new service
                 {
-                    // Check for duplicate service code
-                    if (serviceRepository.IsDuplicateServiceCode(service.ServiceCode))
+                    // Check for duplicate service code for new service
+                    if (serviceRepository.IsDuplicateServiceCode(service.ServiceCode, 0)) // Pass 0 for new service
                     {
                         MessageBox.Show("The service code already exists. Please use a different code.", "Duplicate Service Code", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -82,6 +83,13 @@ namespace app.view.Services
                 }
                 else // If ID is not 0, it's an update
                 {
+                    // Check for duplicate service code when updating an existing service
+                    if (serviceRepository.IsDuplicateServiceCode(service.ServiceCode, service.Id)) // Pass current service ID to exclude it from the check
+                    {
+                        MessageBox.Show("The service code already exists. Please use a different code.", "Duplicate Service Code", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     // Update the service
                     if (serviceRepository.SaveService(service))
                     {
@@ -99,7 +107,9 @@ namespace app.view.Services
             {
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
+
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
             {

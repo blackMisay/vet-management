@@ -5,6 +5,7 @@ using System.Data;
 using app.core.model;
 using Core;
 using MySqlConnector;
+using System.Windows.Forms;
 
 
 namespace app.core.Repository
@@ -34,7 +35,7 @@ namespace app.core.Repository
             if (saveState)
             {
                 // Update existing service
-                sql = "UPDATE services SET Description = @Description, Price = @Price WHERE Id = @Id AND isDeleted = 0";
+                sql = "UPDATE services SET Description = @Description, Price = @Price WHERE Id = @Id AND status = 'Active' ";
                 parameters = new Dictionary<string, string>
     {
         { "@Description", service.Description },
@@ -70,16 +71,21 @@ namespace app.core.Repository
         }
         public bool DeleteService(int service)
         {
+            // Updated SQL query to set the Status as 'Inactive'
+            string sql = "UPDATE services SET status = 'Inactive' WHERE id = @Id;";
+
+            // Create an instance of UpgradeFile
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            string sql = "UPDATE services SET deleted = '1' WHERE id=@Id;";
+            // Define parameters with the service ID
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+{
+    { "@Id", service.ToString() }
+};
 
-            UpgradeFile upgrade = new UpgradeFile();
-            Dictionary<string, string> parameters = new Dictionary<string, string>()
-            {
-                { "@Id", service.ToString() }
-            };
+            // Execute the query to mark the service as 'Inactive'
             return upgradeFile.ExecuteQuery(sql, parameters);
+
         }
 
         public Services GetService(Services service)
@@ -105,41 +111,53 @@ namespace app.core.Repository
             return null;
         }
 
-        public bool IsDuplicateServiceCode(string serviceCode)
+        public bool IsDuplicateServiceCode(string serviceCode, int serviceId)
         {
-            string query = "SELECT COUNT(*) FROM services WHERE serviceCode = @ServiceCode AND isDeleted = 0";
+            // Ensure upgradeFile is instantiated
+            UpgradeFile upgradeFile = new UpgradeFile();
 
-            // Use Dictionary<string, string> for parameters, as required by ExecuteQuery
+            // Check for null or empty service code
+            if (string.IsNullOrEmpty(serviceCode))
+            {
+                throw new ArgumentException("Service code cannot be null or empty.", nameof(serviceCode));
+            }
+
+            // Construct the query to check for duplicate service code
+            string query = "SELECT * FROM services WHERE serviceCode = @ServiceCode AND status = 'Active'";
+
+            // If serviceId is greater than 0 (indicating an update), add a condition to exclude it
+            if (serviceId > 0)
+            {
+                query += " AND Id != @ServiceId";
+            }
+
+            // Create a dictionary for the parameters
             Dictionary<string, string> parameters = new Dictionary<string, string>
-{
-    { "@ServiceCode", serviceCode }
-};
-
-            try
             {
-                // Create an instance of UpgradeFile
-                UpgradeFile upgradeFile = new UpgradeFile();
+                { "@ServiceCode", serviceCode }
+            };
 
-                // Execute the query and get the number of affected rows
-                bool isSuccessful = upgradeFile.ExecuteQuery(query, parameters);
+            // Add serviceId parameter only if it is provided for update
+            if (serviceId > 0)
+            {
+                parameters.Add("@ServiceId", serviceId.ToString());
+            }
 
-                // Since ExecuteQuery does not directly return the COUNT, check if execution was successful
-                // If successful, interpret as "potential duplicate exists" 
-                return isSuccessful;
-            }
-            catch (MySqlException ex)
-            {
-                // Log or handle specific MySql errors here
-                throw new Exception($"Error executing query: {ex.Message}");
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"Unexpected error: {e.Message}");
-            }
+            // Execute the query and load the result into a DataTable
+            DataTable result = upgradeFile.Load(query, parameters);
+
+            // Check if the DataTable has rows to determine if a duplicate exists
+            return result.Rows.Count > 0;
 
         }
 
     }
     }
+
+
+    
+
+    
+   
 
 
