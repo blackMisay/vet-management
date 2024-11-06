@@ -38,7 +38,7 @@ namespace app.view.Services
             {
                 UpgradeFile upgradeFile = new UpgradeFile();
 
-                dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE isDeleted = 0");
+                dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE status = 'Active'");
                
             }
 
