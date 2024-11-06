@@ -34,73 +34,74 @@ namespace app.view.Services
             try
             {
                 // Validate input
-                if (string.IsNullOrEmpty(txtDesc.Text) || string.IsNullOrEmpty(txtPrice.Text))
+                if (string.IsNullOrWhiteSpace(txtDesc.Text) || string.IsNullOrWhiteSpace(txtPrice.Text))
                 {
                     MessageBox.Show("Description and Price are required.");
                     return;
                 }
 
-                // Remove spaces from the price text and try to parse it
-                string priceText = txtPrice.Text.Replace(" ", string.Empty);
-                if (!decimal.TryParse(priceText, out decimal price))
+                // Check if the price text contains any spaces
+                if (txtPrice.Text.Contains(" "))
                 {
-                    MessageBox.Show("Price must be a valid number without spaces.");
+                    MessageBox.Show("Price must not contain any spaces.");
                     return;
                 }
 
-                // Create service instance with values
-                app.core.model.Services service = new app.core.model.Services
+                // Check for leading zeros (excluding valid "0" case)
+                if (txtPrice.Text.StartsWith("0") && txtPrice.Text.Length > 1 && !txtPrice.Text.StartsWith("0."))
+                {
+                    MessageBox.Show("Price cannot have leading zeros. Please enter a valid positive number.");
+                    return;
+                }
+
+                // Try to parse the price as a decimal
+                if (!decimal.TryParse(txtPrice.Text, out decimal price))
+                {
+                    MessageBox.Show("Price must be a valid number.");
+                    return;
+                }
+
+                // Check if the price is negative
+                if (price < 0)
+                {
+                    MessageBox.Show("Price cannot be negative. Please enter a valid positive number.");
+                    return;
+                }
+
+                // Create a service instance with values
+                var service = new app.core.model.Services
                 {
                     Id = this.Id, // Assuming this.Id will be 0 for new services
-                    ServiceCode = txtCode.Text,
-                    Description = txtDesc.Text,
+                    ServiceCode = txtCode.Text.Trim(), // Trim to remove extra spaces
+                    Description = txtDesc.Text.Trim(),
                     Price = price.ToString("F2") // Format price to 2 decimal places
                 };
 
-                // Use repository to check if service code already exists
-                ServiceRepository serviceRepository = new ServiceRepository();
+                // Use repository to check for duplicate service code
+                var serviceRepository = new ServiceRepository();
+                bool isDuplicate = service.Id == 0
+                    ? serviceRepository.IsDuplicateServiceCode(service.ServiceCode, 0) // Check for new service
+                    : serviceRepository.IsDuplicateServiceCode(service.ServiceCode, service.Id); // Check for updates
 
-                if (service.Id == 0) // If ID is 0, it's a new service
+                if (isDuplicate)
                 {
-                    // Check for duplicate service code for new service
-                    if (serviceRepository.IsDuplicateServiceCode(service.ServiceCode, 0)) // Pass 0 for new service
-                    {
-                        MessageBox.Show("The service code already exists. Please use a different code.", "Duplicate Service Code", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    // Save new service
-                    if (serviceRepository.SaveService(service))
-                    {
-                        MessageBox.Show("Saved successfully.");
-                        this.DialogResult = DialogResult.OK; // Indicate success
-                        this.Close(); // Close the form
-                    }
-                    else
-                    {
-                        MessageBox.Show("Unable to save record. Please check the details and try again.");
-                    }
+                    MessageBox.Show("The service code already exists. Please use a different code.", "Duplicate Service Code", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                else // If ID is not 0, it's an update
-                {
-                    // Check for duplicate service code when updating an existing service
-                    if (serviceRepository.IsDuplicateServiceCode(service.ServiceCode, service.Id)) // Pass current service ID to exclude it from the check
-                    {
-                        MessageBox.Show("The service code already exists. Please use a different code.", "Duplicate Service Code", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
 
-                    // Update the service
-                    if (serviceRepository.SaveService(service))
-                    {
-                        MessageBox.Show("Service updated successfully.");
-                        this.DialogResult = DialogResult.OK; // Indicate success
-                        this.Close(); // Close the form
-                    }
-                    else
-                    {
-                        MessageBox.Show("Unable to update service. Please check the details and try again.");
-                    }
+                // Save or update the service
+                bool success = serviceRepository.SaveService(service);
+                if (success)
+                {
+                    MessageBox.Show(service.Id == 0 ? "Saved successfully." : "Service updated successfully.");
+
+                    LoadServiceDetails();
+                    this.DialogResult = DialogResult.OK; // Indicate success
+                    this.Close(); // Close the form
+                }
+                else
+                {
+                    MessageBox.Show("Unable to save/update the service. Please check the details and try again.");
                 }
             }
             catch (Exception ex)
@@ -149,10 +150,10 @@ namespace app.view.Services
                 txtDesc.Text = service.Description;
                 txtPrice.Text = service.Price.ToString(); // Ensure correct conversion
             }
-        }
-
-
     }
+
+
+}
 
 
 

@@ -150,9 +150,8 @@ namespace app.core.Repository
             return result.Rows.Count > 0;
 
         }
-
     }
-    }
+}
 
 
     
