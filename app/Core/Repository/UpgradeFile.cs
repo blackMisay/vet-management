@@ -219,5 +219,8 @@ namespace Core
             }
             finally { this.connection.Close(); }
         }
+        }
+
+
+
     }
-}
