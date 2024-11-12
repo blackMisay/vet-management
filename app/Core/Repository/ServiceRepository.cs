@@ -32,25 +32,26 @@ namespace app.core.Repository
             if (saveState)
             {
                 // Update existing service
-                sql = "UPDATE services SET Description = @Description, Price = @Price WHERE Id = @Id AND status = 'Active' ";
+                sql = "UPDATE services SET serviceCode = @ServiceCode, description = @Description, Price = @Price WHERE Id = @Id AND status = 'Active' ";
                 parameters = new Dictionary<string, string>
-    {
-        { "@Description", service.Description },
-        { "@Price", service.Price.ToString() },  // Assuming Price is a decimal or float, convert to string
-        { "@Id", service.Id.ToString() }         // Convert Id to string
-    };
+                {
+                    { "@ServiceCode", service.ServiceCode },
+                    { "@Description", service.Description },
+                    { "@Price", service.Price.ToString() },  // Assuming Price is a decimal or float, convert to string
+                    { "@Id", service.Id.ToString() }         // Convert Id to string
+                };
             }
             else
             {
                 // Insert new service
                 sql = "INSERT INTO services(id, serviceCode, description, price) VALUES(@Id, @ServiceCode, @Description, @Price)";
                 parameters = new Dictionary<string, string>
-    {
-        { "@Id", service.Id.ToString() },        // Convert Id to string
-        { "@ServiceCode", service.ServiceCode },
-        { "@Description", service.Description },
-        { "@Price", service.Price.ToString() }   // Assuming Price is a decimal or float, convert to string
-    };
+                {
+                    { "@Id", service.Id.ToString() },        // Convert Id to string
+                    { "@ServiceCode", service.ServiceCode },
+                    { "@Description", service.Description },
+                    { "@Price", service.Price.ToString() }   // Assuming Price is a decimal or float, convert to string
+                };
             }
 
             try

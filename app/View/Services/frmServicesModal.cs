@@ -92,9 +92,6 @@ namespace app.view.Services
                 if (success)
                 {
                     MessageBox.Show(service.Id == 0 ? "Saved successfully." : "Service updated successfully.");
-
-                    LoadServiceDetails();
-                    this.DialogResult = DialogResult.OK; // Indicate success
                     this.Close(); // Close the form
                 }
                 else
