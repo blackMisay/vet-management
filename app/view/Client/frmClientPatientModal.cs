@@ -2,7 +2,6 @@ using Color = app.Core.Model.ColourPattern;
 using System.Windows.Forms;
 using app.Core.Repository;
 using System;
-using app.core.repository;
 using app.Core.Model;
 using Core;
 using System.IO;
