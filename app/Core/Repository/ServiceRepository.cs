@@ -112,18 +112,15 @@ namespace app.core.Repository
 
         public bool IsDuplicateServiceCode(string serviceCode, int serviceId)
         {
-           
             UpgradeFile upgradeFile = new UpgradeFile();
-
-            
+ 
             if (string.IsNullOrEmpty(serviceCode))
             {
                 throw new ArgumentException("Service code cannot be null or empty.", nameof(serviceCode));
             }
 
-            // Construct the query to check for duplicate service code with active status
             string query = "SELECT * FROM services WHERE serviceCode = @ServiceCode AND status = 'Active'";
-            
+
             if (serviceId > 0)
             {
                 query += " AND Id != @ServiceId";
@@ -133,64 +130,14 @@ namespace app.core.Repository
             {
                 { "@ServiceCode", serviceCode }
             };
-          
+
             if (serviceId > 0)
             {
                 parameters.Add("@ServiceId", serviceId.ToString());
             }
-
-           DataTable result = upgradeFile.Load(query, parameters);
-       
-            bool isDuplicate = result.Rows.Count > 0;
-
-            if (isDuplicate)
-            {
-                Console.WriteLine("Duplicate service code found. Update cannot proceed.");
-                return true; 
-            }
-            else
-            {                
-                bool updateSuccess = PerformUpdate(upgradeFile, serviceId, serviceCode); 
-
-                if (!updateSuccess)
-                {
-                    Console.WriteLine("Update failed. Please check the update logic or database constraints.");
-                    return false;
-                }
-                else
-                {
-                    Console.WriteLine("Update completed successfully.");
-                    return false; 
-                }
-            }
+            DataTable result = upgradeFile.Load(query, parameters);
+            return result.Rows.Count > 0;
         }
-        private bool PerformUpdate(UpgradeFile upgradeFile, int serviceId, string serviceCode)
-        {
-          if (serviceId <= 0)
-             {
-               throw new ArgumentException("Invalid service ID for update.", nameof(serviceId));
-             }
-
-           string updateQuery = "UPDATE services SET serviceCode = @ServiceCode WHERE Id = @ServiceId";
-
-                
-        Dictionary<string, string> parameters = new Dictionary<string, string>
-        {
-           { "@ServiceCode", serviceCode },
-           { "@ServiceId", serviceId.ToString() }
-        };
-
-          try
-             {
-               bool isSuccess = upgradeFile.ExecuteQuery(updateQuery, parameters);                   
-               return isSuccess;
-             }
-          catch (Exception ex)
-             {                 
-               Console.WriteLine($"An error occurred while updating the service: {ex.Message}");
-               return false;
-             }
-            }
 
         }
 
