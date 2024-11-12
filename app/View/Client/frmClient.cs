@@ -1,8 +1,6 @@
 using app.Core.Repository;
-using app.View.Patient;
 using System;
 using System.Windows.Forms;
-using app.Core.Model;
 
 namespace app.view.Client
 {

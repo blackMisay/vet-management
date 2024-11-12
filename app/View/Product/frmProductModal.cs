@@ -1,6 +1,5 @@
 ﻿using app.core.model;
 using app.core.repository;
-using app.Core.Repository;
 using System;
 using Core;
 using System.Windows.Forms;

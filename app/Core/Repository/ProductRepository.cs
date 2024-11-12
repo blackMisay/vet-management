@@ -1,6 +1,4 @@
 ﻿using app.core.model;
-using app.Core.Repository;
-using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;

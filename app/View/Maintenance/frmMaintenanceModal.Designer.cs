@@ -51,7 +51,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(9, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 23);
+            this.label1.Size = new System.Drawing.Size(163, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "Maintenance";
             // 
@@ -65,6 +65,7 @@
             this.btnBackUp.Text = "Back Up";
             this.btnBackUp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBackUp.UseVisualStyleBackColor = true;
+            this.btnBackUp.Click += new System.EventHandler(this.btnBackUp_Click);
             // 
             // btnRestore
             // 
@@ -79,7 +80,7 @@
             // 
             // frmMaintenanceModal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(452, 276);
