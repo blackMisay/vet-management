@@ -106,6 +106,7 @@
     <Compile Include="core\model\User.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
     <Compile Include="core\repository\InventoryRepository.cs" />
+    <Compile Include="core\repository\MaintenanceRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
     <Compile Include="core\repository\ProductRepository.cs" />
     <Compile Include="core\repository\SecureHash.cs" />
