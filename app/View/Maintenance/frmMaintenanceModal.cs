@@ -10,7 +10,7 @@ namespace app.view.Maintenance
 {
     public partial class frmMaintenanceModal : Form
     {
-        private string backupFolder = @"C:\Users\Lyka\Desktop\System SS";
+        private string backupFolder = @"C:\BackupDatabase";
         private string mysqlDumpPath = @"C:\xampp\mysql\bin\mysqldump";
         
         public frmMaintenanceModal()
@@ -22,47 +22,70 @@ namespace app.view.Maintenance
 
         private void btnBackUp_Click(object sender, EventArgs e)
         {
-            // Confirm with the user that they want to create a backup of the database
+            // Check if the backup folder exists, if not, create it
+            if (!Directory.Exists(backupFolder))
+            {
+                DialogResult createFolderResult = MessageBox.Show(
+                    $"The backup folder '{backupFolder}' does not exist. Do you want to create it?",
+                    "Create Backup Folder",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (createFolderResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(backupFolder);
+                        MessageBox.Show("Backup folder created successfully.", "Folder Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occurred while creating the folder: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; 
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
             if (MessageBox.Show("Are you sure you want to create a backup of the database?", "Backup Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                // Step 1: Allow the user to choose the file path for the dump file
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.AddExtension = true;
                     saveFileDialog.Filter = "SQL Dump Files (*.sql)|*.sql";
                     saveFileDialog.Title = "Select Backup Destination";
-                    saveFileDialog.InitialDirectory = backupFolder; // Default to the backup folder
+                    saveFileDialog.InitialDirectory = backupFolder; 
 
-                    // Generate a default file name with the current date and time
+                    
                     string defaultFileName = $"dump_{DateTime.Now:yyyyMMdd}.sql";
-                    saveFileDialog.FileName = defaultFileName; // Set the default file name with date
+                    saveFileDialog.FileName = defaultFileName;
 
-                    // Show dialog and get the selected file path
+                    
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string backupFilePath = saveFileDialog.FileName;
 
-                        // Run mysqldump command to create the backup
+                       
                         string arguments = $"--user=root --password= --host=localhost vcms -r \"{backupFilePath}\"";
 
                         try
                         {
-                            // Process to execute mysqldump
                             Process process = new Process();
-                            process.StartInfo.FileName = mysqlDumpPath; // Use the path to mysqldump
-                            process.StartInfo.Arguments = arguments; // Pass arguments for backup
+                            process.StartInfo.FileName = mysqlDumpPath;
+                            process.StartInfo.Arguments = arguments;
                             process.StartInfo.UseShellExecute = false;
                             process.StartInfo.RedirectStandardOutput = true;
                             process.StartInfo.RedirectStandardError = true;
 
                             process.Start();
 
-                            // Capture the output and error
+                            
                             string output = process.StandardOutput.ReadToEnd();
                             string error = process.StandardError.ReadToEnd();
                             process.WaitForExit();
 
-                            // Check the result of the mysqldump process
                             if (process.ExitCode == 0)
                             {
                                 MessageBox.Show("Backup successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
