@@ -11,7 +11,7 @@ namespace app.view.Maintenance
     public partial class frmMaintenanceModal : Form
     {
         private string backupFolder = @"C:\BackupDatabase";
-        private string mysqlDumpPath = @"C:\xampp\mysql\bin\mysqldump";
+        private string mysqlDumpPath = @"C:\Program Files\MariaDB 11.4\bin\mysqldump";
         
         public frmMaintenanceModal()
         {
@@ -106,7 +106,7 @@ namespace app.view.Maintenance
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
-            string mysqlPath = @"C:\xampp\mysql\bin\mysql.exe";
+            string mysqlPath = @"C:\Program Files\MariaDB 11.4\bin\mysql.exe";
 
             // Confirm with the user that they want to restore the database from a backup
             if (MessageBox.Show("Are you sure you want to restore the database from a backup?", "Restore Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
