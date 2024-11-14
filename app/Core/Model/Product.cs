@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace app.core.model
 {
     internal class Product
@@ -10,6 +12,8 @@ namespace app.core.model
         public string Description { get; set; }
 
         public ProductCategory CategID { get; set; }
+
+        public Types TypeID { get; set; }
 
         public int Quantity { get; set; }
 

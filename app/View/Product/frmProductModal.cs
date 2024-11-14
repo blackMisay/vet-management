@@ -31,13 +31,17 @@ namespace app.view.Product
         private void PopulateCmb()
         {
             UpgradeFile upgradeFile = new UpgradeFile();
-            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandID, brandDesc from brands");
+            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandId, brandDesc from product_brands");
             cmbBrand.ValueMember = "KEY"; // Correct column name from query
             cmbBrand.DisplayMember = "VALUE"; // Correct column name from query
 
-            cmbCateg.DataSource = upgradeFile.Populate("SELECT categID, categDesc from prod_categ");
+            cmbCateg.DataSource = upgradeFile.Populate("SELECT id, description from product_category");
             cmbCateg.ValueMember = "KEY"; // Correct column name from query
             cmbCateg.DisplayMember = "VALUE"; // Correct column name from query
+
+            cmbTypes.DataSource = upgradeFile.Populate("SELECT id, description from product_types");
+            cmbTypes.ValueMember = "KEY"; // Correct column name from query
+            cmbTypes.DisplayMember = "VALUE"; // Correct column name from query
         }
 
         private void LoadProductDetails()
@@ -55,6 +59,7 @@ namespace app.view.Product
             cmbBrand.SelectedValue = product.BrandID.Id;
             txtDesc.Text = product.Description;
             cmbCateg.SelectedValue = product.CategID.Id;
+            cmbTypes.SelectedValue = product.TypeID.Id;
             txtQty.Text = product.Quantity.ToString();
             txtUnitPrice.Text = product.UnitPrice.ToString();
             txtAmount.Text = product.Amount.ToString();
@@ -100,6 +105,7 @@ namespace app.view.Product
                 BrandID = new Brand() { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
                 Description = txtDesc.Text,
                 CategID = new ProductCategory() { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
+                TypeID = new core.Types() { Id = Convert.ToInt32(cmbTypes.SelectedValue)},
                 Quantity = quantity,
                 UnitPrice = unitPrice,
                 Amount = amount // Use the calculated amount
