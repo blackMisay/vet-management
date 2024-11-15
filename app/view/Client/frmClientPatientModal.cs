@@ -218,6 +218,9 @@ namespace app.view.Client
             return (years, months, days);
         }
 
+        private void btnAddColor_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
