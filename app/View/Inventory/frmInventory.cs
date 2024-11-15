@@ -3,6 +3,7 @@ using app.core.Repository;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace app.view.Inventory
 {
@@ -72,9 +73,21 @@ namespace app.view.Inventory
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
+            string nextStockNumber = GenerateNextStockNumber();
+
+            if (nextStockNumber == null)
+            {
+                MessageBox.Show("Failed to generate stock number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Pass the generated stock number to the modal form
             frmInventoryModal frmInventory = new frmInventoryModal();
+            frmInventory.StockNumber = nextStockNumber;  // Set the stock number
+
+            // Show the modal form
             frmInventory.ShowDialog();
-            dgvInventory.Refresh();
+      
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -114,5 +127,58 @@ namespace app.view.Inventory
             }
 
         }
+        public string GenerateNextStockNumber()
+        {
+            string prefix = "SN";
+            int nextNumber = 1;  // Default start value
+
+            // Get the last stock number from the database (this is just an example, you should retrieve the actual last stock number from the DB)
+            string lastStockNumber = GetLastStockNumberFromDatabase();  // Replace with your actual logic to get the last stock number
+
+            if (!string.IsNullOrEmpty(lastStockNumber))
+            {
+                // Strip "SN" and convert to integer
+                int lastNumber = Convert.ToInt32(lastStockNumber.Substring(2));  // Remove "SN" prefix
+                nextNumber = lastNumber + 1;  // Increment the last number
+            }
+
+            return prefix + nextNumber.ToString("D8");  // Format as SN00000001 (8 digits)
+        }
+
+        public string GetLastStockNumberFromDatabase()
+        {
+            try
+            {
+                // SQL query to fetch the last stock number where isDeleted = 0
+                string query = " SELECT stocksNum FROM prod_stocks WHERE isDeleted = 0 ORDER BY stocksNum DESC LIMIT 1; ";
+
+                // Create parameters for the query (if needed, for example, in case of parameterized queries)
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+                // Execute the query using UpgradeFile
+                UpgradeFile upgradeFile = new UpgradeFile();
+                DataTable resultTable = upgradeFile.Load(query, parameters);
+
+                if (resultTable != null && resultTable.Rows.Count > 0)
+                {
+                    // Ensure StockNumber is returned as a string (or cast accordingly)
+                    var stockNumber = resultTable.Rows[0]["stocksNum"];
+
+                    // If StockNumber is not null or DBNull
+                    if (stockNumber != DBNull.Value)
+                    {
+                        return stockNumber.ToString();  // Return the StockNumber as a string
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error fetching last stock number: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;  // Return null if there's an issue or no data found
+
+        }
+
     }
 }

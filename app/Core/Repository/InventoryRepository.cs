@@ -39,7 +39,7 @@ namespace app.core.Repository
             Dictionary<string, string> parameters = new Dictionary<string, string>()
         {
             {"@Id", Convert.ToString(inventory.Id)},
-            {"@StockNumber",Convert.ToString (inventory.StockNumber) },
+            {"@StockNumber",inventory.StockNumber },
             {"@Description", inventory.Description },
             {"@ProdID", inventory.ProdID.Id.ToString() },
             {"@CategID", inventory.CategID.Id.ToString()},
@@ -81,7 +81,7 @@ namespace app.core.Repository
                 return new Inventory()
                 {
                     Id = inventory.Id,
-                    StockNumber = Convert.ToInt32(row["stocksNum"]),
+                    StockNumber = row["stocksNum"].ToString(),
                     Description = row["description"].ToString(),
                     ProdID = new Product() { Id = Convert.ToInt32(row["prodID"]) },
                     CategID = new ProductCategory() { Id = Convert.ToInt32(row["categID"]) },

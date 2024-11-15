@@ -256,7 +256,7 @@
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "description";
+            this.Column3.DataPropertyName = "stockDescription";
             this.Column3.HeaderText = "Description";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
@@ -270,7 +270,7 @@
             // 
             // Column11
             // 
-            this.Column11.DataPropertyName = "categDesc";
+            this.Column11.DataPropertyName = "categoryDescription";
             this.Column11.HeaderText = "Category";
             this.Column11.MinimumWidth = 6;
             this.Column11.Name = "Column11";
@@ -290,7 +290,7 @@
             // 
             this.Column13.DataPropertyName = "dateReceived";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.Format = "D";
             dataGridViewCellStyle4.NullValue = null;
             this.Column13.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column13.HeaderText = "Date Received";
@@ -302,7 +302,7 @@
             this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column14.DataPropertyName = "expDate";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle5.Format = "d";
+            dataGridViewCellStyle5.Format = "D";
             dataGridViewCellStyle5.NullValue = null;
             this.Column14.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column14.HeaderText = "Expiration Date";
