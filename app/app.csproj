@@ -182,6 +182,18 @@
     <Compile Include="view\Maintenance\frmMaintenanceModal.Designer.cs">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Product\frmNewProductCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductCategory.Designer.cs">
+      <DependentUpon>frmNewProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductType.Designer.cs">
+      <DependentUpon>frmNewProductType.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Product\frmProductModal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +258,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Maintenance\frmMaintenanceModal.resx">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Product\frmNewProductCategory.resx">
+      <DependentUpon>frmNewProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Product\frmNewProductType.resx">
+      <DependentUpon>frmNewProductType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Product\frmProductModal.resx">
       <DependentUpon>frmProductModal.cs</DependentUpon>

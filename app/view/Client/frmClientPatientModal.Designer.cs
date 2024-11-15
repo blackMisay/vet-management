@@ -312,6 +312,7 @@
             this.btnAddColor.TabIndex = 17;
             this.btnAddColor.Text = "+";
             this.btnAddColor.UseVisualStyleBackColor = true;
+            this.btnAddColor.Click += new System.EventHandler(this.btnAddColor_Click);
             // 
             // cboBreed
             // 
