@@ -158,6 +158,18 @@
     <Compile Include="view\Client\frmClientPatientModal.Designer.cs">
       <DependentUpon>frmClientPatientModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Client\frmNewBreed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Client\frmNewBreed.Designer.cs">
+      <DependentUpon>frmNewBreed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Client\frmNewPetColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Client\frmNewPetColor.Designer.cs">
+      <DependentUpon>frmNewPetColor.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +258,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Client\frmClientPatientModal.resx">
       <DependentUpon>frmClientPatientModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Client\frmNewBreed.resx">
+      <DependentUpon>frmNewBreed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Client\frmNewPetColor.resx">
+      <DependentUpon>frmNewPetColor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

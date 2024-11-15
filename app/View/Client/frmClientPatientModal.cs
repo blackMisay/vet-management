@@ -220,7 +220,14 @@ namespace app.view.Client
 
         private void btnAddColor_Click(object sender, EventArgs e)
         {
+            frmNewPetColor petColor = new frmNewPetColor();
+            petColor.ShowDialog();
+        }
 
+        private void btnBreed_Click(object sender, EventArgs e)
+        {
+            frmNewBreed frmNewBreed = new frmNewBreed();
+            frmNewBreed.ShowDialog();
         }
     }
 }
