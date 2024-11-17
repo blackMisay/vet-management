@@ -5,6 +5,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace app.view.Inventory
 {
@@ -13,6 +14,7 @@ namespace app.view.Inventory
     {
         private int currentRowIndex = 0;
         PrintPreviewDialog previewDialog = new PrintPreviewDialog();
+
         public frmInventory()
         {
             InitializeComponent();
@@ -78,9 +80,22 @@ namespace app.view.Inventory
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
+            InventoryRepository inventory = new InventoryRepository();
+            string nextStockNumber = inventory.GenerateNextStockNumber();
+
+            if (nextStockNumber == null)
+            {
+                MessageBox.Show("Failed to generate stock number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Pass the generated stock number to the modal form
             frmInventoryModal frmInventory = new frmInventoryModal();
+            frmInventory.StockNumber = nextStockNumber;  // Set the stock number
+
+            // Show the modal form
             frmInventory.ShowDialog();
-            dgvInventory.Refresh();
+      
         }
 
         private void btnRemove_Click(object sender, EventArgs e)

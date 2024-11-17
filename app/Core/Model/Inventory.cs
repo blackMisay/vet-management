@@ -6,7 +6,7 @@ namespace app.core.model
     {
        public int Id { get; set; }
 
-       public int StockNumber { get; set; }
+       public string StockNumber { get; set; }
 
        public string Description { get; set; }
 
