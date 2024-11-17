@@ -79,13 +79,16 @@ namespace app.view.Inventory
                 return;
             }
 
-            // Generate next stock number
-            string nextStockNumber = new frmInventory().GenerateNextStockNumber();
-            if (nextStockNumber == null)
+            // Generate the next stock number using the repository directly or calling a helper function
+            InventoryRepository repository = new InventoryRepository();
+            string nextStockNumber = repository.GenerateNextStockNumber();
+
+            if (string.IsNullOrEmpty(nextStockNumber))
             {
                 MessageBox.Show("Failed to generate stock number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
 
             // Create inventory object
             var inventory = new app.core.model.Inventory
