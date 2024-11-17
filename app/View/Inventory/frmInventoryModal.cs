@@ -165,7 +165,7 @@ namespace app.view.Inventory
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandId, brandDesc FROM product_brands;");
+            cmbBrand.DataSource = upgradeFile.Populate("SELECT id, description FROM product_brands;");
             cmbBrand.ValueMember = "Key";
             cmbBrand.DisplayMember = "Value";
 
