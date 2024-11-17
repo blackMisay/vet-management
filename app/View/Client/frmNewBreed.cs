@@ -68,11 +68,8 @@ namespace app.view.Client
                 if (result)
                 {
                     MessageBox.Show("New pet breed successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Show modal form (remove redundant refresh)
-                    frmClientPatientModal frm = new frmClientPatientModal();
-                    frm.ShowDialog();
-                    this.Close(); // Close current form after adding
+                    DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {

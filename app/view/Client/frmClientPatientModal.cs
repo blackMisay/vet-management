@@ -220,14 +220,27 @@ namespace app.view.Client
 
         private void btnAddColor_Click(object sender, EventArgs e)
         {
-            frmNewPetColor petColor = new frmNewPetColor();
-            petColor.ShowDialog();
+            frmNewPetColor frm = new frmNewPetColor();
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the combobox to include the new color
+                    PopulateCmb();
+                }
+            }   
         }
 
         private void btnBreed_Click(object sender, EventArgs e)
         {
-            frmNewBreed frmNewBreed = new frmNewBreed();
-            frmNewBreed.ShowDialog();
+            frmNewBreed frm = new frmNewBreed();
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the combobox to include the new color
+                    PopulateCmb();
+                }
+            }
+
         }
     }
 }

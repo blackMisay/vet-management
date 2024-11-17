@@ -38,7 +38,7 @@ namespace app.view.Client
             try
             {
                 // Prepare the SQL query for checking if the product type already exists and is not marked as deleted
-                string checkQuery = "SELECT * FROM patient_colour_pattern WHERE description = @ColorName AND isDeleted = 0;";
+                string checkQuery = "SELECT * FROM patient_colour_pattern WHERE description = @ColorName;";
 
 
                 Dictionary<string, string> parameters = new Dictionary<string, string>
@@ -67,12 +67,10 @@ namespace app.view.Client
                 if (result)
                 {
                     MessageBox.Show("New pet color successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                    frmClientPatientModal frm = new frmClientPatientModal();
-                    frm.ShowDialog();
-                    frm.Refresh();
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
+
+            
                 }
                 else
                 {
@@ -84,31 +82,6 @@ namespace app.view.Client
 
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txtNewPetColor_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

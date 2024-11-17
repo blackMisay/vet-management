@@ -49,7 +49,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(431, 79);
             this.panel1.TabIndex = 30;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label1
             // 
@@ -62,7 +61,6 @@
             this.label1.Size = new System.Drawing.Size(208, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "New Pet Color";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnSave
             // 
@@ -105,7 +103,6 @@
             this.label8.Size = new System.Drawing.Size(54, 21);
             this.label8.TabIndex = 18;
             this.label8.Text = "Color";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // panel2
             // 
@@ -119,7 +116,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(431, 173);
             this.panel2.TabIndex = 31;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // txtNewPetColor
             // 
@@ -128,7 +124,6 @@
             this.txtNewPetColor.Name = "txtNewPetColor";
             this.txtNewPetColor.Size = new System.Drawing.Size(267, 28);
             this.txtNewPetColor.TabIndex = 19;
-            this.txtNewPetColor.TextChanged += new System.EventHandler(this.txtNewPetColor_TextChanged);
             // 
             // frmNewPetColor
             // 
