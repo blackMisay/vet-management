@@ -135,5 +135,21 @@ namespace app.view.Product
             // Display the computed amount in the Amount field
             txtAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
         }
+
+        private void btnAddNewType_Click(object sender, EventArgs e)
+        {
+            frmNewProductType frmNew = new frmNewProductType();
+            frmNew.ShowDialog();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnAddNewCateg_Click(object sender, EventArgs e)
+        {
+            frmNewProductCategory category = new frmNewProductCategory();
+            category.ShowDialog();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }

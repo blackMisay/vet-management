@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductModal));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAddNewCateg = new System.Windows.Forms.Button();
+            this.btnAddNewType = new System.Windows.Forms.Button();
+            this.cmbTypes = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.cmbCateg = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
@@ -45,8 +50,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.cmbTypes = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +79,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.btnAddNewCateg);
+            this.panel2.Controls.Add(this.btnAddNewType);
             this.panel2.Controls.Add(this.cmbTypes);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.cmbCateg);
@@ -95,6 +100,44 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(570, 355);
             this.panel2.TabIndex = 21;
+            // 
+            // btnAddNewCateg
+            // 
+            this.btnAddNewCateg.Location = new System.Drawing.Point(474, 77);
+            this.btnAddNewCateg.Name = "btnAddNewCateg";
+            this.btnAddNewCateg.Size = new System.Drawing.Size(42, 29);
+            this.btnAddNewCateg.TabIndex = 21;
+            this.btnAddNewCateg.Text = "+";
+            this.btnAddNewCateg.UseVisualStyleBackColor = true;
+            this.btnAddNewCateg.Click += new System.EventHandler(this.btnAddNewCateg_Click);
+            // 
+            // btnAddNewType
+            // 
+            this.btnAddNewType.Location = new System.Drawing.Point(474, 29);
+            this.btnAddNewType.Name = "btnAddNewType";
+            this.btnAddNewType.Size = new System.Drawing.Size(42, 29);
+            this.btnAddNewType.TabIndex = 20;
+            this.btnAddNewType.Text = "+";
+            this.btnAddNewType.UseVisualStyleBackColor = true;
+            this.btnAddNewType.Click += new System.EventHandler(this.btnAddNewType_Click);
+            // 
+            // cmbTypes
+            // 
+            this.cmbTypes.FormattingEnabled = true;
+            this.cmbTypes.Location = new System.Drawing.Point(161, 29);
+            this.cmbTypes.Name = "cmbTypes";
+            this.cmbTypes.Size = new System.Drawing.Size(307, 29);
+            this.cmbTypes.TabIndex = 19;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 32);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(141, 21);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Type of Product";
             // 
             // cmbCateg
             // 
@@ -232,24 +275,6 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // cmbTypes
-            // 
-            this.cmbTypes.FormattingEnabled = true;
-            this.cmbTypes.Location = new System.Drawing.Point(161, 29);
-            this.cmbTypes.Name = "cmbTypes";
-            this.cmbTypes.Size = new System.Drawing.Size(307, 29);
-            this.cmbTypes.TabIndex = 19;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 32);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(141, 21);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Type of Product";
-            // 
             // frmProductModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -261,9 +286,11 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmProductModal";
-            this.Text = "frmProductModal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmProductModal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -294,5 +321,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbTypes;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnAddNewCateg;
+        private System.Windows.Forms.Button btnAddNewType;
     }
 }
