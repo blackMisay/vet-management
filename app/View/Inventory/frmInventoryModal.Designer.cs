@@ -31,6 +31,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbCateg = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbProduct = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbBrand = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dtpExp = new System.Windows.Forms.DateTimePicker();
@@ -39,16 +45,10 @@
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.txtQty = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtStockNum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.cmbCateg = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmbProduct = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbBrand = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblStockNumber = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +78,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.lblStockNumber);
             this.panel2.Controls.Add(this.cmbCateg);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.cmbProduct);
@@ -92,12 +93,62 @@
             this.panel2.Controls.Add(this.txtDesc);
             this.panel2.Controls.Add(this.txtQty);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.txtStockNum);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(37, 95);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(423, 419);
             this.panel2.TabIndex = 21;
+            // 
+            // cmbCateg
+            // 
+            this.cmbCateg.FormattingEnabled = true;
+            this.cmbCateg.Location = new System.Drawing.Point(155, 166);
+            this.cmbCateg.Name = "cmbCateg";
+            this.cmbCateg.Size = new System.Drawing.Size(249, 29);
+            this.cmbCateg.TabIndex = 22;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 166);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 21);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Category";
+            // 
+            // cmbProduct
+            // 
+            this.cmbProduct.FormattingEnabled = true;
+            this.cmbProduct.Location = new System.Drawing.Point(155, 120);
+            this.cmbProduct.Name = "cmbProduct";
+            this.cmbProduct.Size = new System.Drawing.Size(249, 29);
+            this.cmbProduct.TabIndex = 21;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 123);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 21);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Product";
+            // 
+            // cmbBrand
+            // 
+            this.cmbBrand.FormattingEnabled = true;
+            this.cmbBrand.Location = new System.Drawing.Point(155, 74);
+            this.cmbBrand.Name = "cmbBrand";
+            this.cmbBrand.Size = new System.Drawing.Size(249, 29);
+            this.cmbBrand.TabIndex = 20;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 82);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 21);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Brand";
             // 
             // label9
             // 
@@ -163,21 +214,14 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Description";
             // 
-            // txtStockNum
-            // 
-            this.txtStockNum.Location = new System.Drawing.Point(155, 32);
-            this.txtStockNum.Name = "txtStockNum";
-            this.txtStockNum.Size = new System.Drawing.Size(249, 28);
-            this.txtStockNum.TabIndex = 1;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 39);
+            this.label2.Location = new System.Drawing.Point(11, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 21);
+            this.label2.Size = new System.Drawing.Size(132, 21);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Stock Number";
+            this.label2.Text = "Stock Number:";
             // 
             // btnSave
             // 
@@ -207,56 +251,15 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // cmbCateg
+            // lblStockNumber
             // 
-            this.cmbCateg.FormattingEnabled = true;
-            this.cmbCateg.Location = new System.Drawing.Point(155, 166);
-            this.cmbCateg.Name = "cmbCateg";
-            this.cmbCateg.Size = new System.Drawing.Size(249, 29);
-            this.cmbCateg.TabIndex = 22;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 166);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 21);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "Category";
-            // 
-            // cmbProduct
-            // 
-            this.cmbProduct.FormattingEnabled = true;
-            this.cmbProduct.Location = new System.Drawing.Point(155, 120);
-            this.cmbProduct.Name = "cmbProduct";
-            this.cmbProduct.Size = new System.Drawing.Size(249, 29);
-            this.cmbProduct.TabIndex = 21;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 123);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 21);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Product";
-            // 
-            // cmbBrand
-            // 
-            this.cmbBrand.FormattingEnabled = true;
-            this.cmbBrand.Location = new System.Drawing.Point(155, 74);
-            this.cmbBrand.Name = "cmbBrand";
-            this.cmbBrand.Size = new System.Drawing.Size(249, 29);
-            this.cmbBrand.TabIndex = 20;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 82);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 21);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Brand";
+            this.lblStockNumber.AutoSize = true;
+            this.lblStockNumber.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStockNumber.Location = new System.Drawing.Point(151, 22);
+            this.lblStockNumber.Name = "lblStockNumber";
+            this.lblStockNumber.Size = new System.Drawing.Size(98, 23);
+            this.lblStockNumber.TabIndex = 26;
+            this.lblStockNumber.Text = "00000000";
             // 
             // frmInventoryModal
             // 
@@ -270,6 +273,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmInventoryModal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmInventoryModal";
             this.Load += new System.EventHandler(this.frmInventoryModal_Load);
             this.panel1.ResumeLayout(false);
@@ -288,7 +292,6 @@
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtStockNum;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
@@ -303,5 +306,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbBrand;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblStockNumber;
     }
 }
