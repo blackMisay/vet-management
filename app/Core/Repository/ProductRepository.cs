@@ -28,11 +28,11 @@ namespace app.core.repository
 
             if (saveState)
             {
-                sql = "UPDATE product SET brandID=@BrandID, prodDesc=@Description,typeID=@TypeID, categID=@CategID, qty=@Quantity, unitPrice=@UnitPrice, amount=@Amount WHERE prodID=@Id;";
+                sql = "UPDATE product SET brandID=@BrandID, prodDesc=@Description,typeID=@TypeID, categID=@CategID amount=@Amount WHERE prodID=@Id;";
             }
             else
             {
-                sql = "INSERT INTO product(prodID,brandID,prodDesc,categID,typeID,qty,unitPrice,amount) VALUES(@Id,@BrandID,@Description,@CategID,@TypeID,@Quantity,@UnitPrice,@Amount);";
+                sql = "INSERT INTO product(prodID,brandID,prodDesc,categID,typeID) VALUES(@Id,@BrandID,@Description,@CategID,@TypeID);";
             }
             Dictionary<string, string> parameters = new Dictionary<string, string>()
             {
@@ -40,10 +40,7 @@ namespace app.core.repository
                 {"@BrandID", product.BrandID.Id.ToString() },
                 {"@Description", product.Description },
                 {"@CategID", product.CategID.Id.ToString() },
-                {"@TypeID", product.TypeID.Id.ToString() },
-                {"@Quantity", Convert.ToString(product.Quantity) },
-                {"@UnitPrice", Convert.ToString(product.UnitPrice) },
-                {"@Amount", Convert.ToString(product.Amount) },
+                {"@TypeID", product.TypeID.Id.ToString() }
             };
 
             UpgradeFile upgradeFile = new UpgradeFile();
@@ -82,9 +79,6 @@ namespace app.core.repository
                     Description = row["prodDesc"].ToString(),
                     CategID = new ProductCategory() { Id = Convert.ToInt32(row["categID"]) },
                     TypeID = new Types() { Id = Convert.ToInt32(row["typeID"]) },
-                    Quantity = Convert.ToInt32(row["qty"]),
-                    UnitPrice = Convert.ToDouble(row["unitPrice"]),
-                    Amount = Convert.ToDouble(row["amount"])
                 };
             }
             return null;
