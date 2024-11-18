@@ -60,9 +60,6 @@ namespace app.view.Product
             txtDesc.Text = product.Description;
             cmbCateg.SelectedValue = product.CategID.Id;
             cmbTypes.SelectedValue = product.TypeID.Id;
-            txtQty.Text = product.Quantity.ToString();
-            txtUnitPrice.Text = product.UnitPrice.ToString();
-            txtAmount.Text = product.Amount.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -88,17 +85,7 @@ namespace app.view.Product
 
         public void SaveProduct()
         {
-            // Convert and validate the input values
-            int quantity = Convert.ToInt32(txtQty.Text);
-            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
-
-            // Calculate the total amount
-            double amount = quantity * unitPrice;
-
-            // Display the computed amount in the Amount field
-            txtAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
-
-            // Create the product object with the calculated amount
+          
             app.core.model.Product product = new app.core.model.Product
             {
                 Id = this.Id,
@@ -106,9 +93,6 @@ namespace app.view.Product
                 Description = txtDesc.Text,
                 CategID = new ProductCategory() { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
                 TypeID = new core.Types() { Id = Convert.ToInt32(cmbTypes.SelectedValue)},
-                Quantity = quantity,
-                UnitPrice = unitPrice,
-                Amount = amount // Use the calculated amount
             };
 
             // Save the product
@@ -121,19 +105,6 @@ namespace app.view.Product
             {
                 MessageBox.Show("Unable to save record");
             }
-        }
-
-        private void txtAmount_TextChanged(object sender, EventArgs e)
-        {
-            // Convert and validate the input values
-            int quantity = Convert.ToInt32(txtQty.Text);
-            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
-
-            // Calculate the total amount
-            double amount = quantity * unitPrice;
-
-            // Display the computed amount in the Amount field
-            txtAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
         }
     }
 }

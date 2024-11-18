@@ -31,22 +31,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbTypes = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.cmbCateg = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtAmount = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtUnitPrice = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtQty = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.cmbBrand = new System.Windows.Forms.ComboBox();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.cmbTypes = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -80,12 +74,6 @@
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.cmbCateg);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.txtAmount);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.txtUnitPrice);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.txtQty);
-            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.cmbBrand);
             this.panel2.Controls.Add(this.txtDesc);
             this.panel2.Controls.Add(this.label4);
@@ -93,8 +81,26 @@
             this.panel2.Location = new System.Drawing.Point(0, 56);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(570, 355);
+            this.panel2.Size = new System.Drawing.Size(570, 230);
             this.panel2.TabIndex = 21;
+            // 
+            // cmbTypes
+            // 
+            this.cmbTypes.FormattingEnabled = true;
+            this.cmbTypes.Location = new System.Drawing.Point(161, 29);
+            this.cmbTypes.Name = "cmbTypes";
+            this.cmbTypes.Size = new System.Drawing.Size(307, 29);
+            this.cmbTypes.TabIndex = 19;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 32);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(141, 21);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Type of Product";
             // 
             // cmbCateg
             // 
@@ -113,58 +119,6 @@
             this.label5.Size = new System.Drawing.Size(89, 21);
             this.label5.TabIndex = 17;
             this.label5.Text = "Category";
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.Location = new System.Drawing.Point(161, 303);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(307, 28);
-            this.txtAmount.TabIndex = 6;
-            this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 303);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 21);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Amount";
-            // 
-            // txtUnitPrice
-            // 
-            this.txtUnitPrice.Location = new System.Drawing.Point(161, 260);
-            this.txtUnitPrice.Name = "txtUnitPrice";
-            this.txtUnitPrice.Size = new System.Drawing.Size(307, 28);
-            this.txtUnitPrice.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 260);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 21);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Unit Price";
-            // 
-            // txtQty
-            // 
-            this.txtQty.Location = new System.Drawing.Point(161, 217);
-            this.txtQty.Name = "txtQty";
-            this.txtQty.Size = new System.Drawing.Size(307, 28);
-            this.txtQty.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 217);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 21);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Quantity";
             // 
             // cmbBrand
             // 
@@ -207,7 +161,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(445, 427);
+            this.btnSave.Location = new System.Drawing.Point(17, 302);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 52);
@@ -222,40 +176,22 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(337, 427);
+            this.btnCancel.Location = new System.Drawing.Point(449, 302);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 52);
+            this.btnCancel.Size = new System.Drawing.Size(101, 52);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "C&ancel";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // cmbTypes
-            // 
-            this.cmbTypes.FormattingEnabled = true;
-            this.cmbTypes.Location = new System.Drawing.Point(161, 29);
-            this.cmbTypes.Name = "cmbTypes";
-            this.cmbTypes.Size = new System.Drawing.Size(307, 29);
-            this.cmbTypes.TabIndex = 19;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 32);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(141, 21);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Type of Product";
-            // 
             // frmProductModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(572, 492);
+            this.ClientSize = new System.Drawing.Size(572, 367);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnSave);
@@ -284,12 +220,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ComboBox cmbBrand;
-        private System.Windows.Forms.TextBox txtAmount;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtUnitPrice;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtQty;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbCateg;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbTypes;
