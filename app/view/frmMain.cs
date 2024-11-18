@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Drawing;
 using app.view.Administration;
+using app.view.Immunization;
 
 namespace app.view
 {
@@ -133,6 +134,11 @@ namespace app.view
         private void btnAccount_Click(object sender, EventArgs e)
         {
             this.openFormModule(new frmAdmin());
+        }
+
+        private void btnVaccination_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new frmImmunization());
         }
     }
 }

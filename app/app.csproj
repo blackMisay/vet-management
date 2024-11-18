@@ -97,6 +97,7 @@
     <Compile Include="core\model\Client.cs" />
     <Compile Include="core\model\Inventory.cs" />
     <Compile Include="core\model\Pet.cs" />
+    <Compile Include="core\model\PetVaccination.cs" />
     <Compile Include="core\model\Product.cs" />
     <Compile Include="core\model\ProductCategory.cs" />
     <Compile Include="core\model\Province.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="core\repository\InventoryRepository.cs" />
     <Compile Include="core\repository\MaintenanceRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
+    <Compile Include="core\repository\PetVaccinationRepository.cs" />
     <Compile Include="core\repository\ProductRepository.cs" />
     <Compile Include="core\repository\SecureHash.cs" />
     <Compile Include="core\repository\ServiceRepository.cs" />
@@ -164,6 +166,18 @@
     <Compile Include="view\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Immunization\frmImmunization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Immunization\frmImmunization.Designer.cs">
+      <DependentUpon>frmImmunization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Immunization\frmImmunizationModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Immunization\frmImmunizationModal.Designer.cs">
+      <DependentUpon>frmImmunizationModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Inventory\frmInventory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +226,12 @@
     <Compile Include="view\Transaction\frmTransaction.Designer.cs">
       <DependentUpon>frmTransaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Utilities\frmClientPatientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Utilities\frmClientPatientForm.Designer.cs">
+      <DependentUpon>frmClientPatientForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -238,6 +258,12 @@
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Immunization\frmImmunization.resx">
+      <DependentUpon>frmImmunization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Immunization\frmImmunizationModal.resx">
+      <DependentUpon>frmImmunizationModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Inventory\frmInventory.resx">
       <DependentUpon>frmInventory.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -263,6 +289,9 @@
     <EmbeddedResource Include="view\Transaction\frmTransaction.resx">
       <DependentUpon>frmTransaction.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Utilities\frmClientPatientForm.resx">
+      <DependentUpon>frmClientPatientForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -284,6 +313,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\vcms.sql" />
+    <None Include="Resources\immunity_24px.png" />
+    <None Include="Resources\immunity_16px.png" />
     <None Include="Resources\project-management.png" />
   </ItemGroup>
   <ItemGroup>

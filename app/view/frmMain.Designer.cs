@@ -35,14 +35,16 @@
             this.btnAccount = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnServices = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.pnlInventorySpacer = new System.Windows.Forms.Panel();
             this.btnInventory = new System.Windows.Forms.Button();
             this.pnlItemSpacer = new System.Windows.Forms.Panel();
             this.btnItem = new System.Windows.Forms.Button();
             this.pnlDiagnosisSpacer = new System.Windows.Forms.Panel();
+            this.btnVaccination = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.btnDiagnosis = new System.Windows.Forms.Button();
             this.pnlClientSpacer = new System.Windows.Forms.Panel();
             this.btnClient = new System.Windows.Forms.Button();
@@ -72,14 +74,16 @@
             this.pnlMenu.Controls.Add(this.btnAccount);
             this.pnlMenu.Controls.Add(this.panel2);
             this.pnlMenu.Controls.Add(this.btnServices);
-            this.pnlMenu.Controls.Add(this.btnSettings);
-            this.pnlMenu.Controls.Add(this.panel1);
-            this.pnlMenu.Controls.Add(this.btnLogout);
             this.pnlMenu.Controls.Add(this.pnlInventorySpacer);
             this.pnlMenu.Controls.Add(this.btnInventory);
             this.pnlMenu.Controls.Add(this.pnlItemSpacer);
             this.pnlMenu.Controls.Add(this.btnItem);
             this.pnlMenu.Controls.Add(this.pnlDiagnosisSpacer);
+            this.pnlMenu.Controls.Add(this.btnVaccination);
+            this.pnlMenu.Controls.Add(this.panel3);
+            this.pnlMenu.Controls.Add(this.btnSettings);
+            this.pnlMenu.Controls.Add(this.panel1);
+            this.pnlMenu.Controls.Add(this.btnLogout);
             this.pnlMenu.Controls.Add(this.btnDiagnosis);
             this.pnlMenu.Controls.Add(this.pnlClientSpacer);
             this.pnlMenu.Controls.Add(this.btnClient);
@@ -105,7 +109,7 @@
             this.btnAccount.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnAccount.Image = global::app.Properties.Resources.user;
-            this.btnAccount.Location = new System.Drawing.Point(10, 473);
+            this.btnAccount.Location = new System.Drawing.Point(10, 533);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Size = new System.Drawing.Size(50, 50);
             this.btnAccount.TabIndex = 23;
@@ -116,7 +120,7 @@
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(10, 463);
+            this.panel2.Location = new System.Drawing.Point(10, 523);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
             this.panel2.Size = new System.Drawing.Size(50, 10);
@@ -132,13 +136,103 @@
             this.btnServices.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnServices.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnServices.Image = global::app.Properties.Resources.services_24px;
-            this.btnServices.Location = new System.Drawing.Point(10, 413);
+            this.btnServices.Location = new System.Drawing.Point(10, 473);
             this.btnServices.Name = "btnServices";
             this.btnServices.Size = new System.Drawing.Size(50, 50);
             this.btnServices.TabIndex = 21;
             this.toolTip_Main.SetToolTip(this.btnServices, "Services");
             this.btnServices.UseVisualStyleBackColor = false;
             this.btnServices.Click += new System.EventHandler(this.btnServices_Click);
+            // 
+            // pnlInventorySpacer
+            // 
+            this.pnlInventorySpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlInventorySpacer.Location = new System.Drawing.Point(10, 463);
+            this.pnlInventorySpacer.Name = "pnlInventorySpacer";
+            this.pnlInventorySpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlInventorySpacer.Size = new System.Drawing.Size(50, 10);
+            this.pnlInventorySpacer.TabIndex = 16;
+            // 
+            // btnInventory
+            // 
+            this.btnInventory.BackColor = System.Drawing.Color.White;
+            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnInventory.FlatAppearance.BorderSize = 0;
+            this.btnInventory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventory.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInventory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnInventory.Image = global::app.Properties.Resources.medinventory_24px;
+            this.btnInventory.Location = new System.Drawing.Point(10, 413);
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Size = new System.Drawing.Size(50, 50);
+            this.btnInventory.TabIndex = 15;
+            this.toolTip_Main.SetToolTip(this.btnInventory, "Inventory");
+            this.btnInventory.UseVisualStyleBackColor = false;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            // 
+            // pnlItemSpacer
+            // 
+            this.pnlItemSpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlItemSpacer.Location = new System.Drawing.Point(10, 403);
+            this.pnlItemSpacer.Name = "pnlItemSpacer";
+            this.pnlItemSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlItemSpacer.Size = new System.Drawing.Size(50, 10);
+            this.pnlItemSpacer.TabIndex = 14;
+            // 
+            // btnItem
+            // 
+            this.btnItem.BackColor = System.Drawing.Color.White;
+            this.btnItem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnItem.FlatAppearance.BorderSize = 0;
+            this.btnItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnItem.Image = global::app.Properties.Resources.items_24px;
+            this.btnItem.Location = new System.Drawing.Point(10, 353);
+            this.btnItem.Name = "btnItem";
+            this.btnItem.Size = new System.Drawing.Size(50, 50);
+            this.btnItem.TabIndex = 13;
+            this.toolTip_Main.SetToolTip(this.btnItem, "Items");
+            this.btnItem.UseVisualStyleBackColor = false;
+            this.btnItem.Click += new System.EventHandler(this.btnItem_Click);
+            // 
+            // pnlDiagnosisSpacer
+            // 
+            this.pnlDiagnosisSpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlDiagnosisSpacer.Location = new System.Drawing.Point(10, 343);
+            this.pnlDiagnosisSpacer.Name = "pnlDiagnosisSpacer";
+            this.pnlDiagnosisSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlDiagnosisSpacer.Size = new System.Drawing.Size(50, 10);
+            this.pnlDiagnosisSpacer.TabIndex = 12;
+            // 
+            // btnVaccination
+            // 
+            this.btnVaccination.BackColor = System.Drawing.Color.White;
+            this.btnVaccination.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnVaccination.FlatAppearance.BorderSize = 0;
+            this.btnVaccination.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnVaccination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVaccination.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVaccination.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnVaccination.Image = global::app.Properties.Resources.immunity_24px;
+            this.btnVaccination.Location = new System.Drawing.Point(10, 293);
+            this.btnVaccination.Name = "btnVaccination";
+            this.btnVaccination.Size = new System.Drawing.Size(50, 50);
+            this.btnVaccination.TabIndex = 25;
+            this.toolTip_Main.SetToolTip(this.btnVaccination, "Vaccination");
+            this.btnVaccination.UseVisualStyleBackColor = false;
+            this.btnVaccination.Click += new System.EventHandler(this.btnVaccination_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(10, 283);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel3.Size = new System.Drawing.Size(50, 10);
+            this.panel3.TabIndex = 24;
             // 
             // btnSettings
             // 
@@ -184,69 +278,6 @@
             this.toolTip_Main.SetToolTip(this.btnLogout, "Logout");
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // pnlInventorySpacer
-            // 
-            this.pnlInventorySpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlInventorySpacer.Location = new System.Drawing.Point(10, 403);
-            this.pnlInventorySpacer.Name = "pnlInventorySpacer";
-            this.pnlInventorySpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlInventorySpacer.Size = new System.Drawing.Size(50, 10);
-            this.pnlInventorySpacer.TabIndex = 16;
-            // 
-            // btnInventory
-            // 
-            this.btnInventory.BackColor = System.Drawing.Color.White;
-            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnInventory.FlatAppearance.BorderSize = 0;
-            this.btnInventory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventory.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInventory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnInventory.Image = global::app.Properties.Resources.medinventory_24px;
-            this.btnInventory.Location = new System.Drawing.Point(10, 353);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(50, 50);
-            this.btnInventory.TabIndex = 15;
-            this.toolTip_Main.SetToolTip(this.btnInventory, "Inventory");
-            this.btnInventory.UseVisualStyleBackColor = false;
-            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
-            // 
-            // pnlItemSpacer
-            // 
-            this.pnlItemSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlItemSpacer.Location = new System.Drawing.Point(10, 343);
-            this.pnlItemSpacer.Name = "pnlItemSpacer";
-            this.pnlItemSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlItemSpacer.Size = new System.Drawing.Size(50, 10);
-            this.pnlItemSpacer.TabIndex = 14;
-            // 
-            // btnItem
-            // 
-            this.btnItem.BackColor = System.Drawing.Color.White;
-            this.btnItem.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnItem.FlatAppearance.BorderSize = 0;
-            this.btnItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnItem.Image = global::app.Properties.Resources.items_24px;
-            this.btnItem.Location = new System.Drawing.Point(10, 293);
-            this.btnItem.Name = "btnItem";
-            this.btnItem.Size = new System.Drawing.Size(50, 50);
-            this.btnItem.TabIndex = 13;
-            this.toolTip_Main.SetToolTip(this.btnItem, "Items");
-            this.btnItem.UseVisualStyleBackColor = false;
-            this.btnItem.Click += new System.EventHandler(this.btnItem_Click);
-            // 
-            // pnlDiagnosisSpacer
-            // 
-            this.pnlDiagnosisSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlDiagnosisSpacer.Location = new System.Drawing.Point(10, 283);
-            this.pnlDiagnosisSpacer.Name = "pnlDiagnosisSpacer";
-            this.pnlDiagnosisSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlDiagnosisSpacer.Size = new System.Drawing.Size(50, 10);
-            this.pnlDiagnosisSpacer.TabIndex = 12;
             // 
             // btnDiagnosis
             // 
@@ -427,5 +458,7 @@
         private System.Windows.Forms.ToolTip toolTip_Main;
         private System.Windows.Forms.Button btnAccount;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnVaccination;
+        private System.Windows.Forms.Panel panel3;
     }
 }

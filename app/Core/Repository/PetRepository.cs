@@ -160,6 +160,10 @@ namespace app.Core.Repository
             return null;
         }
 
-
+        public void GetAllPetsByOwner(DataGridView dgv, string ownerId)
+        {
+            UpgradeFile upgrade = new UpgradeFile();
+            dgv.DataSource = upgrade.Load("SELECT petId,petname FROM vwpet WHERE clientId=@owner;", new Dictionary<string, string> { { "@owner", ownerId } });
+        }
     }
 }
