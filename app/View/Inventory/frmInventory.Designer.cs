@@ -34,6 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +61,9 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateReceived = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -148,11 +153,11 @@
             this.btnReports.BackColor = System.Drawing.Color.White;
             this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReports.Image = global::app.Properties.Resources.medical_record_24px;
-            this.btnReports.Location = new System.Drawing.Point(1258, 16);
+            this.btnReports.Location = new System.Drawing.Point(1327, 17);
             this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(202, 31);
+            this.btnReports.Size = new System.Drawing.Size(126, 31);
             this.btnReports.TabIndex = 13;
-            this.btnReports.Text = "&Generate Report";
+            this.btnReports.Text = "&Generate";
             this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReports.UseVisualStyleBackColor = false;
             this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
@@ -163,7 +168,7 @@
             this.btnInventory.BackColor = System.Drawing.Color.White;
             this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnInventory.Location = new System.Drawing.Point(829, 17);
+            this.btnInventory.Location = new System.Drawing.Point(895, 17);
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Size = new System.Drawing.Size(202, 31);
             this.btnInventory.TabIndex = 12;
@@ -178,7 +183,7 @@
             this.btnEdit.BackColor = System.Drawing.Color.White;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEdit.Location = new System.Drawing.Point(1037, 17);
+            this.btnEdit.Location = new System.Drawing.Point(1103, 17);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(102, 31);
             this.btnEdit.TabIndex = 11;
@@ -193,7 +198,7 @@
             this.btnRemove.BackColor = System.Drawing.Color.White;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemove.Location = new System.Drawing.Point(1145, 17);
+            this.btnRemove.Location = new System.Drawing.Point(1211, 17);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(110, 31);
             this.btnRemove.TabIndex = 10;
@@ -206,7 +211,7 @@
             // 
             this.txtSearch.Location = new System.Drawing.Point(110, 16);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(332, 28);
+            this.txtSearch.Size = new System.Drawing.Size(185, 28);
             this.txtSearch.TabIndex = 2;
             // 
             // btnSearch
@@ -235,7 +240,9 @@
             this.Column3,
             this.Column10,
             this.Column11,
-            this.Column12,
+            this.Qty,
+            this.unitPrice,
+            this.total,
             this.dateReceived,
             this.expDate,
             this.Column9});
@@ -279,9 +286,11 @@
             // 
             this.Column2.DataPropertyName = "stocksNum";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.Format = "N0";
             dataGridViewCellStyle2.NullValue = null;
             this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column2.FillWeight = 70F;
             this.Column2.HeaderText = "Stock Number";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
@@ -289,6 +298,9 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "brandDesc";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column1.FillWeight = 80F;
             this.Column1.HeaderText = "Brand";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -311,29 +323,54 @@
             // Column11
             // 
             this.Column11.DataPropertyName = "categoryDescription";
+            this.Column11.FillWeight = 80F;
             this.Column11.HeaderText = "Category";
             this.Column11.MinimumWidth = 6;
             this.Column11.Name = "Column11";
             // 
-            // Column12
+            // Qty
             // 
-            this.Column12.DataPropertyName = "qty";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Column12.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column12.FillWeight = 50F;
-            this.Column12.HeaderText = "Quantity";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
+            this.Qty.DataPropertyName = "qty";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Qty.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Qty.FillWeight = 55F;
+            this.Qty.HeaderText = "Quantity";
+            this.Qty.MinimumWidth = 6;
+            this.Qty.Name = "Qty";
+            // 
+            // unitPrice
+            // 
+            this.unitPrice.DataPropertyName = "unitPrice";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.unitPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            this.unitPrice.FillWeight = 80F;
+            this.unitPrice.HeaderText = "Unit Price";
+            this.unitPrice.MinimumWidth = 6;
+            this.unitPrice.Name = "unitPrice";
+            // 
+            // total
+            // 
+            this.total.DataPropertyName = "totalAmount";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.total.DefaultCellStyle = dataGridViewCellStyle6;
+            this.total.FillWeight = 80F;
+            this.total.HeaderText = "Total Amount";
+            this.total.MinimumWidth = 6;
+            this.total.Name = "total";
             // 
             // dateReceived
             // 
             this.dateReceived.DataPropertyName = "dateReceived";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle4.Format = "d";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dateReceived.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle7.Format = "d";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dateReceived.DefaultCellStyle = dataGridViewCellStyle7;
             this.dateReceived.HeaderText = "Date Received";
             this.dateReceived.MinimumWidth = 6;
             this.dateReceived.Name = "dateReceived";
@@ -342,10 +379,10 @@
             // 
             this.expDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.expDate.DataPropertyName = "expDate";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            this.expDate.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle8.Format = "d";
+            dataGridViewCellStyle8.NullValue = null;
+            this.expDate.DefaultCellStyle = dataGridViewCellStyle8;
             this.expDate.HeaderText = "Expiration Date";
             this.expDate.MinimumWidth = 6;
             this.expDate.Name = "expDate";
@@ -406,7 +443,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn total;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateReceived;
         private System.Windows.Forms.DataGridViewTextBoxColumn expDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
