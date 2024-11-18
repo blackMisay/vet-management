@@ -5,7 +5,6 @@ using System.Data;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Drawing;
-using System.Collections.Generic;
 
 namespace app.view.Inventory
 {
@@ -13,21 +12,24 @@ namespace app.view.Inventory
     public partial class frmInventory : Form
     {
         private int currentRowIndex = 0;
-        PrintPreviewDialog previewDialog = new PrintPreviewDialog();
+        PrintPreviewDialog previewDialog1 = new PrintPreviewDialog();
 
         public frmInventory()
         {
             InitializeComponent();
-            previewDialog.Document = printDocument1;
+            previewDialog1.Document = printDocument1;
         }
 
         private void frmInventory_Load(object sender, EventArgs e)
         {
+            InventoryRepository repository = new InventoryRepository();
             UpgradeFile upgradeFile = new UpgradeFile();
-
             dgvInventory.DataSource = upgradeFile.Load("SELECT * FROM vwinventory WHERE isDeleted=0;");
 
-            InventoryRepository inventory = new InventoryRepository();
+            // Attach the CellFormatting event after setting the data source
+            dgvInventory.CellFormatting += repository.dgvInventory_CellFormatting;
+
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -136,22 +138,6 @@ namespace app.view.Inventory
 
         }
 
-        private void btnReports_Click(object sender, EventArgs e)
-        {
-            DialogResult preresult = previewDialog.ShowDialog();
-            if(preresult == DialogResult.OK)
-            {
-                PrintDialog print = new PrintDialog();
-                print.Document = printDocument1;
-
-                DialogResult result = print.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    printDocument1.Print();
-                }
-            }
-        }
-
         private void Header(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             // Define fonts for title, address, title bar, and datetime
@@ -213,7 +199,44 @@ namespace app.view.Inventory
             e.Graphics.DrawString(datetime, datetimeFont, Brushes.Black, new PointF(datetimeX, currentY));
 
         }
+        private int GetColumnWidth(string headerText, int stockNumberWidth,int brandWidth, int DescriptionWidth, int ProductWidth, int categoryWidth, int quantityWidth, int dateReceivedWidth, int expDateReceiveWidth)
+        {
+            if (headerText == "Stock No.")
+                return stockNumberWidth;
+            if (headerText == "Brand")
+                return brandWidth;
+            if (headerText == "Category")
+                return categoryWidth;
+            if (headerText == "Product")
+                return ProductWidth;
+            if (headerText == "Description")
+                return DescriptionWidth;
+            if (headerText == "Quantity")
+                return quantityWidth;
+            if (headerText == "Date Received")
+                return dateReceivedWidth;
+            if (headerText == "Expiration Date")
+                return expDateReceiveWidth;
 
+            return 150;
+
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            DialogResult preresult = previewDialog1.ShowDialog();
+            if (preresult == DialogResult.OK)
+            {
+                PrintDialog print = new PrintDialog();
+                print.Document = printDocument1;
+
+                DialogResult result = print.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    printDocument1.Print();
+                }
+            }
+        }
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -229,20 +252,20 @@ namespace app.view.Inventory
 
             int stockNumberWidth = 80;
             int brandWidth = 100;
-            int DescriptionWidth = 150;
-            int ProductWidth = 100;
+            int DescriptionWidth = 220;
+            int ProductWidth = 120;
             int categoryWidth = 80;
             int quantityWidth = 80;
-            int dateReceiveWidth = 150;
-            int expDateReceiveWidth = 150;
+            int dateReceiveWidth = 100;
+            int expDateReceiveWidth = 100;
 
             foreach (DataGridViewColumn col in dgvInventory.Columns)
             {
                 if (col.Visible)
                 {
-                    int cellWidth = GetColumnWidth(col.HeaderText, stockNumberWidth,brandWidth,DescriptionWidth,ProductWidth,categoryWidth,quantityWidth,dateReceiveWidth,expDateReceiveWidth);
+                    int cellWidth = GetColumnWidth(col.HeaderText, stockNumberWidth, brandWidth, DescriptionWidth, ProductWidth, categoryWidth, quantityWidth, dateReceiveWidth, expDateReceiveWidth);
                     e.Graphics.DrawRectangle(Pens.Black, new Rectangle(x, y, cellWidth, dgvInventory.ColumnHeadersHeight));
-                    e.Graphics.DrawString(col.HeaderText, headerFont, Brushes.Black, new RectangleF(x, y, cellWidth,dgvInventory.ColumnHeadersHeight), new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    e.Graphics.DrawString(col.HeaderText, headerFont, Brushes.Black, new RectangleF(x, y, cellWidth, dgvInventory.ColumnHeadersHeight), new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                     x += cellWidth;
                 }
             }
@@ -270,7 +293,7 @@ namespace app.view.Inventory
                                 LineAlignment = StringAlignment.Center
                             };
                             e.Graphics.DrawString(row.Cells[col.Index].FormattedValue.ToString(), cellFont, Brushes.Black, new RectangleF(x + 2, y, cellWidth - 4, cellHeight), cellFormat);
-                           
+
                             x += cellWidth;
                         }
                     }
@@ -286,29 +309,7 @@ namespace app.view.Inventory
                 currentRowIndex++;
             }
             e.HasMorePages = false;
-            currentRowIndex=0;
-        }
-        private int GetColumnWidth(string headerText, int stockNumberWidth,int brandWidth, int DescriptionWidth, int ProductWidth, int categoryWidth, int quantityWidth, int dateReceivedWidth, int expDateReceiveWidth)
-        {
-            if (headerText == "Stock No.")
-                return stockNumberWidth;
-            if (headerText == "Brand")
-                return brandWidth;
-            if (headerText == "Description")
-                return DescriptionWidth;
-            if (headerText == "Product")
-                return ProductWidth;
-            if (headerText == "Category")
-                return categoryWidth;
-            if (headerText == "Quantity")
-                return quantityWidth;
-            if (headerText == "Date Received")
-                return dateReceivedWidth;
-            if (headerText == "Expiration Date")
-                return expDateReceiveWidth;
-
-            return 100;
-
+            currentRowIndex = 0;
         }
     }
 }

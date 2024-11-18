@@ -96,19 +96,22 @@ namespace app.view.Inventory
                 Id = this.Id,
                 StockNumber = nextStockNumber,
                 Description = txtDesc.Text,
-                ProdID = new app.core.model.Product { Id = Convert.ToInt32(cmbProduct.SelectedValue) },
+                TypeID = new app.core.Types { Id = Convert.ToInt32(cmbProduct.SelectedValue) },
                 BrandID = new app.core.model.Brand { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
                 CategID = new app.core.model.ProductCategory { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
                 Qty = Convert.ToInt32(txtQty.Text),
-                DateReceived = dtpReceived.Value.ToString("yyyy-MM-dd"),
-                ExpiredDate = dtpExp.Value.ToString("yyyy-MM-dd")
+                DateReceived = dtpReceived.Value,  
+                ExpiredDate = dtpExp.Value       
             };
+
 
             // Save the inventory
             if (new InventoryRepository().SaveInventory(inventory))
             {
                 MessageBox.Show($"Inventory saved successfully with stock number: {nextStockNumber}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new frmInventory().dgvInventory.Refresh();
+                frmInventory frm = new frmInventory();
+                frm.dgvInventory.RefreshEdit();
+                this.Close();
             }
             else
             {
@@ -133,17 +136,19 @@ namespace app.view.Inventory
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveInventory();
-            UpgradeFile upgradeFile = new UpgradeFile();
             frmInventory frm = new frmInventory();
-            frm.dgvInventory.DataSource = upgradeFile.Load("Select * FROM vwinventory WHERE isDeleted=0");
-            
+            UpgradeFile upgradeFile = new UpgradeFile();
+            frm.dgvInventory.DataSource = upgradeFile.Load("SELECT * FROM vwinventory WHERE isDeleted=0;");
+            frm.dgvInventory.Refresh();
+
+
         }
 
         private void LoadDetails(app.core.model.Inventory inventory)
         {
             lblStockNumber.Text = inventory.StockNumber.ToString();
             cmbBrand.SelectedValue = inventory.BrandID.Id;
-            cmbProduct.SelectedValue = inventory.ProdID.Id;
+            cmbProduct.SelectedValue = inventory.TypeID.Id;
             txtDesc.Text = inventory.Description;
             cmbCateg.SelectedValue = inventory.CategID.Id;
             txtQty.Text = inventory.Qty.ToString();
@@ -165,7 +170,7 @@ namespace app.view.Inventory
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cmbBrand.DataSource = upgradeFile.Populate("SELECT id, description FROM product_brands;");
+            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandId, brandDesc FROM product_brands;");
             cmbBrand.ValueMember = "Key";
             cmbBrand.DisplayMember = "Value";
 
@@ -173,7 +178,7 @@ namespace app.view.Inventory
             cmbCateg.ValueMember = "Key";
             cmbCateg.DisplayMember = "Value";
 
-            cmbProduct.DataSource = upgradeFile.Populate("SELECT prodID, prodDesc FROM product;");
+            cmbProduct.DataSource = upgradeFile.Populate("SELECT id, description FROM product_types;");
             cmbProduct.ValueMember = "Key";
             cmbProduct.DisplayMember = "Value";
 
