@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProducts));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,17 +45,22 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnReport = new System.Windows.Forms.Button();
             this.btnSaveProduct = new System.Windows.Forms.Button();
             this.btnEditProduct = new System.Windows.Forms.Button();
             this.btnRemoveProduct = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -109,7 +115,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1482, 75);
+            this.panel1.Size = new System.Drawing.Size(1474, 75);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -125,6 +131,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.btnReport);
             this.panel2.Controls.Add(this.btnSaveProduct);
             this.panel2.Controls.Add(this.btnEditProduct);
             this.panel2.Controls.Add(this.btnRemoveProduct);
@@ -132,8 +140,32 @@
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Location = new System.Drawing.Point(1, 82);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1482, 65);
+            this.panel2.Size = new System.Drawing.Size(1474, 65);
             this.panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(176, 21);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Search by Category";
+            // 
+            // btnReport
+            // 
+            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReport.BackColor = System.Drawing.Color.White;
+            this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReport.Image = global::app.Properties.Resources.project_management;
+            this.btnReport.Location = new System.Drawing.Point(1333, 18);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(129, 31);
+            this.btnReport.TabIndex = 16;
+            this.btnReport.Text = "&Generate";
+            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReport.UseVisualStyleBackColor = false;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click_1);
             // 
             // btnSaveProduct
             // 
@@ -141,9 +173,9 @@
             this.btnSaveProduct.BackColor = System.Drawing.Color.White;
             this.btnSaveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveProduct.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnSaveProduct.Location = new System.Drawing.Point(1038, 17);
+            this.btnSaveProduct.Location = new System.Drawing.Point(908, 18);
             this.btnSaveProduct.Name = "btnSaveProduct";
-            this.btnSaveProduct.Size = new System.Drawing.Size(202, 31);
+            this.btnSaveProduct.Size = new System.Drawing.Size(199, 31);
             this.btnSaveProduct.TabIndex = 15;
             this.btnSaveProduct.Text = "&Add New Product";
             this.btnSaveProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -156,9 +188,9 @@
             this.btnEditProduct.BackColor = System.Drawing.Color.White;
             this.btnEditProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditProduct.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEditProduct.Location = new System.Drawing.Point(1246, 17);
+            this.btnEditProduct.Location = new System.Drawing.Point(1113, 18);
             this.btnEditProduct.Name = "btnEditProduct";
-            this.btnEditProduct.Size = new System.Drawing.Size(102, 31);
+            this.btnEditProduct.Size = new System.Drawing.Size(103, 31);
             this.btnEditProduct.TabIndex = 14;
             this.btnEditProduct.Text = "&Update";
             this.btnEditProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -171,9 +203,9 @@
             this.btnRemoveProduct.BackColor = System.Drawing.Color.White;
             this.btnRemoveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveProduct.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemoveProduct.Location = new System.Drawing.Point(1354, 17);
+            this.btnRemoveProduct.Location = new System.Drawing.Point(1222, 18);
             this.btnRemoveProduct.Name = "btnRemoveProduct";
-            this.btnRemoveProduct.Size = new System.Drawing.Size(110, 31);
+            this.btnRemoveProduct.Size = new System.Drawing.Size(105, 31);
             this.btnRemoveProduct.TabIndex = 13;
             this.btnRemoveProduct.Text = "&Remove";
             this.btnRemoveProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -182,7 +214,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(118, 20);
+            this.txtSearch.Location = new System.Drawing.Point(195, 20);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(332, 28);
             this.txtSearch.TabIndex = 4;
@@ -191,7 +223,7 @@
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearch.Location = new System.Drawing.Point(17, 17);
+            this.btnSearch.Location = new System.Drawing.Point(533, 18);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(95, 31);
             this.btnSearch.TabIndex = 3;
@@ -207,10 +239,10 @@
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-            this.Column13,
-            this.Column9,
-            this.Column2,
-            this.Column3,
+            this.type,
+            this.Category,
+            this.Brand,
+            this.Description,
             this.Column1});
             this.dgvProducts.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dgvProducts.Location = new System.Drawing.Point(1, 153);
@@ -218,8 +250,26 @@
             this.dgvProducts.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProducts.Size = new System.Drawing.Size(1482, 664);
+            this.dgvProducts.Size = new System.Drawing.Size(1474, 664);
             this.dgvProducts.TabIndex = 2;
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage_1);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Id
             // 
@@ -230,44 +280,45 @@
             this.Id.Visible = false;
             this.Id.Width = 125;
             // 
-            // Column13
+            // type
             // 
-            this.Column13.DataPropertyName = "typeDescription";
-            this.Column13.HeaderText = "Type of Product";
-            this.Column13.MinimumWidth = 10;
-            this.Column13.Name = "Column13";
-            this.Column13.Width = 200;
+            this.type.DataPropertyName = "typeDescription";
+            this.type.HeaderText = "Type of Product";
+            this.type.MinimumWidth = 10;
+            this.type.Name = "type";
+            this.type.Width = 200;
             // 
-            // Column9
+            // Category
             // 
-            this.Column9.DataPropertyName = "categoryDescription";
+            this.Category.DataPropertyName = "categoryDescription";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column9.HeaderText = "Category";
-            this.Column9.MinimumWidth = 100;
-            this.Column9.Name = "Column9";
-            this.Column9.Width = 200;
+            this.Category.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Category.HeaderText = "Category";
+            this.Category.MinimumWidth = 100;
+            this.Category.Name = "Category";
+            this.Category.Width = 200;
             // 
-            // Column2
+            // Brand
             // 
-            this.Column2.DataPropertyName = "brandDesc";
+            this.Brand.DataPropertyName = "brandDesc";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column2.HeaderText = "Brand";
-            this.Column2.MinimumWidth = 50;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 200;
+            this.Brand.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Brand.HeaderText = "Brand";
+            this.Brand.MinimumWidth = 50;
+            this.Brand.Name = "Brand";
+            this.Brand.Width = 200;
             // 
-            // Column3
+            // Description
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.DataPropertyName = "prodDesc";
+
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.DataPropertyName = "prodDesc";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column3.HeaderText = "Description";
-            this.Column3.MinimumWidth = 400;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 400;
+            this.Description.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Description.HeaderText = "Description";
+            this.Description.MinimumWidth = 400;
+            this.Description.Name = "Description";
+
             // 
             // Column1
             // 
@@ -282,7 +333,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1487, 820);
+            this.ClientSize = new System.Drawing.Size(1477, 820);
             this.Controls.Add(this.dgvProducts);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -315,11 +366,17 @@
         private System.Windows.Forms.Button btnSaveProduct;
         private System.Windows.Forms.Button btnEditProduct;
         private System.Windows.Forms.Button btnRemoveProduct;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnReport;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Brand;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }
