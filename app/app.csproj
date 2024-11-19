@@ -194,6 +194,12 @@
     <Compile Include="view\Maintenance\frmMaintenanceModal.Designer.cs">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Product\frmNewProductBrand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductBrand.Designer.cs">
+      <DependentUpon>frmNewProductBrand.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Product\frmNewProductCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Maintenance\frmMaintenanceModal.resx">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Product\frmNewProductBrand.resx">
+      <DependentUpon>frmNewProductBrand.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Product\frmNewProductCategory.resx">
       <DependentUpon>frmNewProductCategory.cs</DependentUpon>

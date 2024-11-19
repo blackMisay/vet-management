@@ -143,17 +143,15 @@ namespace app.view.Product
 
         }
 
-
-
-        private void btnAddNewType_Click(object sender, EventArgs e)
+        private void btnAddType_Click(object sender, EventArgs e)
         {
-            frmNewProductType frmNew = new frmNewProductType();
-            frmNew.ShowDialog();
+            frmNewProductType type = new frmNewProductType();
+            type.ShowDialog();
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void btnAddNewCateg_Click(object sender, EventArgs e)
+        private void btnAddCateg_Click(object sender, EventArgs e)
         {
             frmNewProductCategory category = new frmNewProductCategory();
             category.ShowDialog();
@@ -161,5 +159,12 @@ namespace app.view.Product
             this.Close();
         }
 
+        private void btnAddBrand_Click(object sender, EventArgs e)
+        {
+            frmNewProductBrand brand = new frmNewProductBrand();
+            brand.ShowDialog();
+            this.DialogResult= DialogResult.OK;
+            this.Close();
+        }
     }
 }
