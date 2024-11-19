@@ -32,8 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnAddNewCateg = new System.Windows.Forms.Button();
-            this.btnAddNewType = new System.Windows.Forms.Button();
             this.cmbTypes = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbCateg = new System.Windows.Forms.ComboBox();
@@ -86,6 +84,11 @@
             this.panel2.Location = new System.Drawing.Point(0, 56);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
+
+            this.panel2.Size = new System.Drawing.Size(570, 230);
+            this.panel2.TabIndex = 21;
+            // 
+
             this.panel2.Size = new System.Drawing.Size(570, 222);
             this.panel2.TabIndex = 21;
             // 
@@ -109,6 +112,7 @@
             this.btnAddNewType.UseVisualStyleBackColor = true;
             this.btnAddNewType.Click += new System.EventHandler(this.btnAddNewType_Click);
             // 
+
             // cmbTypes
             // 
             this.cmbTypes.FormattingEnabled = true;
@@ -186,7 +190,8 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(17, 287);
+            this.btnSave.Location = new System.Drawing.Point(17, 302);
+
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 39);
@@ -201,10 +206,12 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(459, 287);
+
+            this.btnCancel.Location = new System.Drawing.Point(449, 302);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 39);
+            this.btnCancel.Size = new System.Drawing.Size(101, 52);
+
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "C&ancel";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -216,7 +223,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(572, 339);
+            this.ClientSize = new System.Drawing.Size(572, 367);
+
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnSave);

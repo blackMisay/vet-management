@@ -12,7 +12,7 @@ namespace app.core.repository
         int prodId;
         public DataTable SearchProduct(string searchValue)
         {
-            string query = "SELECT * FROM vwproduct WHERE `amount` LIKE @searchValue OR `prodDesc` LIKE @searchValue;";
+            string query = "SELECT * FROM vwproduct WHERE `categoryDescription` LIKE @searchValue;";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
                 {"@searchValue", "%" + searchValue + "%" }
@@ -28,7 +28,9 @@ namespace app.core.repository
 
             if (saveState)
             {
-                sql = "UPDATE product SET brandID=@BrandID, prodDesc=@Description,typeID=@TypeID, categID=@CategID amount=@Amount WHERE prodID=@Id;";
+
+                sql = "UPDATE product SET brandID=@BrandID, prodDesc=@Description,typeID=@TypeID, categID=@CategID WHERE prodID=@Id;";
+
             }
             else
             {
@@ -40,7 +42,8 @@ namespace app.core.repository
                 {"@BrandID", product.BrandID.Id.ToString() },
                 {"@Description", product.Description },
                 {"@CategID", product.CategID.Id.ToString() },
-                {"@TypeID", product.TypeID.Id.ToString() }
+                {"@TypeID", product.TypeID.Id.ToString() },
+
             };
 
             UpgradeFile upgradeFile = new UpgradeFile();
