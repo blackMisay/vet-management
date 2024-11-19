@@ -59,26 +59,32 @@ namespace app.view.Inventory
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            // Main form (where the DataGridView is located)
             if (dgvInventory.SelectedRows.Count == 0)
             {
-                // Inform the user to select a record to update
+                // Inform the user to select a product
                 MessageBox.Show("Please select a product.", "Select Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-
                 // Confirm with the user before updating the record
                 DialogResult updateConfirmation = MessageBox.Show("Are you sure you want to UPDATE the Product?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (updateConfirmation == DialogResult.Yes)
                 {
+                    // Get the inventory ID of the selected row
                     int inventoryID = Convert.ToInt32(dgvInventory.SelectedRows[0].Cells["Id"].Value);
+
+                    // Open the modal form for updating the inventory
                     frmInventoryModal Modal = new frmInventoryModal(inventoryID);
                     Modal.ShowDialog();
+
+                    // After the modal is closed, reload the inventory data
+                    UpgradeFile upgradeFile = new UpgradeFile();
+                    dgvInventory.DataSource = upgradeFile.Load("SELECT * FROM vwinventory WHERE isDeleted = 0");
                 }
             }
-            UpgradeFile upgradeFile = new UpgradeFile();
-            dgvInventory.DataSource = upgradeFile.Load("Select * FROM vwinventory WHERE isDeleted=0");
+
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
