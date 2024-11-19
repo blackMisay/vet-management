@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductModal));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -70,6 +71,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.btnAddNewCateg);
+            this.panel2.Controls.Add(this.btnAddNewType);
             this.panel2.Controls.Add(this.cmbTypes);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.cmbCateg);
@@ -81,9 +84,35 @@
             this.panel2.Location = new System.Drawing.Point(0, 56);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
+
             this.panel2.Size = new System.Drawing.Size(570, 230);
             this.panel2.TabIndex = 21;
             // 
+
+            this.panel2.Size = new System.Drawing.Size(570, 222);
+            this.panel2.TabIndex = 21;
+            // 
+            // btnAddNewCateg
+            // 
+            this.btnAddNewCateg.Location = new System.Drawing.Point(474, 77);
+            this.btnAddNewCateg.Name = "btnAddNewCateg";
+            this.btnAddNewCateg.Size = new System.Drawing.Size(42, 29);
+            this.btnAddNewCateg.TabIndex = 21;
+            this.btnAddNewCateg.Text = "+";
+            this.btnAddNewCateg.UseVisualStyleBackColor = true;
+            this.btnAddNewCateg.Click += new System.EventHandler(this.btnAddNewCateg_Click);
+            // 
+            // btnAddNewType
+            // 
+            this.btnAddNewType.Location = new System.Drawing.Point(474, 29);
+            this.btnAddNewType.Name = "btnAddNewType";
+            this.btnAddNewType.Size = new System.Drawing.Size(42, 29);
+            this.btnAddNewType.TabIndex = 20;
+            this.btnAddNewType.Text = "+";
+            this.btnAddNewType.UseVisualStyleBackColor = true;
+            this.btnAddNewType.Click += new System.EventHandler(this.btnAddNewType_Click);
+            // 
+
             // cmbTypes
             // 
             this.cmbTypes.FormattingEnabled = true;
@@ -162,9 +191,10 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
             this.btnSave.Location = new System.Drawing.Point(17, 302);
+
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(101, 52);
+            this.btnSave.Size = new System.Drawing.Size(100, 39);
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "&Create";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -176,10 +206,12 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
+
             this.btnCancel.Location = new System.Drawing.Point(449, 302);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(101, 52);
+
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "C&ancel";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -192,14 +224,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(572, 367);
+
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmProductModal";
-            this.Text = "frmProductModal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmProductModal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -224,5 +259,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbTypes;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnAddNewCateg;
+        private System.Windows.Forms.Button btnAddNewType;
     }
 }

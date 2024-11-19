@@ -306,6 +306,7 @@
             // 
             // Description
             // 
+
             this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Description.DataPropertyName = "prodDesc";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
@@ -313,6 +314,7 @@
             this.Description.HeaderText = "Description";
             this.Description.MinimumWidth = 400;
             this.Description.Name = "Description";
+
             // 
             // Column1
             // 
@@ -370,6 +372,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn Brand;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

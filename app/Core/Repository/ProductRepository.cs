@@ -28,7 +28,9 @@ namespace app.core.repository
 
             if (saveState)
             {
+
                 sql = "UPDATE product SET brandID=@BrandID, prodDesc=@Description,typeID=@TypeID, categID=@CategID WHERE prodID=@Id;";
+
             }
             else
             {
@@ -41,7 +43,7 @@ namespace app.core.repository
                 {"@Description", product.Description },
                 {"@CategID", product.CategID.Id.ToString() },
                 {"@TypeID", product.TypeID.Id.ToString() },
-                
+
             };
 
             UpgradeFile upgradeFile = new UpgradeFile();

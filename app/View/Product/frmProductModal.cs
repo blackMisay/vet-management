@@ -67,8 +67,8 @@ namespace app.view.Product
             SaveProduct();
             UpgradeFile upgradeFile = new UpgradeFile();
             frmProducts frmProducts = new frmProducts();        
-            frmProducts.dgvProducts.DataSource = upgradeFile.Load("Select * FROM vwproduct WHERE isDeleted=0");
-            this.Dispose();
+            frmProducts.dgvProducts.RefreshEdit();
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -85,7 +85,40 @@ namespace app.view.Product
 
         public void SaveProduct()
         {
+
           
+
+            // Check if the required fields are empty or invalid
+            if (string.IsNullOrEmpty(txtDesc.Text))
+            {
+                MessageBox.Show("Please enter a description before saving.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDesc.Focus(); // Set focus on the description textbox
+                return; // Prevent saving if description is empty
+            }
+
+            if (cmbBrand.SelectedValue == null || Convert.ToInt32(cmbBrand.SelectedValue) == 0)
+            {
+                MessageBox.Show("Please select a brand.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbBrand.Focus(); // Set focus on the brand combo box
+                return; // Prevent saving if no brand is selected
+            }
+
+            if (cmbCateg.SelectedValue == null || Convert.ToInt32(cmbCateg.SelectedValue) == 0)
+            {
+                MessageBox.Show("Please select a category.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbCateg.Focus(); // Set focus on the category combo box
+                return; // Prevent saving if no category is selected
+            }
+
+            if (cmbTypes.SelectedValue == null || Convert.ToInt32(cmbTypes.SelectedValue) == 0)
+            {
+                MessageBox.Show("Please select a type.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbTypes.Focus(); // Set focus on the type combo box
+                return; // Prevent saving if no type is selected
+            }
+
+            // Create the product object if all validations pass
+
             app.core.model.Product product = new app.core.model.Product
             {
                 Id = this.Id,
@@ -93,6 +126,7 @@ namespace app.view.Product
                 Description = txtDesc.Text,
                 CategID = new ProductCategory() { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
                 TypeID = new core.Types() { Id = Convert.ToInt32(cmbTypes.SelectedValue)},
+
             };
 
             // Save the product
@@ -100,11 +134,32 @@ namespace app.view.Product
             if (productRepository.SaveProduct(product))
             {
                 MessageBox.Show("Save successfully");
+                this.Dispose();
             }
             else
             {
                 MessageBox.Show("Unable to save record");
             }
+
         }
+
+
+
+        private void btnAddNewType_Click(object sender, EventArgs e)
+        {
+            frmNewProductType frmNew = new frmNewProductType();
+            frmNew.ShowDialog();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnAddNewCateg_Click(object sender, EventArgs e)
+        {
+            frmNewProductCategory category = new frmNewProductCategory();
+            category.ShowDialog();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
     }
 }
