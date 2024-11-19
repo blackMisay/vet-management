@@ -32,11 +32,11 @@ namespace app.core.Repository
 
             if (saveState)
             {
-                sql = "UPDATE prod_stocks SET stocksNum=@StockNumber, description=@Description, typeID=@TypeID, categID=@CategID, brandID=@BrandID, qty=@Qty, dateReceived=@DateReceived, expDate=@ExpiredDate WHERE stockID=@Id;";
+                sql = "UPDATE prod_stocks SET stocksNum=@StockNumber, description=@Description, typeID=@TypeID, categID=@CategID, brandID=@BrandID, qty=@Qty, unitPrice=@UnitPrice, totalAmount=@TotalAmount, dateReceived=@DateReceived, expDate=@ExpiredDate WHERE stockID=@Id;";
             }
             else
             {
-                sql = "INSERT INTO prod_stocks (stockID,stocksNum,description,typeID,categID,brandID,qty,dateReceived,expDate) VALUES(@Id,@StockNumber,@Description,@TypeID,@CategID,@BrandID,@Qty,@DateReceived,@ExpiredDate);";
+                sql = "INSERT INTO prod_stocks (stockID,stocksNum,description,typeID,categID,brandID,qty,unitPrice,totalAmount,dateReceived,expDate) VALUES(@Id,@StockNumber,@Description,@TypeID,@CategID,@BrandID,@Qty,@UnitPrice,@TotalAmount@DateReceived,@ExpiredDate);";
             }
 
             Dictionary<string, string> parameters = new Dictionary<string, string>()
@@ -48,6 +48,8 @@ namespace app.core.Repository
                 {"@CategID", inventory.CategID.Id.ToString()},
                 {"@BrandID", inventory.BrandID.Id.ToString()},
                 {"@Qty", Convert.ToString(inventory.Qty)},
+                {"@QUnitPrice", Convert.ToString(inventory.UnitPrice)},
+                {"@TotalAmount", Convert.ToString(inventory.TotalAmount)},
                 {"@DateReceived", inventory.DateReceived.ToString("yyyy-MM-dd")},  
                 {"@ExpiredDate", inventory.ExpiredDate.ToString("yyyy-MM-dd")}      
             };
@@ -91,6 +93,8 @@ namespace app.core.Repository
                     CategID = new ProductCategory() { Id = Convert.ToInt32(row["categID"]) },
                     BrandID = new Brand() { Id = Convert.ToInt32(row["brandID"]) },
                     Qty = Convert.ToInt32(row["qty"]),
+                    UnitPrice = Convert.ToInt32(row["unitPrice"]),
+                    TotalAmount = Convert.ToInt32(row["totalAmount"]),
                     // Parse the DateTime correctly and set it as DateTime type
                     DateReceived = DateTime.Parse(row["dateReceived"].ToString()).Date,  // Store as DateTime
                     ExpiredDate = DateTime.Parse(row["expDate"].ToString()).Date,       // Store as DateTime

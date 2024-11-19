@@ -320,6 +320,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\vcms.sql" />
+    <None Include="Resources\sahagun.png" />
+    <None Include="Resources\logo1-removebg-preview.png" />
+    <None Include="Resources\logo1-removebg-preview %283%29.ico" />
     <None Include="Resources\project-management.png" />
   </ItemGroup>
   <ItemGroup>

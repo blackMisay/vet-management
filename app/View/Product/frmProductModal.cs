@@ -85,6 +85,9 @@ namespace app.view.Product
 
         public void SaveProduct()
         {
+
+          
+
             // Check if the required fields are empty or invalid
             if (string.IsNullOrEmpty(txtDesc.Text))
             {
@@ -115,13 +118,15 @@ namespace app.view.Product
             }
 
             // Create the product object if all validations pass
+
             app.core.model.Product product = new app.core.model.Product
             {
                 Id = this.Id,
                 BrandID = new Brand() { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
                 Description = txtDesc.Text,
                 CategID = new ProductCategory() { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
-                TypeID = new core.Types() { Id = Convert.ToInt32(cmbTypes.SelectedValue) },
+                TypeID = new core.Types() { Id = Convert.ToInt32(cmbTypes.SelectedValue)},
+
             };
 
             // Save the product
@@ -138,6 +143,8 @@ namespace app.view.Product
 
         }
 
+
+
         private void btnAddNewType_Click(object sender, EventArgs e)
         {
             frmNewProductType frmNew = new frmNewProductType();
@@ -153,5 +160,6 @@ namespace app.view.Product
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
     }
 }
