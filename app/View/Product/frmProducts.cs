@@ -44,7 +44,7 @@ namespace app.view.Product
             }
             else
             {
-                
+
                 // Confirm with the user before updating the record
                 DialogResult updateConfirmation = MessageBox.Show("Are you sure you want to UPDATE the Product?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -81,8 +81,8 @@ namespace app.view.Product
             {
                 MessageBox.Show("The search field is empty, please provide.", "Empty field", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        
-    }
+
+        }
 
         private void btnRemoveProduct_Click(object sender, EventArgs e)
         {
@@ -139,6 +139,7 @@ namespace app.view.Product
 
         private void Header(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            e.PageSettings.Landscape = true;
             // Define fonts for title, address, title bar, datetime, totalSales, and quantity
             Font titleFont = new Font("Century Gothic", 14, FontStyle.Bold);
             Font addressFont = new Font("Century Gothic", 8, FontStyle.Regular);
@@ -189,7 +190,7 @@ namespace app.view.Product
 
 
         }
-        private int GetColumnWidth(string headerText,int typeWidth, int brandWidth, int descriptionWidth, int categoryWidth)
+        private int GetColumnWidth(string headerText, int typeWidth, int brandWidth, int descriptionWidth, int categoryWidth)
         {
             if (headerText == "Type of Product")
                 return typeWidth;
@@ -199,102 +200,105 @@ namespace app.view.Product
                 return brandWidth;
             if (headerText == "Description")
                 return descriptionWidth;
-           
+
 
             return 100;
 
         }
         private void printDocument1_PrintPage_1(object sender, PrintPageEventArgs e)
         {
+
             // Define fonts for header and cells
             Font headerFont = new Font("Century Gothic", 8, FontStyle.Bold);
-            Font cellFont = new Font("Century Gothic", 8, FontStyle.Regular);
+                Font cellFont = new Font("Century Gothic", 8, FontStyle.Regular);
 
-            // Predefined column widths
-            int typeWidth = 100;
-            int categoryWidth = 100;
-            int brandWidth = 220;
-            int descriptionWidth = 200;
+                // Predefined column widths
+                int typeWidth = 100;
+                int categoryWidth = 100;
+                int brandWidth = 220;
+                int descriptionWidth = 200;
 
-            // Calculate total table width based on visible columns
-            int totalTableWidth = 0;
-            foreach (DataGridViewColumn col in dgvProducts.Columns)
-            {
-                if (col.Visible)
+                // Calculate total table width based on visible columns
+                int totalTableWidth = 0;
+                foreach (DataGridViewColumn col in dgvProducts.Columns)
                 {
-                    totalTableWidth += GetColumnWidth(col.HeaderText, typeWidth, brandWidth, descriptionWidth, categoryWidth);
-                }
-            }
-
-            // Page layout configuration
-            int pageWidth = e.MarginBounds.Width;
-            int centeredX = e.MarginBounds.Left + (pageWidth - totalTableWidth) / 2;
-            int x = centeredX;
-            int y = e.MarginBounds.Top;
-
-            // Draw the header (add any custom header logic here)
-            this.Header(sender, e);
-            y += 210; // Adjust based on your header's height
-
-            // Draw table headers
-            foreach (DataGridViewColumn col in dgvProducts.Columns)
-            {
-                if (col.Visible)
-                {
-                    int cellWidth = GetColumnWidth(col.HeaderText, typeWidth, brandWidth, descriptionWidth, categoryWidth);
-                    e.Graphics.DrawRectangle(Pens.Black, new Rectangle(x, y, cellWidth, dgvProducts.ColumnHeadersHeight));
-                    e.Graphics.DrawString(col.HeaderText, headerFont, Brushes.Black, new RectangleF(x, y, cellWidth, dgvProducts.ColumnHeadersHeight), new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
-                    x += cellWidth;
-                }
-            }
-
-            y += dgvProducts.ColumnHeadersHeight; // Move down after header row
-            x = centeredX; // Reset X position for row drawing
-
-            // Draw the rows
-            while (currentRowIndex < dgvProducts.Rows.Count)
-            {
-                DataGridViewRow row = dgvProducts.Rows[currentRowIndex];
-                if (!row.IsNewRow)
-                {
-                    int cellHeight = row.Height;
-                    x = centeredX;
-
-                    // Draw each cell in the row
-                    for (int i = 0; i < dgvProducts.Columns.Count; i++)
+                    if (col.Visible)
                     {
-                        DataGridViewColumn col = dgvProducts.Columns[i];
-                        if (col.Visible)
+                        totalTableWidth += GetColumnWidth(col.HeaderText, typeWidth, brandWidth, descriptionWidth, categoryWidth);
+                    }
+                }
+
+                // Page layout configuration
+                e.PageSettings.Landscape = true;
+                int pageWidth = e.MarginBounds.Width;
+                int centeredX = e.MarginBounds.Left + (pageWidth - totalTableWidth) / 2;
+                int x = centeredX;
+                int y = e.MarginBounds.Top;
+
+                // Draw the header (add any custom header logic here)
+                this.Header(sender, e);
+                y += 210; // Adjust based on your header's height
+
+                // Draw table headers
+                foreach (DataGridViewColumn col in dgvProducts.Columns)
+                {
+                    if (col.Visible)
+                    {
+                        int cellWidth = GetColumnWidth(col.HeaderText, typeWidth, brandWidth, descriptionWidth, categoryWidth);
+                        e.Graphics.DrawRectangle(Pens.Black, new Rectangle(x, y, cellWidth, dgvProducts.ColumnHeadersHeight));
+                        e.Graphics.DrawString(col.HeaderText, headerFont, Brushes.Black, new RectangleF(x, y, cellWidth, dgvProducts.ColumnHeadersHeight), new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                        x += cellWidth;
+                    }
+                }
+
+                y += dgvProducts.ColumnHeadersHeight; // Move down after header row
+                x = centeredX; // Reset X position for row drawing
+
+                // Draw the rows
+                while (currentRowIndex < dgvProducts.Rows.Count)
+                {
+                    DataGridViewRow row = dgvProducts.Rows[currentRowIndex];
+                    if (!row.IsNewRow)
+                    {
+                        int cellHeight = row.Height;
+                        x = centeredX;
+
+                        // Draw each cell in the row
+                        for (int i = 0; i < dgvProducts.Columns.Count; i++)
                         {
-                            int cellWidth = GetColumnWidth(col.HeaderText, typeWidth, brandWidth, descriptionWidth, categoryWidth);
-                            e.Graphics.DrawRectangle(Pens.Black, new Rectangle(x, y, cellWidth, cellHeight));
+                            DataGridViewColumn col = dgvProducts.Columns[i];
+                            if (col.Visible)
+                            {
+                                int cellWidth = GetColumnWidth(col.HeaderText, typeWidth, brandWidth, descriptionWidth, categoryWidth);
+                                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(x, y, cellWidth, cellHeight));
 
-                            // Draw the cell content
-                            string cellValue = row.Cells[i].FormattedValue.ToString();
-                            e.Graphics.DrawString(cellValue, cellFont, Brushes.Black, new RectangleF(x, y, cellWidth, cellHeight), new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                                // Draw the cell content
+                                string cellValue = row.Cells[i].FormattedValue.ToString();
+                                e.Graphics.DrawString(cellValue, cellFont, Brushes.Black, new RectangleF(x, y, cellWidth, cellHeight), new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
 
-                            x += cellWidth; // Move X position for next cell
+                                x += cellWidth; // Move X position for next cell
+                            }
+                        }
+
+                        y += cellHeight; // Move down after the current row
+
+                        // Check if the next row will overflow the page
+                        if (y + cellHeight > e.MarginBounds.Bottom)
+                        {
+                            e.HasMorePages = true;
+                            currentRowIndex++; // Increment to the next row for the next page
+                            return;
                         }
                     }
 
-                    y += cellHeight; // Move down after the current row
-
-                    // Check if the next row will overflow the page
-                    if (y + cellHeight > e.MarginBounds.Bottom)
-                    {
-                        e.HasMorePages = true;
-                        currentRowIndex++; // Increment to the next row for the next page
-                        return;
-                    }
+                    currentRowIndex++; // Move to the next row
                 }
 
-                currentRowIndex++; // Move to the next row
+                e.HasMorePages = false; // No more pages after all rows are printed
+                currentRowIndex = 0; // Reset the row index for the next print job
+
             }
 
-            e.HasMorePages = false; // No more pages after all rows are printed
-            currentRowIndex = 0; // Reset the row index for the next print job
-
-
-        }
     }
 }
+

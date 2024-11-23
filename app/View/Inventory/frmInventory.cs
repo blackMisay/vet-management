@@ -278,7 +278,7 @@ namespace app.view.Inventory
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-            
+            e.PageSettings.Landscape = true;
             Font headerFont = new Font("Century Gothic", 8, FontStyle.Bold); 
             Font cellFont = new Font("Century Gothic", 8, FontStyle.Regular); 
 

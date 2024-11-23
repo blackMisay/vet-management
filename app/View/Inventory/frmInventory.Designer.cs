@@ -291,7 +291,7 @@
             dataGridViewCellStyle2.NullValue = null;
             this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column2.FillWeight = 70F;
-            this.Column2.HeaderText = "Stock Number";
+            this.Column2.HeaderText = "Batch No.";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             // 
