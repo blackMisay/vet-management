@@ -152,8 +152,6 @@ namespace app.view.Inventory
             Font addressFont = new Font("Century Gothic", 8, FontStyle.Regular);
             Font titlebarFont = new Font("Century Gothic", 13, FontStyle.Underline);
             Font datetimeFont = new Font("Century Gothic", 8, FontStyle.Regular); // Font for DateTime
-            Font totalSalesFont = new Font("Century Gothic", 10, FontStyle.Bold);
-            Font quantityFont = new Font("Century Gothic", 10, FontStyle.Bold);
 
             int pageWidth = e.PageBounds.Width;
 
@@ -163,40 +161,11 @@ namespace app.view.Inventory
             string titlebar = "Inventory Report";
             string datetime = "Date: " + DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt"); // Current DateTime formatted
 
-            // Calculate total sales and total quantity
-            decimal totalSales = 0;
-            int totalQuantity = 0;
-            foreach (DataGridViewRow row in dgvInventory.Rows)
-            {
-                if (!row.IsNewRow)  // Skip new rows
-                {
-                    string qtyValue = row.Cells["Qty"].Value?.ToString() ?? "0";
-                    string totalAmountValue = row.Cells["total"].Value?.ToString() ?? "0";
-
-                    decimal parsedQuantity = TryParseDecimal(qtyValue);
-                    decimal totalAmount = TryParseDecimal(totalAmountValue);
-
-                    totalSales += totalAmount;
-                    totalQuantity += (int)parsedQuantity;
-                }
-            }
-
-            // Helper function to safely parse decimal values
-            decimal TryParseDecimal(string value)
-            {
-                string cleanedValue = value.Replace(",", "").Replace("$", "").Replace("€", "");
-                decimal result = 0;
-                decimal.TryParse(cleanedValue, out result);
-                return result;
-            }
-
             // Measure sizes of text strings to adjust positioning
             SizeF titleSize = e.Graphics.MeasureString(title, titleFont);
             SizeF addressSize = e.Graphics.MeasureString(address, addressFont);
             SizeF titlebarSize = e.Graphics.MeasureString(titlebar, titlebarFont);
             SizeF datetimeSize = e.Graphics.MeasureString(datetime, datetimeFont);
-            SizeF totalSalesSize = e.Graphics.MeasureString(totalSales.ToString("C2"), totalSalesFont); // Format as currency
-            SizeF quantitySize = e.Graphics.MeasureString(totalQuantity.ToString(), quantityFont);
 
      
             Image logo = Resources.sahagun;  
@@ -213,21 +182,11 @@ namespace app.view.Inventory
             float addressX = (pageWidth - addressSize.Width) / 2;
             e.Graphics.DrawString(address, addressFont, Brushes.Black, new PointF(addressX, currentY));
             currentY += addressSize.Height + 10;
-
  
             float titlebarX = (pageWidth - titlebarSize.Width) / 2;  
             e.Graphics.DrawString(titlebar, titlebarFont, Brushes.Black, new PointF(titlebarX, currentY));
             currentY += titlebarSize.Height + 10;  
-
-            
-            float totalSalesX = 50; 
-            e.Graphics.DrawString("Total Sales: " + totalSales.ToString("C2"), totalSalesFont, Brushes.Black, new PointF(totalSalesX, currentY));
-            currentY += totalSalesSize.Height + 5;
-
-            float quantityX = 50; 
-            e.Graphics.DrawString("Total Items On-hand: " + totalQuantity.ToString(), quantityFont, Brushes.Black, new PointF(quantityX, currentY));
-
-            
+          
             float datetimeX = pageWidth - datetimeSize.Width - 50; 
             e.Graphics.DrawString(datetime, datetimeFont, Brushes.Black, new PointF(datetimeX, currentY));
 
