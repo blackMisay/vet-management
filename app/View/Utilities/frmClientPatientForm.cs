@@ -1,20 +1,14 @@
-﻿using app.Core.Repository;
+﻿using app.Core.Model;
+using app.Core.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace app.view.Utilities
 {
     public partial class frmClientPatientForm : Form
     {
-        private int PatientId = 0;
-        private string PatientName = "";
+        private Pet patient = new Pet();
+
         public frmClientPatientForm()
         {
             InitializeComponent();
@@ -22,12 +16,18 @@ namespace app.view.Utilities
 
         public int GetPatientId()
         {
-            return PatientId;
+            return patient.Id;
         }
         public string GetPatientName()
         {
-            return PatientName;
+            return patient.Name;
         }
+
+        internal Pet GetPatientDetails()
+        {
+            return this.patient;
+        }
+
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             ClientRepository c = new ClientRepository();
@@ -56,14 +56,13 @@ namespace app.view.Utilities
             p.GetAllPetsByOwner(dgvPet, this.ownerId.ToString());
         }
 
-        int petId = 0;
+        int selectedRecord = 0;
         private void dgvPet_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvPet.RowCount > 0)
             {
                 int selectedRowIndex = dgvPet.SelectedCells[0].RowIndex;
-                this.PatientId = Convert.ToInt32(dgvPet.Rows[selectedRowIndex].Cells[0].Value?.ToString());
-                this.PatientName = dgvPet.Rows[selectedRowIndex].Cells[1].Value?.ToString();
+                this.selectedRecord = Convert.ToInt32(dgvPet.Rows[selectedRowIndex].Cells[0].Value?.ToString());
             }
         }
 
@@ -72,8 +71,16 @@ namespace app.view.Utilities
             
             if (MessageBox.Show("Do you want to proceed with the selected patient?","Confirm to select",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                GetDetails();
                 this.Close();
             }
+        }
+
+        private void GetDetails()
+        {
+            PetRepository pr = new PetRepository();
+
+            this.patient = pr.GetPetCompleteDetails(this.selectedRecord);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

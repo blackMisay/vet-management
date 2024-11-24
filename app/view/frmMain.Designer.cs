@@ -45,7 +45,7 @@
             this.btnSettings = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnDiagnosis = new System.Windows.Forms.Button();
+            this.btnConsultation = new System.Windows.Forms.Button();
             this.pnlClientSpacer = new System.Windows.Forms.Panel();
             this.btnClient = new System.Windows.Forms.Button();
             this.pnlViewMedicalRecordSpacer = new System.Windows.Forms.Panel();
@@ -84,7 +84,7 @@
             this.pnlMenu.Controls.Add(this.btnSettings);
             this.pnlMenu.Controls.Add(this.panel1);
             this.pnlMenu.Controls.Add(this.btnLogout);
-            this.pnlMenu.Controls.Add(this.btnDiagnosis);
+            this.pnlMenu.Controls.Add(this.btnConsultation);
             this.pnlMenu.Controls.Add(this.pnlClientSpacer);
             this.pnlMenu.Controls.Add(this.btnClient);
             this.pnlMenu.Controls.Add(this.pnlViewMedicalRecordSpacer);
@@ -279,23 +279,23 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // btnDiagnosis
+            // btnConsultation
             // 
-            this.btnDiagnosis.BackColor = System.Drawing.Color.White;
-            this.btnDiagnosis.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDiagnosis.FlatAppearance.BorderSize = 0;
-            this.btnDiagnosis.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDiagnosis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDiagnosis.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDiagnosis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnDiagnosis.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnDiagnosis.Location = new System.Drawing.Point(10, 233);
-            this.btnDiagnosis.Name = "btnDiagnosis";
-            this.btnDiagnosis.Size = new System.Drawing.Size(50, 50);
-            this.btnDiagnosis.TabIndex = 11;
-            this.toolTip_Main.SetToolTip(this.btnDiagnosis, "Diagnosis");
-            this.btnDiagnosis.UseVisualStyleBackColor = false;
-            this.btnDiagnosis.Click += new System.EventHandler(this.btnDiagnosis_Click);
+            this.btnConsultation.BackColor = System.Drawing.Color.White;
+            this.btnConsultation.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConsultation.FlatAppearance.BorderSize = 0;
+            this.btnConsultation.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultation.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnConsultation.Image = global::app.Properties.Resources.diagnosis_24px;
+            this.btnConsultation.Location = new System.Drawing.Point(10, 233);
+            this.btnConsultation.Name = "btnConsultation";
+            this.btnConsultation.Size = new System.Drawing.Size(50, 50);
+            this.btnConsultation.TabIndex = 11;
+            this.toolTip_Main.SetToolTip(this.btnConsultation, "Diagnosis");
+            this.btnConsultation.UseVisualStyleBackColor = false;
+            this.btnConsultation.Click += new System.EventHandler(this.btnConsultation_Click);
             // 
             // pnlClientSpacer
             // 
@@ -412,7 +412,7 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1420, 809);
@@ -446,7 +446,7 @@
         private System.Windows.Forms.Panel pnlViewMedicalRecordSpacer;
         private System.Windows.Forms.Button btnMedicalRecords;
         private System.Windows.Forms.Panel pnlDiagnosisSpacer;
-        private System.Windows.Forms.Button btnDiagnosis;
+        private System.Windows.Forms.Button btnConsultation;
         private System.Windows.Forms.Panel pnlInventorySpacer;
         private System.Windows.Forms.Button btnInventory;
         private System.Windows.Forms.Panel pnlItemSpacer;

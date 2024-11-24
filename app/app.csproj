@@ -93,6 +93,7 @@
     <Compile Include="core\model\Breed.cs" />
     <Compile Include="core\model\City.cs" />
     <Compile Include="core\model\ColourPattern.cs" />
+    <Compile Include="core\model\Diagnosis.cs" />
     <Compile Include="core\model\Gender.cs" />
     <Compile Include="core\model\Client.cs" />
     <Compile Include="core\model\Inventory.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="core\model\Species.cs" />
     <Compile Include="core\model\User.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
+    <Compile Include="core\repository\ConsultationRepository.cs" />
     <Compile Include="core\repository\InventoryRepository.cs" />
     <Compile Include="core\repository\MaintenanceRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
@@ -171,6 +173,18 @@
     </Compile>
     <Compile Include="view\Client\frmNewPetColor.Designer.cs">
       <DependentUpon>frmNewPetColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Consultation\frmConsultation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Consultation\frmConsultation.Designer.cs">
+      <DependentUpon>frmConsultation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Consultation\frmConsultationModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Consultation\frmConsultationModal.Designer.cs">
+      <DependentUpon>frmConsultationModal.cs</DependentUpon>
     </Compile>
     <Compile Include="view\frmMain.cs">
       <SubType>Form</SubType>
@@ -290,6 +304,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Client\frmNewPetColor.resx">
       <DependentUpon>frmNewPetColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Consultation\frmConsultation.resx">
+      <DependentUpon>frmConsultation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Consultation\frmConsultationModal.resx">
+      <DependentUpon>frmConsultationModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

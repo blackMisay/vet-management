@@ -16,7 +16,8 @@ namespace app.view
         private static readonly string DASHBOARD = "&Dashboard";
         private static readonly string MEDICAL = "&View Medical";
         private static readonly string CLIENT = "&Client";
-        private static readonly string DIAGNOSIS = "Diag&nosis";
+        private static readonly string CONSULTATION = "Con&sultation";
+        private static readonly string VACCINATION = "&Vaccination";
         private static readonly string ITEM = "I&tems";
         private static readonly string INVENTORY = "&Inventory";
         private static readonly string SERVICES = "Se&rvices";
@@ -74,7 +75,8 @@ namespace app.view
                 btnDashboard.Text = DASHBOARD;
                 btnMedicalRecords.Text = MEDICAL;
                 btnClient.Text = CLIENT;
-                btnDiagnosis.Text = DIAGNOSIS;
+                btnConsultation.Text = CONSULTATION;
+                btnVaccination.Text = VACCINATION;
                 btnItem.Text = ITEM;
                 btnInventory.Text = INVENTORY;
                 btnServices.Text = SERVICES;
@@ -107,8 +109,9 @@ namespace app.view
             this.openFormModule(new Transaction.frmTransaction());
         }
 
-        private void btnDiagnosis_Click(object sender, EventArgs e)
+        private void btnConsultation_Click(object sender, EventArgs e)
         {
+            this.openFormModule(new Consultation.frmConsultation());
         }
 
         private void btnItem_Click(object sender, EventArgs e)
