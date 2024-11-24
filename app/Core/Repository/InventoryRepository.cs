@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Core;
 using System.Windows.Forms;
+using app.view.Inventory;
 
 namespace app.core.Repository
 {
@@ -31,29 +32,33 @@ namespace app.core.Repository
 
             if (saveState)
             {
-                sql = "UPDATE prod_stocks SET stocksNum=@StockNumber, description=@Description, prodID=@ProdID, categID=@CategID, brandID=@BrandID, qty=@Qty, dateReceived=@DateReceived, expDate=@ExpiredDate WHERE stockID=@Id;";
+                sql = "UPDATE prod_stocks SET stocksNum=@StockNumber, description=@Description, typeID=@TypeID, categID=@CategID, brandID=@BrandID, qty=@Qty, unitPrice=@UnitPrice, totalAmount=@TotalAmount, dateReceived=@DateReceived, expDate=@ExpiredDate WHERE stockID=@Id;";
             }
             else
             {
-                sql = "INSERT INTO prod_stocks (stockID,stocksNum,description,prodID,categID,brandID,qty,dateReceived,expDate) VALUES(@Id,@StockNumber,@Description,@ProdID,@CategID,@BrandID,@Qty,@DateReceived,@ExpiredDate);";
+                sql = "INSERT INTO prod_stocks (stockID,stocksNum,description,typeID,categID,brandID,qty,unitPrice,totalAmount,dateReceived,expDate) VALUES(@Id,@StockNumber,@Description,@TypeID,@CategID,@BrandID,@Qty,@UnitPrice,@TotalAmount@DateReceived,@ExpiredDate);";
             }
+
             Dictionary<string, string> parameters = new Dictionary<string, string>()
-        {
-            {"@Id", Convert.ToString(inventory.Id)},
-            {"@StockNumber",inventory.StockNumber },
-            {"@Description", inventory.Description },
-            {"@ProdID", inventory.ProdID.Id.ToString() },
-            {"@CategID", inventory.CategID.Id.ToString()},
-            {"@BrandID", inventory.BrandID.Id.ToString()},
-            {"@Qty", Convert.ToString(inventory.Qty)},
-            {"@DateReceived", inventory.DateReceived},
-            {"@ExpiredDate", inventory.ExpiredDate},
+            {
+                {"@Id", Convert.ToString(inventory.Id)},
+                {"@StockNumber", inventory.StockNumber},
+                {"@Description", inventory.Description},
+                {"@TypeID", inventory.TypeID.Id.ToString()},
+                {"@CategID", inventory.CategID.Id.ToString()},
+                {"@BrandID", inventory.BrandID.Id.ToString()},
+                {"@Qty", Convert.ToString(inventory.Qty)},
+                {"@QUnitPrice", Convert.ToString(inventory.UnitPrice)},
+                {"@TotalAmount", Convert.ToString(inventory.TotalAmount)},
+                {"@DateReceived", inventory.DateReceived.ToString("yyyy-MM-dd")},  
+                {"@ExpiredDate", inventory.ExpiredDate.ToString("yyyy-MM-dd")}      
             };
 
             UpgradeFile upgradeFile = new UpgradeFile();
             if (upgradeFile.ExecuteQuery(sql, parameters))
                 return true;
             return false;
+
         }
         public bool DeleteInventory(int inventory)
         {
@@ -84,15 +89,20 @@ namespace app.core.Repository
                     Id = inventory.Id,
                     StockNumber = row["stocksNum"].ToString(),
                     Description = row["description"].ToString(),
-                    ProdID = new Product() { Id = Convert.ToInt32(row["prodID"]) },
+                    TypeID = new Types() { Id = Convert.ToInt32(row["typeID"]) },
                     CategID = new ProductCategory() { Id = Convert.ToInt32(row["categID"]) },
                     BrandID = new Brand() { Id = Convert.ToInt32(row["brandID"]) },
                     Qty = Convert.ToInt32(row["qty"]),
-                    DateReceived = row["dateReceived"].ToString(),
-                    ExpiredDate = row["expDate"].ToString(),
+                    UnitPrice = Convert.ToInt32(row["unitPrice"]),
+                    TotalAmount = Convert.ToInt32(row["totalAmount"]),
+                    // Parse the DateTime correctly and set it as DateTime type
+                    DateReceived = DateTime.Parse(row["dateReceived"].ToString()).Date,  // Store as DateTime
+                    ExpiredDate = DateTime.Parse(row["expDate"].ToString()).Date,       // Store as DateTime
                 };
             }
             return null;
+
+
         }
         public string GetLastStockNumberFromDatabase()
         {
@@ -144,6 +154,24 @@ namespace app.core.Repository
             }
 
             return prefix + nextNumber.ToString("D8");  // Format as SN00000001 (8 digits)
+        }
+
+        public void dgvInventory_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView; // Get the DataGridView instance from the sender
+
+            if (dgv != null)
+            {
+                // Check if the current column is one of the date columns
+                if (dgv.Columns[e.ColumnIndex].Name == "dateReceived" || dgv.Columns[e.ColumnIndex].Name == "expDate")
+                {
+                    // If the value is not null, format it
+                    if (e.Value != null && e.Value != DBNull.Value)
+                    {
+                        e.Value = Convert.ToDateTime(e.Value).ToString("MM-dd-yyyy"); 
+                    }
+                }
+            }
         }
     }
 }

@@ -7,9 +7,10 @@ namespace app.view.Inventory
 {
     public partial class frmInventoryModal : Form
     {
-       private int Id;
+        private int Id;
         private string stockNumber;
         private string nextStockNumber;
+        private int inventoryID;
         public string StockNumber { get; set; }
 
         public frmInventoryModal()
@@ -25,28 +26,31 @@ namespace app.view.Inventory
 
         public frmInventoryModal(int inventoryID) : this()
         {
-            this.Id = inventoryID;
+            this.inventoryID = inventoryID;
             LoadInventoryDetails();
+            
             btnSave.Text = "Update";
             label1.Text = "Update Item";
         }
-
         private void frmInventoryModal_Load(object sender, EventArgs e)
         {
             PopulateCmb();
-            // Check if StockNumber is set and display it
-            if (!string.IsNullOrEmpty(StockNumber))
-            {
-                lblStockNumber.Text = StockNumber;  // Display the stock number
-            }
-            else
-            {
-                lblStockNumber.Text = "N/A";  // Or a default message
-            }
+            
+
         }
 
         public void SaveInventory()
         {
+            // Convert and validate the input values
+            int quantity = Convert.ToInt32(txtQty.Text);
+            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
+
+            // Calculate the total amount
+            double amount = quantity * unitPrice;
+
+            // Display the computed amount in the Amount field
+            txtTotalAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
+
             // Validate required fields
             if (string.IsNullOrEmpty(txtDesc.Text))
             {
@@ -96,19 +100,24 @@ namespace app.view.Inventory
                 Id = this.Id,
                 StockNumber = nextStockNumber,
                 Description = txtDesc.Text,
-                ProdID = new app.core.model.Product { Id = Convert.ToInt32(cmbProduct.SelectedValue) },
+                TypeID = new app.core.Types { Id = Convert.ToInt32(cmbProduct.SelectedValue) },
                 BrandID = new app.core.model.Brand { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
                 CategID = new app.core.model.ProductCategory { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
-                Qty = Convert.ToInt32(txtQty.Text),
-                DateReceived = dtpReceived.Value.ToString("yyyy-MM-dd"),
-                ExpiredDate = dtpExp.Value.ToString("yyyy-MM-dd")
+                Qty = quantity,
+                UnitPrice = unitPrice,
+                TotalAmount = amount,
+                DateReceived = dtpReceived.Value,  
+                ExpiredDate = dtpExp.Value       
             };
+
 
             // Save the inventory
             if (new InventoryRepository().SaveInventory(inventory))
             {
                 MessageBox.Show($"Inventory saved successfully with stock number: {nextStockNumber}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new frmInventory().dgvInventory.Refresh();
+                frmInventory frm = new frmInventory();
+                frm.dgvInventory.RefreshEdit();
+                this.Close();
             }
             else
             {
@@ -133,39 +142,62 @@ namespace app.view.Inventory
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveInventory();
-            UpgradeFile upgradeFile = new UpgradeFile();
             frmInventory frm = new frmInventory();
-            frm.dgvInventory.DataSource = upgradeFile.Load("Select * FROM vwinventory WHERE isDeleted=0");
-            
-        }
+            UpgradeFile upgradeFile = new UpgradeFile();
+            frm.dgvInventory.DataSource = upgradeFile.Load("SELECT * FROM vwinventory WHERE isDeleted=0;");
+            frm.dgvInventory.Refresh();
 
+
+        }
         private void LoadDetails(app.core.model.Inventory inventory)
         {
+            
             lblStockNumber.Text = inventory.StockNumber.ToString();
             cmbBrand.SelectedValue = inventory.BrandID.Id;
-            cmbProduct.SelectedValue = inventory.ProdID.Id;
-            txtDesc.Text = inventory.Description;
+            cmbProduct.SelectedValue = inventory.TypeID.Id;
             cmbCateg.SelectedValue = inventory.CategID.Id;
+            txtDesc.Text = inventory.Description;
             txtQty.Text = inventory.Qty.ToString();
+            txtUnitPrice.Text = inventory.UnitPrice.ToString();
+            txtTotalAmount.Text = inventory.TotalAmount.ToString();
             dtpReceived.Text = inventory.DateReceived.ToString();
             dtpExp.Text = inventory.ExpiredDate.ToString();
         }
 
         private void LoadInventoryDetails()
         {
+            if (!string.IsNullOrEmpty(StockNumber))
+            {
+                lblStockNumber.Text = StockNumber; // Display the stock number
+            }
+            else
+            {
+                lblStockNumber.Text = "N/A"; // Or a default message
+            }
+
             InventoryRepository inventoryRepository = new InventoryRepository();
-            var inventory = inventoryRepository.GetInventory(new app.core.model.Inventory() { Id = this.Id });
+            var inventory = inventoryRepository.GetInventory(new app.core.model.Inventory() { Id = this.inventoryID });
+
             if (inventory != null)
             {
-                LoadDetails(inventory);
+               LoadDetails(inventory);
             }
         }
 
         private void PopulateCmb()
         {
+            if (!string.IsNullOrEmpty(StockNumber))
+            {
+                lblStockNumber.Text = StockNumber; // Display the stock number
+            }
+            else
+            {
+                lblStockNumber.Text = "N/A"; // Or a default message
+            }
+
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cmbBrand.DataSource = upgradeFile.Populate("SELECT id, description FROM product_brands;");
+            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandId, brandDesc FROM product_brands;");
             cmbBrand.ValueMember = "Key";
             cmbBrand.DisplayMember = "Value";
 
@@ -173,11 +205,24 @@ namespace app.view.Inventory
             cmbCateg.ValueMember = "Key";
             cmbCateg.DisplayMember = "Value";
 
-            cmbProduct.DataSource = upgradeFile.Populate("SELECT prodID, prodDesc FROM product;");
+            cmbProduct.DataSource = upgradeFile.Populate("SELECT id, description FROM product_types;");
             cmbProduct.ValueMember = "Key";
             cmbProduct.DisplayMember = "Value";
 
         }
-            
+
+        private void txtTotalAmount_TextChanged(object sender, EventArgs e)
+        {
+            // Convert and validate the input values
+            int quantity = Convert.ToInt32(txtQty.Text);
+            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
+
+            // Calculate the total amount
+            double amount = quantity * unitPrice;
+
+            // Display the computed amount in the Amount field
+            txtTotalAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
+
+        }
     }
 }

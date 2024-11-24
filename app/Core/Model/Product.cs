@@ -1,5 +1,4 @@
 ﻿
-using System;
 
 namespace app.core.model
 {
@@ -14,13 +13,5 @@ namespace app.core.model
         public ProductCategory CategID { get; set; }
 
         public Types TypeID { get; set; }
-
-        public int Quantity { get; set; }
-
-        public double UnitPrice { get; set; }
-
-        public double Amount { get; set; }
-
-
     }
 }

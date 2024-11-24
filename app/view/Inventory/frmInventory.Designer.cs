@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInventory));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,23 +45,28 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnReports = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvInventory = new System.Windows.Forms.DataGridView();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateReceived = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
@@ -98,8 +107,8 @@
             // Column4
             // 
             this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column4.HeaderText = "Birthday";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -127,6 +136,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnReports);
             this.panel2.Controls.Add(this.btnInventory);
             this.panel2.Controls.Add(this.btnEdit);
             this.panel2.Controls.Add(this.btnRemove);
@@ -137,13 +147,28 @@
             this.panel2.Size = new System.Drawing.Size(1463, 60);
             this.panel2.TabIndex = 5;
             // 
+            // btnReports
+            // 
+            this.btnReports.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReports.BackColor = System.Drawing.Color.White;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReports.Image = global::app.Properties.Resources.medical_record_24px;
+            this.btnReports.Location = new System.Drawing.Point(1327, 17);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(126, 31);
+            this.btnReports.TabIndex = 13;
+            this.btnReports.Text = "&Generate";
+            this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReports.UseVisualStyleBackColor = false;
+            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
+            // 
             // btnInventory
             // 
             this.btnInventory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInventory.BackColor = System.Drawing.Color.White;
             this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnInventory.Location = new System.Drawing.Point(1027, 17);
+            this.btnInventory.Location = new System.Drawing.Point(895, 17);
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Size = new System.Drawing.Size(202, 31);
             this.btnInventory.TabIndex = 12;
@@ -158,7 +183,7 @@
             this.btnEdit.BackColor = System.Drawing.Color.White;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEdit.Location = new System.Drawing.Point(1235, 17);
+            this.btnEdit.Location = new System.Drawing.Point(1103, 17);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(102, 31);
             this.btnEdit.TabIndex = 11;
@@ -173,7 +198,7 @@
             this.btnRemove.BackColor = System.Drawing.Color.White;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemove.Location = new System.Drawing.Point(1343, 17);
+            this.btnRemove.Location = new System.Drawing.Point(1211, 17);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(110, 31);
             this.btnRemove.TabIndex = 10;
@@ -186,7 +211,7 @@
             // 
             this.txtSearch.Location = new System.Drawing.Point(110, 16);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(332, 28);
+            this.txtSearch.Size = new System.Drawing.Size(185, 28);
             this.txtSearch.TabIndex = 2;
             // 
             // btnSearch
@@ -215,9 +240,11 @@
             this.Column3,
             this.Column10,
             this.Column11,
-            this.Column12,
-            this.Column13,
-            this.Column14,
+            this.Qty,
+            this.unitPrice,
+            this.total,
+            this.dateReceived,
+            this.expDate,
             this.Column9});
             this.dgvInventory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvInventory.Location = new System.Drawing.Point(0, 137);
@@ -228,6 +255,24 @@
             this.dgvInventory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInventory.Size = new System.Drawing.Size(1463, 629);
             this.dgvInventory.TabIndex = 6;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Id
             // 
@@ -240,17 +285,22 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "stocksNum";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle12.Format = "N0";
-            dataGridViewCellStyle12.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle12;
-            this.Column2.HeaderText = "Stock Number";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column2.FillWeight = 70F;
+            this.Column2.HeaderText = "Batch No.";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             // 
             // Column1
             // 
             this.Column1.DataPropertyName = "brandDesc";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column1.FillWeight = 80F;
             this.Column1.HeaderText = "Brand";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -258,13 +308,14 @@
             // Column3
             // 
             this.Column3.DataPropertyName = "stockDescription";
+            this.Column3.FillWeight = 150F;
             this.Column3.HeaderText = "Description";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
             // Column10
             // 
-            this.Column10.DataPropertyName = "prodDesc";
+            this.Column10.DataPropertyName = "typeDescription";
             this.Column10.HeaderText = "Product";
             this.Column10.MinimumWidth = 6;
             this.Column10.Name = "Column10";
@@ -272,43 +323,69 @@
             // Column11
             // 
             this.Column11.DataPropertyName = "categoryDescription";
+            this.Column11.FillWeight = 80F;
             this.Column11.HeaderText = "Category";
             this.Column11.MinimumWidth = 6;
             this.Column11.Name = "Column11";
             // 
-            // Column12
+            // Qty
             // 
-            this.Column12.DataPropertyName = "qty";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle13.Format = "N0";
-            dataGridViewCellStyle13.NullValue = null;
-            this.Column12.DefaultCellStyle = dataGridViewCellStyle13;
-            this.Column12.HeaderText = "Quantity";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
+            this.Qty.DataPropertyName = "qty";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Qty.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Qty.FillWeight = 55F;
+            this.Qty.HeaderText = "Quantity";
+            this.Qty.MinimumWidth = 6;
+            this.Qty.Name = "Qty";
             // 
-            // Column13
+            // unitPrice
             // 
-            this.Column13.DataPropertyName = "dateReceived";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle14.Format = "D";
-            dataGridViewCellStyle14.NullValue = null;
-            this.Column13.DefaultCellStyle = dataGridViewCellStyle14;
-            this.Column13.HeaderText = "Date Received";
-            this.Column13.MinimumWidth = 6;
-            this.Column13.Name = "Column13";
+            this.unitPrice.DataPropertyName = "unitPrice";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.unitPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            this.unitPrice.FillWeight = 80F;
+            this.unitPrice.HeaderText = "Unit Price";
+            this.unitPrice.MinimumWidth = 6;
+            this.unitPrice.Name = "unitPrice";
             // 
-            // Column14
+            // total
             // 
-            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column14.DataPropertyName = "expDate";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle15.Format = "D";
-            dataGridViewCellStyle15.NullValue = null;
-            this.Column14.DefaultCellStyle = dataGridViewCellStyle15;
-            this.Column14.HeaderText = "Expiration Date";
-            this.Column14.MinimumWidth = 6;
-            this.Column14.Name = "Column14";
+            this.total.DataPropertyName = "totalAmount";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.total.DefaultCellStyle = dataGridViewCellStyle6;
+            this.total.FillWeight = 80F;
+            this.total.HeaderText = "Total Amount";
+            this.total.MinimumWidth = 6;
+            this.total.Name = "total";
+            // 
+            // dateReceived
+            // 
+            this.dateReceived.DataPropertyName = "dateReceived";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle7.Format = "d";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dateReceived.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dateReceived.HeaderText = "Date Received";
+            this.dateReceived.MinimumWidth = 6;
+            this.dateReceived.Name = "dateReceived";
+            // 
+            // expDate
+            // 
+            this.expDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.expDate.DataPropertyName = "expDate";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle8.Format = "d";
+            dataGridViewCellStyle8.NullValue = null;
+            this.expDate.DefaultCellStyle = dataGridViewCellStyle8;
+            this.expDate.HeaderText = "Expiration Date";
+            this.expDate.MinimumWidth = 6;
+            this.expDate.Name = "expDate";
             // 
             // Column9
             // 
@@ -356,16 +433,21 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         public System.Windows.Forms.DataGridView dgvInventory;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button btnReports;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateReceived;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

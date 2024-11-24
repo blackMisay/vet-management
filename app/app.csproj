@@ -160,6 +160,18 @@
     <Compile Include="view\Client\frmClientPatientModal.Designer.cs">
       <DependentUpon>frmClientPatientModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Client\frmNewBreed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Client\frmNewBreed.Designer.cs">
+      <DependentUpon>frmNewBreed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Client\frmNewPetColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Client\frmNewPetColor.Designer.cs">
+      <DependentUpon>frmNewPetColor.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +207,24 @@
     </Compile>
     <Compile Include="view\Maintenance\frmMaintenanceModal.Designer.cs">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductBrand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductBrand.Designer.cs">
+      <DependentUpon>frmNewProductBrand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductCategory.Designer.cs">
+      <DependentUpon>frmNewProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Product\frmNewProductType.Designer.cs">
+      <DependentUpon>frmNewProductType.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Product\frmProductModal.cs">
       <SubType>Form</SubType>
@@ -255,6 +285,12 @@
     <EmbeddedResource Include="view\Client\frmClientPatientModal.resx">
       <DependentUpon>frmClientPatientModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Client\frmNewBreed.resx">
+      <DependentUpon>frmNewBreed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Client\frmNewPetColor.resx">
+      <DependentUpon>frmNewPetColor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +309,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Maintenance\frmMaintenanceModal.resx">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Product\frmNewProductBrand.resx">
+      <DependentUpon>frmNewProductBrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Product\frmNewProductCategory.resx">
+      <DependentUpon>frmNewProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Product\frmNewProductType.resx">
+      <DependentUpon>frmNewProductType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Product\frmProductModal.resx">
       <DependentUpon>frmProductModal.cs</DependentUpon>
@@ -315,6 +360,9 @@
     <Content Include="data\vcms.sql" />
     <None Include="Resources\immunity_24px.png" />
     <None Include="Resources\immunity_16px.png" />
+    <None Include="Resources\sahagun.png" />
+    <None Include="Resources\logo1-removebg-preview.png" />
+    <None Include="Resources\logo1-removebg-preview %283%29.ico" />
     <None Include="Resources\project-management.png" />
   </ItemGroup>
   <ItemGroup>
