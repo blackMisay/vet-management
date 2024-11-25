@@ -160,6 +160,41 @@ namespace app.Core.Repository
             return null;
         }
 
+        public Pet GetPetCompleteDetails(int Id)
+        {
+            string query = "SELECT * FROM vwpatient WHERE petId=@Id;";
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+            {
+                { "@Id", Id.ToString() }
+            };
 
+            UpgradeFile upgrade = new UpgradeFile();
+            DataTable dt = upgrade.Load(query, parameters);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                return new Pet()
+                {
+                    Id = Id,
+                    Client = new Client() { Id = Convert.ToInt32(row["clientId"]) },
+                    Name = row["petname"].ToString(),
+                    BirthDate = Convert.ToString(row["bday"]),
+                    Age = Convert.ToString(row["age"]),
+                    Size = row["size"].ToString(),
+                    Weight = row["weight"].ToString(),
+                    ColourPattern = new ColourPattern() { Description = row["colorName"].ToString() },
+                    Specie = new Species() { Description = row["speciesName"].ToString() },
+                    Gender = new Gender() { Description = row["sexname"].ToString() },
+                    Breed = new Breed() { Description = row["breedDesc"].ToString() },
+                };
+            }
+            return null;
+        }
+
+        public void GetAllPetsByOwner(DataGridView dgv, string ownerId)
+        {
+            UpgradeFile upgrade = new UpgradeFile();
+            dgv.DataSource = upgrade.Load("SELECT petId,petname FROM vwpet WHERE clientId=@owner;", new Dictionary<string, string> { { "@owner", ownerId } });
+        }
     }
 }

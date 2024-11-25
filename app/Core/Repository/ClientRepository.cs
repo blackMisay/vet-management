@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using Core;
+using System.Windows.Forms;
 
 namespace app.Core.Repository
 {
@@ -219,6 +220,20 @@ namespace app.Core.Repository
 
             // If no rows were returned, return null
             return null;
+        }
+
+        public void LoadClientsNameAsList(DataGridView dgv, string search)
+        {
+            UpgradeFile ug = new UpgradeFile();
+            if (string.IsNullOrEmpty(search) || string.IsNullOrWhiteSpace(search))
+            {
+                dgv.DataSource = ug.Load("SELECT id,`name` FROM vw_client_search;");
+            }
+            else
+            {
+                dgv.DataSource = ug.Load("SELECT id,`name` FROM vw_client_search WHERE firstname LIKE @search OR middlename LIKE @search OR lastname LIKE @search;", new Dictionary<string, string> { { "@search", search } });
+            }
+
         }
      }
 }
