@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -55,8 +55,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1044, 72);
+            this.panel1.Size = new System.Drawing.Size(1740, 78);
             this.panel1.TabIndex = 4;
             // 
             // label1
@@ -64,9 +65,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(9, 23);
+            this.label1.Location = new System.Drawing.Point(14, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 26);
+            this.label1.Size = new System.Drawing.Size(196, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "Consultations";
             // 
@@ -78,9 +80,10 @@
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 72);
+            this.panel2.Location = new System.Drawing.Point(0, 78);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1044, 60);
+            this.panel2.Size = new System.Drawing.Size(1740, 98);
             this.panel2.TabIndex = 5;
             // 
             // btnNewConsultation
@@ -89,9 +92,10 @@
             this.btnNewConsultation.BackColor = System.Drawing.Color.White;
             this.btnNewConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewConsultation.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnNewConsultation.Location = new System.Drawing.Point(675, 17);
+            this.btnNewConsultation.Location = new System.Drawing.Point(1297, 26);
+            this.btnNewConsultation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnNewConsultation.Name = "btnNewConsultation";
-            this.btnNewConsultation.Size = new System.Drawing.Size(137, 31);
+            this.btnNewConsultation.Size = new System.Drawing.Size(196, 49);
             this.btnNewConsultation.TabIndex = 12;
             this.btnNewConsultation.Text = "&New Consultation";
             this.btnNewConsultation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -104,9 +108,10 @@
             this.btnEditConsultation.BackColor = System.Drawing.Color.White;
             this.btnEditConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditConsultation.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEditConsultation.Location = new System.Drawing.Point(818, 17);
+            this.btnEditConsultation.Location = new System.Drawing.Point(1503, 26);
+            this.btnEditConsultation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnEditConsultation.Name = "btnEditConsultation";
-            this.btnEditConsultation.Size = new System.Drawing.Size(102, 31);
+            this.btnEditConsultation.Size = new System.Drawing.Size(105, 49);
             this.btnEditConsultation.TabIndex = 11;
             this.btnEditConsultation.Text = "&Update";
             this.btnEditConsultation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -119,9 +124,10 @@
             this.btnRemoveConsultation.BackColor = System.Drawing.Color.White;
             this.btnRemoveConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveConsultation.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemoveConsultation.Location = new System.Drawing.Point(926, 17);
+            this.btnRemoveConsultation.Location = new System.Drawing.Point(1618, 26);
+            this.btnRemoveConsultation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnRemoveConsultation.Name = "btnRemoveConsultation";
-            this.btnRemoveConsultation.Size = new System.Drawing.Size(110, 31);
+            this.btnRemoveConsultation.Size = new System.Drawing.Size(108, 49);
             this.btnRemoveConsultation.TabIndex = 10;
             this.btnRemoveConsultation.Text = "&Remove";
             this.btnRemoveConsultation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -130,18 +136,20 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(115, 23);
+            this.txtSearch.Location = new System.Drawing.Point(129, 38);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(332, 20);
+            this.txtSearch.Size = new System.Drawing.Size(295, 28);
             this.txtSearch.TabIndex = 2;
             // 
             // btnSearch
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearch.Location = new System.Drawing.Point(14, 17);
+            this.btnSearch.Location = new System.Drawing.Point(24, 27);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(95, 31);
+            this.btnSearch.Size = new System.Drawing.Size(95, 49);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -163,21 +171,22 @@
             this.Column3});
             this.dgvConsultation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvConsultation.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvConsultation.Location = new System.Drawing.Point(0, 132);
+            this.dgvConsultation.Location = new System.Drawing.Point(0, 176);
+            this.dgvConsultation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dgvConsultation.Name = "dgvConsultation";
             this.dgvConsultation.RowHeadersVisible = false;
             this.dgvConsultation.RowHeadersWidth = 51;
             this.dgvConsultation.RowTemplate.Height = 24;
             this.dgvConsultation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvConsultation.Size = new System.Drawing.Size(1044, 540);
+            this.dgvConsultation.Size = new System.Drawing.Size(1740, 879);
             this.dgvConsultation.TabIndex = 6;
             this.dgvConsultation.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultation_CellClick);
             // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.NullValue = null;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle4;
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
@@ -194,34 +203,40 @@
             // 
             this.Column1.DataPropertyName = "petname";
             this.Column1.HeaderText = "Patient Name";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             // 
             // Column4
             // 
             this.Column4.DataPropertyName = "complaint";
             this.Column4.HeaderText = "Complaint";
+            this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             // 
             // Column5
             // 
             this.Column5.DataPropertyName = "findings";
             this.Column5.HeaderText = "Findings";
+            this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
             // 
             // Column3
             // 
             this.Column3.DataPropertyName = "ConsultDate";
             this.Column3.HeaderText = "Consult Date";
+            this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
             // frmConsultation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 672);
+            this.ClientSize = new System.Drawing.Size(1740, 1055);
             this.Controls.Add(this.dgvConsultation);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "frmConsultation";
             this.Text = "frmConsultation";
             this.Load += new System.EventHandler(this.frmConsultation_Load);
