@@ -103,6 +103,7 @@
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Services.cs" />
     <Compile Include="core\model\Species.cs" />
+    <Compile Include="core\model\Transaction.cs" />
     <Compile Include="core\model\User.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
     <Compile Include="core\repository\InventoryRepository.cs" />
@@ -181,6 +182,12 @@
     <Compile Include="view\Maintenance\frmMaintenanceModal.Designer.cs">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Transaction\frmItemLookUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Transaction\frmItemLookUp.Designer.cs">
+      <DependentUpon>frmItemLookUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Product\frmProductModal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +211,18 @@
     </Compile>
     <Compile Include="view\Services\frmServicesModal.Designer.cs">
       <DependentUpon>frmServicesModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Transaction\frmQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Transaction\frmQuantity.Designer.cs">
+      <DependentUpon>frmQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Transaction\frmServiceLookUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Transaction\frmServiceLookUp.Designer.cs">
+      <DependentUpon>frmServiceLookUp.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Transaction\frmTransaction.cs">
       <SubType>Form</SubType>
@@ -246,6 +265,9 @@
     <EmbeddedResource Include="view\Maintenance\frmMaintenanceModal.resx">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Transaction\frmItemLookUp.resx">
+      <DependentUpon>frmItemLookUp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Product\frmProductModal.resx">
       <DependentUpon>frmProductModal.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +279,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Services\frmServicesModal.resx">
       <DependentUpon>frmServicesModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Transaction\frmQuantity.resx">
+      <DependentUpon>frmQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Transaction\frmServiceLookUp.resx">
+      <DependentUpon>frmServiceLookUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Transaction\frmTransaction.resx">
       <DependentUpon>frmTransaction.cs</DependentUpon>
@@ -282,6 +310,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\vcms.sql" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\procurement.png" />
+    <None Include="Resources\plus-minus.png" />
+    <None Include="Resources\deleted.png" />
+    <None Include="Resources\reject.png" />
+    <None Include="Resources\coins.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\project-management.png" />
+    <None Include="Resources\remove %283%29.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
