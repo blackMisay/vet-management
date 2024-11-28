@@ -3,6 +3,7 @@ using System.Data;
 using System.Collections.Generic;
 using MySqlConnector;
 using System.Security.Cryptography;
+using System.Windows.Forms;
 
 
 namespace Core
@@ -152,13 +153,14 @@ namespace Core
             catch (MySqlException ex)
             {
                 // Log or handle specific MySql errors here
-                throw new Exception($"Error executing query: {ex.Message}");
+                MessageBox.Show($"Error executing query: {ex.Message}");
             }
             catch (Exception e)
             {
-                throw new Exception($"Unexpected error: {e.Message}");
+                MessageBox.Show($"Unexpected error: {e.Message}");
             }
             finally { this.connection.Close(); }
+            return null;
         }
 
         public List<KeyValuePair<int, string>> Populate(string query)
@@ -219,5 +221,8 @@ namespace Core
             }
             finally { this.connection.Close(); }
         }
+        }
+
+
+
     }
-}

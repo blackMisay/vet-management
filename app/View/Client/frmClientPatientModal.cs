@@ -218,6 +218,29 @@ namespace app.view.Client
             return (years, months, days);
         }
 
+        private void btnAddColor_Click(object sender, EventArgs e)
+        {
+            frmNewPetColor frm = new frmNewPetColor();
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the combobox to include the new color
+                    PopulateCmb();
+                }
+            }   
+        }
 
+        private void btnBreed_Click(object sender, EventArgs e)
+        {
+            frmNewBreed frm = new frmNewBreed();
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the combobox to include the new color
+                    PopulateCmb();
+                }
+            }
+
+        }
     }
 }
