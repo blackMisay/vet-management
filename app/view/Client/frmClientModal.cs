@@ -3,7 +3,7 @@ using app.Core.Repository;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Core;
+using app.Core;
 
 namespace app.view.Client
 {
