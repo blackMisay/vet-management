@@ -279,6 +279,7 @@
             this.btnEditPatient.Text = "&Update";
             this.btnEditPatient.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditPatient.UseVisualStyleBackColor = false;
+            this.btnEditPatient.Click += new System.EventHandler(this.btnEditPatient_Click);
             // 
             // btnRemovePatient
             // 

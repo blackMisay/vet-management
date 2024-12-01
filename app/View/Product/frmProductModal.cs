@@ -1,6 +1,5 @@
 ﻿using app.core.model;
 using app.core.repository;
-using app.Core.Repository;
 using System;
 using Core;
 using System.Windows.Forms;
@@ -32,13 +31,17 @@ namespace app.view.Product
         private void PopulateCmb()
         {
             UpgradeFile upgradeFile = new UpgradeFile();
-            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandID, brandDesc from brands");
+            cmbBrand.DataSource = upgradeFile.Populate("SELECT brandId, brandDesc from product_brands");
             cmbBrand.ValueMember = "KEY"; // Correct column name from query
             cmbBrand.DisplayMember = "VALUE"; // Correct column name from query
 
-            cmbCateg.DataSource = upgradeFile.Populate("SELECT categID, categDesc from prod_categ");
+            cmbCateg.DataSource = upgradeFile.Populate("SELECT id, description from product_category");
             cmbCateg.ValueMember = "KEY"; // Correct column name from query
             cmbCateg.DisplayMember = "VALUE"; // Correct column name from query
+
+            cmbTypes.DataSource = upgradeFile.Populate("SELECT id, description from product_types");
+            cmbTypes.ValueMember = "KEY"; // Correct column name from query
+            cmbTypes.DisplayMember = "VALUE"; // Correct column name from query
         }
 
         private void LoadProductDetails()
@@ -56,9 +59,7 @@ namespace app.view.Product
             cmbBrand.SelectedValue = product.BrandID.Id;
             txtDesc.Text = product.Description;
             cmbCateg.SelectedValue = product.CategID.Id;
-            txtQty.Text = product.Quantity.ToString();
-            txtUnitPrice.Text = product.UnitPrice.ToString();
-            txtAmount.Text = product.Amount.ToString();
+            cmbTypes.SelectedValue = product.TypeID.Id;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -66,8 +67,8 @@ namespace app.view.Product
             SaveProduct();
             UpgradeFile upgradeFile = new UpgradeFile();
             frmProducts frmProducts = new frmProducts();        
-            frmProducts.dgvProducts.DataSource = upgradeFile.Load("Select * FROM vwproduct WHERE isDeleted=0");
-            this.Dispose();
+            frmProducts.dgvProducts.RefreshEdit();
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -84,26 +85,48 @@ namespace app.view.Product
 
         public void SaveProduct()
         {
-            // Convert and validate the input values
-            int quantity = Convert.ToInt32(txtQty.Text);
-            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
 
-            // Calculate the total amount
-            double amount = quantity * unitPrice;
+          
 
-            // Display the computed amount in the Amount field
-            txtAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
+            // Check if the required fields are empty or invalid
+            if (string.IsNullOrEmpty(txtDesc.Text))
+            {
+                MessageBox.Show("Please enter a description before saving.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDesc.Focus(); // Set focus on the description textbox
+                return; // Prevent saving if description is empty
+            }
 
-            // Create the product object with the calculated amount
+            if (cmbBrand.SelectedValue == null || Convert.ToInt32(cmbBrand.SelectedValue) == 0)
+            {
+                MessageBox.Show("Please select a brand.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbBrand.Focus(); // Set focus on the brand combo box
+                return; // Prevent saving if no brand is selected
+            }
+
+            if (cmbCateg.SelectedValue == null || Convert.ToInt32(cmbCateg.SelectedValue) == 0)
+            {
+                MessageBox.Show("Please select a category.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbCateg.Focus(); // Set focus on the category combo box
+                return; // Prevent saving if no category is selected
+            }
+
+            if (cmbTypes.SelectedValue == null || Convert.ToInt32(cmbTypes.SelectedValue) == 0)
+            {
+                MessageBox.Show("Please select a type.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbTypes.Focus(); // Set focus on the type combo box
+                return; // Prevent saving if no type is selected
+            }
+
+            // Create the product object if all validations pass
+
             app.core.model.Product product = new app.core.model.Product
             {
                 Id = this.Id,
                 BrandID = new Brand() { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
                 Description = txtDesc.Text,
                 CategID = new ProductCategory() { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
-                Quantity = quantity,
-                UnitPrice = unitPrice,
-                Amount = amount // Use the calculated amount
+                TypeID = new core.Types() { Id = Convert.ToInt32(cmbTypes.SelectedValue)},
+
             };
 
             // Save the product
@@ -111,24 +134,37 @@ namespace app.view.Product
             if (productRepository.SaveProduct(product))
             {
                 MessageBox.Show("Save successfully");
+                this.Dispose();
             }
             else
             {
                 MessageBox.Show("Unable to save record");
             }
+
         }
 
-        private void txtAmount_TextChanged(object sender, EventArgs e)
+        private void btnAddType_Click(object sender, EventArgs e)
         {
-            // Convert and validate the input values
-            int quantity = Convert.ToInt32(txtQty.Text);
-            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
+            frmNewProductType type = new frmNewProductType();
+            type.ShowDialog();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
 
-            // Calculate the total amount
-            double amount = quantity * unitPrice;
+        private void btnAddCateg_Click(object sender, EventArgs e)
+        {
+            frmNewProductCategory category = new frmNewProductCategory();
+            category.ShowDialog();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
 
-            // Display the computed amount in the Amount field
-            txtAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
+        private void btnAddBrand_Click(object sender, EventArgs e)
+        {
+            frmNewProductBrand brand = new frmNewProductBrand();
+            brand.ShowDialog();
+            this.DialogResult= DialogResult.OK;
+            this.Close();
         }
     }
 }

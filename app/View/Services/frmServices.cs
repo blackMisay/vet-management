@@ -1,14 +1,5 @@
 ﻿using app.core.Repository;
-using app.Core.Repository;
-using app.view.Client;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core;
 
@@ -24,26 +15,35 @@ namespace app.view.Services
 
         private void frmServices_Load(object sender, EventArgs e)
         {
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE isDeleted=0;");
-
+            RefreshDataGridView();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //TODO: Populate the datagridview based on the filtered name provided in Search box.
-            if (!string.IsNullOrEmpty(txtSearch.Text) || !string.IsNullOrWhiteSpace(txtSearch.Text))
+            if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))
             {
+
                 ServiceRepository repository = new ServiceRepository();
-                dgvServices.DataSource = repository.SearchService(txtSearch.Text);
+                dgvServices.DataSource = repository.SearchService(txtSearch.Text.Trim());
                 this.dgvServices.Columns["Id"].Visible = false;
             }
             else
             {
                 MessageBox.Show("The search field is empty, please provide.", "Empty field", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefreshDataGridView();
             }
+
         }
+            private void RefreshDataGridView()
+            {
+                UpgradeFile upgradeFile = new UpgradeFile();
+
+                dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE status = 'Active'");
+               
+            }
+
+
+        
 
         private void btnEditService_Click(object sender, EventArgs e)
         {
@@ -65,7 +65,7 @@ namespace app.view.Services
                     dgvServices.RefreshEdit();
                 }
                 UpgradeFile upgradeFile = new UpgradeFile();
-                dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE isDeleted =0");
+                dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE status ='Active' ");
             }
         }
 

@@ -93,10 +93,12 @@
     <Compile Include="core\model\Breed.cs" />
     <Compile Include="core\model\City.cs" />
     <Compile Include="core\model\ColourPattern.cs" />
+    <Compile Include="core\model\Diagnosis.cs" />
     <Compile Include="core\model\Gender.cs" />
     <Compile Include="core\model\Client.cs" />
     <Compile Include="core\model\Inventory.cs" />
     <Compile Include="core\model\Pet.cs" />
+    <Compile Include="core\model\PetVaccination.cs" />
     <Compile Include="core\model\Product.cs" />
     <Compile Include="core\model\ProductCategory.cs" />
     <Compile Include="core\model\Province.cs" />
@@ -105,14 +107,18 @@
     <Compile Include="core\model\Species.cs" />
     <Compile Include="core\model\User.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
+    <Compile Include="core\repository\ConsultationRepository.cs" />
     <Compile Include="core\repository\InventoryRepository.cs" />
+    <Compile Include="core\repository\MaintenanceRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
+    <Compile Include="core\repository\PetVaccinationRepository.cs" />
     <Compile Include="core\repository\ProductRepository.cs" />
     <Compile Include="core\repository\SecureHash.cs" />
     <Compile Include="core\repository\ServiceRepository.cs" />
     <Compile Include="core\repository\UserAuthentication.cs" />
     <Compile Include="core\repository\UserRepository.cs" />
     <Compile Include="core\repository\UpgradeFile.cs" />
+    <Compile Include="core\model\Types.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -156,11 +162,47 @@
     <Compile Include="view\Client\frmClientPatientModal.Designer.cs">
       <DependentUpon>frmClientPatientModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Client\frmNewBreed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Client\frmNewBreed.Designer.cs">
+      <DependentUpon>frmNewBreed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Client\frmNewPetColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Client\frmNewPetColor.Designer.cs">
+      <DependentUpon>frmNewPetColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Consultation\frmConsultation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Consultation\frmConsultation.Designer.cs">
+      <DependentUpon>frmConsultation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Consultation\frmConsultationModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Consultation\frmConsultationModal.Designer.cs">
+      <DependentUpon>frmConsultationModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="view\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Immunization\frmImmunization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Immunization\frmImmunization.Designer.cs">
+      <DependentUpon>frmImmunization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Immunization\frmImmunizationModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Immunization\frmImmunizationModal.Designer.cs">
+      <DependentUpon>frmImmunizationModal.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Inventory\frmInventory.cs">
       <SubType>Form</SubType>
@@ -180,29 +222,23 @@
     <Compile Include="view\Maintenance\frmMaintenanceModal.Designer.cs">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\Patient\AddClient.cs">
+    <Compile Include="view\Product\frmNewProductBrand.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\Patient\AddClient.Designer.cs">
-      <DependentUpon>AddClient.cs</DependentUpon>
+    <Compile Include="view\Product\frmNewProductBrand.Designer.cs">
+      <DependentUpon>frmNewProductBrand.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\Patient\AddPet.cs">
+    <Compile Include="view\Product\frmNewProductCategory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\Patient\AddPet.Designer.cs">
-      <DependentUpon>AddPet.cs</DependentUpon>
+    <Compile Include="view\Product\frmNewProductCategory.Designer.cs">
+      <DependentUpon>frmNewProductCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\Patient\PatientList.cs">
+    <Compile Include="view\Product\frmNewProductType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\Patient\PatientList.Designer.cs">
-      <DependentUpon>PatientList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\Patient\PetDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Patient\PetDetails.Designer.cs">
-      <DependentUpon>PetDetails.cs</DependentUpon>
+    <Compile Include="view\Product\frmNewProductType.Designer.cs">
+      <DependentUpon>frmNewProductType.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Product\frmProductModal.cs">
       <SubType>Form</SubType>
@@ -234,6 +270,12 @@
     <Compile Include="view\Transaction\frmTransaction.Designer.cs">
       <DependentUpon>frmTransaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Utilities\frmClientPatientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Utilities\frmClientPatientForm.Designer.cs">
+      <DependentUpon>frmClientPatientForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -257,11 +299,30 @@
     <EmbeddedResource Include="view\Client\frmClientPatientModal.resx">
       <DependentUpon>frmClientPatientModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Client\frmNewBreed.resx">
+      <DependentUpon>frmNewBreed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Client\frmNewPetColor.resx">
+      <DependentUpon>frmNewPetColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Consultation\frmConsultation.resx">
+      <DependentUpon>frmConsultation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Consultation\frmConsultationModal.resx">
+      <DependentUpon>frmConsultationModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Immunization\frmImmunization.resx">
+      <DependentUpon>frmImmunization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Immunization\frmImmunizationModal.resx">
+      <DependentUpon>frmImmunizationModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Inventory\frmInventory.resx">
       <DependentUpon>frmInventory.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Inventory\frmInventoryModal.resx">
       <DependentUpon>frmInventoryModal.cs</DependentUpon>
@@ -269,16 +330,15 @@
     <EmbeddedResource Include="view\Maintenance\frmMaintenanceModal.resx">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\Patient\AddClient.resx">
-      <DependentUpon>AddClient.cs</DependentUpon>
+    <EmbeddedResource Include="view\Product\frmNewProductBrand.resx">
+      <DependentUpon>frmNewProductBrand.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\Patient\AddPet.resx">
-      <DependentUpon>AddPet.cs</DependentUpon>
+    <EmbeddedResource Include="view\Product\frmNewProductCategory.resx">
+      <DependentUpon>frmNewProductCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\Patient\PatientList.resx">
-      <DependentUpon>PatientList.cs</DependentUpon>
+    <EmbeddedResource Include="view\Product\frmNewProductType.resx">
+      <DependentUpon>frmNewProductType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\Patient\PetDetails.resx" />
     <EmbeddedResource Include="view\Product\frmProductModal.resx">
       <DependentUpon>frmProductModal.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Transaction\frmTransaction.resx">
       <DependentUpon>frmTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Utilities\frmClientPatientForm.resx">
+      <DependentUpon>frmClientPatientForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -314,142 +377,13 @@
     <Folder Include="view\Reports\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\animal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\appointment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\calendar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\customer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-add-button-35.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-add-button-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-animal-45.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-client-30.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-client-32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-client-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-client-60.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-client-70.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-client-96.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-close-35.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-close-45.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-dog-and-cat-35.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-dog-and-cat-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-dog-and-cat-45.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-edit-button-30.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-edit-button-35.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-edit-button-45.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-edit-button-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\icons8-save-button-35.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\item.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\maintenance.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\medical.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\patient.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\patient1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\product.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\records.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\report.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\sales.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\staff.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\transaction.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="data\vcms.sql" />
-    <None Include="Resources\Sahagub %282%29.png" />
-    <None Include="Resources\icons8-login-16.png" />
-    <None Include="Resources\logo2.png" />
-    <None Include="Resources\logo1.png" />
+    <None Include="Resources\immunity_24px.png" />
+    <None Include="Resources\immunity_16px.png" />
+    <None Include="Resources\sahagun.png" />
     <None Include="Resources\logo1-removebg-preview.png" />
-    <None Include="Resources\services_24px.png" />
-    <None Include="Resources\icons8-data-backup-16.png" />
-    <None Include="Resources\icons8-data-backup-32.png" />
-    <None Include="Resources\icons8-restore-32.png" />
-    <None Include="Resources\icons8-restore-16.png" />
-    <None Include="Resources\icons8-add-image-32.png" />
-    <None Include="Resources\icons8-add-image-16.png" />
-    <None Include="Resources\icons8-cancel-16 %281%29.png" />
-    <None Include="Resources\icons8-create-16.png" />
-    <None Include="Resources\logo1-removebg-preview %281%29.ico" />
-    <None Include="Resources\icons8-edit-16.png" />
-    <None Include="Resources\icons8-update-16.png" />
-    <None Include="Resources\icons8-remove-16.png" />
-    <None Include="Resources\icons8-google-web-search-16.png" />
-    <None Include="Resources\logo1-removebg-preview.ico" />
-    <None Include="Resources\icons8-dog-and-cat-16.png" />
-    <None Include="Resources\logout_24px.png" />
-    <None Include="Resources\main-menu_24px.png" />
-    <None Include="Resources\medsettings_24px.png" />
-    <None Include="Resources\healthdashboard_24px.png" />
-    <None Include="Resources\prescription_24px.png" />
-    <None Include="Resources\medinventory_24px.png" />
-    <None Include="Resources\items_24px.png" />
-    <None Include="Resources\medical-record_24px.png" />
-    <None Include="Resources\diagnosis_24px.png" />
-    <None Include="Resources\medical_24px.png" />
-    <None Include="Resources\owner_24px.png" />
-    <None Include="Resources\client_16px.png" />
+    <None Include="Resources\logo1-removebg-preview %283%29.ico" />
+    <None Include="Resources\project-management.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

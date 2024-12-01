@@ -3,7 +3,6 @@ using app.Core.Repository;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using app.Core;
 using Core;
 
 namespace app.view.Client

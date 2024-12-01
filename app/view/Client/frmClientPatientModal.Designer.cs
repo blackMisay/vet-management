@@ -29,10 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbSize = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.cboSpecies = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -42,12 +47,9 @@
             this.txtAge = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnBreed = new System.Windows.Forms.Button();
-            this.btnAddSpecie = new System.Windows.Forms.Button();
             this.btnAddColor = new System.Windows.Forms.Button();
             this.cboBreed = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cboSpecies = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.cboColor = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cboGender = new System.Windows.Forms.ComboBox();
@@ -56,17 +58,14 @@
             this.dtpBday = new System.Windows.Forms.DateTimePicker();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.picturePet = new System.Windows.Forms.PictureBox();
+            this.pbPetPhoto = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAddPhoto = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.cmbSize = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picturePet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPetPhoto)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,8 +80,16 @@
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.cboColor);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cboSpecies);
+            this.groupBox1.Controls.Add(this.btnAddColor);
             this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.cboBreed);
             this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.btnBreed);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
@@ -90,15 +97,6 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtAge);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.btnBreed);
-            this.groupBox1.Controls.Add(this.btnAddSpecie);
-            this.groupBox1.Controls.Add(this.btnAddColor);
-            this.groupBox1.Controls.Add(this.cboBreed);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.cboSpecies);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cboColor);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cboGender);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -110,17 +108,51 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(618, 433);
+            this.groupBox1.Size = new System.Drawing.Size(618, 445);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General Information";
+            // 
+            // cmbSize
+            // 
+            this.cmbSize.FormattingEnabled = true;
+            this.cmbSize.Items.AddRange(new object[] {
+            "Small",
+            "Medium ",
+            "Large"});
+            this.cmbSize.Location = new System.Drawing.Point(200, 231);
+            this.cmbSize.Name = "cmbSize";
+            this.cmbSize.Size = new System.Drawing.Size(357, 35);
+            this.cmbSize.TabIndex = 5;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(46, 247);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(45, 23);
+            this.label24.TabIndex = 46;
+            this.label24.Text = "Size";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(564, 408);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(22, 27);
+            this.label10.TabIndex = 45;
+            this.label10.Text = "*";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Red;
-            this.label21.Location = new System.Drawing.Point(564, 358);
+            this.label21.Location = new System.Drawing.Point(564, 371);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(22, 27);
             this.label21.TabIndex = 44;
@@ -148,6 +180,17 @@
             this.label19.TabIndex = 42;
             this.label19.Text = "*";
             // 
+            // cboSpecies
+            // 
+            this.cboSpecies.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSpecies.FormattingEnabled = true;
+            this.cboSpecies.Location = new System.Drawing.Point(200, 318);
+            this.cboSpecies.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cboSpecies.Name = "cboSpecies";
+            this.cboSpecies.Size = new System.Drawing.Size(357, 35);
+            this.cboSpecies.TabIndex = 8;
+            this.cboSpecies.SelectionChangeCommitted += new System.EventHandler(this.cboSpecies_SelectionChangeCommitted);
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -158,6 +201,17 @@
             this.label18.Size = new System.Drawing.Size(22, 27);
             this.label18.TabIndex = 41;
             this.label18.Text = "*";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(46, 325);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 23);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Specie";
             // 
             // label17
             // 
@@ -247,43 +301,33 @@
             // 
             this.btnBreed.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnBreed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBreed.Location = new System.Drawing.Point(516, 391);
+            this.btnBreed.Location = new System.Drawing.Point(516, 360);
             this.btnBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBreed.Name = "btnBreed";
             this.btnBreed.Size = new System.Drawing.Size(41, 31);
             this.btnBreed.TabIndex = 18;
             this.btnBreed.Text = "+";
             this.btnBreed.UseVisualStyleBackColor = true;
-            // 
-            // btnAddSpecie
-            // 
-            this.btnAddSpecie.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAddSpecie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddSpecie.Location = new System.Drawing.Point(516, 354);
-            this.btnAddSpecie.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnAddSpecie.Name = "btnAddSpecie";
-            this.btnAddSpecie.Size = new System.Drawing.Size(41, 31);
-            this.btnAddSpecie.TabIndex = 18;
-            this.btnAddSpecie.Text = "+";
-            this.btnAddSpecie.UseVisualStyleBackColor = true;
+            this.btnBreed.Click += new System.EventHandler(this.btnBreed_Click);
             // 
             // btnAddColor
             // 
             this.btnAddColor.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAddColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddColor.Location = new System.Drawing.Point(516, 317);
+            this.btnAddColor.Location = new System.Drawing.Point(516, 397);
             this.btnAddColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddColor.Name = "btnAddColor";
             this.btnAddColor.Size = new System.Drawing.Size(41, 31);
             this.btnAddColor.TabIndex = 17;
             this.btnAddColor.Text = "+";
             this.btnAddColor.UseVisualStyleBackColor = true;
+            this.btnAddColor.Click += new System.EventHandler(this.btnAddColor_Click);
             // 
             // cboBreed
             // 
             this.cboBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBreed.FormattingEnabled = true;
-            this.cboBreed.Location = new System.Drawing.Point(200, 387);
+            this.cboBreed.Location = new System.Drawing.Point(200, 359);
             this.cboBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboBreed.Name = "cboBreed";
             this.cboBreed.Size = new System.Drawing.Size(308, 35);
@@ -293,40 +337,18 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(46, 397);
+            this.label4.Location = new System.Drawing.Point(46, 363);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 23);
             this.label4.TabIndex = 25;
             this.label4.Text = "Breed";
             // 
-            // cboSpecies
-            // 
-            this.cboSpecies.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSpecies.FormattingEnabled = true;
-            this.cboSpecies.Location = new System.Drawing.Point(200, 350);
-            this.cboSpecies.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cboSpecies.Name = "cboSpecies";
-            this.cboSpecies.Size = new System.Drawing.Size(308, 35);
-            this.cboSpecies.TabIndex = 8;
-            this.cboSpecies.SelectionChangeCommitted += new System.EventHandler(this.cboSpecies_SelectionChangeCommitted);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(46, 357);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 23);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Specie";
-            // 
             // cboColor
             // 
             this.cboColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboColor.FormattingEnabled = true;
-            this.cboColor.Location = new System.Drawing.Point(200, 313);
+            this.cboColor.Location = new System.Drawing.Point(200, 396);
             this.cboColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboColor.Name = "cboColor";
             this.cboColor.Size = new System.Drawing.Size(308, 35);
@@ -336,7 +358,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(46, 320);
+            this.label1.Location = new System.Drawing.Point(46, 403);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 23);
@@ -405,15 +427,17 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Name";
             // 
-            // picturePet
+            // pbPetPhoto
             // 
-            this.picturePet.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picturePet.Location = new System.Drawing.Point(56, 146);
-            this.picturePet.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.picturePet.Name = "picturePet";
-            this.picturePet.Size = new System.Drawing.Size(347, 260);
-            this.picturePet.TabIndex = 12;
-            this.picturePet.TabStop = false;
+            this.pbPetPhoto.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pbPetPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbPetPhoto.Location = new System.Drawing.Point(85, 146);
+            this.pbPetPhoto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pbPetPhoto.Name = "pbPetPhoto";
+            this.pbPetPhoto.Size = new System.Drawing.Size(280, 280);
+            this.pbPetPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPetPhoto.TabIndex = 12;
+            this.pbPetPhoto.TabStop = false;
             // 
             // panel1
             // 
@@ -476,7 +500,7 @@
             this.btnAddPhoto.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAddPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPhoto.Image = global::app.Properties.Resources.icons8_add_image_32;
-            this.btnAddPhoto.Location = new System.Drawing.Point(128, 422);
+            this.btnAddPhoto.Location = new System.Drawing.Point(140, 443);
             this.btnAddPhoto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddPhoto.Name = "btnAddPhoto";
             this.btnAddPhoto.Size = new System.Drawing.Size(178, 51);
@@ -485,40 +509,6 @@
             this.btnAddPhoto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddPhoto.UseVisualStyleBackColor = false;
             this.btnAddPhoto.Click += new System.EventHandler(this.btnAddPhoto_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(564, 397);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(22, 27);
-            this.label10.TabIndex = 45;
-            this.label10.Text = "*";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(46, 247);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 23);
-            this.label24.TabIndex = 46;
-            this.label24.Text = "Size";
-            // 
-            // cmbSize
-            // 
-            this.cmbSize.FormattingEnabled = true;
-            this.cmbSize.Items.AddRange(new object[] {
-            "Small",
-            "Medium ",
-            "Large"});
-            this.cmbSize.Location = new System.Drawing.Point(200, 231);
-            this.cmbSize.Name = "cmbSize";
-            this.cmbSize.Size = new System.Drawing.Size(357, 35);
-            this.cmbSize.TabIndex = 5;
             // 
             // frmClientPatientModal
             // 
@@ -531,7 +521,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.picturePet);
+            this.Controls.Add(this.pbPetPhoto);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmClientPatientModal";
@@ -540,7 +530,7 @@
             this.Load += new System.EventHandler(this.frmClientPatientModal_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picturePet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPetPhoto)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -562,14 +552,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboBreed;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox picturePet;
+        private System.Windows.Forms.PictureBox pbPetPhoto;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAddPhoto;
         private System.Windows.Forms.Button btnAddColor;
-        private System.Windows.Forms.Button btnAddSpecie;
         private System.Windows.Forms.Button btnBreed;
         private System.Windows.Forms.TextBox txtWeight;
         private System.Windows.Forms.Label label9;

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Drawing;
 using app.view.Administration;
+using app.view.Immunization;
 
 namespace app.view
 {
@@ -15,10 +16,12 @@ namespace app.view
         private static readonly string DASHBOARD = "&Dashboard";
         private static readonly string MEDICAL = "&View Medical";
         private static readonly string CLIENT = "&Client";
-        private static readonly string DIAGNOSIS = "Diag&nosis";
+        private static readonly string CONSULTATION = "Con&sultation";
+        private static readonly string VACCINATION = "&Vaccination";
         private static readonly string ITEM = "I&tems";
         private static readonly string INVENTORY = "&Inventory";
         private static readonly string SERVICES = "Se&rvices";
+        private static readonly string ACCOUNT = "&Accounts";
         private static readonly string SETTING = "Se&ttings";
         private static readonly string LOGOUT = "Lo&gout";
 
@@ -29,12 +32,9 @@ namespace app.view
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirm to logout","You're logging out, are you sure do you want to proceed?",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("You're logging out, are you sure do you want to proceed?", "Confirm to logout",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                // TODO: Implement activity logging for user
                 this.Dispose();
-                frmLogin frm = new frmLogin();
-                frm.ShowDialog();
             }
         }
 
@@ -75,10 +75,12 @@ namespace app.view
                 btnDashboard.Text = DASHBOARD;
                 btnMedicalRecords.Text = MEDICAL;
                 btnClient.Text = CLIENT;
-                btnDiagnosis.Text = DIAGNOSIS;
+                btnConsultation.Text = CONSULTATION;
+                btnVaccination.Text = VACCINATION;
                 btnItem.Text = ITEM;
                 btnInventory.Text = INVENTORY;
                 btnServices.Text = SERVICES;
+                btnAccount.Text = ACCOUNT;
                 btnSettings.Text = SETTING;
                 btnLogout.Text = LOGOUT;
             }
@@ -107,8 +109,9 @@ namespace app.view
             this.openFormModule(new Transaction.frmTransaction());
         }
 
-        private void btnDiagnosis_Click(object sender, EventArgs e)
+        private void btnConsultation_Click(object sender, EventArgs e)
         {
+            this.openFormModule(new Consultation.frmConsultation());
         }
 
         private void btnItem_Click(object sender, EventArgs e)
@@ -129,6 +132,16 @@ namespace app.view
         private void btnServices_Click(object sender, EventArgs e)
         {
             this.openFormModule(new Services.frmServices());
+        }
+
+        private void btnAccount_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new frmAdmin());
+        }
+
+        private void btnVaccination_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new frmImmunization());
         }
     }
 }

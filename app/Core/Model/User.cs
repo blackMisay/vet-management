@@ -21,5 +21,12 @@ namespace app.core.model
 
         public string MiddleName { get; set; }
 
+        public string Status { get; set; }
+
+        public string UniqueKey()
+        {
+            return string.Concat(UserType,Username,FirstName,MiddleName,LastName,MobilePhone,Email,Status);
+        }
+
     }
 }

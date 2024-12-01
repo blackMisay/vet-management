@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace app.core.model
 {
@@ -16,12 +12,6 @@ namespace app.core.model
 
         public ProductCategory CategID { get; set; }
 
-        public int Quantity { get; set; }
-
-        public double UnitPrice { get; set; }
-
-        public double Amount { get; set; }
-
-
+        public Types TypeID { get; set; }
     }
 }

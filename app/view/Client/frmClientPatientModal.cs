@@ -2,9 +2,9 @@ using Color = app.Core.Model.ColourPattern;
 using System.Windows.Forms;
 using app.Core.Repository;
 using System;
-using app.core.repository;
 using app.Core.Model;
 using Core;
+using System.IO;
 
 namespace app.view.Client
 {
@@ -18,7 +18,6 @@ namespace app.view.Client
         {
             InitializeComponent();
             this.Id = petId;
-            this.Load += frmClientPatientModal_Load;
             btnSave.Text = "Update";
             label5.Text = "Update Pet Information";
 
@@ -30,13 +29,11 @@ namespace app.view.Client
             InitializeComponent();
             this.Id = petId;
             this.clientId = clientId;
-            this.Load += frmClientPatientModal_Load;
         }
 
         public frmClientPatientModal()
         {
             InitializeComponent();
-            this.Load += frmClientPatientModal_Load;
             dtpBday.ValueChanged += new EventHandler(dtpBday_ValueChanged);
         }
 
@@ -71,9 +68,23 @@ namespace app.view.Client
                 this.Dispose();
             }
 
+        private string imagePath = "";
         private void btnAddPhoto_Click(object sender, EventArgs e)
         {
-            //TODO: Add photo
+            // enhance/VCMS49
+            if (MessageBox.Show("Do you want to add/change photo?", "Confirm to add/change photo", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.InitialDirectory = "Downloads";
+                openFileDialog.Filter = "Jpg Files (*.jpg)|*.jpg|Jpeg Files (*.jpeg)|*.jpeg|Png Files (*.png)|*.png|All Files(*.*)|*.*";
+                openFileDialog.Multiselect = false;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.imagePath = openFileDialog.FileName;
+                    pbPetPhoto.ImageLocation = imagePath;
+                }
+            }
         }
 
         private void frmClientPatientModal_Load(object sender, EventArgs e)
@@ -109,7 +120,7 @@ namespace app.view.Client
             pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
             pet.Breed = new Breed() { Id = Convert.ToInt32(cboBreed.SelectedValue) };
             pet.ColourPattern = new Color() { Id = Convert.ToInt32(cboColor.SelectedValue) };
-            //pet.Image = Path.GetFileName(); //TODO: image directory
+            pet.Image = this.imagePath; //enhance/VCMS49
 
             PetRepository petRepository = new PetRepository();
             if (petRepository.Save(pet))
@@ -125,7 +136,6 @@ namespace app.view.Client
         {
             txtName.Text = pet.Name;
             //dtpBday.Value = pet.BirthDate;
-            MessageBox.Show(txtName.Text);
             txtAge.Text = pet.Age.ToString();
             cmbSize.Text = pet.Size.ToString();
             txtWeight.Text = pet.Weight;
@@ -133,9 +143,10 @@ namespace app.view.Client
             cboColor.SelectedValue = pet.ColourPattern.Id;
             cboSpecies.SelectedValue = pet.Specie.Id;
             cboBreed.SelectedValue = pet.Breed.Id;
-            //picturePet.Image = pet.Image;
+            pbPetPhoto.ImageLocation = pet.Image; //enhance/VCMS49
             
         }
+
         private void LoadPetDetails()
         {
             PetRepository petRepository = new PetRepository();
@@ -145,6 +156,7 @@ namespace app.view.Client
                 LoadDetails(pet);
             } 
         }
+
         private void PopulateCmb()
         {
             UpgradeFile upgradeFile = new UpgradeFile();
@@ -206,6 +218,29 @@ namespace app.view.Client
             return (years, months, days);
         }
 
+        private void btnAddColor_Click(object sender, EventArgs e)
+        {
+            frmNewPetColor frm = new frmNewPetColor();
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the combobox to include the new color
+                    PopulateCmb();
+                }
+            }   
+        }
 
+        private void btnBreed_Click(object sender, EventArgs e)
+        {
+            frmNewBreed frm = new frmNewBreed();
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the combobox to include the new color
+                    PopulateCmb();
+                }
+            }
+
+        }
     }
 }
