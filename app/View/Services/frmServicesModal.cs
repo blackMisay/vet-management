@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using app.core.Repository;
+using Core;
 
 namespace app.view.Services
 {
@@ -24,10 +25,13 @@ namespace app.view.Services
 
             private void FrmServicesModal_Load(object sender, EventArgs e)
             {
-                // Any additional initialization code can go here.
+                UpgradeFile upgradeFile = new UpgradeFile();
+                cmbType.DataSource = upgradeFile.Populate("SELECT id, description FROM product_category WHERE id IN (4, 5, 6, 7, 8)");
+                cmbType.ValueMember = "KEY";
+                cmbType.DisplayMember = "VALUE";
             }
 
-            public void SaveService()
+        public void SaveService()
             {
             try
             {
@@ -66,10 +70,18 @@ namespace app.view.Services
                     return;
                 }
 
+                // Ensure the combobox has a valid selected value
+                if (cmbType.SelectedValue == null || !int.TryParse(cmbType.SelectedValue.ToString(), out int serviceType))
+                {
+                    MessageBox.Show("Please select a valid service type.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Create a service instance with values
                 var service = new app.core.model.Services
                 {
                     Id = this.Id, // Assuming this.Id will be 0 for new services
+                    ServiceType = new core.Types { Id = Convert.ToInt32(cmbType.SelectedValue)}, // Convert SelectedValue to int
                     ServiceCode = txtCode.Text.Trim(), // Trim to remove extra spaces
                     Description = txtDesc.Text.Trim(),
                     Price = price.ToString("F2") // Format price to 2 decimal places
@@ -141,7 +153,15 @@ namespace app.view.Services
 
             private void LoadDetails(app.core.model.Services service)
             {
-                txtCode.Text = service.ServiceCode;
+            if (service.ServiceType != null && service.ServiceType.Id > 0)
+            {
+                cmbType.SelectedValue = service.ServiceType.Id; // Ensure this matches cmbType.ValueMember
+            }
+            else
+            {
+                cmbType.SelectedValue = -1; // Set to a default or invalid value if necessary
+            }
+            txtCode.Text = service.ServiceCode;
                 txtDesc.Text = service.Description;
                 txtPrice.Text = service.Price.ToString(); // Ensure correct conversion
             }

@@ -41,6 +41,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvServices = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -155,6 +156,7 @@
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
+            this.Column5,
             this.Column2,
             this.Column1,
             this.Column3,
@@ -179,6 +181,14 @@
             this.Id.Name = "Id";
             this.Id.Visible = false;
             // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "serviceType";
+            this.Column5.FillWeight = 200F;
+            this.Column5.HeaderText = "Service Type";
+            this.Column5.MinimumWidth = 100;
+            this.Column5.Name = "Column5";
+            // 
             // Column2
             // 
             this.Column2.DataPropertyName = "serviceCode";
@@ -188,7 +198,7 @@
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "description";
+            this.Column1.DataPropertyName = "serviceDescription";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column1.FillWeight = 805.8823F;
@@ -253,6 +263,7 @@
         private System.Windows.Forms.Button btnSaveService;
         public System.Windows.Forms.DataGridView dgvServices;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

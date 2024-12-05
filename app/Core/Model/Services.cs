@@ -8,6 +8,7 @@ namespace app.core.model
         {
             get; set;
         }
+        public Types ServiceType { get; set; }
         public string ServiceCode { get; set; }
         public string Description
         {

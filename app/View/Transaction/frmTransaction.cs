@@ -10,9 +10,5 @@ namespace app.view.Transaction
             InitializeComponent();
         }
 
-        private void btnEditPatient_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

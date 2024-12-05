@@ -38,7 +38,7 @@ namespace app.view.Services
             {
                 UpgradeFile upgradeFile = new UpgradeFile();
 
-                dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE status = 'Active'");
+                dgvServices.DataSource = upgradeFile.Load("SELECT * FROM vwservices WHERE status = 'Active'");
                
             }
 
@@ -65,7 +65,7 @@ namespace app.view.Services
                     dgvServices.RefreshEdit();
                 }
                 UpgradeFile upgradeFile = new UpgradeFile();
-                dgvServices.DataSource = upgradeFile.Load("SELECT * FROM services WHERE status ='Active' ");
+                dgvServices.DataSource = upgradeFile.Load("SELECT * FROM vwservices WHERE status ='Active' ");
             }
         }
 

@@ -68,11 +68,11 @@ namespace app.core.repository
 
         public void LoadListOfVaccine(ComboBox cmb)
         {
-            string sql = "SELECT prodId,prodDesc FROM product WHERE categId=5;";
+            string sql = "SELECT id,serviceCode FROM services WHERE serviceType=5;";
             UpgradeFile ug = new UpgradeFile();
             cmb.DataSource = ug.Load(sql);
-            cmb.ValueMember = "prodId";
-            cmb.DisplayMember = "prodDesc";
+            cmb.ValueMember = "id";
+            cmb.DisplayMember = "serviceCode";
         }
 
         public PetVaccination GetVaccinationDetails(string vaccinationId)
