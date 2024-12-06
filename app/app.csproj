@@ -264,6 +264,18 @@
     <Compile Include="view\Services\frmServicesModal.Designer.cs">
       <DependentUpon>frmServicesModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Transaction\frmItemLookUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Transaction\frmItemLookUp.Designer.cs">
+      <DependentUpon>frmItemLookUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Transaction\frmServiceLookUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Transaction\frmServiceLookUp.Designer.cs">
+      <DependentUpon>frmServiceLookUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Transaction\frmTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -351,6 +363,12 @@
     <EmbeddedResource Include="view\Services\frmServicesModal.resx">
       <DependentUpon>frmServicesModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Transaction\frmItemLookUp.resx">
+      <DependentUpon>frmItemLookUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Transaction\frmServiceLookUp.resx">
+      <DependentUpon>frmServiceLookUp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Transaction\frmTransaction.resx">
       <DependentUpon>frmTransaction.cs</DependentUpon>
     </EmbeddedResource>
@@ -378,6 +396,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\vcms.sql" />
+    <None Include="Resources\procurement.png" />
+    <None Include="Resources\remove %283%29.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\plus-minus.png" />
+    <None Include="Resources\deleted.png" />
+    <None Include="Resources\reject.png" />
+    <None Include="Resources\coins.png" />
+    <None Include="Resources\close.png" />
     <None Include="Resources\immunity_24px.png" />
     <None Include="Resources\immunity_16px.png" />
     <None Include="Resources\sahagun.png" />
