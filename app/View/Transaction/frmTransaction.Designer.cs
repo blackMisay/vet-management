@@ -430,6 +430,7 @@
             this.btnQuantity.Text = "&Quantity";
             this.btnQuantity.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnQuantity.UseVisualStyleBackColor = true;
+            this.btnQuantity.Click += new System.EventHandler(this.btnQuantity_Click);
             // 
             // btnPayment
             // 

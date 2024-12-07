@@ -92,6 +92,7 @@
     <Compile Include="core\model\Brand.cs" />
     <Compile Include="core\model\Breed.cs" />
     <Compile Include="core\model\City.cs" />
+    <Compile Include="core\model\Transaction.cs" />
     <Compile Include="core\model\ColourPattern.cs" />
     <Compile Include="core\model\Diagnosis.cs" />
     <Compile Include="core\model\Gender.cs" />
@@ -270,6 +271,12 @@
     <Compile Include="view\Transaction\frmItemLookUp.Designer.cs">
       <DependentUpon>frmItemLookUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Transaction\frmItemQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Transaction\frmItemQuantity.Designer.cs">
+      <DependentUpon>frmItemQuantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Transaction\frmServiceLookUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,6 +373,9 @@
     <EmbeddedResource Include="view\Transaction\frmItemLookUp.resx">
       <DependentUpon>frmItemLookUp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Transaction\frmItemQuantity.resx">
+      <DependentUpon>frmItemQuantity.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Transaction\frmServiceLookUp.resx">
       <DependentUpon>frmServiceLookUp.cs</DependentUpon>
     </EmbeddedResource>
@@ -396,6 +406,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\vcms.sql" />
+    <None Include="Resources\remove %283%291.png" />
     <None Include="Resources\procurement.png" />
     <None Include="Resources\remove %283%29.png" />
     <None Include="Resources\plus.png" />

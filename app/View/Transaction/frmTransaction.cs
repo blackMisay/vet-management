@@ -45,5 +45,11 @@ namespace app.view.Transaction
             frmServiceLookUp frm = new frmServiceLookUp();
             frm.ShowDialog();
         }
+
+        private void btnQuantity_Click(object sender, EventArgs e)
+        {
+            frmItemQuantity frm = new frmItemQuantity();
+            frm.ShowDialog();
+        }
     }
 }
