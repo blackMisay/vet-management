@@ -19,6 +19,14 @@ namespace app.view.Transaction
             selectedItem = new Dictionary<int, app.core.model.Inventory>();
         }
 
+        public frmItemLookUp(Dictionary<int, app.core.model.Inventory> items)
+        {
+            InitializeComponent();
+
+            selectedItem = new Dictionary<int, app.core.model.Inventory>();
+            selectedItem = items;
+        }
+
         public Dictionary<int, app.core.model.Inventory> GetAllItems()
         {
             return selectedItem;

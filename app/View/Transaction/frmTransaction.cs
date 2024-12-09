@@ -38,25 +38,40 @@ namespace app.view.Transaction
         
         private void btnItemLookUp_Click(object sender, EventArgs e)
         {
-            using (frmItemLookUp frm = new frmItemLookUp())
+            if (dgvTransaction.RowCount > 0)
             {
-                frm.ShowDialog();
+                using (frmItemLookUp frm = new frmItemLookUp(items))
+                {
+                    frm.ShowDialog();
 
-                LoadItemList(frm.GetAllItems());
+                    items = frm.GetAllItems();
+                    dgvTransaction.Rows.Clear();
+                    LoadItemList(items);
 
-                frm.Dispose();
+                    frm.Dispose();
+                }
+            }
+            else
+            {
+                using (frmItemLookUp frm = new frmItemLookUp())
+                {
+                    frm.ShowDialog();
+
+                    items = frm.GetAllItems();
+                    LoadItemList(items);
+
+                    frm.Dispose();
+                }
             }
         }
 
+        Dictionary<int, app.core.model.Inventory> items = new Dictionary<int, core.model.Inventory>();
         void LoadItemList(Dictionary<int, app.core.model.Inventory> items)
         {
             app.core.model.Inventory item = new app.core.model.Inventory();
             foreach (KeyValuePair<int, app.core.model.Inventory> kvp in items)
             {
                 item = kvp.Value;
-
-                MessageBox.Show(item.Id + " " + item.Description + " " + item.Qty + " " + item.TotalAmount);
-
                 dgvTransaction.Rows.Add(item.Id,"ClientId",item.Description,item.Qty,item.TotalAmount);
             }
         }
