@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 using app.Core.Model;
+using System.Collections.Generic;
 
 
 namespace app.view.Transaction
@@ -34,10 +35,30 @@ namespace app.view.Transaction
             cpf.Dispose();
         }
 
+        
         private void btnItemLookUp_Click(object sender, EventArgs e)
         {
-            frmItemLookUp frm = new frmItemLookUp();
-            frm.ShowDialog();
+            using (frmItemLookUp frm = new frmItemLookUp())
+            {
+                frm.ShowDialog();
+
+                LoadItemList(frm.GetAllItems());
+
+                frm.Dispose();
+            }
+        }
+
+        void LoadItemList(Dictionary<int, app.core.model.Inventory> items)
+        {
+            app.core.model.Inventory item = new app.core.model.Inventory();
+            foreach (KeyValuePair<int, app.core.model.Inventory> kvp in items)
+            {
+                item = kvp.Value;
+
+                MessageBox.Show(item.Id + " " + item.Description + " " + item.Qty + " " + item.TotalAmount);
+
+                dgvTransaction.Rows.Add(item.Id,"ClientId",item.Description,item.Qty,item.TotalAmount);
+            }
         }
 
         private void btnServiceLookUp_Click(object sender, EventArgs e)

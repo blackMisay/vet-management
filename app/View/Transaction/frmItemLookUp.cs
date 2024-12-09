@@ -1,22 +1,27 @@
-﻿using Core;
+﻿using app.core.model;
+using Core;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Common;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace app.view.Transaction
 {
     public partial class frmItemLookUp : Form
     {
+
+        private Dictionary<int, app.core.model.Inventory> selectedItem;
+
         public frmItemLookUp()
         {
             InitializeComponent();
+
+            selectedItem = new Dictionary<int, app.core.model.Inventory>();
+        }
+
+        public Dictionary<int, app.core.model.Inventory> GetAllItems()
+        {
+            return selectedItem;
         }
 
         private void frmItemLookUp_Load(object sender, EventArgs e)
@@ -30,30 +35,116 @@ namespace app.view.Transaction
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmTransaction frm = new frmTransaction();
-            // Check if a row is selected in dgvProducts
-            if (dgvProducts.SelectedRows.Count > 0)
+            if (string.IsNullOrEmpty(txtQuantity.Text) || string.IsNullOrWhiteSpace(txtQuantity.Text))
             {
-                // Get the selected row
-                DataGridViewRow selectedRow = dgvProducts.SelectedRows[0];
+                MessageBox.Show("Please input a quantity for the selected item","Invalid Quantity");
+                return;
+            }
 
-                // Create a new row for dgvTransaction
-                DataGridViewRow newRow = new DataGridViewRow();
-                newRow.CreateCells(frm.dgvTransaction);
+            app.core.model.Inventory item = new app.core.model.Inventory()
+            {
+                Id = selectedId,
+                Description = selectedItemDescription,
+                Qty = Convert.ToInt32(txtQuantity.Text),
+                TotalAmount = Convert.ToInt32(txtTotal.Text),
+                
+            };
 
-                // Copy values from the selected row in dgvProducts to the new row
-                for (int i = 0; i < selectedRow.Cells.Count; i++)
-                {
-                    newRow.Cells[i].Value = selectedRow.Cells[i].Value;
-                }
 
-                // Add the new row to dgvTransaction
-                frm.dgvTransaction.Rows.Add(newRow);
+            if (selectedItem.Count > 0 && selectedItem.ContainsKey(selectedId))
+            {
+                selectedItem[selectedId] = item;
             }
             else
             {
-                // Display a message if no row is selected
-                MessageBox.Show("Please select a product from the list.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                selectedItem.Add(selectedId, item);
+            }
+
+            MessageBox.Show("Item " + this.selectedItemDescription + " has been added successfully","Added successfully",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            btnRemove.Enabled = false;
+            ResetItemField();
+        }
+
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only numeric input, backspace, and control characters
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        int selectedId = 0;
+        double selectedItemPrice;
+        string selectedItemDescription;
+        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProducts.RowCount > 0)
+            {
+                int selectedRowIndex = dgvProducts.SelectedCells[0].RowIndex;
+
+                this.selectedId = Convert.ToInt32(dgvProducts.Rows[selectedRowIndex].Cells[0].Value?.ToString());
+                this.selectedItemPrice = Convert.ToDouble(dgvProducts.Rows[selectedRowIndex].Cells[7].Value?.ToString());
+                this.selectedItemDescription = dgvProducts.Rows[selectedRowIndex].Cells[4].Value?.ToString() + " - " + dgvProducts.Rows[selectedRowIndex].Cells[5].Value?.ToString();
+
+                if (selectedItem.Count > 0)
+                {
+                    if (selectedItem.ContainsKey(selectedId))
+                    {
+                        btnRemove.Enabled = true;
+
+                        if (MessageBox.Show("Do you want to update already selected item?", "Confirm to update", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            app.core.model.Inventory item = new app.core.model.Inventory();
+                            item = selectedItem[selectedId];
+
+                            txtQuantity.Text = item.Qty.ToString();
+                            txtTotal.Text = item.TotalAmount.ToString();
+                        }
+                    }
+                    else
+                    {
+                        btnRemove.Enabled = false;
+                    }
+                }
+                else
+                {
+                    ResetItemField();
+                }
+            }
+        }
+
+        private void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtQuantity.Text) || string.IsNullOrWhiteSpace(txtQuantity.Text))
+            {
+                ResetItemField();
+                return;
+            }
+
+            txtTotal.Text = (selectedItemPrice * Convert.ToDouble(txtQuantity.Text)).ToString();
+        }
+
+        private void ResetItemField()
+        {
+            txtQuantity.Text = string.Empty;
+            txtTotal.Text = string.Empty;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (selectedItem.Count > 0 && selectedItem.ContainsKey(selectedId))
+            {
+                if (MessageBox.Show("Do you want to remove the selected item?", "Confirm to remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    selectedItem.Remove(selectedId);
+                    btnRemove.Enabled = false;
+                }
             }
         }
     }

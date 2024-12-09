@@ -4,7 +4,7 @@ using System;
 
 namespace app.core.model
 {
-    internal class Inventory
+    public class Inventory
     {
        public int Id { get; set; }
 
