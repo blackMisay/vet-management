@@ -69,7 +69,7 @@
             this.lblDesc.AutoSize = true;
             this.lblDesc.Location = new System.Drawing.Point(8, 49);
             this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(0, 19);
+            this.lblDesc.Size = new System.Drawing.Size(0, 21);
             this.lblDesc.TabIndex = 1;
             // 
             // label1
@@ -78,7 +78,7 @@
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(8, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 19);
+            this.label1.Size = new System.Drawing.Size(141, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Item Look-Up";
             // 
@@ -218,6 +218,7 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Image = global::app.Properties.Resources.icons8_edit_16;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.Location = new System.Drawing.Point(897, 588);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(133, 41);
@@ -245,7 +246,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(854, 502);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 19);
+            this.label2.Size = new System.Drawing.Size(82, 21);
             this.label2.TabIndex = 4;
             this.label2.Text = "Quantity";
             // 
@@ -253,7 +254,7 @@
             // 
             this.txtQuantity.Location = new System.Drawing.Point(930, 499);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(100, 24);
+            this.txtQuantity.Size = new System.Drawing.Size(100, 28);
             this.txtQuantity.TabIndex = 5;
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
@@ -263,7 +264,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(854, 538);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 19);
+            this.label3.Size = new System.Drawing.Size(62, 21);
             this.label3.TabIndex = 6;
             this.label3.Text = "TOTAL";
             // 
@@ -272,7 +273,7 @@
             this.txtTotal.Enabled = false;
             this.txtTotal.Location = new System.Drawing.Point(930, 535);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(100, 24);
+            this.txtTotal.Size = new System.Drawing.Size(100, 28);
             this.txtTotal.TabIndex = 7;
             // 
             // btnRemove
@@ -291,7 +292,7 @@
             // 
             // frmItemLookUp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1042, 641);

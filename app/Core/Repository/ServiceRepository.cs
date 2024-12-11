@@ -107,8 +107,9 @@ namespace app.core.Repository
                     ServiceCode = row["serviceCode"].ToString(),
                     ServiceType = new Types() { Id = Convert.ToInt32(row["serviceType"]) },
                     Description = row["description"].ToString(),
-                    Price = row["price"].ToString(),
-                };
+                     Price = Convert.ToDouble(row["price"]),
+
+                 };
             }
             return null;
         }

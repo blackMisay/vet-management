@@ -106,6 +106,9 @@
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Services.cs" />
     <Compile Include="core\model\Species.cs" />
+    <Compile Include="core\model\TransactionItem.cs" />
+    <Compile Include="core\model\TransactionPayment.cs" />
+    <Compile Include="core\model\TransactionService.cs" />
     <Compile Include="core\model\User.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
     <Compile Include="core\repository\ConsultationRepository.cs" />

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -39,6 +40,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.dgvTransaction = new System.Windows.Forms.DataGridView();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,17 +72,21 @@
             this.lblInvoice = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTransService = new System.Windows.Forms.DataGridView();
+            this.colIdService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInvoiceService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colClientService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colServiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colServiceDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colServicePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateService = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransService)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
@@ -104,7 +114,7 @@
             this.lblTotal.ForeColor = System.Drawing.Color.White;
             this.lblTotal.Location = new System.Drawing.Point(140, 266);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(80, 38);
+            this.lblTotal.Size = new System.Drawing.Size(97, 47);
             this.lblTotal.TabIndex = 26;
             this.lblTotal.Text = "0.00";
             // 
@@ -114,7 +124,7 @@
             this.label6.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(16, 232);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(124, 18);
+            this.label6.Size = new System.Drawing.Size(149, 22);
             this.label6.TabIndex = 25;
             this.label6.Text = "TOTAL AMOUNT:";
             // 
@@ -124,7 +134,7 @@
             this.label8.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(17, 165);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(81, 18);
+            this.label8.Size = new System.Drawing.Size(95, 22);
             this.label8.TabIndex = 24;
             this.label8.Text = "BALANCE:";
             // 
@@ -134,7 +144,7 @@
             this.lblBalance.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBalance.Location = new System.Drawing.Point(223, 189);
             this.lblBalance.Name = "lblBalance";
-            this.lblBalance.Size = new System.Drawing.Size(48, 23);
+            this.lblBalance.Size = new System.Drawing.Size(57, 27);
             this.lblBalance.TabIndex = 23;
             this.lblBalance.Text = "0.00";
             // 
@@ -144,7 +154,7 @@
             this.lblDeposit.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDeposit.Location = new System.Drawing.Point(223, 114);
             this.lblDeposit.Name = "lblDeposit";
-            this.lblDeposit.Size = new System.Drawing.Size(48, 23);
+            this.lblDeposit.Size = new System.Drawing.Size(57, 27);
             this.lblDeposit.TabIndex = 22;
             this.lblDeposit.Text = "0.00";
             // 
@@ -154,7 +164,7 @@
             this.label7.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(17, 86);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 18);
+            this.label7.Size = new System.Drawing.Size(84, 22);
             this.label7.TabIndex = 21;
             this.label7.Text = "DEPOSIT:";
             // 
@@ -164,7 +174,7 @@
             this.lblSubtotal.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtotal.Location = new System.Drawing.Point(223, 46);
             this.lblSubtotal.Name = "lblSubtotal";
-            this.lblSubtotal.Size = new System.Drawing.Size(48, 23);
+            this.lblSubtotal.Size = new System.Drawing.Size(57, 27);
             this.lblSubtotal.TabIndex = 20;
             this.lblSubtotal.Text = "0.00";
             // 
@@ -174,7 +184,7 @@
             this.label5.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(17, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 18);
+            this.label5.Size = new System.Drawing.Size(106, 22);
             this.label5.TabIndex = 19;
             this.label5.Text = "SUB-TOTAL:";
             // 
@@ -184,7 +194,7 @@
             this.lblDate.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.Location = new System.Drawing.Point(156, 8);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(0, 17);
+            this.lblDate.Size = new System.Drawing.Size(0, 19);
             this.lblDate.TabIndex = 7;
             // 
             // dgvTransaction
@@ -206,8 +216,40 @@
             this.dgvTransaction.RowHeadersWidth = 51;
             this.dgvTransaction.RowTemplate.Height = 24;
             this.dgvTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransaction.Size = new System.Drawing.Size(1069, 477);
+            this.dgvTransaction.Size = new System.Drawing.Size(1069, 245);
             this.dgvTransaction.TabIndex = 5;
+            // 
+            // colId
+            // 
+            this.colId.HeaderText = "Id";
+            this.colId.MinimumWidth = 6;
+            this.colId.Name = "colId";
+            this.colId.Visible = false;
+            // 
+            // colClientId
+            // 
+            this.colClientId.HeaderText = "ClientId";
+            this.colClientId.MinimumWidth = 6;
+            this.colClientId.Name = "colClientId";
+            this.colClientId.Visible = false;
+            // 
+            // colDescription
+            // 
+            this.colDescription.HeaderText = "Description";
+            this.colDescription.MinimumWidth = 6;
+            this.colDescription.Name = "colDescription";
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.HeaderText = "Quantity";
+            this.colQuantity.MinimumWidth = 6;
+            this.colQuantity.Name = "colQuantity";
+            // 
+            // colPrice
+            // 
+            this.colPrice.HeaderText = "Price";
+            this.colPrice.MinimumWidth = 6;
+            this.colPrice.Name = "colPrice";
             // 
             // panel2
             // 
@@ -240,7 +282,7 @@
             this.label1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 17);
+            this.label1.Size = new System.Drawing.Size(152, 19);
             this.label1.TabIndex = 10;
             this.label1.Text = "Client Information";
             // 
@@ -249,7 +291,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 117);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 19);
+            this.label4.Size = new System.Drawing.Size(94, 21);
             this.label4.TabIndex = 9;
             this.label4.Text = "Pet Name";
             // 
@@ -265,7 +307,7 @@
             // 
             this.txtName.Location = new System.Drawing.Point(112, 76);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(229, 24);
+            this.txtName.Size = new System.Drawing.Size(229, 28);
             this.txtName.TabIndex = 7;
             // 
             // label3
@@ -273,7 +315,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 83);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 19);
+            this.label3.Size = new System.Drawing.Size(61, 21);
             this.label3.TabIndex = 6;
             this.label3.Text = "Name";
             // 
@@ -310,7 +352,7 @@
             this.label9.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(8, 17);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(143, 17);
+            this.label9.Size = new System.Drawing.Size(172, 19);
             this.label9.TabIndex = 20;
             this.label9.Text = "Product Description:";
             // 
@@ -319,7 +361,7 @@
             this.lblDescription.AutoSize = true;
             this.lblDescription.Location = new System.Drawing.Point(124, 79);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(85, 19);
+            this.lblDescription.Size = new System.Drawing.Size(103, 21);
             this.lblDescription.TabIndex = 19;
             this.lblDescription.Text = "Description";
             // 
@@ -329,7 +371,7 @@
             this.lblProductPrice.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProductPrice.Location = new System.Drawing.Point(124, 108);
             this.lblProductPrice.Name = "lblProductPrice";
-            this.lblProductPrice.Size = new System.Drawing.Size(40, 19);
+            this.lblProductPrice.Size = new System.Drawing.Size(49, 23);
             this.lblProductPrice.TabIndex = 18;
             this.lblProductPrice.Text = "0.00";
             // 
@@ -338,7 +380,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(49, 110);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 19);
+            this.label13.Size = new System.Drawing.Size(60, 21);
             this.label13.TabIndex = 17;
             this.label13.Text = "Price :";
             // 
@@ -347,7 +389,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(8, 83);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 19);
+            this.label12.Size = new System.Drawing.Size(113, 21);
             this.label12.TabIndex = 16;
             this.label12.Text = "Description :";
             // 
@@ -356,7 +398,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(17, 48);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(78, 19);
+            this.label11.Size = new System.Drawing.Size(92, 21);
             this.label11.TabIndex = 15;
             this.label11.Text = "Quantity :";
             // 
@@ -366,7 +408,7 @@
             this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(124, 46);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(18, 19);
+            this.label10.Size = new System.Drawing.Size(21, 23);
             this.label10.TabIndex = 14;
             this.label10.Text = "0";
             // 
@@ -472,7 +514,7 @@
             this.lblInvoice.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblInvoice.Location = new System.Drawing.Point(31, 92);
             this.lblInvoice.Name = "lblInvoice";
-            this.lblInvoice.Size = new System.Drawing.Size(254, 32);
+            this.lblInvoice.Size = new System.Drawing.Size(305, 39);
             this.lblInvoice.TabIndex = 11;
             this.lblInvoice.Text = "0000000000000000";
             // 
@@ -482,7 +524,7 @@
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(16, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 17);
+            this.label2.Size = new System.Drawing.Size(115, 19);
             this.label2.TabIndex = 10;
             this.label2.Text = "Invoice No. :";
             // 
@@ -497,44 +539,89 @@
             this.panel1.Size = new System.Drawing.Size(372, 171);
             this.panel1.TabIndex = 15;
             // 
-            // colId
+            // dgvTransService
             // 
-            this.colId.HeaderText = "Id";
-            this.colId.MinimumWidth = 6;
-            this.colId.Name = "colId";
-            this.colId.Visible = false;
+            this.dgvTransService.AllowUserToAddRows = false;
+            this.dgvTransService.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTransService.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgvTransService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTransService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colIdService,
+            this.colInvoiceService,
+            this.colClientService,
+            this.colServiceId,
+            this.colServiceDesc,
+            this.colServicePrice,
+            this.colDateService});
+            this.dgvTransService.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvTransService.Location = new System.Drawing.Point(12, 440);
+            this.dgvTransService.Name = "dgvTransService";
+            this.dgvTransService.RowHeadersVisible = false;
+            this.dgvTransService.RowHeadersWidth = 51;
+            this.dgvTransService.RowTemplate.Height = 24;
+            this.dgvTransService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTransService.Size = new System.Drawing.Size(1069, 226);
+            this.dgvTransService.TabIndex = 16;
             // 
-            // colClientId
+            // colIdService
             // 
-            this.colClientId.HeaderText = "ClientId";
-            this.colClientId.MinimumWidth = 6;
-            this.colClientId.Name = "colClientId";
-            this.colClientId.Visible = false;
+            this.colIdService.HeaderText = "Id";
+            this.colIdService.MinimumWidth = 6;
+            this.colIdService.Name = "colIdService";
+            this.colIdService.Visible = false;
             // 
-            // colDescription
+            // colInvoiceService
             // 
-            this.colDescription.HeaderText = "Description";
-            this.colDescription.MinimumWidth = 6;
-            this.colDescription.Name = "colDescription";
+            this.colInvoiceService.HeaderText = "Invoice Number";
+            this.colInvoiceService.MinimumWidth = 6;
+            this.colInvoiceService.Name = "colInvoiceService";
+            this.colInvoiceService.Visible = false;
             // 
-            // colQuantity
+            // colClientService
             // 
-            this.colQuantity.HeaderText = "Quantity";
-            this.colQuantity.MinimumWidth = 6;
-            this.colQuantity.Name = "colQuantity";
+            this.colClientService.HeaderText = "Client";
+            this.colClientService.MinimumWidth = 6;
+            this.colClientService.Name = "colClientService";
+            this.colClientService.Visible = false;
             // 
-            // colPrice
+            // colServiceId
             // 
-            this.colPrice.HeaderText = "Price";
-            this.colPrice.MinimumWidth = 6;
-            this.colPrice.Name = "colPrice";
+            this.colServiceId.HeaderText = "ServiceId";
+            this.colServiceId.MinimumWidth = 6;
+            this.colServiceId.Name = "colServiceId";
+            this.colServiceId.Visible = false;
+            // 
+            // colServiceDesc
+            // 
+            this.colServiceDesc.HeaderText = "Service";
+            this.colServiceDesc.MinimumWidth = 6;
+            this.colServiceDesc.Name = "colServiceDesc";
+            // 
+            // colServicePrice
+            // 
+            this.colServicePrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colServicePrice.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colServicePrice.HeaderText = "Price";
+            this.colServicePrice.MinimumWidth = 6;
+            this.colServicePrice.Name = "colServicePrice";
+            // 
+            // colDateService
+            // 
+            this.colDateService.HeaderText = "Date";
+            this.colDateService.MinimumWidth = 6;
+            this.colDateService.Name = "colDateService";
+            this.colDateService.Visible = false;
             // 
             // frmTransaction
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1468, 765);
+            this.Controls.Add(this.dgvTransService);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnServiceLookUp);
             this.Controls.Add(this.btnVoidTrans);
@@ -561,6 +648,7 @@
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransService)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -609,5 +697,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
+        public System.Windows.Forms.DataGridView dgvTransService;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIdService;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colInvoiceService;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colClientService;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colServiceId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colServiceDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colServicePrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDateService;
     }
 }

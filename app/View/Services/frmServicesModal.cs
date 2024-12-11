@@ -84,7 +84,8 @@ namespace app.view.Services
                     ServiceType = new core.Types { Id = Convert.ToInt32(cmbType.SelectedValue)}, // Convert SelectedValue to int
                     ServiceCode = txtCode.Text.Trim(), // Trim to remove extra spaces
                     Description = txtDesc.Text.Trim(),
-                    Price = price.ToString("F2") // Format price to 2 decimal places
+                    Price = Convert.ToDouble(price),
+
                 };
 
                 // Use repository to check for duplicate service code

@@ -69,18 +69,62 @@ namespace app.view.Transaction
         void LoadItemList(Dictionary<int, app.core.model.Inventory> items)
         {
             app.core.model.Inventory item = new app.core.model.Inventory();
+            double subtotal = 0;
+
             foreach (KeyValuePair<int, app.core.model.Inventory> kvp in items)
             {
                 item = kvp.Value;
                 dgvTransaction.Rows.Add(item.Id,"ClientId",item.Description,item.Qty,item.TotalAmount);
-            }
-        }
 
+                subtotal += item.TotalAmount;
+            }
+            
+            lblSubtotal.Text = subtotal.ToString("C");
+        }
         private void btnServiceLookUp_Click(object sender, EventArgs e)
         {
-            frmServiceLookUp frm = new frmServiceLookUp();
-            frm.ShowDialog();
+            if (dgvTransService.RowCount > 0)
+            {
+                using (frmServiceLookUp frm = new frmServiceLookUp(service))
+                {
+                    frm.ShowDialog();
+
+                    service = frm.GetAllServices();
+                    dgvTransaction.Rows.Clear();
+                    LoadServiceList(service);
+
+                    frm.Dispose();
+                }
+            }
+            else
+            {
+                using (frmServiceLookUp frm = new frmServiceLookUp())
+                {
+                    frm.ShowDialog();
+
+                    service = frm.GetAllServices();
+                    LoadServiceList(service);
+
+                    frm.Dispose();
+                }
+            }
         }
+        Dictionary<int, app.core.model.Services> service = new Dictionary<int, core.model.Services>();
+        void LoadServiceList(Dictionary<int, app.core.model.Services> service)
+        {
+            double totalPrice = 0; // Initialize total price
+
+            foreach (KeyValuePair<int, app.core.model.Services> key in service)
+            {
+                var serviceItem = key.Value; // Get the service item
+                dgvTransService.Rows.Add(serviceItem.Id, "ClientId", serviceItem.Description, serviceItem.Price);
+
+                totalPrice += serviceItem.Price; // Add the price of the current service to the total
+            }
+
+            lblSubtotal.Text = totalPrice.ToString("C"); // Display subtotal in currency format
+        }
+
 
         private void btnQuantity_Click(object sender, EventArgs e)
         {

@@ -31,15 +31,18 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
             this.dgvServices = new System.Windows.Forms.DataGridView();
-            this.lblDesc = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -47,27 +50,30 @@
             // btnCancel
             // 
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(888, 560);
+            this.btnCancel.Location = new System.Drawing.Point(620, 565);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(133, 41);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSelect
             // 
             this.btnSelect.Image = global::app.Properties.Resources.icons8_edit_16;
-            this.btnSelect.Location = new System.Drawing.Point(28, 560);
+            this.btnSelect.Location = new System.Drawing.Point(898, 565);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(133, 41);
             this.btnSelect.TabIndex = 6;
-            this.btnSelect.Text = "&Select";
+            this.btnSelect.Text = "&Add";
             this.btnSelect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // dgvServices
             // 
+            this.dgvServices.AllowUserToAddRows = false;
             this.dgvServices.BackgroundColor = System.Drawing.Color.White;
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -82,35 +88,9 @@
             this.dgvServices.RowHeadersWidth = 51;
             this.dgvServices.RowTemplate.Height = 24;
             this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvServices.Size = new System.Drawing.Size(1023, 439);
+            this.dgvServices.Size = new System.Drawing.Size(1023, 338);
             this.dgvServices.TabIndex = 5;
-            // 
-            // lblDesc
-            // 
-            this.lblDesc.AutoSize = true;
-            this.lblDesc.Location = new System.Drawing.Point(12, 51);
-            this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(0, 21);
-            this.lblDesc.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Services Look-Up";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lblDesc);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1023, 98);
-            this.panel1.TabIndex = 4;
+            this.dgvServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellClick);
             // 
             // Column1
             // 
@@ -162,12 +142,73 @@
             this.Column6.Visible = false;
             this.Column6.Width = 125;
             // 
+            // lblDesc
+            // 
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Location = new System.Drawing.Point(12, 51);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(0, 21);
+            this.lblDesc.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(8, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(177, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Services Look-Up";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblDesc);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1023, 98);
+            this.panel1.TabIndex = 4;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemove.Enabled = false;
+            this.btnRemove.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
+            this.btnRemove.Location = new System.Drawing.Point(759, 565);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(133, 41);
+            this.btnRemove.TabIndex = 9;
+            this.btnRemove.Text = "&Remove";
+            this.btnRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(846, 515);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 21);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Amount";
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Location = new System.Drawing.Point(928, 512);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(100, 28);
+            this.txtTotal.TabIndex = 13;
+            // 
             // frmServiceLookUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1043, 618);
+            this.Controls.Add(this.txtTotal);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.dgvServices);
@@ -181,6 +222,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -197,5 +239,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtTotal;
     }
 }
