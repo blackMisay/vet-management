@@ -30,6 +30,7 @@ namespace app.view.Client
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClient));
             this.dgvPatient = new System.Windows.Forms.DataGridView();
@@ -123,8 +124,8 @@ namespace app.view.Client
             // Column4
             // 
             this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column4.HeaderText = "Birthday";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -176,7 +177,7 @@ namespace app.view.Client
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel6.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panel6.Controls.Add(this.btnSearchPet);
             this.panel6.Controls.Add(this.txtSearchPet);
             this.panel6.Controls.Add(this.label7);
@@ -477,7 +478,7 @@ namespace app.view.Client
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(11, 5);
@@ -519,6 +520,9 @@ namespace app.view.Client
             // Column1
             // 
             this.Column1.DataPropertyName = "bday";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column1.HeaderText = "Birthday";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";

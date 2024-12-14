@@ -35,10 +35,16 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.cboColor = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cboSpecies = new System.Windows.Forms.ComboBox();
+            this.btnAddColor = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.cboBreed = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.btnBreed = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -46,12 +52,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtAge = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnBreed = new System.Windows.Forms.Button();
-            this.btnAddColor = new System.Windows.Forms.Button();
-            this.cboBreed = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cboColor = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.cboGender = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -132,9 +132,9 @@
             this.label24.Location = new System.Drawing.Point(46, 247);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 23);
+            this.label24.Size = new System.Drawing.Size(108, 23);
             this.label24.TabIndex = 46;
-            this.label24.Text = "Size";
+            this.label24.Text = "Breed Size";
             // 
             // label10
             // 
@@ -180,6 +180,27 @@
             this.label19.TabIndex = 42;
             this.label19.Text = "*";
             // 
+            // cboColor
+            // 
+            this.cboColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboColor.FormattingEnabled = true;
+            this.cboColor.Location = new System.Drawing.Point(200, 396);
+            this.cboColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cboColor.Name = "cboColor";
+            this.cboColor.Size = new System.Drawing.Size(308, 35);
+            this.cboColor.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(46, 403);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 23);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Color";
+            // 
             // cboSpecies
             // 
             this.cboSpecies.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -190,6 +211,19 @@
             this.cboSpecies.Size = new System.Drawing.Size(357, 35);
             this.cboSpecies.TabIndex = 8;
             this.cboSpecies.SelectionChangeCommitted += new System.EventHandler(this.cboSpecies_SelectionChangeCommitted);
+            // 
+            // btnAddColor
+            // 
+            this.btnAddColor.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAddColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddColor.Location = new System.Drawing.Point(516, 397);
+            this.btnAddColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddColor.Name = "btnAddColor";
+            this.btnAddColor.Size = new System.Drawing.Size(41, 31);
+            this.btnAddColor.TabIndex = 17;
+            this.btnAddColor.Text = "+";
+            this.btnAddColor.UseVisualStyleBackColor = true;
+            this.btnAddColor.Click += new System.EventHandler(this.btnAddColor_Click);
             // 
             // label18
             // 
@@ -202,6 +236,17 @@
             this.label18.TabIndex = 41;
             this.label18.Text = "*";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(46, 363);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 23);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "Breed";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -213,6 +258,16 @@
             this.label3.TabIndex = 23;
             this.label3.Text = "Specie";
             // 
+            // cboBreed
+            // 
+            this.cboBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBreed.FormattingEnabled = true;
+            this.cboBreed.Location = new System.Drawing.Point(200, 359);
+            this.cboBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cboBreed.Name = "cboBreed";
+            this.cboBreed.Size = new System.Drawing.Size(308, 35);
+            this.cboBreed.TabIndex = 9;
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -223,6 +278,19 @@
             this.label17.Size = new System.Drawing.Size(22, 27);
             this.label17.TabIndex = 40;
             this.label17.Text = "*";
+            // 
+            // btnBreed
+            // 
+            this.btnBreed.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnBreed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBreed.Location = new System.Drawing.Point(516, 360);
+            this.btnBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnBreed.Name = "btnBreed";
+            this.btnBreed.Size = new System.Drawing.Size(41, 31);
+            this.btnBreed.TabIndex = 18;
+            this.btnBreed.Text = "+";
+            this.btnBreed.UseVisualStyleBackColor = true;
+            this.btnBreed.Click += new System.EventHandler(this.btnBreed_Click);
             // 
             // label16
             // 
@@ -273,9 +341,9 @@
             this.label9.Location = new System.Drawing.Point(46, 202);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 23);
+            this.label9.Size = new System.Drawing.Size(112, 23);
             this.label9.TabIndex = 29;
-            this.label9.Text = "Weight";
+            this.label9.Text = "Weight(kg)";
             // 
             // txtAge
             // 
@@ -296,74 +364,6 @@
             this.label8.Size = new System.Drawing.Size(51, 23);
             this.label8.TabIndex = 27;
             this.label8.Text = "Age";
-            // 
-            // btnBreed
-            // 
-            this.btnBreed.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnBreed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBreed.Location = new System.Drawing.Point(516, 360);
-            this.btnBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnBreed.Name = "btnBreed";
-            this.btnBreed.Size = new System.Drawing.Size(41, 31);
-            this.btnBreed.TabIndex = 18;
-            this.btnBreed.Text = "+";
-            this.btnBreed.UseVisualStyleBackColor = true;
-            this.btnBreed.Click += new System.EventHandler(this.btnBreed_Click);
-            // 
-            // btnAddColor
-            // 
-            this.btnAddColor.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAddColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddColor.Location = new System.Drawing.Point(516, 397);
-            this.btnAddColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnAddColor.Name = "btnAddColor";
-            this.btnAddColor.Size = new System.Drawing.Size(41, 31);
-            this.btnAddColor.TabIndex = 17;
-            this.btnAddColor.Text = "+";
-            this.btnAddColor.UseVisualStyleBackColor = true;
-            this.btnAddColor.Click += new System.EventHandler(this.btnAddColor_Click);
-            // 
-            // cboBreed
-            // 
-            this.cboBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBreed.FormattingEnabled = true;
-            this.cboBreed.Location = new System.Drawing.Point(200, 359);
-            this.cboBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cboBreed.Name = "cboBreed";
-            this.cboBreed.Size = new System.Drawing.Size(308, 35);
-            this.cboBreed.TabIndex = 9;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(46, 363);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 23);
-            this.label4.TabIndex = 25;
-            this.label4.Text = "Breed";
-            // 
-            // cboColor
-            // 
-            this.cboColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboColor.FormattingEnabled = true;
-            this.cboColor.Location = new System.Drawing.Point(200, 396);
-            this.cboColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cboColor.Name = "cboColor";
-            this.cboColor.Size = new System.Drawing.Size(308, 35);
-            this.cboColor.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(46, 403);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 23);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Color";
             // 
             // cboGender
             // 
@@ -441,7 +441,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panel1.Controls.Add(this.label5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -526,7 +526,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmClientPatientModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmClientPatientModal";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.frmClientPatientModal_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

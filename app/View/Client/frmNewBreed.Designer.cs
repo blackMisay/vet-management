@@ -35,16 +35,16 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtNewPetBreed = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.cmbSpecie = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtNewPetBreed = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(1, 0);
@@ -126,14 +126,13 @@
             this.panel2.Size = new System.Drawing.Size(431, 207);
             this.panel2.TabIndex = 33;
             // 
-            // txtNewPetBreed
+            // cmbSpecie
             // 
-            this.txtNewPetBreed.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewPetBreed.Location = new System.Drawing.Point(106, 77);
-            this.txtNewPetBreed.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNewPetBreed.Name = "txtNewPetBreed";
-            this.txtNewPetBreed.Size = new System.Drawing.Size(267, 28);
-            this.txtNewPetBreed.TabIndex = 19;
+            this.cmbSpecie.FormattingEnabled = true;
+            this.cmbSpecie.Location = new System.Drawing.Point(106, 27);
+            this.cmbSpecie.Name = "cmbSpecie";
+            this.cmbSpecie.Size = new System.Drawing.Size(267, 29);
+            this.cmbSpecie.TabIndex = 29;
             // 
             // label2
             // 
@@ -146,13 +145,14 @@
             this.label2.TabIndex = 28;
             this.label2.Text = "Specie";
             // 
-            // cmbSpecie
+            // txtNewPetBreed
             // 
-            this.cmbSpecie.FormattingEnabled = true;
-            this.cmbSpecie.Location = new System.Drawing.Point(106, 27);
-            this.cmbSpecie.Name = "cmbSpecie";
-            this.cmbSpecie.Size = new System.Drawing.Size(267, 29);
-            this.cmbSpecie.TabIndex = 29;
+            this.txtNewPetBreed.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewPetBreed.Location = new System.Drawing.Point(106, 77);
+            this.txtNewPetBreed.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNewPetBreed.Name = "txtNewPetBreed";
+            this.txtNewPetBreed.Size = new System.Drawing.Size(267, 28);
+            this.txtNewPetBreed.TabIndex = 19;
             // 
             // frmNewBreed
             // 

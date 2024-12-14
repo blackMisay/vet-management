@@ -53,12 +53,13 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1465, 65);
+            this.panel1.Size = new System.Drawing.Size(1099, 53);
             this.panel1.TabIndex = 5;
             // 
             // label1
@@ -66,7 +67,8 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(9, 18);
+            this.label1.Location = new System.Drawing.Point(7, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(181, 34);
             this.label1.TabIndex = 0;
@@ -80,9 +82,10 @@
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 65);
+            this.panel2.Location = new System.Drawing.Point(0, 53);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1465, 60);
+            this.panel2.Size = new System.Drawing.Size(1099, 49);
             this.panel2.TabIndex = 6;
             // 
             // btnImmunization
@@ -91,9 +94,10 @@
             this.btnImmunization.BackColor = System.Drawing.Color.White;
             this.btnImmunization.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImmunization.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnImmunization.Location = new System.Drawing.Point(1029, 17);
+            this.btnImmunization.Location = new System.Drawing.Point(772, 14);
+            this.btnImmunization.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnImmunization.Name = "btnImmunization";
-            this.btnImmunization.Size = new System.Drawing.Size(202, 31);
+            this.btnImmunization.Size = new System.Drawing.Size(152, 25);
             this.btnImmunization.TabIndex = 12;
             this.btnImmunization.Text = "&New Vaccination";
             this.btnImmunization.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -106,9 +110,10 @@
             this.btnEdit.BackColor = System.Drawing.Color.White;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEdit.Location = new System.Drawing.Point(1237, 17);
+            this.btnEdit.Location = new System.Drawing.Point(928, 14);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(102, 31);
+            this.btnEdit.Size = new System.Drawing.Size(76, 25);
             this.btnEdit.TabIndex = 11;
             this.btnEdit.Text = "&Update";
             this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -121,9 +126,10 @@
             this.btnRemove.BackColor = System.Drawing.Color.White;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemove.Location = new System.Drawing.Point(1345, 17);
+            this.btnRemove.Location = new System.Drawing.Point(1009, 14);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(110, 31);
+            this.btnRemove.Size = new System.Drawing.Size(82, 25);
             this.btnRemove.TabIndex = 10;
             this.btnRemove.Text = "&Remove";
             this.btnRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -132,18 +138,20 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(110, 16);
+            this.txtSearch.Location = new System.Drawing.Point(82, 13);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(332, 22);
+            this.txtSearch.Size = new System.Drawing.Size(250, 20);
             this.txtSearch.TabIndex = 2;
             // 
             // btnSearch
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearch.Location = new System.Drawing.Point(9, 13);
+            this.btnSearch.Location = new System.Drawing.Point(7, 11);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(95, 31);
+            this.btnSearch.Size = new System.Drawing.Size(71, 25);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -166,13 +174,14 @@
             this.Column12});
             this.dgvImmunization.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvImmunization.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvImmunization.Location = new System.Drawing.Point(0, 125);
+            this.dgvImmunization.Location = new System.Drawing.Point(0, 102);
+            this.dgvImmunization.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvImmunization.Name = "dgvImmunization";
             this.dgvImmunization.RowHeadersVisible = false;
             this.dgvImmunization.RowHeadersWidth = 51;
             this.dgvImmunization.RowTemplate.Height = 24;
             this.dgvImmunization.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvImmunization.Size = new System.Drawing.Size(1465, 647);
+            this.dgvImmunization.Size = new System.Drawing.Size(1099, 525);
             this.dgvImmunization.TabIndex = 7;
             this.dgvImmunization.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvImmunication_CellClick);
             // 
@@ -236,12 +245,13 @@
             // 
             // frmImmunization
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1465, 772);
+            this.ClientSize = new System.Drawing.Size(1099, 627);
             this.Controls.Add(this.dgvImmunization);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmImmunization";
             this.Text = "frmImmunization";
             this.Load += new System.EventHandler(this.frmImmunization_Load);
