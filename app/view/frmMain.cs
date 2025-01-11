@@ -68,7 +68,7 @@ namespace app.view
                 {
                     if (control is Button button)
                     {
-                        button.ImageAlign = ContentAlignment.MiddleLeft;
+                        button.ImageAlign = ContentAlignment.BottomRight;
                     }
                 }
 
