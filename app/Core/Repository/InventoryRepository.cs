@@ -5,6 +5,7 @@ using System.Data;
 using Core;
 using System.Windows.Forms;
 using app.view.Inventory;
+using System.Linq;
 
 namespace app.core.Repository
 {
@@ -48,8 +49,8 @@ namespace app.core.Repository
                 {"@CategID", inventory.CategID.Id.ToString()},
                 {"@BrandID", inventory.BrandID.Id.ToString()},
                 {"@Qty", Convert.ToString(inventory.Qty)},
-                {"@DateReceived", inventory.DateReceived.ToString("yyyy-MM-dd")},  
-                {"@ExpiredDate", inventory.ExpiredDate.ToString("yyyy-MM-dd")}      
+                {"@DateReceived", inventory.DateReceived.ToString("yyyy-MM-dd")},
+                {"@ExpiredDate", inventory.ExpiredDate.ToString("yyyy-MM-dd")}
             };
 
             UpgradeFile upgradeFile = new UpgradeFile();
@@ -82,7 +83,9 @@ namespace app.core.Repository
             if (dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
-                return new Inventory()
+                DateTime expiredDate = DateTime.Parse(row["expDate"].ToString()).Date;
+
+                Inventory resultInventory = new Inventory()
                 {
                     Id = inventory.Id,
                     BatchNumber = row["batchNum"].ToString(),
@@ -91,13 +94,23 @@ namespace app.core.Repository
                     CategID = new ProductCategory() { Id = Convert.ToInt32(row["categID"]) },
                     BrandID = new Brand() { Id = Convert.ToInt32(row["brandID"]) },
                     Qty = Convert.ToInt32(row["qty"]),
-                    // Parse the DateTime correctly and set it as DateTime type
-                    DateReceived = DateTime.Parse(row["dateReceived"].ToString()).Date,  // Store as DateTime
-                    ExpiredDate = DateTime.Parse(row["expDate"].ToString()).Date,       // Store as DateTime
+                    DateReceived = DateTime.Parse(row["dateReceived"].ToString()).Date,
+                    ExpiredDate = expiredDate,
                 };
+
+                // Notify if product is about to expire within 30 days but is not expired yet
+                DateTime today = DateTime.Now.Date;
+                TimeSpan daysUntilExpiry = expiredDate - today;
+
+                if (daysUntilExpiry.TotalDays > 0 && daysUntilExpiry.TotalDays <= 30)
+                {
+                    MessageBox.Show($"The product '{resultInventory.Description}' (Batch: {resultInventory.BatchNumber}) will expire in {daysUntilExpiry.TotalDays} day(s) on {expiredDate:MM/dd/yyyy}.",
+                                    "Expiration Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                return resultInventory;
             }
             return null;
-
 
         }
 
@@ -113,9 +126,40 @@ namespace app.core.Repository
                     // If the value is not null, format it
                     if (e.Value != null && e.Value != DBNull.Value)
                     {
-                        e.Value = Convert.ToDateTime(e.Value).ToString("MM-dd-yyyy"); 
+                        e.Value = Convert.ToDateTime(e.Value).ToString("MM-dd-yyyy");
                     }
                 }
+            }
+        }
+
+        public void CheckForExpiringProducts()
+        {
+            string query = "SELECT * FROM prod_stocks;";
+            UpgradeFile upgrade = new UpgradeFile();
+            DataTable dt = upgrade.Load(query, null);  // Assuming no parameters needed to fetch all products
+
+            DateTime today = DateTime.Now.Date;
+            DateTime warningThreshold = today.AddDays(30);
+            List<string> warningMessages = new List<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                DateTime expiredDate = DateTime.Parse(row["expDate"].ToString()).Date;
+
+                if (expiredDate > today && expiredDate <= warningThreshold)
+                {
+                    string productName = row["description"].ToString();
+                    string batchNumber = row["batchNum"].ToString();
+                    int daysUntilExpiry = (expiredDate - today).Days;
+
+                    warningMessages.Add($"Product '{productName}' (Batch: {batchNumber}) will expire in {daysUntilExpiry} day(s) on {expiredDate:MM/dd/yyyy}.");
+                }
+            }
+
+            if (warningMessages.Any())
+            {
+                string message = string.Join(Environment.NewLine, warningMessages);
+                MessageBox.Show(message, "Expiration Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
