@@ -144,6 +144,12 @@
     <Compile Include="view\Administration\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Client\frmBreed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Client\frmBreed.Designer.cs">
+      <DependentUpon>frmBreed.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Client\frmClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Administration\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Client\frmBreed.resx">
+      <DependentUpon>frmBreed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Client\frmClient.resx">
       <DependentUpon>frmClient.cs</DependentUpon>
