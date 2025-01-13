@@ -89,19 +89,8 @@ namespace app.view.Inventory
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            InventoryRepository inventory = new InventoryRepository();
-            string nextStockNumber = inventory.GenerateNextStockNumber();
-
-            if (nextStockNumber == null)
-            {
-                MessageBox.Show("Failed to generate stock number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             // Pass the generated stock number to the modal form
             frmInventoryModal frmInventory = new frmInventoryModal();
-            frmInventory.StockNumber = nextStockNumber;  // Set the stock number
-
             // Show the modal form
             frmInventory.ShowDialog();
       
