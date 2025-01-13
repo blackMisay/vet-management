@@ -93,10 +93,13 @@
     <Compile Include="core\model\Breed.cs" />
     <Compile Include="core\model\City.cs" />
     <Compile Include="core\model\ColourPattern.cs" />
+    <Compile Include="core\model\Complaint.cs" />
     <Compile Include="core\model\Diagnosis.cs" />
+    <Compile Include="core\model\Findings.cs" />
     <Compile Include="core\model\Gender.cs" />
     <Compile Include="core\model\Client.cs" />
     <Compile Include="core\model\Inventory.cs" />
+    <Compile Include="core\model\Medication.cs" />
     <Compile Include="core\model\Pet.cs" />
     <Compile Include="core\model\PetVaccination.cs" />
     <Compile Include="core\model\Product.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Services.cs" />
     <Compile Include="core\model\Species.cs" />
+    <Compile Include="core\model\Treatment.cs" />
     <Compile Include="core\model\User.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
     <Compile Include="core\repository\ConsultationRepository.cs" />
