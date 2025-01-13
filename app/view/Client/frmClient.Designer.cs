@@ -33,6 +33,19 @@ namespace app.view.Client
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClient));
             this.dgvPatient = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Species = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Breed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Color = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,19 +78,6 @@ namespace app.view.Client
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Species = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Breed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Color = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -119,6 +119,101 @@ namespace app.view.Client
             this.dgvPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPatient.Size = new System.Drawing.Size(1048, 399);
             this.dgvPatient.TabIndex = 2;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "petId";
+            this.Id.HeaderText = "petId";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "clientId";
+            this.Column2.HeaderText = "clientId";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "image";
+            this.Column9.HeaderText = "Image";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "petname";
+            this.Column3.HeaderText = "Pet Name";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "bday";
+            this.Column1.HeaderText = "Birthday";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            // 
+            // Gender
+            // 
+            this.Gender.DataPropertyName = "sexname";
+            this.Gender.HeaderText = "Gender";
+            this.Gender.MinimumWidth = 6;
+            this.Gender.Name = "Gender";
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "age";
+            this.Column12.HeaderText = "Age";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "size";
+            this.Column11.HeaderText = "Size";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "weight";
+            this.Column10.HeaderText = "Weight";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            // 
+            // Species
+            // 
+            this.Species.DataPropertyName = "speciesName";
+            this.Species.HeaderText = "Specie";
+            this.Species.MinimumWidth = 6;
+            this.Species.Name = "Species";
+            // 
+            // Breed
+            // 
+            this.Breed.DataPropertyName = "breedDesc";
+            this.Breed.HeaderText = "Breed";
+            this.Breed.MinimumWidth = 6;
+            this.Breed.Name = "Breed";
+            // 
+            // Color
+            // 
+            this.Color.DataPropertyName = "colorName";
+            this.Color.HeaderText = "Color";
+            this.Color.MinimumWidth = 6;
+            this.Color.Name = "Color";
+            // 
+            // Column14
+            // 
+            this.Column14.DataPropertyName = "isDeleted";
+            this.Column14.HeaderText = "isDeleted";
+            this.Column14.MinimumWidth = 6;
+            this.Column14.Name = "Column14";
+            this.Column14.Visible = false;
             // 
             // Column4
             // 
@@ -176,7 +271,7 @@ namespace app.view.Client
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel6.Controls.Add(this.btnSearchPet);
             this.panel6.Controls.Add(this.txtSearchPet);
             this.panel6.Controls.Add(this.label7);
@@ -209,11 +304,12 @@ namespace app.view.Client
             this.txtSearchPet.Name = "txtSearchPet";
             this.txtSearchPet.Size = new System.Drawing.Size(304, 28);
             this.txtSearchPet.TabIndex = 4;
+            this.txtSearchPet.TextChanged += new System.EventHandler(this.txtSearchPet_TextChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(3, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(197, 21);
@@ -424,6 +520,7 @@ namespace app.view.Client
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(304, 28);
             this.txtSearch.TabIndex = 1;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label2
             // 
@@ -467,118 +564,23 @@ namespace app.view.Client
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(17, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 38);
+            this.label1.Size = new System.Drawing.Size(105, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "Owner";
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(11, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1377, 72);
             this.panel1.TabIndex = 0;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "petId";
-            this.Id.HeaderText = "petId";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "clientId";
-            this.Column2.HeaderText = "clientId";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "image";
-            this.Column9.HeaderText = "Image";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "petname";
-            this.Column3.HeaderText = "Pet Name";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "bday";
-            this.Column1.HeaderText = "Birthday";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Gender
-            // 
-            this.Gender.DataPropertyName = "sexname";
-            this.Gender.HeaderText = "Gender";
-            this.Gender.MinimumWidth = 6;
-            this.Gender.Name = "Gender";
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "age";
-            this.Column12.HeaderText = "Age";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "size";
-            this.Column11.HeaderText = "Size";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "weight";
-            this.Column10.HeaderText = "Weight";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            // 
-            // Species
-            // 
-            this.Species.DataPropertyName = "speciesName";
-            this.Species.HeaderText = "Specie";
-            this.Species.MinimumWidth = 6;
-            this.Species.Name = "Species";
-            // 
-            // Breed
-            // 
-            this.Breed.DataPropertyName = "breedDesc";
-            this.Breed.HeaderText = "Breed";
-            this.Breed.MinimumWidth = 6;
-            this.Breed.Name = "Breed";
-            // 
-            // Color
-            // 
-            this.Color.DataPropertyName = "colorName";
-            this.Color.HeaderText = "Color";
-            this.Color.MinimumWidth = 6;
-            this.Color.Name = "Color";
-            // 
-            // Column14
-            // 
-            this.Column14.DataPropertyName = "isDeleted";
-            this.Column14.HeaderText = "isDeleted";
-            this.Column14.MinimumWidth = 6;
-            this.Column14.Name = "Column14";
-            this.Column14.Visible = false;
             // 
             // frmClient
             // 
