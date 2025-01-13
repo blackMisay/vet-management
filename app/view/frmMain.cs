@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using System.Drawing;
 using app.view.Administration;
 using app.view.Immunization;
-using app.core.Repository;
 
 namespace app.view
 {
@@ -122,8 +121,6 @@ namespace app.view
         private void btnInventory_Click(object sender, EventArgs e)
         {
             this.openFormModule(new Inventory.frmInventory());
-            InventoryRepository inventory = new InventoryRepository();
-            inventory.CheckForExpiringProducts();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
