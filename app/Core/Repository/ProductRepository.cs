@@ -29,19 +29,20 @@ namespace app.core.repository
             if (saveState)
             {
 
-                sql = "UPDATE product SET brandID=@BrandID, prodDesc=@Description, categID=@CategID WHERE prodID=@Id;";
+                sql = "UPDATE product SET brandID=@BrandID, prodDesc=@Description,typeID=@TypeID, categID=@CategID WHERE prodID=@Id;";
 
             }
             else
             {
-                sql = "INSERT INTO product(prodID,brandID,prodDesc,categID) VALUES(@Id,@BrandID,@Description,@CategID);";
+                sql = "INSERT INTO product(prodID,brandID,prodDesc,categID,typeID) VALUES(@Id,@BrandID,@Description,@CategID,@TypeID);";
             }
             Dictionary<string, string> parameters = new Dictionary<string, string>()
             {
                 {"@Id", Convert.ToString(product.Id)},
                 {"@BrandID", product.BrandID.Id.ToString() },
                 {"@Description", product.Description },
-                {"@CategID", product.CategID.Id.ToString() }
+                {"@CategID", product.CategID.Id.ToString() },
+                {"@TypeID", product.TypeID.Id.ToString() },
 
             };
 
@@ -63,30 +64,27 @@ namespace app.core.repository
         }
         public Product GetProduct(Product product)
         {
-            string query = "SELECT * FROM product WHERE prodID = @Id;";
+            string query = "SELECT * FROM product WHERE prodID=@Id;";
             Dictionary<string, string> parameters = new Dictionary<string, string>()
             {
                 { "@Id", product.Id.ToString() }
             };
 
             UpgradeFile upgrade = new UpgradeFile();
-            DataTable dt = upgrade.Load(query, parameters);  // Ensure Load method properly handles parameters
-
+            DataTable dt = upgrade.Load(query, parameters);
             if (dt.Rows.Count > 0)
             {
-                DataRow row = dt.Rows[0];  // Accessing the first row
+                DataRow row = dt.Rows[0];
                 return new Product()
                 {
-                    Id = product.Id,  // Use the provided product ID
-                    BrandID = new Brand() { Id = Convert.ToInt32(row["brandID"]) },  // Use column name
-                    Description = row["prodDesc"]?.ToString() ?? string.Empty,  // Null-safe description
-                    CategID = new ProductCategory() { Id = Convert.ToInt32(row["categID"]) }  // Use column name
+                    Id = product.Id,
+                    BrandID = new Brand() { Id = Convert.ToInt32(row["brandID"]) },
+                    Description = row["prodDesc"].ToString(),
+                    CategID = new ProductCategory() { Id = Convert.ToInt32(row["categID"]) },
+                    TypeID = new Types() { Id = Convert.ToInt32(row["typeID"]) },
                 };
             }
             return null;
-
-
-
         }
     }
 }
