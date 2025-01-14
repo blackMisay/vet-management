@@ -1,6 +1,6 @@
 ﻿namespace app.core.model
 {
-    internal class Brand
+    public class Brand
     {
         public int Id { get; set; }
 

@@ -100,23 +100,27 @@ namespace app.view.Client
 
         private void SavePet()
         {
-            Pet pet = new Pet
-            {
-                Id = this.Id, // Assuming this is the pet's Id
-                Client = new Core.Model.Client { Id = this.clientId },
-                Name = txtName.Text,
-                BirthDate = dtpBday.Value.ToString("yyyy-MM-dd"),
-                Age = txtAge.Text,
-                Size = cmbSize.Text,
-                Weight = txtWeight.Text,
-                Gender = new Gender { Id = Convert.ToInt32(cboGender.SelectedValue) },
-                Specie = new Species { Id = Convert.ToInt32(cboSpecies.SelectedValue) },
-                ColourPattern = new Color { Id = Convert.ToInt32(cboColor.SelectedValue) },
-                Image = this.imagePath, // Assuming imagePath is the file path of the pet image
-                Breed = new Breed { Id = this.selectedBreedId }  // Use the selected breed ID
-            };
 
-            // Perform validation and save as before
+            Pet pet = new Pet();
+
+            pet.Id = this.Id;
+            pet.Client = new Core.Model.Client() { Id = this.clientId };
+            pet.Name = txtName.Text;
+            if (dtpBday.Value > DateTime.Now)
+            {
+                MessageBox.Show("Birthdate cannot be in the future.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            pet.BirthDate = dtpBday.Value.ToString("yyyy-MM-dd");
+            pet.Age = Convert.ToString(txtAge.Text);
+            pet.Size = cmbSize.Text;
+            pet.Weight = txtWeight.Text;
+            pet.Gender = new Gender() { Id = Convert.ToInt32(cboGender.SelectedValue) };
+            pet.Specie = new Species() { Id = Convert.ToInt32(cboSpecies.SelectedValue) };
+            pet.Breed = new Breed() { Id = Convert.ToInt32(cboBreed.SelectedValue) };
+            pet.ColourPattern = new Color() { Id = Convert.ToInt32(cboColor.SelectedValue) };
+            pet.Image = this.imagePath; //enhance/VCMS49
+
             PetRepository petRepository = new PetRepository();
             bool isSaved = petRepository.Save(pet);
 
@@ -158,17 +162,24 @@ namespace app.view.Client
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboGender.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_gender ;");
-            cboGender.ValueMember = "KEY";
-            cboGender.DisplayMember = "VALUE";
 
-            cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern;");
+            cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed ORDER BY description;");
+            cboBreed.ValueMember = "KEY";
+            cboBreed.DisplayMember = "VALUE";
+
+            cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern ORDER BY description;");
+
             cboColor.ValueMember = "KEY";
             cboColor.DisplayMember = "VALUE";
 
-            cboSpecies.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_species;");
+            cboGender.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_gender ORDER BY description;");
+            cboGender.ValueMember = "KEY";
+            cboGender.DisplayMember = "VALUE";
+
+            cboSpecies.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_species ORDER BY description;");
             cboSpecies.ValueMember = "KEY";
             cboSpecies.DisplayMember = "VALUE";
+
         }
 
         private void dtpBday_ValueChanged(object sender, EventArgs e)

@@ -391,6 +391,8 @@
             this.cboProvince.Name = "cboProvince";
             this.cboProvince.Size = new System.Drawing.Size(356, 31);
             this.cboProvince.TabIndex = 13;
+            this.cboProvince.SelectedIndexChanged += new System.EventHandler(this.cboProvince_SelectedIndexChanged_1);
+            this.cboProvince.SelectionChangeCommitted += new System.EventHandler(this.cboProvince_SelectionChangeCommitted);
             // 
             // label13
             // 
@@ -409,6 +411,7 @@
             this.cboRegion.Name = "cboRegion";
             this.cboRegion.Size = new System.Drawing.Size(356, 31);
             this.cboRegion.TabIndex = 12;
+            this.cboRegion.SelectedIndexChanged += new System.EventHandler(this.cboRegion_SelectedIndexChanged);
             this.cboRegion.SelectionChangeCommitted += new System.EventHandler(this.cboRegion_SelectionChangeCommitted);
             // 
             // label12

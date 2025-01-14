@@ -32,9 +32,10 @@ namespace app.core.Repository
             if (saveState)
             {
                 // Update existing service
-                sql = "UPDATE services SET serviceCode = @ServiceCode, description = @Description, Price = @Price WHERE Id = @Id AND status = 'Active' ";
+                sql = "UPDATE services SET serviceCode = @ServiceCode,serviceType = @ServiceType, description = @Description, Price = @Price WHERE Id = @Id AND status = 'Active' ";
                 parameters = new Dictionary<string, string>
                 {
+                    { "@ServiceType", service.ServiceType.Id.ToString() },
                     { "@ServiceCode", service.ServiceCode },
                     { "@Description", service.Description },
                     { "@Price", service.Price.ToString() },  // Assuming Price is a decimal or float, convert to string
@@ -44,11 +45,12 @@ namespace app.core.Repository
             else
             {
                 // Insert new service
-                sql = "INSERT INTO services(id, serviceCode, description, price) VALUES(@Id, @ServiceCode, @Description, @Price)";
+                sql = "INSERT INTO services(id, serviceCode, serviceType, description, price) VALUES(@Id,@ServiceType, @ServiceCode, @Description, @Price)";
                 parameters = new Dictionary<string, string>
                 {
                     { "@Id", service.Id.ToString() },        // Convert Id to string
                     { "@ServiceCode", service.ServiceCode },
+                    { "@ServiceType", service.ServiceType.Id.ToString() },
                     { "@Description", service.Description },
                     { "@Price", service.Price.ToString() }   // Assuming Price is a decimal or float, convert to string
                 };
@@ -99,13 +101,15 @@ namespace app.core.Repository
             if (dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
-                return new Services
+                 return new Services
                 {
-                    Id = Convert.ToInt32(dt.Rows[0][0]),
-                    ServiceCode = dt.Rows[0][1].ToString(),
-                    Description = dt.Rows[0][2].ToString(),
-                    Price = dt.Rows[0][3].ToString(),
-                };
+                    Id = service.Id,
+                    ServiceCode = row["serviceCode"].ToString(),
+                    ServiceType = new Types() { Id = Convert.ToInt32(row["serviceType"]) },
+                    Description = row["description"].ToString(),
+                     Price = Convert.ToDouble(row["price"]),
+
+                 };
             }
             return null;
         }

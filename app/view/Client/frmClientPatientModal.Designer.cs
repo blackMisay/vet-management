@@ -44,6 +44,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.cboBreed = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.btnBreed = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
@@ -154,9 +155,9 @@
             this.label24.Location = new System.Drawing.Point(46, 247);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 23);
+            this.label24.Size = new System.Drawing.Size(108, 23);
             this.label24.TabIndex = 46;
-            this.label24.Text = "Size";
+            this.label24.Text = "Breed Size";
             // 
             // label10
             // 
@@ -246,6 +247,19 @@
             this.btnAddColor.UseVisualStyleBackColor = true;
             this.btnAddColor.Click += new System.EventHandler(this.btnAddColor_Click);
             // 
+            // btnAddColor
+            // 
+            this.btnAddColor.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAddColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddColor.Location = new System.Drawing.Point(516, 397);
+            this.btnAddColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddColor.Name = "btnAddColor";
+            this.btnAddColor.Size = new System.Drawing.Size(41, 31);
+            this.btnAddColor.TabIndex = 17;
+            this.btnAddColor.Text = "+";
+            this.btnAddColor.UseVisualStyleBackColor = true;
+            this.btnAddColor.Click += new System.EventHandler(this.btnAddColor_Click);
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -278,6 +292,16 @@
             this.label3.Size = new System.Drawing.Size(76, 23);
             this.label3.TabIndex = 23;
             this.label3.Text = "Specie";
+            // 
+            // cboBreed
+            // 
+            this.cboBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBreed.FormattingEnabled = true;
+            this.cboBreed.Location = new System.Drawing.Point(200, 359);
+            this.cboBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cboBreed.Name = "cboBreed";
+            this.cboBreed.Size = new System.Drawing.Size(308, 35);
+            this.cboBreed.TabIndex = 9;
             // 
             // label17
             // 
@@ -539,7 +563,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmClientPatientModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmClientPatientModal";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.frmClientPatientModal_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

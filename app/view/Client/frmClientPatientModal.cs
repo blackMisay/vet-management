@@ -158,17 +158,23 @@ namespace app.view.Client
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            cboGender.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_gender ;");
-            cboGender.ValueMember = "KEY";
-            cboGender.DisplayMember = "VALUE";
 
-            cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern;");
+            cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed ORDER BY description;");
+            cboBreed.ValueMember = "KEY";
+            cboBreed.DisplayMember = "VALUE";
+
+            cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern ORDER BY description;");
             cboColor.ValueMember = "KEY";
             cboColor.DisplayMember = "VALUE";
 
-            cboSpecies.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_species;");
+            cboGender.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_gender ORDER BY description;");
+            cboGender.ValueMember = "KEY";
+            cboGender.DisplayMember = "VALUE";
+
+            cboSpecies.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_species ORDER BY description;");
             cboSpecies.ValueMember = "KEY";
             cboSpecies.DisplayMember = "VALUE";
+
         }
 
         private void dtpBday_ValueChanged(object sender, EventArgs e)
