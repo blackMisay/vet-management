@@ -107,7 +107,7 @@ namespace app.view.Transaction
                             item = selectedItem[selectedId];
 
                             txtQuantity.Text = item.Qty.ToString();
-                            txtTotal.Text = item.TotalAmount.ToString();
+                            //txtTotal.Text = item.TotalAmount.ToString();
                         }
                     }
                     else
