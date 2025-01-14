@@ -43,15 +43,15 @@
             this.txtType = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAge = new System.Windows.Forms.TextBox();
-            this.rtxMedication = new System.Windows.Forms.RichTextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.rtxPlanTreatment = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.rtxtFindings = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.rtxtComplaintRequest = new System.Windows.Forms.RichTextBox();
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.cboComplaint = new System.Windows.Forms.ComboBox();
+            this.cboFindings = new System.Windows.Forms.ComboBox();
+            this.cboTreatment = new System.Windows.Forms.ComboBox();
+            this.cboMedication = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -100,18 +100,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(18, 9);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(194, 41);
+            this.label1.Size = new System.Drawing.Size(197, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Consultation";
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -136,7 +136,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(481, 707);
+            this.btnSave.Location = new System.Drawing.Point(15, 617);
             this.btnSave.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(148, 45);
@@ -152,7 +152,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(326, 707);
+            this.btnCancel.Location = new System.Drawing.Point(483, 617);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(146, 45);
@@ -175,18 +175,18 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.cboMedication);
+            this.panel2.Controls.Add(this.cboTreatment);
+            this.panel2.Controls.Add(this.cboFindings);
+            this.panel2.Controls.Add(this.cboComplaint);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.txtType);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtAge);
-            this.panel2.Controls.Add(this.rtxMedication);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.rtxPlanTreatment);
             this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.rtxtFindings);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.rtxtComplaintRequest);
             this.panel2.Controls.Add(this.txtWeight);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.txtPetName);
@@ -199,7 +199,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 63);
             this.panel2.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(644, 636);
+            this.panel2.Size = new System.Drawing.Size(644, 538);
             this.panel2.TabIndex = 29;
             // 
             // label3
@@ -242,71 +242,35 @@
             this.txtAge.Size = new System.Drawing.Size(145, 28);
             this.txtAge.TabIndex = 35;
             // 
-            // rtxMedication
-            // 
-            this.rtxMedication.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtxMedication.Location = new System.Drawing.Point(132, 522);
-            this.rtxMedication.Name = "rtxMedication";
-            this.rtxMedication.Size = new System.Drawing.Size(450, 96);
-            this.rtxMedication.TabIndex = 34;
-            this.rtxMedication.Text = "";
-            // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(25, 524);
+            this.label10.Location = new System.Drawing.Point(29, 439);
             this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(104, 69);
             this.label10.TabIndex = 33;
             this.label10.Text = "Medication\r\n(Rx)";
             // 
-            // rtxPlanTreatment
-            // 
-            this.rtxPlanTreatment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtxPlanTreatment.Location = new System.Drawing.Point(132, 420);
-            this.rtxPlanTreatment.Name = "rtxPlanTreatment";
-            this.rtxPlanTreatment.Size = new System.Drawing.Size(450, 96);
-            this.rtxPlanTreatment.TabIndex = 32;
-            this.rtxPlanTreatment.Text = "";
-            // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(47, 420);
+            this.label11.Location = new System.Drawing.Point(31, 357);
             this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 48);
+            this.label11.Size = new System.Drawing.Size(98, 48);
             this.label11.TabIndex = 31;
             this.label11.Text = "Plan or Treatment";
-            // 
-            // rtxtFindings
-            // 
-            this.rtxtFindings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtxtFindings.Location = new System.Drawing.Point(132, 318);
-            this.rtxtFindings.Name = "rtxtFindings";
-            this.rtxtFindings.Size = new System.Drawing.Size(450, 96);
-            this.rtxtFindings.TabIndex = 30;
-            this.rtxtFindings.Text = "";
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(47, 320);
+            this.label7.Location = new System.Drawing.Point(29, 274);
             this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 48);
             this.label7.TabIndex = 29;
             this.label7.Text = "Findings";
-            // 
-            // rtxtComplaintRequest
-            // 
-            this.rtxtComplaintRequest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtxtComplaintRequest.Location = new System.Drawing.Point(132, 216);
-            this.rtxtComplaintRequest.Name = "rtxtComplaintRequest";
-            this.rtxtComplaintRequest.Size = new System.Drawing.Size(450, 96);
-            this.rtxtComplaintRequest.TabIndex = 28;
-            this.rtxtComplaintRequest.Text = "";
             // 
             // txtWeight
             // 
@@ -328,11 +292,43 @@
             this.label6.TabIndex = 27;
             this.label6.Text = "Weight";
             // 
+            // cboComplaint
+            // 
+            this.cboComplaint.FormattingEnabled = true;
+            this.cboComplaint.Location = new System.Drawing.Point(136, 219);
+            this.cboComplaint.Name = "cboComplaint";
+            this.cboComplaint.Size = new System.Drawing.Size(446, 29);
+            this.cboComplaint.TabIndex = 39;
+            // 
+            // cboFindings
+            // 
+            this.cboFindings.FormattingEnabled = true;
+            this.cboFindings.Location = new System.Drawing.Point(136, 271);
+            this.cboFindings.Name = "cboFindings";
+            this.cboFindings.Size = new System.Drawing.Size(446, 29);
+            this.cboFindings.TabIndex = 40;
+            // 
+            // cboTreatment
+            // 
+            this.cboTreatment.FormattingEnabled = true;
+            this.cboTreatment.Location = new System.Drawing.Point(136, 357);
+            this.cboTreatment.Name = "cboTreatment";
+            this.cboTreatment.Size = new System.Drawing.Size(446, 29);
+            this.cboTreatment.TabIndex = 41;
+            // 
+            // cboMedication
+            // 
+            this.cboMedication.FormattingEnabled = true;
+            this.cboMedication.Location = new System.Drawing.Point(136, 436);
+            this.cboMedication.Name = "cboMedication";
+            this.cboMedication.Size = new System.Drawing.Size(446, 29);
+            this.cboMedication.TabIndex = 42;
+            // 
             // frmConsultationModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 760);
+            this.ClientSize = new System.Drawing.Size(644, 668);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSave);
@@ -365,16 +361,16 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtWeight;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.RichTextBox rtxtComplaintRequest;
-        private System.Windows.Forms.RichTextBox rtxtFindings;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RichTextBox rtxMedication;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RichTextBox rtxPlanTreatment;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtAge;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtType;
+        private System.Windows.Forms.ComboBox cboComplaint;
+        private System.Windows.Forms.ComboBox cboFindings;
+        private System.Windows.Forms.ComboBox cboMedication;
+        private System.Windows.Forms.ComboBox cboTreatment;
     }
 }

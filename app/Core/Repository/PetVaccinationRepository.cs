@@ -17,7 +17,7 @@ namespace app.core.repository
         public void LoadVaccination(DataGridView datagridview)
         {
             UpgradeFile ug = new UpgradeFile();
-            datagridview.DataSource = ug.Load("SELECT patient_vaccine_id,`name`,vaccine,lot_number,dosage,administered_date,expiration_date FROM vwpatientvaccination;");
+            datagridview.DataSource = ug.Load("SELECT patient_vaccine_id,`name`,vaccine,lot_number,dosage,administered_date,expiration_date,veterinarian_id FROM vwpatientvaccination;");
         }
 
         public void SearchVaccination(DataGridView datagridview, string petName)
@@ -68,7 +68,7 @@ namespace app.core.repository
 
         public void LoadListOfVaccine(ComboBox cmb)
         {
-            string sql = "SELECT id,serviceCode FROM services WHERE serviceType=5;";
+            string sql = "SELECT id,serviceCode FROM services WHERE serviceType=5 ORDER BY serviceCode;";
             UpgradeFile ug = new UpgradeFile();
             cmb.DataSource = ug.Load(sql);
             cmb.ValueMember = "id";
@@ -95,7 +95,8 @@ namespace app.core.repository
                 LotNumber = dt.Rows[0][4].ToString(),
                 Dosage = dt.Rows[0][5].ToString(),
                 AdministeredDate = dt.Rows[0][6].ToString(),
-                ExpirationDate = dt.Rows[0][7].ToString()
+                ExpirationDate = dt.Rows[0][7].ToString(),
+                VeterinarianId = Convert.ToInt32(dt.Rows[0][8])
             };
             return pv;
         }

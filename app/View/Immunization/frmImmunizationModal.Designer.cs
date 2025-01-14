@@ -46,6 +46,8 @@
             this.txtPetName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnSelectAPatient = new System.Windows.Forms.Button();
+            this.cboVeterinarian = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +57,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(587, 470);
+            this.btnSave.Location = new System.Drawing.Point(494, 455);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(127, 50);
@@ -70,7 +72,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(455, 470);
+            this.btnCancel.Location = new System.Drawing.Point(362, 455);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(124, 50);
@@ -84,7 +86,7 @@
             // 
             this.cmbVaccine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVaccine.FormattingEnabled = true;
-            this.cmbVaccine.Location = new System.Drawing.Point(280, 171);
+            this.cmbVaccine.Location = new System.Drawing.Point(247, 116);
             this.cmbVaccine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbVaccine.Name = "cmbVaccine";
             this.cmbVaccine.Size = new System.Drawing.Size(383, 29);
@@ -93,7 +95,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(96, 174);
+            this.label8.Location = new System.Drawing.Point(63, 119);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(81, 21);
@@ -109,7 +111,7 @@
             "1st dose",
             "2nd dose",
             "3rd dose"});
-            this.cmbDosage.Location = new System.Drawing.Point(280, 245);
+            this.cmbDosage.Location = new System.Drawing.Point(247, 190);
             this.cmbDosage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbDosage.Name = "cmbDosage";
             this.cmbDosage.Size = new System.Drawing.Size(383, 29);
@@ -118,7 +120,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(96, 247);
+            this.label5.Location = new System.Drawing.Point(63, 192);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 21);
@@ -127,20 +129,20 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(740, 78);
+            this.panel1.Size = new System.Drawing.Size(647, 78);
             this.panel1.TabIndex = 24;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(13, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
@@ -150,7 +152,7 @@
             // 
             // txtLotNumber
             // 
-            this.txtLotNumber.Location = new System.Drawing.Point(280, 208);
+            this.txtLotNumber.Location = new System.Drawing.Point(247, 153);
             this.txtLotNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtLotNumber.Name = "txtLotNumber";
             this.txtLotNumber.Size = new System.Drawing.Size(383, 28);
@@ -159,7 +161,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(96, 211);
+            this.label4.Location = new System.Drawing.Point(63, 156);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 21);
@@ -169,7 +171,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(96, 288);
+            this.label2.Location = new System.Drawing.Point(63, 233);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(166, 21);
@@ -178,7 +180,9 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.cboVeterinarian);
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.dtpExpirationDate);
             this.panel2.Controls.Add(this.dtpAdministeredDate);
             this.panel2.Controls.Add(this.label3);
@@ -196,13 +200,13 @@
             this.panel2.Location = new System.Drawing.Point(0, 78);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(740, 375);
+            this.panel2.Size = new System.Drawing.Size(647, 367);
             this.panel2.TabIndex = 25;
             // 
             // dtpExpirationDate
             // 
             this.dtpExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpExpirationDate.Location = new System.Drawing.Point(280, 317);
+            this.dtpExpirationDate.Location = new System.Drawing.Point(247, 262);
             this.dtpExpirationDate.Name = "dtpExpirationDate";
             this.dtpExpirationDate.Size = new System.Drawing.Size(383, 28);
             this.dtpExpirationDate.TabIndex = 25;
@@ -210,7 +214,7 @@
             // dtpAdministeredDate
             // 
             this.dtpAdministeredDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpAdministeredDate.Location = new System.Drawing.Point(280, 282);
+            this.dtpAdministeredDate.Location = new System.Drawing.Point(247, 227);
             this.dtpAdministeredDate.Name = "dtpAdministeredDate";
             this.dtpAdministeredDate.Size = new System.Drawing.Size(383, 28);
             this.dtpAdministeredDate.TabIndex = 24;
@@ -218,7 +222,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(96, 322);
+            this.label3.Location = new System.Drawing.Point(63, 267);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(137, 21);
@@ -228,7 +232,7 @@
             // txtPetName
             // 
             this.txtPetName.Enabled = false;
-            this.txtPetName.Location = new System.Drawing.Point(280, 134);
+            this.txtPetName.Location = new System.Drawing.Point(247, 79);
             this.txtPetName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPetName.Name = "txtPetName";
             this.txtPetName.Size = new System.Drawing.Size(383, 28);
@@ -237,7 +241,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(96, 134);
+            this.label9.Location = new System.Drawing.Point(63, 79);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(91, 21);
@@ -246,7 +250,7 @@
             // 
             // btnSelectAPatient
             // 
-            this.btnSelectAPatient.Location = new System.Drawing.Point(40, 46);
+            this.btnSelectAPatient.Location = new System.Drawing.Point(12, 21);
             this.btnSelectAPatient.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSelectAPatient.Name = "btnSelectAPatient";
             this.btnSelectAPatient.Size = new System.Drawing.Size(208, 46);
@@ -255,11 +259,31 @@
             this.btnSelectAPatient.UseVisualStyleBackColor = true;
             this.btnSelectAPatient.Click += new System.EventHandler(this.btnSelectAPatient_Click);
             // 
+            // cboVeterinarian
+            // 
+            this.cboVeterinarian.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboVeterinarian.FormattingEnabled = true;
+            this.cboVeterinarian.Location = new System.Drawing.Point(247, 297);
+            this.cboVeterinarian.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboVeterinarian.Name = "cboVeterinarian";
+            this.cboVeterinarian.Size = new System.Drawing.Size(383, 29);
+            this.cboVeterinarian.TabIndex = 27;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(63, 300);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(112, 21);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Veterinarian";
+            // 
             // frmImmunizationModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 534);
+            this.ClientSize = new System.Drawing.Size(647, 519);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
@@ -298,5 +322,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtpExpirationDate;
         private System.Windows.Forms.DateTimePicker dtpAdministeredDate;
+        private System.Windows.Forms.ComboBox cboVeterinarian;
+        private System.Windows.Forms.Label label6;
     }
 }

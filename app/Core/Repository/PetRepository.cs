@@ -1,15 +1,8 @@
 ﻿using app.Core.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
-using System.Drawing;
 using System.Data;
-using System.Xml.Linq;
-using app.core.model;
 using Core;
 
 namespace app.Core.Repository
@@ -31,40 +24,55 @@ namespace app.Core.Repository
         public bool Save(Pet pet)
         {
             string sql;
+            bool saveState = pet.Id > 0;  // Simplified: Directly use pet.Id to determine if update or insert
 
-            bool saveState =  pet.Id > 0 ? true : false;
-            
-            
-            Dictionary<string, string> parameters = new Dictionary<string, string>() 
-            {
-                {"@Id", Convert.ToString(pet.Id) },
-                {"@Name", pet.Name },
-                {"@BirthDate", Convert.ToString(pet.BirthDate) },
-                {"@Age", Convert.ToString(pet.Age) },
-                {"@Size", pet.Size},
-                {"@Weight", pet.Weight },
-                {"@Gender", pet.Gender.Id.ToString() },
-                {"@Color", pet.ColourPattern.Id.ToString() },
-                {"@Specie", pet.Specie.Id.ToString() },
-                {"@Breed", pet.Breed.Id.ToString() },
-                {"@Image", pet.Image}
-            };
+            // Prepare parameters for SQL query
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+    {
+        { "@Name", pet.Name },
+        { "@BirthDate", pet.BirthDate.ToString() }, // Ensure proper date format
+        { "@Age", pet.Age },
+        { "@Size", pet.Size },
+        { "@Weight", pet.Weight },
+        { "@Gender", pet.Gender.Id.ToString() },
+        { "@Color", pet.ColourPattern.Id.ToString() },
+        { "@Specie", pet.Specie.Id.ToString() },
+        { "@Breed", pet.Breed.Id.ToString() },
+        { "@Image", pet.Image }
+    };
 
+            // If updating, use the existing pet Id
             if (saveState)
             {
-                sql = "UPDATE patient SET name=@Name,birthdate=@BirthDate,age=@Age,weight=@Weight,size=@Size,gender_id=@Gender,color_id=@Color,species_id=@Specie,breed_id=@Breed,image=@Image WHERE id=@Id;";
+                sql = "UPDATE patient SET name=@Name, birthdate=@BirthDate, age=@Age, weight=@Weight, size=@Size, " +
+                      "gender_id=@Gender, color_id=@Color, species_id=@Specie, breed_id=@Breed, image=@Image " +
+                      "WHERE id=@Id;";
+                parameters.Add("@Id", pet.Id.ToString());  // Add Id for the WHERE clause
             }
             else
             {
-                sql = "INSERT INTO patient(client_id,name,birthdate,age,weight,size,gender_id,color_id,species_id,breed_id,image) VALUES(@Client,@Name,@BirthDate,@Age,@Weight,@Size,@Gender,@Color,@Specie,@Breed,@Image);";
+                // If inserting, include the client ID
+                sql = "INSERT INTO patient(client_id, name, birthdate, age, weight, size, gender_id, color_id, species_id, breed_id, image) " +
+                      "VALUES(@Client, @Name, @BirthDate, @Age, @Weight, @Size, @Gender, @Color, @Specie, @Breed, @Image);";
                 parameters.Add("@Client", pet.Client.Id.ToString());
             }
 
-            UpgradeFile upgradeFile = new UpgradeFile();
-            if (upgradeFile.ExecuteQuery(sql, parameters))
-                return true;
-            return false;
+            // Execute query
+            try
+            {
+                UpgradeFile upgradeFile = new UpgradeFile();
+                bool success = upgradeFile.ExecuteQuery(sql, parameters);
+                return success;
+            }
+            catch (Exception ex)
+            {
+                // Log or display error if query execution fails
+                MessageBox.Show($"Error: {ex.Message}", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
+
+        
 
         public DataTable LoadClientsPatients(int clientId)
         {
@@ -110,7 +118,7 @@ namespace app.Core.Repository
                 ColourPattern = new ColourPattern() { Id = Convert.ToInt32(dt.Rows[0][5]) },
                 Specie = new Species() { Id = Convert.ToInt32(dt.Rows[0][2]) },
                 Gender= new Gender() { Id = Convert.ToInt32(dt.Rows[0][4]) },
-                Breed = new Breed() { Id = Convert.ToInt32(dt.Rows[0][3]) }
+                Breed = new Breed() { Id = Convert.ToInt32(dt.Rows[0][3]) },
                // Image = dt.Rows[0][8].ToString(),
             };
         }
@@ -185,7 +193,7 @@ namespace app.Core.Repository
                     ColourPattern = new ColourPattern() { Description = row["colorName"].ToString() },
                     Specie = new Species() { Description = row["speciesName"].ToString() },
                     Gender = new Gender() { Description = row["sexname"].ToString() },
-                    Breed = new Breed() { Description = row["breedDesc"].ToString() },
+                    Breed = new Breed() { Id = Convert.ToInt32(row["breedDesc"]) },
                 };
             }
             return null;
@@ -194,7 +202,7 @@ namespace app.Core.Repository
         public void GetAllPetsByOwner(DataGridView dgv, string ownerId)
         {
             UpgradeFile upgrade = new UpgradeFile();
-            dgv.DataSource = upgrade.Load("SELECT petId,petname FROM vwpet WHERE clientId=@owner;", new Dictionary<string, string> { { "@owner", ownerId } });
+            dgv.DataSource = upgrade.Load("SELECT petId,petname,speciesName,breedDesc FROM vwpatient WHERE clientId=@owner;", new Dictionary<string, string> { { "@owner", ownerId } });
         }
     }
 }

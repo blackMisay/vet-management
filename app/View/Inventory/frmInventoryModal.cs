@@ -8,20 +8,15 @@ namespace app.view.Inventory
     public partial class frmInventoryModal : Form
     {
         private int Id;
-        private string stockNumber;
-        private string nextStockNumber;
         private int inventoryID;
-        public string StockNumber { get; set; }
 
         public frmInventoryModal()
         {
             InitializeComponent();
             this.Load += frmInventoryModal_Load;
+            dtpReceived.ValueChanged += dtpReceived_ValueChanged;
+            cmbExpPeriod.SelectedIndexChanged += cmbExpPeriod_SelectedIndexChanged;
 
-        }
-        public frmInventoryModal(string nextStockNumber)
-        {
-            stockNumber = nextStockNumber;
         }
 
         public frmInventoryModal(int inventoryID) : this()
@@ -35,7 +30,22 @@ namespace app.view.Inventory
         private void frmInventoryModal_Load(object sender, EventArgs e)
         {
             PopulateCmb();
-            
+
+            if (cmbExpPeriod.Items.Count == 0)  // Prevent duplicate items
+            {
+                cmbExpPeriod.Items.AddRange(new object[] { "15 days", "30 days", "60 days" });
+            }
+
+            cmbExpPeriod.DropDownStyle = ComboBoxStyle.DropDownList;  // Prevent manual input
+            cmbExpPeriod.SelectedIndex = 1;  // Default to 30 days
+
+
+            // Disable editing of expiration date
+            dtpExp.Enabled = false;
+
+            // Set default values
+            dtpReceived.Value = DateTime.Now;
+            UpdateExpirationDate();  // Calculate initial expiration date
 
         }
 
@@ -43,14 +53,7 @@ namespace app.view.Inventory
         {
             // Convert and validate the input values
             int quantity = Convert.ToInt32(txtQty.Text);
-            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
-
-            // Calculate the total amount
-            double amount = quantity * unitPrice;
-
-            // Display the computed amount in the Amount field
-            txtTotalAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
-
+    
             // Validate required fields
             if (string.IsNullOrEmpty(txtDesc.Text))
             {
@@ -83,29 +86,16 @@ namespace app.view.Inventory
                 return;
             }
 
-            // Generate the next stock number using the repository directly or calling a helper function
-            InventoryRepository repository = new InventoryRepository();
-            string nextStockNumber = repository.GenerateNextStockNumber();
-
-            if (string.IsNullOrEmpty(nextStockNumber))
-            {
-                MessageBox.Show("Failed to generate stock number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
             // Create inventory object
             var inventory = new app.core.model.Inventory
             {
                 Id = this.Id,
-                StockNumber = nextStockNumber,
+                BatchNumber = txtBatch.Text,
                 Description = txtDesc.Text,
                 TypeID = new app.core.Types { Id = Convert.ToInt32(cmbProduct.SelectedValue) },
                 BrandID = new app.core.model.Brand { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
                 CategID = new app.core.model.ProductCategory { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
                 Qty = quantity,
-                UnitPrice = unitPrice,
-                TotalAmount = amount,
                 DateReceived = dtpReceived.Value,  
                 ExpiredDate = dtpExp.Value       
             };
@@ -114,7 +104,7 @@ namespace app.view.Inventory
             // Save the inventory
             if (new InventoryRepository().SaveInventory(inventory))
             {
-                MessageBox.Show($"Inventory saved successfully with stock number: {nextStockNumber}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Inventory saved successfully !", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 frmInventory frm = new frmInventory();
                 frm.dgvInventory.RefreshEdit();
                 this.Close();
@@ -152,29 +142,18 @@ namespace app.view.Inventory
         private void LoadDetails(app.core.model.Inventory inventory)
         {
             
-            lblStockNumber.Text = inventory.StockNumber.ToString();
+            txtBatch.Text = inventory.BatchNumber.ToString();
             cmbBrand.SelectedValue = inventory.BrandID.Id;
             cmbProduct.SelectedValue = inventory.TypeID.Id;
             cmbCateg.SelectedValue = inventory.CategID.Id;
             txtDesc.Text = inventory.Description;
             txtQty.Text = inventory.Qty.ToString();
-            txtUnitPrice.Text = inventory.UnitPrice.ToString();
-            txtTotalAmount.Text = inventory.TotalAmount.ToString();
             dtpReceived.Text = inventory.DateReceived.ToString();
             dtpExp.Text = inventory.ExpiredDate.ToString();
         }
 
         private void LoadInventoryDetails()
         {
-            if (!string.IsNullOrEmpty(StockNumber))
-            {
-                lblStockNumber.Text = StockNumber; // Display the stock number
-            }
-            else
-            {
-                lblStockNumber.Text = "N/A"; // Or a default message
-            }
-
             InventoryRepository inventoryRepository = new InventoryRepository();
             var inventory = inventoryRepository.GetInventory(new app.core.model.Inventory() { Id = this.inventoryID });
 
@@ -186,15 +165,6 @@ namespace app.view.Inventory
 
         private void PopulateCmb()
         {
-            if (!string.IsNullOrEmpty(StockNumber))
-            {
-                lblStockNumber.Text = StockNumber; // Display the stock number
-            }
-            else
-            {
-                lblStockNumber.Text = "N/A"; // Or a default message
-            }
-
             UpgradeFile upgradeFile = new UpgradeFile();
 
             cmbBrand.DataSource = upgradeFile.Populate("SELECT brandId, brandDesc FROM product_brands;");
@@ -211,18 +181,36 @@ namespace app.view.Inventory
 
         }
 
-        private void txtTotalAmount_TextChanged(object sender, EventArgs e)
+        private void dtpReceived_ValueChanged(object sender, EventArgs e)
         {
-            // Convert and validate the input values
-            int quantity = Convert.ToInt32(txtQty.Text);
-            double unitPrice = Convert.ToDouble(txtUnitPrice.Text);
+            dtpExp.Value = dtpReceived.Value.AddDays(30);
+        }
 
-            // Calculate the total amount
-            double amount = quantity * unitPrice;
+        private void cmbExpPeriod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateExpirationDate();
+        }
 
-            // Display the computed amount in the Amount field
-            txtTotalAmount.Text = amount.ToString("F2"); // Formats to 2 decimal places
+        private void UpdateExpirationDate()
+        {
+            int daysToAdd = 30;  // Default to 30 days
+            string selectedDuration = cmbExpPeriod.SelectedItem?.ToString();
 
+            if (selectedDuration == "15 days")
+            {
+                daysToAdd = 15;
+            }
+            else if (selectedDuration == "60 days")
+            {
+                daysToAdd = 60;
+            }
+
+            dtpExp.Value = dtpReceived.Value.AddDays(daysToAdd);
+        }
+            
+        private void dtpDateReceived_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateExpirationDate();
         }
     }
 }

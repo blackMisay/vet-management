@@ -22,7 +22,7 @@ namespace app.view.Product
         private void frmProducts_Load(object sender, EventArgs e)
         {
             UpgradeFile upgradeFile = new UpgradeFile();
-            dgvProducts.DataSource = upgradeFile.Load("Select * FROM vwproduct WHERE isDeleted=0");
+            dgvProducts.DataSource = upgradeFile.Load("SELECT * FROM vwproduct WHERE isDeleted=0 ORDER BY categoryDescription ASC;");
 
             ProductRepository productRepository = new ProductRepository();
 
@@ -139,7 +139,6 @@ namespace app.view.Product
 
         private void Header(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.PageSettings.Landscape = true;
             // Define fonts for title, address, title bar, datetime, totalSales, and quantity
             Font titleFont = new Font("Century Gothic", 14, FontStyle.Bold);
             Font addressFont = new Font("Century Gothic", 8, FontStyle.Regular);
@@ -152,7 +151,7 @@ namespace app.view.Product
             string title = "SAHAGUN VETERINARY CLINIC";
             string address = "6418 Zapote Street Area D., Camarin Road, Caloocan City";
             string titlebar = "Product Report";
-            string datetime = "Date: " + DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt"); // Current DateTime formatted
+            string datetime = "as of: " + DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt"); // Current DateTime formatted
 
             // Measure sizes of text strings to adjust positioning
             SizeF titleSize = e.Graphics.MeasureString(title, titleFont);
@@ -185,15 +184,14 @@ namespace app.view.Product
             currentY += titlebarSize.Height + 10; // Adjust Y for spacing after titlebar
 
             // Draw DateTime (positioned at the right side of the page)
-            float datetimeX = pageWidth - datetimeSize.Width - 50;  // 50 pixels from the right
+            float datetimeX = (pageWidth - datetimeSize.Width) / 2;  // 50 pixels from the right
             e.Graphics.DrawString(datetime, datetimeFont, Brushes.Black, new PointF(datetimeX, currentY));
 
 
         }
-        private int GetColumnWidth(string headerText, int typeWidth, int brandWidth, int descriptionWidth, int categoryWidth)
+        private int GetColumnWidth(string headerText, int brandWidth, int descriptionWidth, int categoryWidth)
         {
-            if (headerText == "Type of Product")
-                return typeWidth;
+            
             if (headerText == "Category")
                 return categoryWidth;
             if (headerText == "Brand")
@@ -213,7 +211,6 @@ namespace app.view.Product
                 Font cellFont = new Font("Century Gothic", 8, FontStyle.Regular);
 
                 // Predefined column widths
-                int typeWidth = 100;
                 int categoryWidth = 100;
                 int brandWidth = 220;
                 int descriptionWidth = 200;
@@ -224,12 +221,12 @@ namespace app.view.Product
                 {
                     if (col.Visible)
                     {
-                        totalTableWidth += GetColumnWidth(col.HeaderText, typeWidth, brandWidth, descriptionWidth, categoryWidth);
+                        totalTableWidth += GetColumnWidth(col.HeaderText, brandWidth, descriptionWidth, categoryWidth);
                     }
                 }
 
                 // Page layout configuration
-                e.PageSettings.Landscape = true;
+               
                 int pageWidth = e.MarginBounds.Width;
                 int centeredX = e.MarginBounds.Left + (pageWidth - totalTableWidth) / 2;
                 int x = centeredX;
@@ -244,7 +241,7 @@ namespace app.view.Product
                 {
                     if (col.Visible)
                     {
-                        int cellWidth = GetColumnWidth(col.HeaderText, typeWidth, brandWidth, descriptionWidth, categoryWidth);
+                        int cellWidth = GetColumnWidth(col.HeaderText, brandWidth, descriptionWidth, categoryWidth);
                         e.Graphics.DrawRectangle(Pens.Black, new Rectangle(x, y, cellWidth, dgvProducts.ColumnHeadersHeight));
                         e.Graphics.DrawString(col.HeaderText, headerFont, Brushes.Black, new RectangleF(x, y, cellWidth, dgvProducts.ColumnHeadersHeight), new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                         x += cellWidth;
@@ -269,7 +266,7 @@ namespace app.view.Product
                             DataGridViewColumn col = dgvProducts.Columns[i];
                             if (col.Visible)
                             {
-                                int cellWidth = GetColumnWidth(col.HeaderText, typeWidth, brandWidth, descriptionWidth, categoryWidth);
+                                int cellWidth = GetColumnWidth(col.HeaderText, brandWidth, descriptionWidth, categoryWidth);
                                 e.Graphics.DrawRectangle(Pens.Black, new Rectangle(x, y, cellWidth, cellHeight));
 
                                 // Draw the cell content
