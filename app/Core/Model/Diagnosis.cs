@@ -12,9 +12,9 @@ namespace app.core.model
         public int Patient { get; set; }
         public string Weight { get; set; }
         public string Temperature { get; set; }
-        public string ComplaintRequest { get; set; }
-        public string Findings { get; set; }
-        public string PlanTreatment { get; set; }
-        public string Medication { get; set; }
+        public Complaint ComplaintRequest { get; set; }
+        public Findings Findings { get; set; }
+        public Treatment PlanTreatment { get; set; }
+        public Medication Medication { get; set; }
     }
 }

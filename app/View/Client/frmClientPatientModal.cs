@@ -5,6 +5,7 @@ using System;
 using app.Core.Model;
 using Core;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace app.view.Client
 {
@@ -12,6 +13,7 @@ namespace app.view.Client
     {
         private int Id = 0;
         private int clientId = 0;
+        private int selectedBreedId;
 
         //Use for updating pet record
         public frmClientPatientModal(int petId)
@@ -46,33 +48,33 @@ namespace app.view.Client
             {
                 MessageBox.Show("Work has been cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Dispose();
-            }                  
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-                // Save pet details
-                SavePet();
+            // Save pet details
+            SavePet();
 
-                // Load the data into the DataGridView of frmClient
-                UpgradeFile upgradeFile = new UpgradeFile();
-                frmClient clientForm = new frmClient();
+            // Load the data into the DataGridView of frmClient
+            UpgradeFile upgradeFile = new UpgradeFile();
+            frmClient clientForm = new frmClient();
 
             // Ensure dgvPatient is accessed properly
             clientForm.dgvPatient.DataSource = upgradeFile.Load("SELECT * FROM vwpatient WHERE isDeleted = 0");
 
-                // Show the frmClient form (optional, depends on your application flow)
-                clientForm.Show();
+            // Show the frmClient form (optional, depends on your application flow)
+            clientForm.Show();
 
-                // Dispose of the current form
-                this.Dispose();
-            }
+            // Dispose of the current form
+            this.Dispose();
+        }
 
         private string imagePath = "";
         private void btnAddPhoto_Click(object sender, EventArgs e)
         {
             // enhance/VCMS49
-            if (MessageBox.Show("Do you want to add/change photo?", "Confirm to add/change photo", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Do you want to add/change photo?", "Confirm to add/change photo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.InitialDirectory = "Downloads";
@@ -96,17 +98,9 @@ namespace app.view.Client
             }
         }
 
-        private void cboSpecies_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed WHERE species_id='" + cboSpecies.SelectedValue.ToString() + "';");
-            cboBreed.ValueMember = "Key";
-            cboBreed.DisplayMember = "Value";
-        }
-
         private void SavePet()
         {
+
             Pet pet = new Pet();
 
             pet.Id = this.Id;
@@ -128,13 +122,15 @@ namespace app.view.Client
             pet.Image = this.imagePath; //enhance/VCMS49
 
             PetRepository petRepository = new PetRepository();
-            if (petRepository.Save(pet))
+            bool isSaved = petRepository.Save(pet);
+
+            if (isSaved)
             {
-                MessageBox.Show("Save successfully");
+                MessageBox.Show("Pet saved successfully!");
             }
             else
             {
-                MessageBox.Show("Unable to save record");
+                MessageBox.Show("Unable to save the pet record.");
             }
         }
         private void LoadDetails(app.Core.Model.Pet pet)
@@ -147,9 +143,9 @@ namespace app.view.Client
             cboGender.SelectedValue = pet.Gender.Id;
             cboColor.SelectedValue = pet.ColourPattern.Id;
             cboSpecies.SelectedValue = pet.Specie.Id;
-            cboBreed.SelectedValue = pet.Breed.Id;
+            txtBreed.Text = pet.Breed.ToString();
             pbPetPhoto.ImageLocation = pet.Image; //enhance/VCMS49
-            
+
         }
 
         private void LoadPetDetails()
@@ -159,7 +155,7 @@ namespace app.view.Client
             if (pet != null)
             {
                 LoadDetails(pet);
-            } 
+            }
         }
 
         private void PopulateCmb()
@@ -172,6 +168,7 @@ namespace app.view.Client
             //cboBreed.DisplayMember = "VALUE";
 
             cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern ORDER BY description;");
+
             cboColor.ValueMember = "KEY";
             cboColor.DisplayMember = "VALUE";
        
@@ -234,7 +231,7 @@ namespace app.view.Client
                     // Refresh the combobox to include the new color
                     PopulateCmb();
                 }
-            }   
+            }
         }
 
         private void btnBreed_Click(object sender, EventArgs e)
@@ -244,10 +241,54 @@ namespace app.view.Client
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     // Refresh the combobox to include the new color
-                    PopulateCmb();
+                    frmBreed breed = new frmBreed();
+                    breed.dgvBreed.RefreshEdit();
                 }
             }
 
+        }
+
+        private void btnSelectBreed_Click(object sender, EventArgs e)
+        {
+            frmBreed breedForm = new frmBreed();
+
+            // Subscribe to the event
+            breedForm.BreedSelected += OnBreedSelected;
+
+            // Show the frmBreed form
+            breedForm.ShowDialog();
+        }
+        private void OnBreedSelected(int breedId)
+        {
+            // When the event is triggered, set the breed ID in the hidden field
+            txtBreed.Text = breedId.ToString(); // Assuming you want to display the breed ID in the textbox
+
+            // Optionally, store the breed ID in a variable for saving
+            this.selectedBreedId = breedId;
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            // Get the text from the TextBox
+            string name = txtName.Text;
+
+            // Check if the text is not empty
+            if (!string.IsNullOrEmpty(name))
+            {
+                // Trim any leading or trailing spaces
+                name = name.Trim();
+
+                // If there is any text, convert it to sentence case
+                if (name.Length > 0)
+                {
+                    // Convert the first character to uppercase and the rest to lowercase
+                    name = char.ToUpper(name[0]) + name.Substring(1).ToLower();
+                }
+
+                // To avoid triggering the TextChanged event, use this:
+                txtName.Text = name;
+                txtName.SelectionStart = name.Length;  // Keep the cursor at the end of the text
+            }
         }
     }
 }

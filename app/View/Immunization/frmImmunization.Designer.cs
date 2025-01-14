@@ -30,12 +30,12 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnImmunization = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvImmunization = new System.Windows.Forms.DataGridView();
@@ -46,6 +46,7 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvImmunization)).BeginInit();
@@ -53,9 +54,11 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
@@ -66,9 +69,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(7, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(9, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(181, 34);
             this.label1.TabIndex = 0;
@@ -77,8 +79,6 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.btnImmunization);
-            this.panel2.Controls.Add(this.btnEdit);
-            this.panel2.Controls.Add(this.btnRemove);
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -94,8 +94,7 @@
             this.btnImmunization.BackColor = System.Drawing.Color.White;
             this.btnImmunization.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImmunization.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnImmunization.Location = new System.Drawing.Point(772, 14);
-            this.btnImmunization.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnImmunization.Location = new System.Drawing.Point(1251, 16);
             this.btnImmunization.Name = "btnImmunization";
             this.btnImmunization.Size = new System.Drawing.Size(152, 25);
             this.btnImmunization.TabIndex = 12;
@@ -103,38 +102,6 @@
             this.btnImmunization.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnImmunization.UseVisualStyleBackColor = false;
             this.btnImmunization.Click += new System.EventHandler(this.btnImmunization_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.White;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEdit.Location = new System.Drawing.Point(928, 14);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(76, 25);
-            this.btnEdit.TabIndex = 11;
-            this.btnEdit.Text = "&Update";
-            this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemove.BackColor = System.Drawing.Color.White;
-            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemove.Location = new System.Drawing.Point(1009, 14);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(82, 25);
-            this.btnRemove.TabIndex = 10;
-            this.btnRemove.Text = "&Remove";
-            this.btnRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRemove.UseVisualStyleBackColor = false;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // txtSearch
             // 
@@ -161,6 +128,9 @@
             // dgvImmunization
             // 
             this.dgvImmunization.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dgvImmunization.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvImmunization.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvImmunization.BackgroundColor = System.Drawing.Color.White;
             this.dgvImmunization.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -171,7 +141,8 @@
             this.Column3,
             this.Column10,
             this.Column11,
-            this.Column12});
+            this.Column12,
+            this.Column4});
             this.dgvImmunization.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvImmunization.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvImmunization.Location = new System.Drawing.Point(0, 102);
@@ -196,10 +167,10 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "name";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column2.HeaderText = "Patient";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
@@ -228,6 +199,9 @@
             // Column11
             // 
             this.Column11.DataPropertyName = "administered_date";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Column11.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column11.HeaderText = "Administered Date";
             this.Column11.MinimumWidth = 6;
             this.Column11.Name = "Column11";
@@ -235,13 +209,20 @@
             // Column12
             // 
             this.Column12.DataPropertyName = "expiration_date";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Column12.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Column12.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column12.HeaderText = "Expiration Date";
             this.Column12.MinimumWidth = 6;
             this.Column12.Name = "Column12";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "veterinarian_id";
+            this.Column4.HeaderText = "Veterinarian";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
             // 
             // frmImmunization
             // 
@@ -270,8 +251,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnImmunization;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         public System.Windows.Forms.DataGridView dgvImmunization;
@@ -282,5 +261,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

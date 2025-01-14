@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSelectBreed = new System.Windows.Forms.Button();
+            this.txtBreed = new System.Windows.Forms.TextBox();
             this.cmbSize = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -74,6 +76,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.Controls.Add(this.btnSelectBreed);
+            this.groupBox1.Controls.Add(this.txtBreed);
             this.groupBox1.Controls.Add(this.cmbSize);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.label10);
@@ -87,7 +91,6 @@
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cboBreed);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.btnBreed);
             this.groupBox1.Controls.Add(this.label16);
@@ -104,14 +107,34 @@
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(452, 146);
+            this.groupBox1.Location = new System.Drawing.Point(357, 90);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(618, 445);
+            this.groupBox1.Size = new System.Drawing.Size(617, 447);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General Information";
+            // 
+            // btnSelectBreed
+            // 
+            this.btnSelectBreed.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectBreed.Location = new System.Drawing.Point(110, 361);
+            this.btnSelectBreed.Name = "btnSelectBreed";
+            this.btnSelectBreed.Size = new System.Drawing.Size(83, 29);
+            this.btnSelectBreed.TabIndex = 48;
+            this.btnSelectBreed.Text = "&Select";
+            this.btnSelectBreed.UseVisualStyleBackColor = true;
+            this.btnSelectBreed.Click += new System.EventHandler(this.btnSelectBreed_Click);
+            // 
+            // txtBreed
+            // 
+            this.txtBreed.Location = new System.Drawing.Point(200, 356);
+            this.txtBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtBreed.Name = "txtBreed";
+            this.txtBreed.Size = new System.Drawing.Size(308, 36);
+            this.txtBreed.TabIndex = 47;
+            this.txtBreed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cmbSize
             // 
@@ -152,7 +175,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Red;
-            this.label21.Location = new System.Drawing.Point(564, 371);
+            this.label21.Location = new System.Drawing.Point(564, 365);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(22, 27);
             this.label21.TabIndex = 44;
@@ -210,7 +233,19 @@
             this.cboSpecies.Name = "cboSpecies";
             this.cboSpecies.Size = new System.Drawing.Size(357, 35);
             this.cboSpecies.TabIndex = 8;
-            this.cboSpecies.SelectionChangeCommitted += new System.EventHandler(this.cboSpecies_SelectionChangeCommitted);
+            // 
+            // btnAddColor
+            // 
+            this.btnAddColor.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAddColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddColor.Location = new System.Drawing.Point(515, 396);
+            this.btnAddColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddColor.Name = "btnAddColor";
+            this.btnAddColor.Size = new System.Drawing.Size(41, 35);
+            this.btnAddColor.TabIndex = 17;
+            this.btnAddColor.Text = "+";
+            this.btnAddColor.UseVisualStyleBackColor = true;
+            this.btnAddColor.Click += new System.EventHandler(this.btnAddColor_Click);
             // 
             // btnAddColor
             // 
@@ -273,10 +308,10 @@
             // 
             this.btnBreed.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnBreed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBreed.Location = new System.Drawing.Point(516, 360);
+            this.btnBreed.Location = new System.Drawing.Point(516, 356);
             this.btnBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBreed.Name = "btnBreed";
-            this.btnBreed.Size = new System.Drawing.Size(41, 31);
+            this.btnBreed.Size = new System.Drawing.Size(41, 36);
             this.btnBreed.TabIndex = 18;
             this.btnBreed.Text = "+";
             this.btnBreed.UseVisualStyleBackColor = true;
@@ -405,6 +440,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(357, 36);
             this.txtName.TabIndex = 1;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // label2
             // 
@@ -421,7 +457,7 @@
             // 
             this.pbPetPhoto.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pbPetPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbPetPhoto.Location = new System.Drawing.Point(85, 146);
+            this.pbPetPhoto.Location = new System.Drawing.Point(41, 90);
             this.pbPetPhoto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pbPetPhoto.Name = "pbPetPhoto";
             this.pbPetPhoto.Size = new System.Drawing.Size(280, 280);
@@ -431,24 +467,25 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1127, 83);
+            this.panel1.Size = new System.Drawing.Size(1045, 53);
             this.panel1.TabIndex = 13;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(13, 22);
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(13, 9);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(216, 38);
+            this.label5.Size = new System.Drawing.Size(219, 34);
             this.label5.TabIndex = 1;
             this.label5.Text = "Pet Information";
             // 
@@ -458,7 +495,7 @@
             this.btnSave.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(955, 597);
+            this.btnSave.Location = new System.Drawing.Point(859, 547);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(115, 36);
@@ -474,7 +511,7 @@
             this.btnCancel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(837, 597);
+            this.btnCancel.Location = new System.Drawing.Point(741, 547);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 36);
@@ -490,7 +527,7 @@
             this.btnAddPhoto.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAddPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPhoto.Image = global::app.Properties.Resources.icons8_add_image_32;
-            this.btnAddPhoto.Location = new System.Drawing.Point(140, 443);
+            this.btnAddPhoto.Location = new System.Drawing.Point(97, 376);
             this.btnAddPhoto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddPhoto.Name = "btnAddPhoto";
             this.btnAddPhoto.Size = new System.Drawing.Size(178, 51);
@@ -505,7 +542,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1127, 645);
+            this.ClientSize = new System.Drawing.Size(1045, 595);
             this.Controls.Add(this.btnAddPhoto);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
@@ -540,7 +577,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboSpecies;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cboBreed;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pbPetPhoto;
         private System.Windows.Forms.Panel panel1;
@@ -565,5 +601,7 @@
         private System.Windows.Forms.ComboBox cmbSize;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label10;
+        public   System.Windows.Forms.TextBox txtBreed;
+        private System.Windows.Forms.Button btnSelectBreed;
     }
 }

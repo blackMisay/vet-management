@@ -8,7 +8,7 @@ namespace app.core.model
     {
        public int Id { get; set; }
 
-       public string StockNumber { get; set; }
+       public string BatchNumber { get; set; }
 
        public string Description { get; set; }
 
@@ -19,9 +19,6 @@ namespace app.core.model
        public Brand BrandID { get; set; }
 
        public int Qty { get; set;}
-       public double UnitPrice { get; set; }
-       public double TotalAmount { get; set; }
-
        public DateTime DateReceived { get; set; }
 
        public DateTime ExpiredDate { get; set; } 

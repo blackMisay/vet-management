@@ -22,10 +22,10 @@ namespace app.core.repository
                 {"@Patient", diagnosis.Patient.ToString() },
                 {"@Weight", diagnosis.Weight },
                 {"@Temperature", diagnosis.Temperature },
-                {"@Complaint", diagnosis.ComplaintRequest },
-                {"@Findings", diagnosis.Findings },
-                {"@Plantreatment", diagnosis.PlanTreatment },
-                {"@Medication", diagnosis.Medication },
+                {"@Complaint", diagnosis.ComplaintRequest.Id.ToString() },
+                {"@Findings", diagnosis.Findings.Id.ToString() },
+                {"@Plantreatment", diagnosis.PlanTreatment.Id.ToString() },
+                {"@Medication", diagnosis.Medication.Id.ToString() },
             };
             string query = "";
 
@@ -51,7 +51,7 @@ namespace app.core.repository
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            return upgradeFile.Load("SELECT id,client_fullname,petname,complaint,findings,`date` AS `ConsultDate` FROM vwconsultation");
+            return upgradeFile.Load("SELECT id,client_fullname,petname,complaint,findings,date FROM vwconsultation");
         }
 
         public DataTable GetSpecificConsultation(string text)

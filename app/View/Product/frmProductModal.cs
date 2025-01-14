@@ -3,6 +3,7 @@ using app.core.repository;
 using System;
 using Core;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace app.view.Product
 {
@@ -38,10 +39,6 @@ namespace app.view.Product
             cmbCateg.DataSource = upgradeFile.Populate("SELECT id, description from product_category");
             cmbCateg.ValueMember = "KEY"; // Correct column name from query
             cmbCateg.DisplayMember = "VALUE"; // Correct column name from query
-
-            cmbTypes.DataSource = upgradeFile.Populate("SELECT id, description from product_types");
-            cmbTypes.ValueMember = "KEY"; // Correct column name from query
-            cmbTypes.DisplayMember = "VALUE"; // Correct column name from query
         }
 
         private void LoadProductDetails()
@@ -56,10 +53,9 @@ namespace app.view.Product
 
         private void LoadDetails(app.core.model.Product product)
         {
-            cmbBrand.SelectedValue = product.BrandID.Id;
-            txtDesc.Text = product.Description;
-            cmbCateg.SelectedValue = product.CategID.Id;
-            cmbTypes.SelectedValue = product.TypeID.Id;
+            cmbBrand.SelectedValue = product.BrandID; // Assuming BrandID is a primitive type like int or string
+            txtDesc.Text = product.Description ?? string.Empty; // Prevent null reference exception
+            cmbCateg.SelectedValue = product.CategID; // Assuming CategID is a primitive type like int or string
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -110,13 +106,6 @@ namespace app.view.Product
                 return; // Prevent saving if no category is selected
             }
 
-            if (cmbTypes.SelectedValue == null || Convert.ToInt32(cmbTypes.SelectedValue) == 0)
-            {
-                MessageBox.Show("Please select a type.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbTypes.Focus(); // Set focus on the type combo box
-                return; // Prevent saving if no type is selected
-            }
-
             // Create the product object if all validations pass
 
             app.core.model.Product product = new app.core.model.Product
@@ -125,7 +114,6 @@ namespace app.view.Product
                 BrandID = new Brand() { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
                 Description = txtDesc.Text,
                 CategID = new ProductCategory() { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
-                TypeID = new core.Types() { Id = Convert.ToInt32(cmbTypes.SelectedValue)},
 
             };
 
@@ -143,14 +131,6 @@ namespace app.view.Product
 
         }
 
-        private void btnAddType_Click(object sender, EventArgs e)
-        {
-            frmNewProductType type = new frmNewProductType();
-            type.ShowDialog();
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
         private void btnAddCateg_Click(object sender, EventArgs e)
         {
             frmNewProductCategory category = new frmNewProductCategory();
@@ -165,6 +145,15 @@ namespace app.view.Product
             brand.ShowDialog();
             this.DialogResult= DialogResult.OK;
             this.Close();
+        }
+
+        private void txtDesc_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDesc.Text.Length > 0)
+            {
+                txtDesc.Text = char.ToUpper(txtDesc.Text[0]) + txtDesc.Text.Substring(1).ToLower();
+            }
+            txtDesc.SelectionStart = txtDesc.Text.Length;  // Keep the cursor at the end of the text
         }
     }
 }
