@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using app.core.repository;
 using app.core.model;
 using System.Security.Cryptography;
+using Core;
 
 namespace app.view.Immunization
 {
@@ -45,7 +46,10 @@ namespace app.view.Immunization
 
         private void frmImmunizationModal_Load(object sender, EventArgs e)
         {
-
+            UpgradeFile upgradeFile = new UpgradeFile();
+            cboVeterinarian.DataSource = upgradeFile.Populate("SELECT * FROM doctor WHERE status='Active'");
+            cboVeterinarian.ValueMember = "Key";
+            cboVeterinarian.DisplayMember = "Value";
         }
 
         private void btnSelectAPatient_Click(object sender, EventArgs e)
@@ -94,6 +98,7 @@ namespace app.view.Immunization
                 Dosage = cmbDosage.Text,
                 AdministeredDate = dtpAdministeredDate.Value.ToString("yyyy-MM-dd"),
                 ExpirationDate = dtpExpirationDate.Value.ToString("yyyy-MM-dd"),
+                VeterinarianId = Convert.ToInt32(cboVeterinarian.SelectedValue)
             };
 
             PetVaccinationRepository pvr = new PetVaccinationRepository();

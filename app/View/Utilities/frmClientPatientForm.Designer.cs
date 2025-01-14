@@ -32,15 +32,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvOwner = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvPet = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOwner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPet)).BeginInit();
@@ -77,6 +78,25 @@
             this.dgvOwner.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOwner_CellClick);
             this.dgvOwner.DoubleClick += new System.EventHandler(this.dgvOwner_DoubleClick);
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "id";
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "name";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column2.HeaderText = "Owner";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            // 
             // dgvPet
             // 
             this.dgvPet.AllowUserToAddRows = false;
@@ -86,6 +106,7 @@
             this.dgvPet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.Column1,
+            this.Column3,
             this.dataGridViewTextBoxColumn2});
             this.dgvPet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPet.Location = new System.Drawing.Point(470, 169);
@@ -122,9 +143,9 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(175, 128);
+            this.txtSearch.Location = new System.Drawing.Point(228, 128);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(239, 30);
+            this.txtSearch.Size = new System.Drawing.Size(186, 30);
             this.txtSearch.TabIndex = 12;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -133,28 +154,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(32, 131);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(137, 23);
+            this.label3.Size = new System.Drawing.Size(190, 23);
             this.label3.TabIndex = 13;
-            this.label3.Text = "Search by NAME";
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "id";
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "name";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column2.HeaderText = "Owner";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
+            this.label3.Text = "Search by Owner Name";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -170,6 +172,13 @@
             this.Column1.HeaderText = "Specie";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "breedDesc";
+            this.Column3.HeaderText = "Breed";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -221,6 +230,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

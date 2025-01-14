@@ -202,7 +202,7 @@ namespace app.Core.Repository
         public void GetAllPetsByOwner(DataGridView dgv, string ownerId)
         {
             UpgradeFile upgrade = new UpgradeFile();
-            dgv.DataSource = upgrade.Load("SELECT petId,petname,speciesName FROM vwpatient WHERE clientId=@owner;", new Dictionary<string, string> { { "@owner", ownerId } });
+            dgv.DataSource = upgrade.Load("SELECT petId,petname,speciesName,breedDesc FROM vwpatient WHERE clientId=@owner;", new Dictionary<string, string> { { "@owner", ownerId } });
         }
     }
 }
