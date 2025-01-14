@@ -290,6 +290,7 @@
             this.btnVaccination.UseVisualStyleBackColor = false;
             this.btnVaccination.Click += new System.EventHandler(this.btnVaccination_Click);
             //  
+            // 
             // btnSettings
             // 
             this.btnSettings.BackColor = System.Drawing.Color.White;
@@ -308,6 +309,7 @@
             this.btnSettings.UseVisualStyleBackColor = false;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             //  
+            // 
             // btnLogout
             // 
             this.btnLogout.BackColor = System.Drawing.Color.White;
@@ -344,7 +346,27 @@
             this.toolTip_Main.SetToolTip(this.btnConsultation, "Diagnosis");
             this.btnConsultation.UseVisualStyleBackColor = false;
             this.btnConsultation.Click += new System.EventHandler(this.btnConsultation_Click);
+            //
+            // pnlClientSpacer
             // 
+            this.pnlClientSpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlClientSpacer.Location = new System.Drawing.Point(10, 223);
+            this.pnlClientSpacer.Name = "pnlClientSpacer";
+            this.pnlClientSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlClientSpacer.Size = new System.Drawing.Size(66, 10);
+            this.pnlClientSpacer.TabIndex = 10;
+            // 
+
+            // pnlClientSpacer
+            // 
+            this.pnlClientSpacer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlClientSpacer.Location = new System.Drawing.Point(10, 223);
+            this.pnlClientSpacer.Name = "pnlClientSpacer";
+            this.pnlClientSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.pnlClientSpacer.Size = new System.Drawing.Size(66, 10);
+            this.pnlClientSpacer.TabIndex = 10;
+            // 
+
             // btnClient
             // 
             this.btnClient.BackColor = System.Drawing.Color.White;
@@ -378,26 +400,26 @@
             this.btnMedicalRecords.Name = "btnMedicalRecords";
             this.btnMedicalRecords.Size = new System.Drawing.Size(66, 50);
             this.btnMedicalRecords.TabIndex = 7;
-            this.toolTip_Main.SetToolTip(this.btnMedicalRecords, "Medical Record");
-            this.btnMedicalRecords.UseVisualStyleBackColor = false;
-            this.btnMedicalRecords.Click += new System.EventHandler(this.btnMedicalRecords_Click);
-            // 
-            // btnDashboard
-            // 
-            this.btnDashboard.BackColor = System.Drawing.Color.White;
-            this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnDashboard.Image = global::app.Properties.Resources.healthdashboard_24px;
-            this.btnDashboard.Location = new System.Drawing.Point(10, 53);
-            this.btnDashboard.Name = "btnDashboard";
+            //  
             this.btnDashboard.Size = new System.Drawing.Size(66, 50);
             this.btnDashboard.TabIndex = 1;
             this.toolTip_Main.SetToolTip(this.btnDashboard, "Dashboard");
             this.btnDashboard.UseVisualStyleBackColor = false;
+            // 
+            // btnToggle
+            // 
+            this.btnToggle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnToggle.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnToggle.FlatAppearance.BorderSize = 0;
+            this.btnToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToggle.Image = global::app.Properties.Resources.main_menu_24px;
+            this.btnToggle.Location = new System.Drawing.Point(10, 0);
+            this.btnToggle.Name = "btnToggle";
+            this.btnToggle.Size = new System.Drawing.Size(66, 53);
+            this.btnToggle.TabIndex = 0;
+            this.toolTip_Main.SetToolTip(this.btnToggle, "Toggle sidebar");
+            this.btnToggle.UseVisualStyleBackColor = true;
+            this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
             // 
             // pnlFooter
             // 
