@@ -272,15 +272,6 @@
             this.btnItem.UseVisualStyleBackColor = false;
             this.btnItem.Click += new System.EventHandler(this.btnItem_Click);
             // 
-            // pnlDiagnosisSpacer
-            // 
-            this.pnlDiagnosisSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlDiagnosisSpacer.Location = new System.Drawing.Point(10, 343);
-            this.pnlDiagnosisSpacer.Name = "pnlDiagnosisSpacer";
-            this.pnlDiagnosisSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlDiagnosisSpacer.Size = new System.Drawing.Size(66, 10);
-            this.pnlDiagnosisSpacer.TabIndex = 12;
-            // 
             // btnVaccination
             // 
             this.btnVaccination.BackColor = System.Drawing.Color.White;
@@ -299,15 +290,6 @@
             this.btnVaccination.UseVisualStyleBackColor = false;
             this.btnVaccination.Click += new System.EventHandler(this.btnVaccination_Click);
             // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(10, 283);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.panel3.Size = new System.Drawing.Size(66, 10);
-            this.panel3.TabIndex = 24;
-            // 
             // btnSettings
             // 
             this.btnSettings.BackColor = System.Drawing.Color.White;
@@ -325,15 +307,6 @@
             this.toolTip_Main.SetToolTip(this.btnSettings, "Settings");
             this.btnSettings.UseVisualStyleBackColor = false;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(10, 632);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.panel1.Size = new System.Drawing.Size(66, 10);
-            this.panel1.TabIndex = 18;
             // 
             // btnLogout
             // 
@@ -371,17 +344,7 @@
             this.toolTip_Main.SetToolTip(this.btnConsultation, "Diagnosis");
             this.btnConsultation.UseVisualStyleBackColor = false;
             this.btnConsultation.Click += new System.EventHandler(this.btnConsultation_Click);
-            // 
-            // pnlClientSpacer
-            // 
-            this.pnlClientSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlClientSpacer.Location = new System.Drawing.Point(10, 223);
-            this.pnlClientSpacer.Name = "pnlClientSpacer";
-            this.pnlClientSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlClientSpacer.Size = new System.Drawing.Size(66, 10);
-            this.pnlClientSpacer.TabIndex = 10;
-            // 
-
+            //
             // btnClient
             // 
             this.btnClient.BackColor = System.Drawing.Color.White;
@@ -401,15 +364,6 @@
             this.btnClient.UseVisualStyleBackColor = false;
             this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
             // 
-            // pnlViewMedicalRecordSpacer
-            // 
-            this.pnlViewMedicalRecordSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlViewMedicalRecordSpacer.Location = new System.Drawing.Point(10, 163);
-            this.pnlViewMedicalRecordSpacer.Name = "pnlViewMedicalRecordSpacer";
-            this.pnlViewMedicalRecordSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlViewMedicalRecordSpacer.Size = new System.Drawing.Size(66, 10);
-            this.pnlViewMedicalRecordSpacer.TabIndex = 8;
-            // 
             // btnMedicalRecords
             // 
             this.btnMedicalRecords.BackColor = System.Drawing.Color.White;
@@ -428,15 +382,6 @@
             this.btnMedicalRecords.UseVisualStyleBackColor = false;
             this.btnMedicalRecords.Click += new System.EventHandler(this.btnMedicalRecords_Click);
             // 
-            // pnlDashboardSpacer
-            // 
-            this.pnlDashboardSpacer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlDashboardSpacer.Location = new System.Drawing.Point(10, 103);
-            this.pnlDashboardSpacer.Name = "pnlDashboardSpacer";
-            this.pnlDashboardSpacer.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.pnlDashboardSpacer.Size = new System.Drawing.Size(66, 10);
-            this.pnlDashboardSpacer.TabIndex = 6;
-            // 
             // btnDashboard
             // 
             this.btnDashboard.BackColor = System.Drawing.Color.White;
@@ -453,22 +398,7 @@
             this.btnDashboard.TabIndex = 1;
             this.toolTip_Main.SetToolTip(this.btnDashboard, "Dashboard");
             this.btnDashboard.UseVisualStyleBackColor = false;
-            // 
-            // btnToggle
-            // 
-            this.btnToggle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnToggle.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnToggle.FlatAppearance.BorderSize = 0;
-            this.btnToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnToggle.Image = global::app.Properties.Resources.main_menu_24px;
-            this.btnToggle.Location = new System.Drawing.Point(10, 0);
-            this.btnToggle.Name = "btnToggle";
-            this.btnToggle.Size = new System.Drawing.Size(66, 53);
-            this.btnToggle.TabIndex = 0;
-            this.toolTip_Main.SetToolTip(this.btnToggle, "Toggle sidebar");
-            this.btnToggle.UseVisualStyleBackColor = true;
-            this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
-            // 
+            //  
             // pnlFooter
             // 
             this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
