@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnMedicalRecords = new System.Windows.Forms.Button();
             this.btnAccount = new System.Windows.Forms.Button();
             this.btnServices = new System.Windows.Forms.Button();
             this.btnVaccination = new System.Windows.Forms.Button();
@@ -47,7 +47,6 @@
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlBody = new System.Windows.Forms.Panel();
             this.toolTip_Main = new System.Windows.Forms.ToolTip(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -62,26 +61,34 @@
             this.pnlHeader.Size = new System.Drawing.Size(1420, 50);
             this.pnlHeader.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(391, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(449, 37);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "SAHAGUN VETERINARY CLINIC";
+            // 
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.White;
             this.pnlMenu.Controls.Add(this.btnDashboard);
-            this.pnlMenu.Controls.Add(this.btnLogout);
             this.pnlMenu.Controls.Add(this.btnSettings);
+            this.pnlMenu.Controls.Add(this.btnLogout);
             this.pnlMenu.Controls.Add(this.button1);
-            this.pnlMenu.Controls.Add(this.btnMedicalRecords);
             this.pnlMenu.Controls.Add(this.btnAccount);
-            this.pnlMenu.Controls.Add(this.btnServices);
             this.pnlMenu.Controls.Add(this.btnVaccination);
+            this.pnlMenu.Controls.Add(this.btnServices);
             this.pnlMenu.Controls.Add(this.btnInventory);
             this.pnlMenu.Controls.Add(this.btnItem);
             this.pnlMenu.Controls.Add(this.btnConsultation);
             this.pnlMenu.Controls.Add(this.btnClient);
-            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMenu.Location = new System.Drawing.Point(0, 44);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Padding = new System.Windows.Forms.Padding(10, 0, 10, 5);
-            this.pnlMenu.Size = new System.Drawing.Size(1420, 75);
+            this.pnlMenu.Size = new System.Drawing.Size(1420, 79);
             this.pnlMenu.TabIndex = 1;
             // 
             // btnDashboard
@@ -93,9 +100,9 @@
             this.btnDashboard.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnDashboard.Image = global::app.Properties.Resources.healthdashboard_24px;
-            this.btnDashboard.Location = new System.Drawing.Point(9, 11);
+            this.btnDashboard.Location = new System.Drawing.Point(11, 12);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(105, 56);
+            this.btnDashboard.Size = new System.Drawing.Size(103, 55);
             this.btnDashboard.TabIndex = 1;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -104,7 +111,6 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogout.BackColor = System.Drawing.Color.White;
             this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
@@ -112,7 +118,7 @@
             this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnLogout.Image = global::app.Properties.Resources.logout_24px;
-            this.btnLogout.Location = new System.Drawing.Point(1302, 13);
+            this.btnLogout.Location = new System.Drawing.Point(1302, 11);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(105, 56);
             this.btnLogout.TabIndex = 17;
@@ -124,7 +130,6 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSettings.BackColor = System.Drawing.Color.White;
             this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
@@ -132,7 +137,7 @@
             this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnSettings.Image = global::app.Properties.Resources.medsettings_24px;
-            this.btnSettings.Location = new System.Drawing.Point(1191, 13);
+            this.btnSettings.Location = new System.Drawing.Point(1191, 11);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(105, 56);
             this.btnSettings.TabIndex = 20;
@@ -159,23 +164,6 @@
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.btnMedicalRecords_Click);
-            // 
-            // btnMedicalRecords
-            // 
-            this.btnMedicalRecords.BackColor = System.Drawing.Color.White;
-            this.btnMedicalRecords.FlatAppearance.BorderSize = 0;
-            this.btnMedicalRecords.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnMedicalRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMedicalRecords.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMedicalRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnMedicalRecords.Image = global::app.Properties.Resources.medical_record_24px;
-            this.btnMedicalRecords.Location = new System.Drawing.Point(118, 11);
-            this.btnMedicalRecords.Name = "btnMedicalRecords";
-            this.btnMedicalRecords.Size = new System.Drawing.Size(105, 56);
-            this.btnMedicalRecords.TabIndex = 7;
-            this.toolTip_Main.SetToolTip(this.btnMedicalRecords, "Medical Record");
-            this.btnMedicalRecords.UseVisualStyleBackColor = false;
-            this.btnMedicalRecords.Click += new System.EventHandler(this.btnMedicalRecords_Click);
             // 
             // btnAccount
             // 
@@ -224,9 +212,9 @@
             this.btnVaccination.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVaccination.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnVaccination.Image = global::app.Properties.Resources.immunity_24px;
-            this.btnVaccination.Location = new System.Drawing.Point(453, 11);
+            this.btnVaccination.Location = new System.Drawing.Point(450, 12);
             this.btnVaccination.Name = "btnVaccination";
-            this.btnVaccination.Size = new System.Drawing.Size(105, 56);
+            this.btnVaccination.Size = new System.Drawing.Size(108, 55);
             this.btnVaccination.TabIndex = 25;
             this.btnVaccination.Text = "Vaccination";
             this.btnVaccination.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -272,60 +260,6 @@
             this.btnItem.UseVisualStyleBackColor = false;
             this.btnItem.Click += new System.EventHandler(this.btnItem_Click);
             // 
-            // btnVaccination
-            // 
-            this.btnVaccination.BackColor = System.Drawing.Color.White;
-            this.btnVaccination.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnVaccination.FlatAppearance.BorderSize = 0;
-            this.btnVaccination.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnVaccination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVaccination.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVaccination.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnVaccination.Image = global::app.Properties.Resources.immunity_24px;
-            this.btnVaccination.Location = new System.Drawing.Point(10, 293);
-            this.btnVaccination.Name = "btnVaccination";
-            this.btnVaccination.Size = new System.Drawing.Size(66, 50);
-            this.btnVaccination.TabIndex = 25;
-            this.toolTip_Main.SetToolTip(this.btnVaccination, "Vaccination");
-            this.btnVaccination.UseVisualStyleBackColor = false;
-            this.btnVaccination.Click += new System.EventHandler(this.btnVaccination_Click);
-            //  
-            // btnSettings
-            // 
-            this.btnSettings.BackColor = System.Drawing.Color.White;
-            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnSettings.Image = global::app.Properties.Resources.medsettings_24px;
-            this.btnSettings.Location = new System.Drawing.Point(10, 577);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(66, 55);
-            this.btnSettings.TabIndex = 20;
-            this.toolTip_Main.SetToolTip(this.btnSettings, "Settings");
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            //  
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.White;
-            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnLogout.Image = global::app.Properties.Resources.logout_24px;
-            this.btnLogout.Location = new System.Drawing.Point(10, 642);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(66, 50);
-            this.btnLogout.TabIndex = 17;
-            this.toolTip_Main.SetToolTip(this.btnLogout, "Logout");
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
             // btnConsultation
             // 
             this.btnConsultation.BackColor = System.Drawing.Color.White;
@@ -364,79 +298,35 @@
             this.btnClient.UseVisualStyleBackColor = false;
             this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
             // 
-            // btnMedicalRecords
-            // 
-            this.btnMedicalRecords.BackColor = System.Drawing.Color.White;
-            this.btnMedicalRecords.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMedicalRecords.FlatAppearance.BorderSize = 0;
-            this.btnMedicalRecords.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnMedicalRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMedicalRecords.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMedicalRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnMedicalRecords.Image = global::app.Properties.Resources.medical_record_24px;
-            this.btnMedicalRecords.Location = new System.Drawing.Point(10, 113);
-            this.btnMedicalRecords.Name = "btnMedicalRecords";
-            this.btnMedicalRecords.Size = new System.Drawing.Size(66, 50);
-            this.btnMedicalRecords.TabIndex = 7;
-            this.toolTip_Main.SetToolTip(this.btnMedicalRecords, "Medical Record");
-            this.btnMedicalRecords.UseVisualStyleBackColor = false;
-            this.btnMedicalRecords.Click += new System.EventHandler(this.btnMedicalRecords_Click);
-            // 
-            // btnDashboard
-            // 
-            this.btnDashboard.BackColor = System.Drawing.Color.White;
-            this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnDashboard.Image = global::app.Properties.Resources.healthdashboard_24px;
-            this.btnDashboard.Location = new System.Drawing.Point(10, 53);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(66, 50);
-            this.btnDashboard.TabIndex = 1;
-            this.toolTip_Main.SetToolTip(this.btnDashboard, "Dashboard");
-            this.btnDashboard.UseVisualStyleBackColor = false;
-            // 
             // pnlFooter
             // 
             this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 656);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 868);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1420, 24);
+            this.pnlFooter.Size = new System.Drawing.Size(1420, 30);
             this.pnlFooter.TabIndex = 2;
             // 
             // pnlBody
             // 
             this.pnlBody.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBody.Location = new System.Drawing.Point(0, 119);
+            this.pnlBody.Location = new System.Drawing.Point(0, 0);
             this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(1420, 537);
+            this.pnlBody.Size = new System.Drawing.Size(1420, 898);
             this.pnlBody.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(391, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(449, 37);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "SAHAGUN VETERINARY CLINIC";
+            this.pnlBody.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBody_Paint);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1420, 680);
-            this.Controls.Add(this.pnlBody);
+            this.ClientSize = new System.Drawing.Size(1420, 898);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlFooter);
+            this.Controls.Add(this.pnlBody);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -459,7 +349,6 @@
         private System.Windows.Forms.Panel pnlBody;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnClient;
-        private System.Windows.Forms.Button btnMedicalRecords;
         private System.Windows.Forms.Button btnConsultation;
         private System.Windows.Forms.Button btnInventory;
         private System.Windows.Forms.Button btnItem;
