@@ -74,9 +74,9 @@ namespace app.view.Transaction
             foreach (KeyValuePair<int, app.core.model.Inventory> kvp in items)
             {
                 item = kvp.Value;
-                dgvTransaction.Rows.Add(item.Id,"ClientId",item.Description,item.Qty,item.TotalAmount);
+                //dgvTransaction.Rows.Add(item.Id,"ClientId",item.Description,item.Qty,item.TotalAmount);
 
-                subtotal += item.TotalAmount;
+                //subtotal += item.TotalAmount;
             }
             
             lblSubtotal.Text = subtotal.ToString("C");

@@ -44,7 +44,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cboBreed = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.btnBreed = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
@@ -292,16 +291,6 @@
             this.label3.Size = new System.Drawing.Size(76, 23);
             this.label3.TabIndex = 23;
             this.label3.Text = "Specie";
-            // 
-            // cboBreed
-            // 
-            this.cboBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBreed.FormattingEnabled = true;
-            this.cboBreed.Location = new System.Drawing.Point(200, 359);
-            this.cboBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cboBreed.Name = "cboBreed";
-            this.cboBreed.Size = new System.Drawing.Size(308, 35);
-            this.cboBreed.TabIndex = 9;
             // 
             // label17
             // 

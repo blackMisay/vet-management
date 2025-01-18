@@ -143,5 +143,10 @@ namespace app.view
         {
             this.openFormModule(new frmImmunization());
         }
+
+        private void pnlBody_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

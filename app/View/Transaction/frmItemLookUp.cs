@@ -54,7 +54,7 @@ namespace app.view.Transaction
                 Id = selectedId,
                 Description = selectedItemDescription,
                 Qty = Convert.ToInt32(txtQuantity.Text),
-                TotalAmount = Convert.ToInt32(txtTotal.Text),
+                //TotalAmount = Convert.ToInt32(txtTotal.Text),
                 
             };
 
@@ -107,7 +107,7 @@ namespace app.view.Transaction
                             item = selectedItem[selectedId];
 
                             txtQuantity.Text = item.Qty.ToString();
-                            txtTotal.Text = item.TotalAmount.ToString();
+                            //txtTotal.Text = item.TotalAmount.ToString();
                         }
                     }
                     else

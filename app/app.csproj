@@ -109,7 +109,6 @@
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Services.cs" />
     <Compile Include="core\model\Species.cs" />
-
     <Compile Include="core\model\TransactionItem.cs" />
     <Compile Include="core\model\TransactionPayment.cs" />
     <Compile Include="core\model\TransactionService.cs" />
@@ -349,6 +348,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Immunization\frmImmunization.resx">
       <DependentUpon>frmImmunization.cs</DependentUpon>

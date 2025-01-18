@@ -159,14 +159,14 @@ namespace app.view.Client
             UpgradeFile upgradeFile = new UpgradeFile();
 
 
-            cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed ORDER BY description;");
-            cboBreed.ValueMember = "KEY";
-            cboBreed.DisplayMember = "VALUE";
+            //cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed ORDER BY description;");
+            //cboBreed.ValueMember = "KEY";
+            //cboBreed.DisplayMember = "VALUE";
 
             cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern ORDER BY description;");
             cboColor.ValueMember = "KEY";
             cboColor.DisplayMember = "VALUE";
-
+       
             cboGender.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_gender ORDER BY description;");
             cboGender.ValueMember = "KEY";
             cboGender.DisplayMember = "VALUE";
