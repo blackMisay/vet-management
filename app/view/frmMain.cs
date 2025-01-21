@@ -148,5 +148,45 @@ namespace app.view
         {
 
         }
+
+        private void toolTip_Main_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnlHeader_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblCompanyName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMedicalRecords_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlFooter_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
