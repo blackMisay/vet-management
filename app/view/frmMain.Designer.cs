@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -47,7 +48,6 @@
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlBody = new System.Windows.Forms.Panel();
             this.toolTip_Main = new System.Windows.Forms.ToolTip(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +61,16 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1420, 44);
             this.pnlHeader.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(391, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(449, 37);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "SAHAGUN VETERINARY CLINIC";
             // 
             // pnlMenu
             // 
@@ -151,7 +161,7 @@
             this.button1.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.button1.Image = global::app.Properties.Resources.medical_record_24px;
-            this.button1.Location = new System.Drawing.Point(120, 11);
+            this.button1.Location = new System.Drawing.Point(118, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 56);
             this.button1.TabIndex = 7;
@@ -186,7 +196,7 @@
             this.btnAccount.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnAccount.Image = global::app.Properties.Resources.user;
-            this.btnAccount.Location = new System.Drawing.Point(897, 11);
+            this.btnAccount.Location = new System.Drawing.Point(895, 13);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Size = new System.Drawing.Size(105, 56);
             this.btnAccount.TabIndex = 23;
@@ -205,7 +215,7 @@
             this.btnServices.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnServices.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnServices.Image = global::app.Properties.Resources.services_24px;
-            this.btnServices.Location = new System.Drawing.Point(786, 11);
+            this.btnServices.Location = new System.Drawing.Point(784, 13);
             this.btnServices.Name = "btnServices";
             this.btnServices.Size = new System.Drawing.Size(105, 56);
             this.btnServices.TabIndex = 21;
@@ -224,7 +234,7 @@
             this.btnVaccination.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVaccination.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnVaccination.Image = global::app.Properties.Resources.immunity_24px;
-            this.btnVaccination.Location = new System.Drawing.Point(453, 11);
+            this.btnVaccination.Location = new System.Drawing.Point(451, 13);
             this.btnVaccination.Name = "btnVaccination";
             this.btnVaccination.Size = new System.Drawing.Size(105, 56);
             this.btnVaccination.TabIndex = 25;
@@ -243,7 +253,7 @@
             this.btnInventory.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInventory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnInventory.Image = global::app.Properties.Resources.medinventory_24px;
-            this.btnInventory.Location = new System.Drawing.Point(675, 11);
+            this.btnInventory.Location = new System.Drawing.Point(673, 13);
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Size = new System.Drawing.Size(105, 56);
             this.btnInventory.TabIndex = 15;
@@ -262,7 +272,7 @@
             this.btnItem.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnItem.Image = global::app.Properties.Resources.items_24px;
-            this.btnItem.Location = new System.Drawing.Point(564, 11);
+            this.btnItem.Location = new System.Drawing.Point(562, 13);
             this.btnItem.Name = "btnItem";
             this.btnItem.Size = new System.Drawing.Size(105, 56);
             this.btnItem.TabIndex = 13;
@@ -281,7 +291,7 @@
             this.btnConsultation.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsultation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnConsultation.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnConsultation.Location = new System.Drawing.Point(342, 11);
+            this.btnConsultation.Location = new System.Drawing.Point(340, 13);
             this.btnConsultation.Name = "btnConsultation";
             this.btnConsultation.Size = new System.Drawing.Size(105, 56);
             this.btnConsultation.TabIndex = 11;
@@ -300,7 +310,7 @@
             this.btnClient.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnClient.Image = global::app.Properties.Resources.owner_24px;
-            this.btnClient.Location = new System.Drawing.Point(231, 11);
+            this.btnClient.Location = new System.Drawing.Point(229, 11);
             this.btnClient.Name = "btnClient";
             this.btnClient.Size = new System.Drawing.Size(105, 56);
             this.btnClient.TabIndex = 9;
@@ -327,16 +337,6 @@
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Size = new System.Drawing.Size(1420, 537);
             this.pnlBody.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(391, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(449, 37);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "SAHAGUN VETERINARY CLINIC";
             // 
             // frmMain
             // 
