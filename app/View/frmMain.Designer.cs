@@ -60,7 +60,6 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1487, 51);
             this.pnlHeader.TabIndex = 0;
-            this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
             // 
             // lblCompanyName
             // 
@@ -71,7 +70,6 @@
             this.lblCompanyName.Size = new System.Drawing.Size(449, 37);
             this.lblCompanyName.TabIndex = 0;
             this.lblCompanyName.Text = "SAHAGUN VETERINARY CLINIC";
-            this.lblCompanyName.Click += new System.EventHandler(this.lblCompanyName_Click);
             // 
             // pnlMenu
             // 
@@ -93,7 +91,6 @@
             this.pnlMenu.Padding = new System.Windows.Forms.Padding(10, 0, 10, 5);
             this.pnlMenu.Size = new System.Drawing.Size(1487, 79);
             this.pnlMenu.TabIndex = 1;
-            this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
             // 
             // btnDashboard
             // 
@@ -110,7 +107,6 @@
             this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip_Main.SetToolTip(this.btnDashboard, "Dashboard");
             this.btnDashboard.UseVisualStyleBackColor = false;
-            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // btnSettings
             // 
@@ -166,7 +162,6 @@
             this.btnMedicalRecords.Text = "Transaction";
             this.btnMedicalRecords.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMedicalRecords.UseVisualStyleBackColor = false;
-            this.btnMedicalRecords.Click += new System.EventHandler(this.btnMedicalRecords_Click_1);
             // 
             // btnAccount
             // 
@@ -309,7 +304,6 @@
             this.pnlFooter.Name = "pnlFooter";
             this.pnlFooter.Size = new System.Drawing.Size(1487, 30);
             this.pnlFooter.TabIndex = 2;
-            this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
             // 
             // pnlBody
             // 
@@ -319,11 +313,7 @@
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Size = new System.Drawing.Size(1487, 556);
             this.pnlBody.TabIndex = 3;
-            this.pnlBody.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBody_Paint);
             // 
-            // toolTip_Main
-            // 
-            this.toolTip_Main.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Main_Popup);
             // 
             // frmMain
             // 
@@ -342,7 +332,6 @@
             this.Name = "frmMain";
             this.Text = "Veterinary Clinic Management System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmMain_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlMenu.ResumeLayout(false);
