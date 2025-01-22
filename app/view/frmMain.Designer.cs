@@ -103,8 +103,6 @@
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Size = new System.Drawing.Size(109, 56);
             this.btnDashboard.TabIndex = 1;
-            this.btnDashboard.Text = "Dashboard";
-            this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip_Main.SetToolTip(this.btnDashboard, "Dashboard");
             this.btnDashboard.UseVisualStyleBackColor = false;
             // 
@@ -295,6 +293,7 @@
             this.toolTip_Main.SetToolTip(this.btnClient, "Client");
             this.btnClient.UseVisualStyleBackColor = false;
             this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
+            // 
             // 
             // pnlFooter
             // 
