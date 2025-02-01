@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProducts));
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,8 +89,8 @@
             // Column4
             // 
             this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column4.HeaderText = "Birthday";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -106,11 +106,11 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1474, 57);
+            this.panel1.Size = new System.Drawing.Size(1529, 57);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -135,7 +135,7 @@
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Location = new System.Drawing.Point(1, 56);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1474, 56);
+            this.panel2.Size = new System.Drawing.Size(1529, 56);
             this.panel2.TabIndex = 1;
             // 
             // label2
@@ -153,7 +153,7 @@
             this.btnReport.BackColor = System.Drawing.Color.White;
             this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReport.Image = global::app.Properties.Resources.project_management;
-            this.btnReport.Location = new System.Drawing.Point(1320, 18);
+            this.btnReport.Location = new System.Drawing.Point(1375, 18);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(142, 31);
             this.btnReport.TabIndex = 6;
@@ -168,7 +168,7 @@
             this.btnSaveProduct.BackColor = System.Drawing.Color.White;
             this.btnSaveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveProduct.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnSaveProduct.Location = new System.Drawing.Point(898, 18);
+            this.btnSaveProduct.Location = new System.Drawing.Point(953, 18);
             this.btnSaveProduct.Name = "btnSaveProduct";
             this.btnSaveProduct.Size = new System.Drawing.Size(199, 31);
             this.btnSaveProduct.TabIndex = 3;
@@ -183,7 +183,7 @@
             this.btnEditProduct.BackColor = System.Drawing.Color.White;
             this.btnEditProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditProduct.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEditProduct.Location = new System.Drawing.Point(1103, 18);
+            this.btnEditProduct.Location = new System.Drawing.Point(1158, 18);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(103, 31);
             this.btnEditProduct.TabIndex = 4;
@@ -198,7 +198,7 @@
             this.btnRemoveProduct.BackColor = System.Drawing.Color.White;
             this.btnRemoveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveProduct.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemoveProduct.Location = new System.Drawing.Point(1212, 18);
+            this.btnRemoveProduct.Location = new System.Drawing.Point(1267, 18);
             this.btnRemoveProduct.Name = "btnRemoveProduct";
             this.btnRemoveProduct.Size = new System.Drawing.Size(105, 31);
             this.btnRemoveProduct.TabIndex = 5;
@@ -248,7 +248,7 @@
             this.dgvProducts.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProducts.Size = new System.Drawing.Size(1474, 706);
+            this.dgvProducts.Size = new System.Drawing.Size(1529, 706);
             this.dgvProducts.TabIndex = 2;
             // 
             // Id
@@ -263,8 +263,8 @@
             // Category
             // 
             this.Category.DataPropertyName = "categoryDescription";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Category.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Category.DefaultCellStyle = dataGridViewCellStyle2;
             this.Category.HeaderText = "Category";
             this.Category.MinimumWidth = 100;
             this.Category.Name = "Category";
@@ -273,8 +273,8 @@
             // Brand
             // 
             this.Brand.DataPropertyName = "brandDesc";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Brand.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Brand.DefaultCellStyle = dataGridViewCellStyle3;
             this.Brand.HeaderText = "Brand";
             this.Brand.MinimumWidth = 50;
             this.Brand.Name = "Brand";
@@ -284,8 +284,8 @@
             // 
             this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Description.DataPropertyName = "prodDesc";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Description.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Description.DefaultCellStyle = dataGridViewCellStyle4;
             this.Description.HeaderText = "Description";
             this.Description.MinimumWidth = 400;
             this.Description.Name = "Description";
@@ -321,11 +321,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1477, 820);
+            this.ClientSize = new System.Drawing.Size(1530, 820);
             this.Controls.Add(this.dgvProducts);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmProducts";
             this.Text = "Products Management";

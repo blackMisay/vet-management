@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultation));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -187,8 +187,8 @@
             // Id
             // 
             this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.NullValue = null;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle1;
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
@@ -225,9 +225,9 @@
             // Column3
             // 
             this.Column3.DataPropertyName = "date";
-            dataGridViewCellStyle6.Format = "d";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column3.HeaderText = "Consult Date";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
@@ -241,9 +241,10 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmConsultation";
-            this.Text = "frmConsultation";
+            this.Text = " SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmConsultation_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

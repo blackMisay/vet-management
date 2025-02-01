@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServices));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -53,19 +54,19 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.ForeColor = System.Drawing.Color.Transparent;
             this.panel1.Location = new System.Drawing.Point(3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1452, 72);
+            this.panel1.Size = new System.Drawing.Size(1527, 72);
             this.panel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(9, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 34);
@@ -81,7 +82,7 @@
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Location = new System.Drawing.Point(3, 80);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1452, 60);
+            this.panel2.Size = new System.Drawing.Size(1527, 60);
             this.panel2.TabIndex = 1;
             // 
             // btnSaveService
@@ -90,7 +91,7 @@
             this.btnSaveService.BackColor = System.Drawing.Color.White;
             this.btnSaveService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveService.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnSaveService.Location = new System.Drawing.Point(1018, 17);
+            this.btnSaveService.Location = new System.Drawing.Point(1093, 17);
             this.btnSaveService.Name = "btnSaveService";
             this.btnSaveService.Size = new System.Drawing.Size(202, 31);
             this.btnSaveService.TabIndex = 12;
@@ -105,7 +106,7 @@
             this.btnEditService.BackColor = System.Drawing.Color.White;
             this.btnEditService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditService.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEditService.Location = new System.Drawing.Point(1226, 17);
+            this.btnEditService.Location = new System.Drawing.Point(1301, 17);
             this.btnEditService.Name = "btnEditService";
             this.btnEditService.Size = new System.Drawing.Size(102, 31);
             this.btnEditService.TabIndex = 11;
@@ -120,7 +121,7 @@
             this.btnRemoveService.BackColor = System.Drawing.Color.White;
             this.btnRemoveService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveService.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemoveService.Location = new System.Drawing.Point(1334, 17);
+            this.btnRemoveService.Location = new System.Drawing.Point(1409, 17);
             this.btnRemoveService.Name = "btnRemoveService";
             this.btnRemoveService.Size = new System.Drawing.Size(110, 31);
             this.btnRemoveService.TabIndex = 10;
@@ -169,14 +170,14 @@
             this.dgvServices.RowHeadersWidth = 51;
             this.dgvServices.RowTemplate.Height = 24;
             this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvServices.Size = new System.Drawing.Size(1452, 629);
+            this.dgvServices.Size = new System.Drawing.Size(1529, 629);
             this.dgvServices.TabIndex = 3;
             // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle4.NullValue = null;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.NullValue = null;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle1;
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
@@ -200,8 +201,8 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "serviceDescription";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column1.FillWeight = 805.8823F;
             this.Column1.HeaderText = "Services";
             this.Column1.MinimumWidth = 300;
@@ -211,10 +212,10 @@
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column3.DataPropertyName = "price";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column3.FillWeight = 294.1177F;
             this.Column3.HeaderText = "Price";
             this.Column3.MaxInputLength = 10000;
@@ -233,14 +234,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1457, 781);
+            this.ClientSize = new System.Drawing.Size(1536, 781);
             this.Controls.Add(this.dgvServices);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmServices";
-            this.Text = "frmServices";
+            this.Text = " SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmServices_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

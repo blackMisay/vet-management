@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultationModal));
             this.txtPetName = new System.Windows.Forms.TextBox();
             this.btnSelectAPatient = new System.Windows.Forms.Button();
             this.txtTemperature = new System.Windows.Forms.TextBox();
@@ -39,6 +40,10 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cboMedication = new System.Windows.Forms.ComboBox();
+            this.cboTreatment = new System.Windows.Forms.ComboBox();
+            this.cboFindings = new System.Windows.Forms.ComboBox();
+            this.cboComplaint = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtType = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,10 +53,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cboComplaint = new System.Windows.Forms.ComboBox();
-            this.cboFindings = new System.Windows.Forms.ComboBox();
-            this.cboTreatment = new System.Windows.Forms.ComboBox();
-            this.cboMedication = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -202,6 +203,38 @@
             this.panel2.Size = new System.Drawing.Size(644, 538);
             this.panel2.TabIndex = 29;
             // 
+            // cboMedication
+            // 
+            this.cboMedication.FormattingEnabled = true;
+            this.cboMedication.Location = new System.Drawing.Point(136, 436);
+            this.cboMedication.Name = "cboMedication";
+            this.cboMedication.Size = new System.Drawing.Size(446, 29);
+            this.cboMedication.TabIndex = 42;
+            // 
+            // cboTreatment
+            // 
+            this.cboTreatment.FormattingEnabled = true;
+            this.cboTreatment.Location = new System.Drawing.Point(136, 357);
+            this.cboTreatment.Name = "cboTreatment";
+            this.cboTreatment.Size = new System.Drawing.Size(446, 29);
+            this.cboTreatment.TabIndex = 41;
+            // 
+            // cboFindings
+            // 
+            this.cboFindings.FormattingEnabled = true;
+            this.cboFindings.Location = new System.Drawing.Point(136, 271);
+            this.cboFindings.Name = "cboFindings";
+            this.cboFindings.Size = new System.Drawing.Size(446, 29);
+            this.cboFindings.TabIndex = 40;
+            // 
+            // cboComplaint
+            // 
+            this.cboComplaint.FormattingEnabled = true;
+            this.cboComplaint.Location = new System.Drawing.Point(136, 219);
+            this.cboComplaint.Name = "cboComplaint";
+            this.cboComplaint.Size = new System.Drawing.Size(446, 29);
+            this.cboComplaint.TabIndex = 39;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -292,38 +325,6 @@
             this.label6.TabIndex = 27;
             this.label6.Text = "Weight";
             // 
-            // cboComplaint
-            // 
-            this.cboComplaint.FormattingEnabled = true;
-            this.cboComplaint.Location = new System.Drawing.Point(136, 219);
-            this.cboComplaint.Name = "cboComplaint";
-            this.cboComplaint.Size = new System.Drawing.Size(446, 29);
-            this.cboComplaint.TabIndex = 39;
-            // 
-            // cboFindings
-            // 
-            this.cboFindings.FormattingEnabled = true;
-            this.cboFindings.Location = new System.Drawing.Point(136, 271);
-            this.cboFindings.Name = "cboFindings";
-            this.cboFindings.Size = new System.Drawing.Size(446, 29);
-            this.cboFindings.TabIndex = 40;
-            // 
-            // cboTreatment
-            // 
-            this.cboTreatment.FormattingEnabled = true;
-            this.cboTreatment.Location = new System.Drawing.Point(136, 357);
-            this.cboTreatment.Name = "cboTreatment";
-            this.cboTreatment.Size = new System.Drawing.Size(446, 29);
-            this.cboTreatment.TabIndex = 41;
-            // 
-            // cboMedication
-            // 
-            this.cboMedication.FormattingEnabled = true;
-            this.cboMedication.Location = new System.Drawing.Point(136, 436);
-            this.cboMedication.Name = "cboMedication";
-            this.cboMedication.Size = new System.Drawing.Size(446, 29);
-            this.cboMedication.TabIndex = 42;
-            // 
             // frmConsultationModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -334,6 +335,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmConsultationModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

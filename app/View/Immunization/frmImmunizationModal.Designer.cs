@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImmunizationModal));
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.cmbVaccine = new System.Windows.Forms.ComboBox();
@@ -40,14 +41,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cboVeterinarian = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.dtpExpirationDate = new System.Windows.Forms.DateTimePicker();
             this.dtpAdministeredDate = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPetName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnSelectAPatient = new System.Windows.Forms.Button();
-            this.cboVeterinarian = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -203,6 +204,26 @@
             this.panel2.Size = new System.Drawing.Size(647, 367);
             this.panel2.TabIndex = 25;
             // 
+            // cboVeterinarian
+            // 
+            this.cboVeterinarian.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboVeterinarian.FormattingEnabled = true;
+            this.cboVeterinarian.Location = new System.Drawing.Point(247, 297);
+            this.cboVeterinarian.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboVeterinarian.Name = "cboVeterinarian";
+            this.cboVeterinarian.Size = new System.Drawing.Size(383, 29);
+            this.cboVeterinarian.TabIndex = 27;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(63, 300);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(112, 21);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Veterinarian";
+            // 
             // dtpExpirationDate
             // 
             this.dtpExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -259,26 +280,6 @@
             this.btnSelectAPatient.UseVisualStyleBackColor = true;
             this.btnSelectAPatient.Click += new System.EventHandler(this.btnSelectAPatient_Click);
             // 
-            // cboVeterinarian
-            // 
-            this.cboVeterinarian.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboVeterinarian.FormattingEnabled = true;
-            this.cboVeterinarian.Location = new System.Drawing.Point(247, 297);
-            this.cboVeterinarian.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cboVeterinarian.Name = "cboVeterinarian";
-            this.cboVeterinarian.Size = new System.Drawing.Size(383, 29);
-            this.cboVeterinarian.TabIndex = 27;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(63, 300);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(112, 21);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "Veterinarian";
-            // 
             // frmImmunizationModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -289,10 +290,11 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmImmunizationModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmImmunizationModal";
+            this.Text = " SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmImmunizationModal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

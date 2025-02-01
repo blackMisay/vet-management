@@ -33,17 +33,17 @@
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnVaccination = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.btnMedicalRecords = new System.Windows.Forms.Button();
             this.btnAccount = new System.Windows.Forms.Button();
-            this.btnVaccination = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.btnServices = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.btnItem = new System.Windows.Forms.Button();
             this.btnConsultation = new System.Windows.Forms.Button();
             this.btnClient = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlBody = new System.Windows.Forms.Panel();
             this.toolTip_Main = new System.Windows.Forms.ToolTip(this.components);
@@ -92,6 +92,25 @@
             this.pnlMenu.Size = new System.Drawing.Size(1487, 79);
             this.pnlMenu.TabIndex = 1;
             // 
+            // btnVaccination
+            // 
+            this.btnVaccination.BackColor = System.Drawing.Color.White;
+            this.btnVaccination.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnVaccination.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnVaccination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVaccination.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVaccination.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnVaccination.Image = global::app.Properties.Resources.immunity_24px;
+            this.btnVaccination.Location = new System.Drawing.Point(472, 10);
+            this.btnVaccination.Name = "btnVaccination";
+            this.btnVaccination.Size = new System.Drawing.Size(109, 56);
+            this.btnVaccination.TabIndex = 25;
+            this.btnVaccination.Text = "Vaccination";
+            this.btnVaccination.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolTip_Main.SetToolTip(this.btnVaccination, "Vaccination");
+            this.btnVaccination.UseVisualStyleBackColor = false;
+            this.btnVaccination.Click += new System.EventHandler(this.btnVaccination_Click);
+            // 
             // btnDashboard
             // 
             this.btnDashboard.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -105,44 +124,7 @@
             this.btnDashboard.TabIndex = 1;
             this.toolTip_Main.SetToolTip(this.btnDashboard, "Dashboard");
             this.btnDashboard.UseVisualStyleBackColor = false;
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.BackColor = System.Drawing.Color.White;
-            this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnSettings.Image = global::app.Properties.Resources.medsettings_24px;
-            this.btnSettings.Location = new System.Drawing.Point(1369, 10);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(109, 56);
-            this.btnSettings.TabIndex = 20;
-            this.btnSettings.Text = "Settings";
-            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolTip_Main.SetToolTip(this.btnSettings, "Settings");
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.White;
-            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnLogout.Image = global::app.Properties.Resources.logout_24px;
-            this.btnLogout.Location = new System.Drawing.Point(1254, 10);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(109, 56);
-            this.btnLogout.TabIndex = 17;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolTip_Main.SetToolTip(this.btnLogout, "Logout");
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // btnMedicalRecords
             // 
@@ -160,6 +142,7 @@
             this.btnMedicalRecords.Text = "Transaction";
             this.btnMedicalRecords.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMedicalRecords.UseVisualStyleBackColor = false;
+            this.btnMedicalRecords.Click += new System.EventHandler(this.btnMedicalRecords_Click);
             // 
             // btnAccount
             // 
@@ -180,24 +163,25 @@
             this.btnAccount.UseVisualStyleBackColor = false;
             this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
             // 
-            // btnVaccination
+            // btnSettings
             // 
-            this.btnVaccination.BackColor = System.Drawing.Color.White;
-            this.btnVaccination.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnVaccination.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnVaccination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVaccination.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVaccination.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
-            this.btnVaccination.Image = global::app.Properties.Resources.immunity_24px;
-            this.btnVaccination.Location = new System.Drawing.Point(472, 10);
-            this.btnVaccination.Name = "btnVaccination";
-            this.btnVaccination.Size = new System.Drawing.Size(109, 56);
-            this.btnVaccination.TabIndex = 25;
-            this.btnVaccination.Text = "Vaccination";
-            this.btnVaccination.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolTip_Main.SetToolTip(this.btnVaccination, "Vaccination");
-            this.btnVaccination.UseVisualStyleBackColor = false;
-            this.btnVaccination.Click += new System.EventHandler(this.btnVaccination_Click);
+            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSettings.BackColor = System.Drawing.Color.White;
+            this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnSettings.Image = global::app.Properties.Resources.medsettings_24px;
+            this.btnSettings.Location = new System.Drawing.Point(1369, 10);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(109, 56);
+            this.btnSettings.TabIndex = 20;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolTip_Main.SetToolTip(this.btnSettings, "Settings");
+            this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnServices
             // 
@@ -294,6 +278,25 @@
             this.btnClient.UseVisualStyleBackColor = false;
             this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.BackColor = System.Drawing.Color.White;
+            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
+            this.btnLogout.Image = global::app.Properties.Resources.logout_24px;
+            this.btnLogout.Location = new System.Drawing.Point(1254, 10);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(109, 56);
+            this.btnLogout.TabIndex = 17;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolTip_Main.SetToolTip(this.btnLogout, "Logout");
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // pnlFooter
             // 
@@ -312,7 +315,6 @@
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Size = new System.Drawing.Size(1487, 556);
             this.pnlBody.TabIndex = 3;
-            // 
             // 
             // frmMain
             // 

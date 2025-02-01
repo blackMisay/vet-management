@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientPatientModal));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSelectBreed = new System.Windows.Forms.Button();
             this.txtBreed = new System.Windows.Forms.TextBox();
@@ -232,19 +233,6 @@
             this.cboSpecies.Name = "cboSpecies";
             this.cboSpecies.Size = new System.Drawing.Size(357, 35);
             this.cboSpecies.TabIndex = 8;
-            // 
-            // btnAddColor
-            // 
-            this.btnAddColor.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAddColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddColor.Location = new System.Drawing.Point(515, 396);
-            this.btnAddColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnAddColor.Name = "btnAddColor";
-            this.btnAddColor.Size = new System.Drawing.Size(41, 35);
-            this.btnAddColor.TabIndex = 17;
-            this.btnAddColor.Text = "+";
-            this.btnAddColor.UseVisualStyleBackColor = true;
-            this.btnAddColor.Click += new System.EventHandler(this.btnAddColor_Click);
             // 
             // btnAddColor
             // 
@@ -549,10 +537,11 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pbPetPhoto);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmClientPatientModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " ";
+            this.Text = " SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmClientPatientModal_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

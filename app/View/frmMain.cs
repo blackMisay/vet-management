@@ -104,10 +104,6 @@ namespace app.view
         {
             this.ToggleMenu();
         }
-        private void btnMedicalRecords_Click(object sender, EventArgs e)
-        {
-            this.openFormModule(new Transaction.frmTransaction());
-        }
 
         private void btnConsultation_Click(object sender, EventArgs e)
         {
@@ -144,9 +140,14 @@ namespace app.view
             this.openFormModule(new frmImmunization());
         }
 
-        private void pnlBody_Paint(object sender, PaintEventArgs e)
+        private void btnDashboard_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnMedicalRecords_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new Transaction.frmTransaction());
         }
     }
 }

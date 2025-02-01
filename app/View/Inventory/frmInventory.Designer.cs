@@ -375,9 +375,10 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvInventory);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmInventory";
-            this.Text = "frmInventory";
+            this.Text = " SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmInventory_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

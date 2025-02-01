@@ -30,8 +30,8 @@ namespace app.view.Client
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClient));
             this.dgvPatient = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -155,6 +155,9 @@ namespace app.view.Client
             // Column1
             // 
             this.Column1.DataPropertyName = "bday";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column1.HeaderText = "Birthday";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -583,105 +586,6 @@ namespace app.view.Client
             this.panel1.Size = new System.Drawing.Size(1377, 72);
             this.panel1.TabIndex = 0;
             // 
-
-            // Id
-            // 
-            this.Id.DataPropertyName = "petId";
-            this.Id.HeaderText = "petId";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "clientId";
-            this.Column2.HeaderText = "clientId";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "image";
-            this.Column9.HeaderText = "Image";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "petname";
-            this.Column3.HeaderText = "Pet Name";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "bday";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column1.HeaderText = "Birthday";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Gender
-            // 
-            this.Gender.DataPropertyName = "sexname";
-            this.Gender.HeaderText = "Gender";
-            this.Gender.MinimumWidth = 6;
-            this.Gender.Name = "Gender";
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "age";
-            this.Column12.HeaderText = "Age";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "size";
-            this.Column11.HeaderText = "Size";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "weight";
-            this.Column10.HeaderText = "Weight";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            // 
-            // Species
-            // 
-            this.Species.DataPropertyName = "speciesName";
-            this.Species.HeaderText = "Specie";
-            this.Species.MinimumWidth = 6;
-            this.Species.Name = "Species";
-            // 
-            // Breed
-            // 
-            this.Breed.DataPropertyName = "breedDesc";
-            this.Breed.HeaderText = "Breed";
-            this.Breed.MinimumWidth = 6;
-            this.Breed.Name = "Breed";
-            // 
-            // Color
-            // 
-            this.Color.DataPropertyName = "colorName";
-            this.Color.HeaderText = "Color";
-            this.Color.MinimumWidth = 6;
-            this.Color.Name = "Color";
-            // 
-            // Column14
-            // 
-            this.Column14.DataPropertyName = "isDeleted";
-            this.Column14.HeaderText = "isDeleted";
-            this.Column14.MinimumWidth = 6;
-            this.Column14.Name = "Column14";
-            this.Column14.Visible = false;
-            // 
             // frmClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -696,7 +600,7 @@ namespace app.view.Client
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmClient";
             this.Padding = new System.Windows.Forms.Padding(11, 5, 6, 9);
-            this.Text = "frmCustomer";
+            this.Text = " SAHAGUN Veterinary Clinic v2.0";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
