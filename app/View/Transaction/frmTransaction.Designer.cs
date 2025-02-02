@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -72,26 +71,17 @@
             this.lblInvoice = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dgvTransService = new System.Windows.Forms.DataGridView();
-            this.colIdService = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInvoiceService = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colClientService = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colServiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colServiceDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colServicePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateService = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransService)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.lblTotal);
             this.panel4.Controls.Add(this.label6);
@@ -101,17 +91,17 @@
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.lblSubtotal);
             this.panel4.Controls.Add(this.label5);
-            this.panel4.Location = new System.Drawing.Point(1084, 189);
+            this.panel4.Location = new System.Drawing.Point(1216, 189);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(372, 393);
+            this.panel4.Size = new System.Drawing.Size(319, 416);
             this.panel4.TabIndex = 1;
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.BackColor = System.Drawing.Color.DarkGreen;
+            this.lblTotal.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblTotal.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.ForeColor = System.Drawing.Color.White;
+            this.lblTotal.ForeColor = System.Drawing.Color.Black;
             this.lblTotal.Location = new System.Drawing.Point(140, 266);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(97, 47);
@@ -182,7 +172,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(17, 25);
+            this.label5.Location = new System.Drawing.Point(16, 33);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(106, 22);
             this.label5.TabIndex = 19;
@@ -192,7 +182,7 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(156, 8);
+            this.lblDate.Location = new System.Drawing.Point(72, 8);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(0, 19);
             this.lblDate.TabIndex = 7;
@@ -201,7 +191,7 @@
             // 
             this.dgvTransaction.AllowUserToAddRows = false;
             this.dgvTransaction.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvTransaction.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgvTransaction.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvTransaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTransaction.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colId,
@@ -216,7 +206,7 @@
             this.dgvTransaction.RowHeadersWidth = 51;
             this.dgvTransaction.RowTemplate.Height = 24;
             this.dgvTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransaction.Size = new System.Drawing.Size(1069, 245);
+            this.dgvTransaction.Size = new System.Drawing.Size(1197, 416);
             this.dgvTransaction.TabIndex = 5;
             // 
             // colId
@@ -253,13 +243,13 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Location = new System.Drawing.Point(12, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1069, 171);
+            this.panel2.Size = new System.Drawing.Size(1197, 171);
             this.panel2.TabIndex = 6;
             // 
             // panel5
@@ -271,7 +261,7 @@
             this.panel5.Controls.Add(this.txtName);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.btnSelect);
-            this.panel5.Location = new System.Drawing.Point(696, 8);
+            this.panel5.Location = new System.Drawing.Point(828, 8);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(354, 150);
             this.panel5.TabIndex = 1;
@@ -416,9 +406,9 @@
             // 
             this.btnQuantity.Image = global::app.Properties.Resources.plus_minus;
             this.btnQuantity.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnQuantity.Location = new System.Drawing.Point(1105, 588);
+            this.btnQuantity.Location = new System.Drawing.Point(1036, 611);
             this.btnQuantity.Name = "btnQuantity";
-            this.btnQuantity.Size = new System.Drawing.Size(346, 45);
+            this.btnQuantity.Size = new System.Drawing.Size(173, 42);
             this.btnQuantity.TabIndex = 9;
             this.btnQuantity.Text = "&Quantity";
             this.btnQuantity.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -429,9 +419,9 @@
             // 
             this.btnPayment.Image = global::app.Properties.Resources.coins;
             this.btnPayment.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPayment.Location = new System.Drawing.Point(1106, 639);
+            this.btnPayment.Location = new System.Drawing.Point(1216, 611);
             this.btnPayment.Name = "btnPayment";
-            this.btnPayment.Size = new System.Drawing.Size(345, 42);
+            this.btnPayment.Size = new System.Drawing.Size(150, 42);
             this.btnPayment.TabIndex = 7;
             this.btnPayment.Text = "&Payment";
             this.btnPayment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -441,9 +431,9 @@
             // 
             this.btnCancel.Image = global::app.Properties.Resources.close;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.Location = new System.Drawing.Point(1106, 687);
+            this.btnCancel.Location = new System.Drawing.Point(1392, 611);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(345, 42);
+            this.btnCancel.Size = new System.Drawing.Size(143, 42);
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -452,7 +442,7 @@
             // btnServiceLookUp
             // 
             this.btnServiceLookUp.Image = global::app.Properties.Resources.services_24px;
-            this.btnServiceLookUp.Location = new System.Drawing.Point(426, 672);
+            this.btnServiceLookUp.Location = new System.Drawing.Point(421, 611);
             this.btnServiceLookUp.Name = "btnServiceLookUp";
             this.btnServiceLookUp.Size = new System.Drawing.Size(199, 42);
             this.btnServiceLookUp.TabIndex = 14;
@@ -464,7 +454,7 @@
             // btnVoidTrans
             // 
             this.btnVoidTrans.Image = global::app.Properties.Resources.deleted;
-            this.btnVoidTrans.Location = new System.Drawing.Point(836, 672);
+            this.btnVoidTrans.Location = new System.Drawing.Point(831, 611);
             this.btnVoidTrans.Name = "btnVoidTrans";
             this.btnVoidTrans.Size = new System.Drawing.Size(199, 42);
             this.btnVoidTrans.TabIndex = 13;
@@ -475,7 +465,7 @@
             // btnVoidItem
             // 
             this.btnVoidItem.Image = global::app.Properties.Resources.deleted;
-            this.btnVoidItem.Location = new System.Drawing.Point(631, 672);
+            this.btnVoidItem.Location = new System.Drawing.Point(626, 611);
             this.btnVoidItem.Name = "btnVoidItem";
             this.btnVoidItem.Size = new System.Drawing.Size(199, 42);
             this.btnVoidItem.TabIndex = 12;
@@ -486,7 +476,7 @@
             // btnItemLookUp
             // 
             this.btnItemLookUp.Image = global::app.Properties.Resources.procurement;
-            this.btnItemLookUp.Location = new System.Drawing.Point(222, 672);
+            this.btnItemLookUp.Location = new System.Drawing.Point(217, 611);
             this.btnItemLookUp.Name = "btnItemLookUp";
             this.btnItemLookUp.Size = new System.Drawing.Size(198, 42);
             this.btnItemLookUp.TabIndex = 11;
@@ -498,7 +488,7 @@
             // btnNewTrans
             // 
             this.btnNewTrans.Image = global::app.Properties.Resources.icons8_save_button_35;
-            this.btnNewTrans.Location = new System.Drawing.Point(17, 672);
+            this.btnNewTrans.Location = new System.Drawing.Point(12, 611);
             this.btnNewTrans.Name = "btnNewTrans";
             this.btnNewTrans.Size = new System.Drawing.Size(199, 42);
             this.btnNewTrans.TabIndex = 10;
@@ -512,7 +502,7 @@
             this.lblInvoice.AutoSize = true;
             this.lblInvoice.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInvoice.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblInvoice.Location = new System.Drawing.Point(31, 92);
+            this.lblInvoice.Location = new System.Drawing.Point(14, 92);
             this.lblInvoice.Name = "lblInvoice";
             this.lblInvoice.Size = new System.Drawing.Size(305, 39);
             this.lblInvoice.TabIndex = 11;
@@ -534,94 +524,17 @@
             this.panel1.Controls.Add(this.lblInvoice);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lblDate);
-            this.panel1.Location = new System.Drawing.Point(1084, 12);
+            this.panel1.Location = new System.Drawing.Point(1215, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(372, 171);
+            this.panel1.Size = new System.Drawing.Size(319, 171);
             this.panel1.TabIndex = 15;
-            // 
-            // dgvTransService
-            // 
-            this.dgvTransService.AllowUserToAddRows = false;
-            this.dgvTransService.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvTransService.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.dgvTransService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTransService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colIdService,
-            this.colInvoiceService,
-            this.colClientService,
-            this.colServiceId,
-            this.colServiceDesc,
-            this.colServicePrice,
-            this.colDateService});
-            this.dgvTransService.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvTransService.Location = new System.Drawing.Point(12, 440);
-            this.dgvTransService.Name = "dgvTransService";
-            this.dgvTransService.RowHeadersVisible = false;
-            this.dgvTransService.RowHeadersWidth = 51;
-            this.dgvTransService.RowTemplate.Height = 24;
-            this.dgvTransService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransService.Size = new System.Drawing.Size(1069, 226);
-            this.dgvTransService.TabIndex = 16;
-            // 
-            // colIdService
-            // 
-            this.colIdService.HeaderText = "Id";
-            this.colIdService.MinimumWidth = 6;
-            this.colIdService.Name = "colIdService";
-            this.colIdService.Visible = false;
-            // 
-            // colInvoiceService
-            // 
-            this.colInvoiceService.HeaderText = "Invoice Number";
-            this.colInvoiceService.MinimumWidth = 6;
-            this.colInvoiceService.Name = "colInvoiceService";
-            this.colInvoiceService.Visible = false;
-            // 
-            // colClientService
-            // 
-            this.colClientService.HeaderText = "Client";
-            this.colClientService.MinimumWidth = 6;
-            this.colClientService.Name = "colClientService";
-            this.colClientService.Visible = false;
-            // 
-            // colServiceId
-            // 
-            this.colServiceId.HeaderText = "ServiceId";
-            this.colServiceId.MinimumWidth = 6;
-            this.colServiceId.Name = "colServiceId";
-            this.colServiceId.Visible = false;
-            // 
-            // colServiceDesc
-            // 
-            this.colServiceDesc.HeaderText = "Service";
-            this.colServiceDesc.MinimumWidth = 6;
-            this.colServiceDesc.Name = "colServiceDesc";
-            // 
-            // colServicePrice
-            // 
-            this.colServicePrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.colServicePrice.DefaultCellStyle = dataGridViewCellStyle1;
-            this.colServicePrice.HeaderText = "Price";
-            this.colServicePrice.MinimumWidth = 6;
-            this.colServicePrice.Name = "colServicePrice";
-            // 
-            // colDateService
-            // 
-            this.colDateService.HeaderText = "Date";
-            this.colDateService.MinimumWidth = 6;
-            this.colDateService.Name = "colDateService";
-            this.colDateService.Visible = false;
             // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1468, 765);
-            this.Controls.Add(this.dgvTransService);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1536, 680);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnServiceLookUp);
             this.Controls.Add(this.btnVoidTrans);
@@ -648,7 +561,6 @@
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransService)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -697,13 +609,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
-        public System.Windows.Forms.DataGridView dgvTransService;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colIdService;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colInvoiceService;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colClientService;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colServiceId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colServiceDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colServicePrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDateService;
     }
 }
