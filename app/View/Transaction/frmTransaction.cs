@@ -83,21 +83,6 @@ namespace app.view.Transaction
         }
         private void btnServiceLookUp_Click(object sender, EventArgs e)
         {
-            if (dgvTransService.RowCount > 0)
-            {
-                using (frmServiceLookUp frm = new frmServiceLookUp(service))
-                {
-                    frm.ShowDialog();
-
-                    service = frm.GetAllServices();
-                    dgvTransaction.Rows.Clear();
-                    LoadServiceList(service);
-
-                    frm.Dispose();
-                }
-            }
-            else
-            {
                 using (frmServiceLookUp frm = new frmServiceLookUp())
                 {
                     frm.ShowDialog();
@@ -108,7 +93,7 @@ namespace app.view.Transaction
                     frm.Dispose();
                 }
             }
-        }
+        
         Dictionary<int, app.core.model.Services> service = new Dictionary<int, core.model.Services>();
         void LoadServiceList(Dictionary<int, app.core.model.Services> service)
         {
@@ -117,7 +102,7 @@ namespace app.view.Transaction
             foreach (KeyValuePair<int, app.core.model.Services> key in service)
             {
                 var serviceItem = key.Value; // Get the service item
-                dgvTransService.Rows.Add(serviceItem.Id, "ClientId", serviceItem.Description, serviceItem.Price);
+                //dgvTransService.Rows.Add(serviceItem.Id, "ClientId", serviceItem.Description, serviceItem.Price);
 
                 totalPrice += serviceItem.Price; // Add the price of the current service to the total
             }
