@@ -93,34 +93,36 @@ namespace app.Core.Repository
         }
 
         public Client GetClientInformation(Client client)
-        {
-            DataTable dt;
-            Client clients;
-
-            Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                { "@Id", client.Id.ToString() }
-            };
+                if (client == null || client.Id == 0)
+                    throw new ArgumentException("Invalid client object or ID.");
 
-            UpgradeFile upgradeFile = new UpgradeFile();
+                Dictionary<string, string> parameters = new Dictionary<string, string>
+                {
+                    { "@Id", client.Id.ToString() }
+                };
 
-            dt = upgradeFile.Load("SELECT * FROM vwclient WHERE clientId=@Id;", parameters);
-            if (dt.Rows.Count == 0)
-                throw new Exception("Empty DataTable");
+                UpgradeFile upgradeFile = new UpgradeFile();
+                DataTable dt = upgradeFile.Load("SELECT * FROM vwclient WHERE clientId=@Id;", parameters);
 
-            return clients = new Client()
-            {
-                Id = Convert.ToInt32(dt.Rows[0][0]),
-                FirstName = dt.Rows[0][1].ToString(),
-                MiddleName = dt.Rows[0][2].ToString(),
-                LastName = dt.Rows[0][3].ToString(),
-                Suffix = dt.Rows[0][4].ToString(),
-                MobileNumber = dt.Rows[0][5].ToString(),
-                //PhoneNumber = dt.Rows[0][2].ToString(),
-                EmailAddress = dt.Rows[0][6].ToString(),
-                StreetNo = dt.Rows[0][7].ToString(),
-            };
-        }
+                if (dt.Rows.Count == 0)
+                    throw new Exception($"No client found with ID {client.Id}.");
+
+                DataRow row = dt.Rows[0];
+
+                return new Client()
+                {
+                    Id = Convert.ToInt32(row["clientId"]), // Use column names instead of indices
+                    FirstName = row["fname"].ToString(),
+                    MiddleName = row["mi"].ToString(),
+                    LastName = row["lname"].ToString(),
+                    Suffix = row["suffix"].ToString(),
+                    MobileNumber = row["cellnum"].ToString(),
+                    EmailAddress = row["email"].ToString(),
+                    StreetNo = row["Address"].ToString()
+                };
+            }
+        
         public bool Delete(Client client)
         {
             UpgradeFile upgradeFile = new UpgradeFile();

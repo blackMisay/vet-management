@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Core;
+using System.Text.RegularExpressions;
 
 namespace app.view.Client
 {
@@ -20,6 +21,8 @@ namespace app.view.Client
             cboRegion.DataSource = upgradeFile.Populate("SELECT code, description FROM addr_region;");
             cboRegion.ValueMember = "Key";
             cboRegion.DisplayMember = "Value";
+
+            PopulateCmb();
         }
 
         public frmClientModal(int clientId)
@@ -59,10 +62,8 @@ namespace app.view.Client
                 
             }
 
-            Console.WriteLine(cboRegion.SelectedValue);
-
             UpgradeFile upgradeFile = new UpgradeFile();
-            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
+            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code=@regionCode;",
                                                            new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
             cboProvince.ValueMember = "Key";
             cboProvince.DisplayMember = "Value";
@@ -109,42 +110,62 @@ namespace app.view.Client
 
         private void SaveClient()
         {
-            // Create a new client instance and set properties from input fields
-            Core.Model.Client client = new Core.Model.Client
+            
+            try
             {
-                Id = this.Id,
-                FirstName = txtFname.Text,
-                LastName = txtLname.Text,
-                MiddleName = txtMname.Text,
-                Suffix = txtSuffix.Text,
-                PhoneNumber = txtPhone.Text,
-                MobileNumber = txtMobile.Text,
-                EmailAddress = txtEmail.Text,
-                StreetNo = richHousenum.Text,
-                Region = new Core.Model.Region() { Id = Convert.ToInt32(cboRegion.SelectedValue) },
-                City = new City() { Id = Convert.ToInt32(cboCity.SelectedValue) },
-                Brgy = new Barangay() { Id = Convert.ToInt32(cboBrgy.SelectedValue) },
-                Province = new Province() { Id = Convert.ToInt32(cboProvince.SelectedValue) }
-            };
+                // Create a new client instance and set properties from input fields
+                app.Core.Model.Client client = new app.Core.Model.Client
+                {
+                    Id = this.Id,
+                    FirstName = txtFname.Text.Trim(),
+                    LastName = txtLname.Text.Trim(),
+                    MiddleName = txtMname.Text.Trim(),
+                    Suffix = txtSuffix.Text.Trim(),
+                    PhoneNumber = txtPhone.Text.Trim(),
+                    MobileNumber = txtMobile.Text.Trim(),
+                    EmailAddress = txtEmail.Text.Trim(),
+                    StreetNo = richHousenum.Text.Trim(),
+                    Region = new Region() { Id = TryParseInt(cboRegion.SelectedValue) },
+                    City = new City() { Id = TryParseInt(cboCity.SelectedValue) },
+                    Brgy = new Barangay() { Id = TryParseInt(cboBrgy.SelectedValue) },
+                    Province = new Province() { Id = TryParseInt(cboProvince.SelectedValue) }
+                };
 
-            // Validate email address format
-            if (!client.EmailAddress.Contains("@") || !client.EmailAddress.Contains(".com"))
-            {
-                MessageBox.Show("Invalid Email Address");
-                txtEmail.Focus(); // Set focus to the email input field
-                return; // Exit the method if the email is invalid
-            }
+                // Validate email format
+                if (!IsValidEmail(client.EmailAddress))
+                {
+                    MessageBox.Show("Invalid Email Address. Please enter a valid email.");
+                    txtEmail.Focus();
+                    return;
+                }
 
-            // Attempt to save the client
-            ClientRepository clientRepository = new ClientRepository();
-            if (clientRepository.Save(client))
-            {
-                MessageBox.Show("Saved successfully");
+                // Attempt to save the client
+                ClientRepository clientRepository = new ClientRepository();
+                if (clientRepository.Save(client))
+                {
+                    MessageBox.Show("Client saved successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to save client record.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Unable to save record");
+                MessageBox.Show($"An error occurred: {ex.Message}");
             }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, emailPattern);
+        }
+
+        // Helper method for safely parsing integer values
+        private int TryParseInt(object value)
+        {
+            return int.TryParse(value?.ToString(), out int result) ? result : 0;
         }
 
         private void LoadDetails(app.Core.Model.Client client)
