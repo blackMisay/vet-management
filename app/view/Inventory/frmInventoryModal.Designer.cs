@@ -37,8 +37,6 @@
             this.txtBatch = new System.Windows.Forms.TextBox();
             this.cmbCateg = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cmbProduct = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.cmbBrand = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -86,8 +84,6 @@
             this.panel2.Controls.Add(this.txtBatch);
             this.panel2.Controls.Add(this.cmbCateg);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.cmbProduct);
-            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.cmbBrand);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label9);
@@ -101,13 +97,13 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(12, 76);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(423, 457);
+            this.panel2.Size = new System.Drawing.Size(423, 403);
             this.panel2.TabIndex = 21;
             // 
             // cmbExpPeriod
             // 
             this.cmbExpPeriod.FormattingEnabled = true;
-            this.cmbExpPeriod.Location = new System.Drawing.Point(155, 352);
+            this.cmbExpPeriod.Location = new System.Drawing.Point(155, 306);
             this.cmbExpPeriod.Name = "cmbExpPeriod";
             this.cmbExpPeriod.Size = new System.Drawing.Size(249, 29);
             this.cmbExpPeriod.TabIndex = 28;
@@ -116,7 +112,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 355);
+            this.label10.Location = new System.Drawing.Point(3, 309);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(147, 21);
             this.label10.TabIndex = 27;
@@ -132,7 +128,7 @@
             // cmbCateg
             // 
             this.cmbCateg.FormattingEnabled = true;
-            this.cmbCateg.Location = new System.Drawing.Point(155, 156);
+            this.cmbCateg.Location = new System.Drawing.Point(155, 110);
             this.cmbCateg.Name = "cmbCateg";
             this.cmbCateg.Size = new System.Drawing.Size(249, 29);
             this.cmbCateg.TabIndex = 22;
@@ -140,28 +136,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 156);
+            this.label6.Location = new System.Drawing.Point(3, 110);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 21);
             this.label6.TabIndex = 25;
             this.label6.Text = "Category";
-            // 
-            // cmbProduct
-            // 
-            this.cmbProduct.FormattingEnabled = true;
-            this.cmbProduct.Location = new System.Drawing.Point(155, 110);
-            this.cmbProduct.Name = "cmbProduct";
-            this.cmbProduct.Size = new System.Drawing.Size(249, 29);
-            this.cmbProduct.TabIndex = 21;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 21);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Product";
             // 
             // cmbBrand
             // 
@@ -183,7 +162,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 409);
+            this.label9.Location = new System.Drawing.Point(3, 363);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(138, 21);
             this.label9.TabIndex = 19;
@@ -192,7 +171,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 307);
+            this.label8.Location = new System.Drawing.Point(3, 261);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(138, 21);
             this.label8.TabIndex = 18;
@@ -200,7 +179,7 @@
             // 
             // dtpExp
             // 
-            this.dtpExp.Location = new System.Drawing.Point(155, 403);
+            this.dtpExp.Location = new System.Drawing.Point(155, 357);
             this.dtpExp.Name = "dtpExp";
             this.dtpExp.Size = new System.Drawing.Size(249, 28);
             this.dtpExp.TabIndex = 8;
@@ -208,7 +187,7 @@
             // 
             // dtpReceived
             // 
-            this.dtpReceived.Location = new System.Drawing.Point(155, 300);
+            this.dtpReceived.Location = new System.Drawing.Point(155, 254);
             this.dtpReceived.Name = "dtpReceived";
             this.dtpReceived.Size = new System.Drawing.Size(249, 28);
             this.dtpReceived.TabIndex = 7;
@@ -218,7 +197,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 254);
+            this.label7.Location = new System.Drawing.Point(3, 208);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 21);
             this.label7.TabIndex = 15;
@@ -226,14 +205,14 @@
             // 
             // txtDesc
             // 
-            this.txtDesc.Location = new System.Drawing.Point(155, 204);
+            this.txtDesc.Location = new System.Drawing.Point(155, 158);
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(249, 28);
             this.txtDesc.TabIndex = 2;
             // 
             // txtQty
             // 
-            this.txtQty.Location = new System.Drawing.Point(155, 251);
+            this.txtQty.Location = new System.Drawing.Point(155, 205);
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(249, 28);
             this.txtQty.TabIndex = 6;
@@ -242,7 +221,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 211);
+            this.label4.Location = new System.Drawing.Point(3, 165);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 21);
             this.label4.TabIndex = 3;
@@ -262,7 +241,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(19, 539);
+            this.btnSave.Location = new System.Drawing.Point(19, 492);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(115, 40);
             this.btnSave.TabIndex = 10;
@@ -276,7 +255,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(316, 539);
+            this.btnCancel.Location = new System.Drawing.Point(316, 492);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(115, 40);
             this.btnCancel.TabIndex = 9;
@@ -289,7 +268,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 591);
+            this.ClientSize = new System.Drawing.Size(443, 544);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnSave);
@@ -327,8 +306,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbCateg;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cmbProduct;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbBrand;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtBatch;
