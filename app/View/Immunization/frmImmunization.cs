@@ -1,12 +1,5 @@
 ﻿using app.core.repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace app.view.Immunization
@@ -44,67 +37,6 @@ namespace app.view.Immunization
                 this.selectedId = Convert.ToInt32(dgvImmunization.Rows[selectedRowIndex].Cells[0].Value?.ToString());
             }
         }
-
-        private void btnImmunization_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Do you want to create new vaccination for a patient?",
-                                "Confirm to proceed",
-                                MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                frmImmunizationModal im = new frmImmunizationModal();
-                im.ShowDialog();
-                LoadPatientVaccinationRecords();
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (selectedId > 0)
-            {
-                if (MessageBox.Show("Do you want to update an existing vaccination of a patient?",
-                    "Confirm to update",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    frmImmunizationModal im = new frmImmunizationModal(selectedId);
-                    im.ShowDialog();
-                    LoadPatientVaccinationRecords();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a record to delete.",
-                                "No record selected",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-            }
-        }
-
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            if (selectedId > 0)
-            {
-                if (MessageBox.Show("Do you want to delete the selected patient vaccination?",
-                                "Confirm to remove",
-                                MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    PetVaccinationRepository pv = new PetVaccinationRepository();
-                    pv.Delete(selectedId);
-                    LoadPatientVaccinationRecords();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a record to delete.",
-                                "No record selected",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-                
-            }
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             SearchPatientVaccinationRecords();
@@ -119,6 +51,19 @@ namespace app.view.Immunization
             }
             if (txtSearch.Text == string.Empty || string.IsNullOrWhiteSpace(txtSearch.Text))
             {
+                LoadPatientVaccinationRecords();
+            }
+        }
+
+        private void btnVaccination_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to create new vaccination for a patient?",
+                                "Confirm to proceed",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                frmImmunizationModal im = new frmImmunizationModal();
+                im.ShowDialog();
                 LoadPatientVaccinationRecords();
             }
         }
