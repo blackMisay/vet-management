@@ -210,6 +210,7 @@
             this.cboMedication.Name = "cboMedication";
             this.cboMedication.Size = new System.Drawing.Size(446, 29);
             this.cboMedication.TabIndex = 42;
+            this.cboMedication.SelectedIndexChanged += new System.EventHandler(this.cboMedication_SelectedIndexChanged);
             // 
             // cboTreatment
             // 
@@ -218,6 +219,7 @@
             this.cboTreatment.Name = "cboTreatment";
             this.cboTreatment.Size = new System.Drawing.Size(446, 29);
             this.cboTreatment.TabIndex = 41;
+            this.cboTreatment.SelectionChangeCommitted += new System.EventHandler(this.cboTreatment_SelectionChangeCommitted);
             // 
             // cboFindings
             // 
@@ -226,6 +228,7 @@
             this.cboFindings.Name = "cboFindings";
             this.cboFindings.Size = new System.Drawing.Size(446, 29);
             this.cboFindings.TabIndex = 40;
+            this.cboFindings.SelectionChangeCommitted += new System.EventHandler(this.cboFindings_SelectionChangeCommitted);
             // 
             // cboComplaint
             // 
@@ -234,6 +237,7 @@
             this.cboComplaint.Name = "cboComplaint";
             this.cboComplaint.Size = new System.Drawing.Size(446, 29);
             this.cboComplaint.TabIndex = 39;
+            this.cboComplaint.SelectionChangeCommitted += new System.EventHandler(this.cboComplaint_SelectionChangeCommitted);
             // 
             // label3
             // 
