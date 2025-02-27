@@ -184,19 +184,35 @@ namespace app.Core.Repository
                 return new Pet()
                 {
                     Id = Id,
-                    Client = new Client() { Id = Convert.ToInt32(row["clientId"]) },
-                    Name = row["petname"].ToString(),
-                    BirthDate = Convert.ToString(row["bday"]),
-                    Age = Convert.ToString(row["age"]),
-                    Size = row["size"].ToString(),
-                    Weight = row["weight"].ToString(),
-                    ColourPattern = new ColourPattern() { Description = row["colorName"].ToString() },
-                    Specie = new Species() { Description = row["speciesName"].ToString() },
-                    Gender = new Gender() { Description = row["sexname"].ToString() },
-                    Breed = new Breed() { Id = Convert.ToInt32(row["breedDesc"]) },
+                    Client = new Client()
+                    {
+                        Id = int.TryParse(row["clientId"]?.ToString(), out int clientId) ? clientId : 0
+                    },
+                    Name = row.IsNull("petname") ? "" : row["petname"].ToString(),
+                    BirthDate = row.IsNull("bday") ? "" : Convert.ToDateTime(row["bday"]).ToString("yyyy-MM-dd"),
+                    Age = row.IsNull("age") ? "" : row["age"].ToString(),
+                    Size = row.IsNull("size") ? "" : row["size"].ToString(),
+                    Weight = row.IsNull("weight") ? "" : row["weight"].ToString(),
+                    ColourPattern = new ColourPattern()
+                    {
+                        Description = row.IsNull("colorName") ? "" : row["colorName"].ToString()
+                    },
+                    Specie = new Species()
+                    {
+                        Description = row.IsNull("speciesName") ? "" : row["speciesName"].ToString()
+                    },
+                    Gender = new Gender()
+                    {
+                        Description = row.IsNull("sexname") ? "" : row["sexname"].ToString()
+                    },
+                    Breed = new Breed()
+                    {
+                        Id = int.TryParse(row["breedDesc"]?.ToString(), out int breedId) ? breedId : 0
+                    },
                 };
             }
             return null;
+
         }
 
         public void GetAllPetsByOwner(DataGridView dgv, string ownerId)

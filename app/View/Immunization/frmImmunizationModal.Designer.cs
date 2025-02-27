@@ -58,7 +58,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(494, 455);
+            this.btnSave.Location = new System.Drawing.Point(12, 455);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(127, 50);
@@ -73,7 +73,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(362, 455);
+            this.btnCancel.Location = new System.Drawing.Point(506, 455);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(124, 50);
@@ -231,14 +231,17 @@
             this.dtpExpirationDate.Name = "dtpExpirationDate";
             this.dtpExpirationDate.Size = new System.Drawing.Size(383, 28);
             this.dtpExpirationDate.TabIndex = 25;
+            this.dtpExpirationDate.Value = new System.DateTime(2025, 2, 27, 0, 0, 0, 0);
             // 
             // dtpAdministeredDate
             // 
+            this.dtpAdministeredDate.Checked = false;
             this.dtpAdministeredDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpAdministeredDate.Location = new System.Drawing.Point(247, 227);
             this.dtpAdministeredDate.Name = "dtpAdministeredDate";
             this.dtpAdministeredDate.Size = new System.Drawing.Size(383, 28);
             this.dtpAdministeredDate.TabIndex = 24;
+            this.dtpAdministeredDate.Value = new System.DateTime(2025, 2, 27, 0, 0, 0, 0);
             // 
             // label3
             // 

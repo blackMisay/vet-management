@@ -36,6 +36,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnVaccination = new System.Windows.Forms.Button();
             this.btnImmunization = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -60,9 +61,9 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1465, 69);
+            this.panel1.Size = new System.Drawing.Size(1467, 56);
             this.panel1.TabIndex = 5;
             // 
             // label1
@@ -70,8 +71,8 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(12, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(181, 34);
             this.label1.TabIndex = 0;
@@ -79,15 +80,30 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnVaccination);
             this.panel2.Controls.Add(this.btnImmunization);
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 69);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Location = new System.Drawing.Point(0, 56);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1465, 64);
+            this.panel2.Size = new System.Drawing.Size(1467, 68);
             this.panel2.TabIndex = 6;
+            // 
+            // btnVaccination
+            // 
+            this.btnVaccination.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVaccination.Image = global::app.Properties.Resources.immunity_24px;
+            this.btnVaccination.Location = new System.Drawing.Point(1205, 14);
+            this.btnVaccination.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVaccination.Name = "btnVaccination";
+            this.btnVaccination.Size = new System.Drawing.Size(249, 39);
+            this.btnVaccination.TabIndex = 13;
+            this.btnVaccination.Text = "New Vaccination";
+            this.btnVaccination.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVaccination.UseVisualStyleBackColor = true;
+            this.btnVaccination.Click += new System.EventHandler(this.btnVaccination_Click);
             // 
             // btnImmunization
             // 
@@ -95,32 +111,31 @@
             this.btnImmunization.BackColor = System.Drawing.Color.White;
             this.btnImmunization.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImmunization.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnImmunization.Location = new System.Drawing.Point(1668, 24);
-            this.btnImmunization.Margin = new System.Windows.Forms.Padding(4);
+            this.btnImmunization.Location = new System.Drawing.Point(1721, 16);
+            this.btnImmunization.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnImmunization.Name = "btnImmunization";
-            this.btnImmunization.Size = new System.Drawing.Size(203, 35);
+            this.btnImmunization.Size = new System.Drawing.Size(254, 46);
             this.btnImmunization.TabIndex = 12;
             this.btnImmunization.Text = "&New Vaccination";
             this.btnImmunization.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnImmunization.UseVisualStyleBackColor = false;
-            this.btnImmunization.Click += new System.EventHandler(this.btnImmunization_Click);
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(109, 16);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSearch.Location = new System.Drawing.Point(136, 21);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(332, 22);
+            this.txtSearch.Size = new System.Drawing.Size(414, 28);
             this.txtSearch.TabIndex = 2;
             // 
             // btnSearch
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearch.Location = new System.Drawing.Point(9, 14);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSearch.Location = new System.Drawing.Point(9, 15);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(95, 35);
+            this.btnSearch.Size = new System.Drawing.Size(119, 38);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -147,14 +162,14 @@
             this.Column4});
             this.dgvImmunization.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvImmunization.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvImmunization.Location = new System.Drawing.Point(0, 133);
-            this.dgvImmunization.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvImmunization.Location = new System.Drawing.Point(0, 124);
+            this.dgvImmunization.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.dgvImmunization.Name = "dgvImmunization";
             this.dgvImmunization.RowHeadersVisible = false;
             this.dgvImmunization.RowHeadersWidth = 51;
             this.dgvImmunization.RowTemplate.Height = 24;
             this.dgvImmunization.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvImmunization.Size = new System.Drawing.Size(1465, 639);
+            this.dgvImmunization.Size = new System.Drawing.Size(1467, 650);
             this.dgvImmunization.TabIndex = 7;
             this.dgvImmunization.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvImmunication_CellClick);
             // 
@@ -228,14 +243,15 @@
             // 
             // frmImmunization
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1465, 772);
+            this.ClientSize = new System.Drawing.Size(1467, 774);
             this.Controls.Add(this.dgvImmunization);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmImmunization";
             this.Text = " SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmImmunization_Load);
@@ -257,6 +273,7 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         public System.Windows.Forms.DataGridView dgvImmunization;
+        private System.Windows.Forms.Button btnVaccination;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
