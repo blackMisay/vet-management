@@ -20,6 +20,8 @@ namespace app.view.Client
             cboRegion.DataSource = upgradeFile.Populate("SELECT code, description FROM addr_region;");
             cboRegion.ValueMember = "Key";
             cboRegion.DisplayMember = "Value";
+
+            PopulateCmb();
         }
 
         public frmClientModal(int clientId)
@@ -62,7 +64,7 @@ namespace app.view.Client
             Console.WriteLine(cboRegion.SelectedValue);
 
             UpgradeFile upgradeFile = new UpgradeFile();
-            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
+            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code=@regionCode;",
                                                            new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
             cboProvince.ValueMember = "Key";
             cboProvince.DisplayMember = "Value";

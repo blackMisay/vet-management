@@ -4,6 +4,7 @@ using app.Core.Model;
 using app.view.Utilities;
 using Core;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -14,6 +15,7 @@ namespace app.view.Consultation
         public frmConsultationModal()
         {
             InitializeComponent();
+            PopulateCmb();
         }
 
         public frmConsultationModal(int Id)
@@ -153,6 +155,57 @@ namespace app.view.Consultation
             cboMedication.ValueMember = "Key";
             cboMedication.DisplayMember = "Value";
 
+        }
+
+        int SelectedComplaint = 0;
+        private void cboComplaint_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Check if the selected value is null to avoid exceptions
+            if (cboComplaint.SelectedValue == null || this.SelectedComplaint.Equals(cboComplaint.SelectedValue))
+            {
+                return; // No need to update cboProvince if no changes were committed in cboRegion.
+
+            }
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+            cboFindings.DataSource = upgradeFile.Populate("SELECT id, description FROM consultation_findings WHERE id=@Id;",
+                                                           new Dictionary<string, string> { { "@Id", cboComplaint.SelectedValue.ToString() } });
+            cboFindings.ValueMember = "Key";
+            cboFindings.DisplayMember = "Value";
+
+            // Update the selected region after successful change
+            this.SelectedComplaint = Convert.ToInt32(cboComplaint.SelectedValue);
+        }
+
+        private void cboFindings_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboMedication.DataSource = upgradeFile.Populate("SELECT id, description FROM consultation_treatment where id=@Id;",
+                                                       new Dictionary<string, string> { { "@Id", cboMedication.SelectedValue.ToString() } });
+            cboMedication.ValueMember = "Key";
+            cboMedication.DisplayMember = "Value";
+        }
+
+        private void cboTreatment_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboTreatment.DataSource = upgradeFile.Populate("SELECT id, description FROM consultation_medication where id=@Id;",
+                                                       new Dictionary<string, string> { { "@Id", cboTreatment.SelectedValue.ToString() } });
+            cboTreatment.ValueMember = "Key";
+            cboTreatment.DisplayMember = "Value";
+            
+        }
+
+        private void cboMedication_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboTreatment.DataSource = upgradeFile.Populate("SELECT id, description FROM consultation_medication where id=@Id;",
+                                                       new Dictionary<string, string> { { "@Id", cboTreatment.SelectedValue.ToString() } });
+            cboTreatment.ValueMember = "Key";
+            cboTreatment.DisplayMember = "Value";
         }
     }
 }
