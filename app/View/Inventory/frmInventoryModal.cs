@@ -67,12 +67,6 @@ namespace app.view.Inventory
                 txtQty.Focus();
                 return;
             }
-            if (cmbProduct.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a product.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbProduct.Focus();
-                return;
-            }
             if (cmbBrand.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a brand.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -92,7 +86,6 @@ namespace app.view.Inventory
                 Id = this.Id,
                 BatchNumber = txtBatch.Text,
                 Description = txtDesc.Text,
-                TypeID = new app.core.Types { Id = Convert.ToInt32(cmbProduct.SelectedValue) },
                 BrandID = new app.core.model.Brand { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
                 CategID = new app.core.model.ProductCategory { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
                 Qty = quantity,
@@ -144,7 +137,6 @@ namespace app.view.Inventory
             
             txtBatch.Text = inventory.BatchNumber.ToString();
             cmbBrand.SelectedValue = inventory.BrandID.Id;
-            cmbProduct.SelectedValue = inventory.TypeID.Id;
             cmbCateg.SelectedValue = inventory.CategID.Id;
             txtDesc.Text = inventory.Description;
             txtQty.Text = inventory.Qty.ToString();
@@ -174,10 +166,6 @@ namespace app.view.Inventory
             cmbCateg.DataSource = upgradeFile.Populate("SELECT id, description FROM product_category;");
             cmbCateg.ValueMember = "Key";
             cmbCateg.DisplayMember = "Value";
-
-            cmbProduct.DataSource = upgradeFile.Populate("SELECT id, description FROM product_types;");
-            cmbProduct.ValueMember = "Key";
-            cmbProduct.DisplayMember = "Value";
 
         }
 

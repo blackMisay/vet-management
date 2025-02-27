@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInventory));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInventory));
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,19 +50,18 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvInventory = new System.Windows.Forms.DataGridView();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateReceived = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
@@ -116,7 +115,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1463, 65);
+            this.panel1.Size = new System.Drawing.Size(1536, 65);
             this.panel1.TabIndex = 4;
             // 
             // label1
@@ -141,7 +140,7 @@
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Location = new System.Drawing.Point(0, 71);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1463, 60);
+            this.panel2.Size = new System.Drawing.Size(1536, 60);
             this.panel2.TabIndex = 5;
             // 
             // btnReports
@@ -150,7 +149,7 @@
             this.btnReports.BackColor = System.Drawing.Color.White;
             this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReports.Image = global::app.Properties.Resources.medical_record_24px;
-            this.btnReports.Location = new System.Drawing.Point(1309, 17);
+            this.btnReports.Location = new System.Drawing.Point(1382, 17);
             this.btnReports.Name = "btnReports";
             this.btnReports.Size = new System.Drawing.Size(144, 31);
             this.btnReports.TabIndex = 13;
@@ -165,7 +164,7 @@
             this.btnInventory.BackColor = System.Drawing.Color.White;
             this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnInventory.Location = new System.Drawing.Point(875, 17);
+            this.btnInventory.Location = new System.Drawing.Point(948, 17);
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Size = new System.Drawing.Size(202, 31);
             this.btnInventory.TabIndex = 12;
@@ -180,7 +179,7 @@
             this.btnEdit.BackColor = System.Drawing.Color.White;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEdit.Location = new System.Drawing.Point(1083, 17);
+            this.btnEdit.Location = new System.Drawing.Point(1156, 17);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(102, 31);
             this.btnEdit.TabIndex = 11;
@@ -195,7 +194,7 @@
             this.btnRemove.BackColor = System.Drawing.Color.White;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemove.Location = new System.Drawing.Point(1191, 17);
+            this.btnRemove.Location = new System.Drawing.Point(1264, 17);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(110, 31);
             this.btnRemove.TabIndex = 10;
@@ -233,10 +232,9 @@
             this.dgvInventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Column2,
+            this.Column11,
             this.Column1,
             this.Column3,
-            this.Column10,
-            this.Column11,
             this.Qty,
             this.dateReceived,
             this.expDate,
@@ -248,8 +246,26 @@
             this.dgvInventory.RowHeadersWidth = 51;
             this.dgvInventory.RowTemplate.Height = 24;
             this.dgvInventory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInventory.Size = new System.Drawing.Size(1463, 629);
+            this.dgvInventory.Size = new System.Drawing.Size(1536, 629);
             this.dgvInventory.TabIndex = 6;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Id
             // 
@@ -272,6 +288,14 @@
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "categoryDescription";
+            this.Column11.FillWeight = 80F;
+            this.Column11.HeaderText = "Category";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            // 
             // Column1
             // 
             this.Column1.DataPropertyName = "brandDesc";
@@ -289,21 +313,6 @@
             this.Column3.HeaderText = "Description";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "typeDescription";
-            this.Column10.HeaderText = "Product";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "categoryDescription";
-            this.Column11.FillWeight = 80F;
-            this.Column11.HeaderText = "Category";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
             // 
             // Qty
             // 
@@ -348,29 +357,11 @@
             this.Column9.Name = "Column9";
             this.Column9.Visible = false;
             // 
-            // printDocument1
-            // 
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            // 
-            // printDialog1
-            // 
-            this.printDialog1.UseEXDialog = true;
-            // 
-            // printPreviewDialog1
-            // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
-            // 
             // frmInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1465, 772);
+            this.ClientSize = new System.Drawing.Size(1560, 772);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvInventory);
@@ -411,10 +402,9 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateReceived;
         private System.Windows.Forms.DataGridViewTextBoxColumn expDate;

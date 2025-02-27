@@ -16,7 +16,7 @@ namespace app.core.Repository
 
         public DataTable SearchInventory(string searchValue)
         {
-            string query = "SELECT * FROM vwinventory WHERE `stocksNum` LIKE @searchValue OR `description` LIKE @searchValue OR `prodDesc` LIKE @searchValue;";
+            string query = "SELECT * FROM vwinventory WHERE `batchNum` LIKE @searchValue OR `stockDescription` LIKE @searchValue OR `brandDesc` LIKE @searchValue;";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
                 {"@searchValue", "%" + searchValue + "%" }
@@ -33,11 +33,11 @@ namespace app.core.Repository
 
             if (saveState)
             {
-                sql = "UPDATE prod_stocks SET batchNum=@BatchNumber, description=@Description, typeID=@TypeID, categID=@CategID, brandID=@BrandID, qty=@Qty,dateReceived=@DateReceived, expDate=@ExpiredDate WHERE stockID=@Id;";
+                sql = "UPDATE prod_stocks SET batchNum=@BatchNumber, description=@Description, categID=@CategID, brandID=@BrandID, qty=@Qty,dateReceived=@DateReceived, expDate=@ExpiredDate WHERE stockID=@Id;";
             }
             else
             {
-                sql = "INSERT INTO prod_stocks (stockID,batchNum,description,typeID,categID,brandID,qty,dateReceived,expDate) VALUES(@Id,@BatchNumber,@Description,@TypeID,@CategID,@BrandID,@Qty,@DateReceived,@ExpiredDate);";
+                sql = "INSERT INTO prod_stocks (stockID,batchNum,description,categID,brandID,qty,dateReceived,expDate) VALUES(@Id,@BatchNumber,@Description,@CategID,@BrandID,@Qty,@DateReceived,@ExpiredDate);";
             }
 
             Dictionary<string, string> parameters = new Dictionary<string, string>()
@@ -45,7 +45,6 @@ namespace app.core.Repository
                 {"@Id", Convert.ToString(inventory.Id)},
                 {"@BatchNumber", inventory.BatchNumber},
                 {"@Description", inventory.Description},
-                {"@TypeID", inventory.TypeID.Id.ToString()},
                 {"@CategID", inventory.CategID.Id.ToString()},
                 {"@BrandID", inventory.BrandID.Id.ToString()},
                 {"@Qty", Convert.ToString(inventory.Qty)},
@@ -90,7 +89,6 @@ namespace app.core.Repository
                     Id = inventory.Id,
                     BatchNumber = row["batchNum"].ToString(),
                     Description = row["description"].ToString(),
-                    TypeID = new Types() { Id = Convert.ToInt32(row["typeID"]) },
                     CategID = new ProductCategory() { Id = Convert.ToInt32(row["categID"]) },
                     BrandID = new Brand() { Id = Convert.ToInt32(row["brandID"]) },
                     Qty = Convert.ToInt32(row["qty"]),
