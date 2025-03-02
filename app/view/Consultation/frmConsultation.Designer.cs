@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultation));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -51,11 +53,11 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1740, 78);
             this.panel1.TabIndex = 4;
@@ -64,7 +66,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(14, 23);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
@@ -81,7 +83,7 @@
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 78);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1740, 98);
             this.panel2.TabIndex = 5;
@@ -93,7 +95,7 @@
             this.btnNewConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewConsultation.Image = global::app.Properties.Resources.diagnosis_24px;
             this.btnNewConsultation.Location = new System.Drawing.Point(1297, 26);
-            this.btnNewConsultation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnNewConsultation.Margin = new System.Windows.Forms.Padding(5);
             this.btnNewConsultation.Name = "btnNewConsultation";
             this.btnNewConsultation.Size = new System.Drawing.Size(196, 49);
             this.btnNewConsultation.TabIndex = 12;
@@ -109,7 +111,7 @@
             this.btnEditConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditConsultation.Image = global::app.Properties.Resources.icons8_update_16;
             this.btnEditConsultation.Location = new System.Drawing.Point(1503, 26);
-            this.btnEditConsultation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnEditConsultation.Margin = new System.Windows.Forms.Padding(5);
             this.btnEditConsultation.Name = "btnEditConsultation";
             this.btnEditConsultation.Size = new System.Drawing.Size(105, 49);
             this.btnEditConsultation.TabIndex = 11;
@@ -125,7 +127,7 @@
             this.btnRemoveConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveConsultation.Image = global::app.Properties.Resources.icons8_remove_16;
             this.btnRemoveConsultation.Location = new System.Drawing.Point(1618, 26);
-            this.btnRemoveConsultation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnRemoveConsultation.Margin = new System.Windows.Forms.Padding(5);
             this.btnRemoveConsultation.Name = "btnRemoveConsultation";
             this.btnRemoveConsultation.Size = new System.Drawing.Size(108, 49);
             this.btnRemoveConsultation.TabIndex = 10;
@@ -137,7 +139,7 @@
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(129, 38);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(295, 28);
             this.txtSearch.TabIndex = 2;
@@ -147,7 +149,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
             this.btnSearch.Location = new System.Drawing.Point(24, 27);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(5);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(95, 49);
             this.btnSearch.TabIndex = 1;
@@ -172,7 +174,7 @@
             this.dgvConsultation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvConsultation.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvConsultation.Location = new System.Drawing.Point(0, 176);
-            this.dgvConsultation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dgvConsultation.Margin = new System.Windows.Forms.Padding(5);
             this.dgvConsultation.Name = "dgvConsultation";
             this.dgvConsultation.RowHeadersVisible = false;
             this.dgvConsultation.RowHeadersWidth = 51;
@@ -185,8 +187,8 @@
             // Id
             // 
             this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle4.NullValue = null;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.NullValue = null;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle1;
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
@@ -222,7 +224,10 @@
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "ConsultDate";
+            this.Column3.DataPropertyName = "date";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column3.HeaderText = "Consult Date";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
@@ -236,9 +241,10 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmConsultation";
-            this.Text = "frmConsultation";
+            this.Text = " SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmConsultation_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

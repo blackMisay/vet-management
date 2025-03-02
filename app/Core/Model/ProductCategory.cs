@@ -1,7 +1,7 @@
 ﻿
 namespace app.core.model
 {
-    internal class ProductCategory
+    public class ProductCategory
     {
          public int Id { get; set; }
 

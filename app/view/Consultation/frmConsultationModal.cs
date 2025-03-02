@@ -2,7 +2,9 @@
 using app.core.repository;
 using app.Core.Model;
 using app.view.Utilities;
+using Core;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -13,6 +15,7 @@ namespace app.view.Consultation
         public frmConsultationModal()
         {
             InitializeComponent();
+            PopulateCmb();
         }
 
         public frmConsultationModal(int Id)
@@ -30,10 +33,10 @@ namespace app.view.Consultation
             txtType.Text = row["speciesName"].ToString();
             txtWeight.Text = row["weight"].ToString();
             txtTemperature.Text = row["temperature"].ToString();
-            rtxtComplaintRequest.Text = row["complaint"].ToString();
-            rtxtFindings.Text = row["findings"].ToString();
-            rtxPlanTreatment.Text = row["plantreatment"].ToString();
-            rtxMedication.Text = row["medication"].ToString();
+            cboComplaint.Text = row["complaint"].ToString();
+            cboFindings.Text = row["findings"].ToString();
+            cboTreatment.Text = row["plantreatment"].ToString();
+            cboMedication.Text = row["medication"].ToString();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -83,27 +86,44 @@ namespace app.view.Consultation
         private void btnSave_Click(object sender, EventArgs e)
         {
             ConsultationRepository cr = new ConsultationRepository();
-            Diagnosis diagnosis = new Diagnosis();
-
-            diagnosis.Id = consultationId;
-            diagnosis.Patient = patientId;
-            diagnosis.Weight = txtWeight.Text;
-            diagnosis.Temperature = txtTemperature.Text;
-            diagnosis.Findings = rtxtFindings.Text;
-            diagnosis.PlanTreatment = rtxPlanTreatment.Text;
-            diagnosis.ComplaintRequest = rtxtComplaintRequest.Text;
-            diagnosis.Medication = rtxMedication.Text;
-            
-            if (cr.Save(diagnosis))
+            Diagnosis diagnosis = new Diagnosis
             {
-                MessageBox.Show("Consultation details was saved successfully", "Successfully saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                Id = consultationId,  // Assuming consultationId is valid
+                Patient = patientId,  // Assuming patientId is valid
+                Weight = txtWeight.Text.Trim(),
+                Temperature = txtTemperature.Text.Trim(),
+                Findings = new Findings { Id = SafeConvertToInt(cboFindings.SelectedValue) },
+                PlanTreatment = new Treatment { Id = SafeConvertToInt(cboTreatment.SelectedValue) },
+                ComplaintRequest = new Complaint { Id = SafeConvertToInt(cboComplaint.SelectedValue) },
+                Medication = new Medication { Id = SafeConvertToInt(cboMedication.SelectedValue) }
+            };
+
+            try
+            {
+                if (cr.Save(diagnosis))
+                {
+                    MessageBox.Show("Consultation details were saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();  // Use Dispose if necessary, but Close is simpler for forms
+                }
+                else
+                {
+                    MessageBox.Show("Failed to save consultation details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private int SafeConvertToInt(object value)
+        {
+            return value != null && int.TryParse(value.ToString(), out int result) ? result : 0;
         }
 
         private void frmConsultationModal_Load(object sender, EventArgs e)
         {
-
+            PopulateCmb();
         }
 
         private void txtWeight_KeyPress(object sender, KeyPressEventArgs e)
@@ -113,6 +133,79 @@ namespace app.view.Consultation
             {
                 e.Handled = true;
             }
+        }
+
+        private void PopulateCmb()
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboComplaint.DataSource = upgradeFile.Populate("SELECT id,description FROM consultation_complaint");
+            cboComplaint.ValueMember = "Key";
+            cboComplaint.DisplayMember = "Value";
+
+            cboFindings.DataSource = upgradeFile.Populate("SELECT id,description FROM consultation_findings");
+            cboFindings.ValueMember = "Key";
+            cboFindings.DisplayMember = "Value";
+
+            cboTreatment.DataSource = upgradeFile.Populate("SELECT id,description FROM consultation_treatment");
+            cboTreatment.ValueMember = "Key";
+            cboTreatment.DisplayMember = "Value";
+
+            cboMedication.DataSource = upgradeFile.Populate("SELECT id,description FROM consultation_medication");
+            cboMedication.ValueMember = "Key";
+            cboMedication.DisplayMember = "Value";
+
+        }
+
+        int SelectedComplaint = 0;
+        private void cboComplaint_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Check if the selected value is null to avoid exceptions
+            if (cboComplaint.SelectedValue == null || this.SelectedComplaint.Equals(cboComplaint.SelectedValue))
+            {
+                return; // No need to update cboProvince if no changes were committed in cboRegion.
+
+            }
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+            cboFindings.DataSource = upgradeFile.Populate("SELECT id, description FROM consultation_findings WHERE id=@Id;",
+                                                           new Dictionary<string, string> { { "@Id", cboComplaint.SelectedValue.ToString() } });
+            cboFindings.ValueMember = "Key";
+            cboFindings.DisplayMember = "Value";
+
+            // Update the selected region after successful change
+            this.SelectedComplaint = Convert.ToInt32(cboComplaint.SelectedValue);
+        }
+
+        private void cboFindings_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboMedication.DataSource = upgradeFile.Populate("SELECT id, description FROM consultation_treatment where id=@Id;",
+                                                       new Dictionary<string, string> { { "@Id", cboMedication.SelectedValue.ToString() } });
+            cboMedication.ValueMember = "Key";
+            cboMedication.DisplayMember = "Value";
+        }
+
+        private void cboTreatment_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboTreatment.DataSource = upgradeFile.Populate("SELECT id, description FROM consultation_medication where id=@Id;",
+                                                       new Dictionary<string, string> { { "@Id", cboTreatment.SelectedValue.ToString() } });
+            cboTreatment.ValueMember = "Key";
+            cboTreatment.DisplayMember = "Value";
+            
+        }
+
+        private void cboMedication_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboTreatment.DataSource = upgradeFile.Populate("SELECT id, description FROM consultation_medication where id=@Id;",
+                                                       new Dictionary<string, string> { { "@Id", cboTreatment.SelectedValue.ToString() } });
+            cboTreatment.ValueMember = "Key";
+            cboTreatment.DisplayMember = "Value";
         }
     }
 }

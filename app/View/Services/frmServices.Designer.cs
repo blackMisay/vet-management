@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServices));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -41,6 +42,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvServices = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,18 +54,19 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
+            this.panel1.ForeColor = System.Drawing.Color.Transparent;
             this.panel1.Location = new System.Drawing.Point(3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1452, 72);
+            this.panel1.Size = new System.Drawing.Size(1527, 72);
             this.panel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(9, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 34);
@@ -79,7 +82,7 @@
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Location = new System.Drawing.Point(3, 80);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1452, 60);
+            this.panel2.Size = new System.Drawing.Size(1527, 60);
             this.panel2.TabIndex = 1;
             // 
             // btnSaveService
@@ -88,7 +91,7 @@
             this.btnSaveService.BackColor = System.Drawing.Color.White;
             this.btnSaveService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveService.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnSaveService.Location = new System.Drawing.Point(1018, 17);
+            this.btnSaveService.Location = new System.Drawing.Point(1093, 17);
             this.btnSaveService.Name = "btnSaveService";
             this.btnSaveService.Size = new System.Drawing.Size(202, 31);
             this.btnSaveService.TabIndex = 12;
@@ -103,7 +106,7 @@
             this.btnEditService.BackColor = System.Drawing.Color.White;
             this.btnEditService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditService.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEditService.Location = new System.Drawing.Point(1226, 17);
+            this.btnEditService.Location = new System.Drawing.Point(1301, 17);
             this.btnEditService.Name = "btnEditService";
             this.btnEditService.Size = new System.Drawing.Size(102, 31);
             this.btnEditService.TabIndex = 11;
@@ -118,7 +121,7 @@
             this.btnRemoveService.BackColor = System.Drawing.Color.White;
             this.btnRemoveService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveService.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemoveService.Location = new System.Drawing.Point(1334, 17);
+            this.btnRemoveService.Location = new System.Drawing.Point(1409, 17);
             this.btnRemoveService.Name = "btnRemoveService";
             this.btnRemoveService.Size = new System.Drawing.Size(110, 31);
             this.btnRemoveService.TabIndex = 10;
@@ -155,6 +158,7 @@
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
+            this.Column5,
             this.Column2,
             this.Column1,
             this.Column3,
@@ -166,7 +170,7 @@
             this.dgvServices.RowHeadersWidth = 51;
             this.dgvServices.RowTemplate.Height = 24;
             this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvServices.Size = new System.Drawing.Size(1452, 629);
+            this.dgvServices.Size = new System.Drawing.Size(1529, 629);
             this.dgvServices.TabIndex = 3;
             // 
             // Id
@@ -179,6 +183,14 @@
             this.Id.Name = "Id";
             this.Id.Visible = false;
             // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "serviceType";
+            this.Column5.FillWeight = 200F;
+            this.Column5.HeaderText = "Service Type";
+            this.Column5.MinimumWidth = 100;
+            this.Column5.Name = "Column5";
+            // 
             // Column2
             // 
             this.Column2.DataPropertyName = "serviceCode";
@@ -188,7 +200,7 @@
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "description";
+            this.Column1.DataPropertyName = "serviceDescription";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column1.FillWeight = 805.8823F;
@@ -222,14 +234,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1457, 781);
+            this.ClientSize = new System.Drawing.Size(1536, 781);
             this.Controls.Add(this.dgvServices);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmServices";
-            this.Text = "frmServices";
+            this.Text = " SAHAGUN Veterinary Clinic v2.0";
             this.Load += new System.EventHandler(this.frmServices_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -253,6 +266,7 @@
         private System.Windows.Forms.Button btnSaveService;
         public System.Windows.Forms.DataGridView dgvServices;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

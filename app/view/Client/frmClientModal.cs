@@ -20,6 +20,8 @@ namespace app.view.Client
             cboRegion.DataSource = upgradeFile.Populate("SELECT code, description FROM addr_region;");
             cboRegion.ValueMember = "Key";
             cboRegion.DisplayMember = "Value";
+
+            PopulateCmb();
         }
 
         public frmClientModal(int clientId)
@@ -48,16 +50,21 @@ namespace app.view.Client
 
 
         int SelectedRegion = 0;
+
+
         private void cboRegion_SelectionChangeCommitted(object sender, EventArgs e)
         {
             // Check if the selected value is null to avoid exceptions
             if (cboRegion.SelectedValue == null || this.SelectedRegion.Equals(cboRegion.SelectedValue))
             {
                 return; // No need to update cboProvince if no changes were committed in cboRegion.
+                
             }
 
+            Console.WriteLine(cboRegion.SelectedValue);
+
             UpgradeFile upgradeFile = new UpgradeFile();
-            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
+            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code=@regionCode;",
                                                            new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
             cboProvince.ValueMember = "Key";
             cboProvince.DisplayMember = "Value";
@@ -65,6 +72,7 @@ namespace app.view.Client
             // Update the selected region after successful change
             this.SelectedRegion = Convert.ToInt32(cboRegion.SelectedValue);
         }
+
 
 
         private void cboProvince_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,6 +93,7 @@ namespace app.view.Client
                                                        new Dictionary<string, string> { { "@citymunCode", cboCity.SelectedValue.ToString() } });
             cboBrgy.ValueMember = "Key";
             cboBrgy.DisplayMember = "Value";
+
         }
 
 
@@ -185,6 +194,47 @@ namespace app.view.Client
             cboBrgy.DisplayMember = "Value";
 
             cboCity.DataSource = upgradeFile.Populate("SELECT citymun_code, description FROM addr_city;");
+            cboCity.ValueMember = "Key";
+            cboCity.DisplayMember = "Value";
+        }
+
+        private void cboRegion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Check if the selected value is null to avoid exceptions
+            if (cboRegion.SelectedValue == null || this.SelectedRegion.Equals(cboRegion.SelectedValue))
+            {
+                return; // No need to update cboProvince if no changes were committed in cboRegion.
+
+            }
+
+            Console.WriteLine(cboRegion.SelectedValue);
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
+                                                           new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
+            cboProvince.ValueMember = "Key";
+            cboProvince.DisplayMember = "Value";
+
+            // Update the selected region after successful change
+            this.SelectedRegion = Convert.ToInt32(cboRegion.SelectedValue);
+        }
+
+        private void cboProvince_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboCity.DataSource = upgradeFile.Populate("SELECT citymun_code, description FROM addr_city where province_code=@provinceCode;",
+                                                       new Dictionary<string, string> { { "@provinceCode", cboProvince.SelectedValue.ToString() } });
+            cboCity.ValueMember = "Key";
+            cboCity.DisplayMember = "Value";
+        }
+
+        private void cboProvince_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboCity.DataSource = upgradeFile.Populate("SELECT citymun_code, description FROM addr_city where province_code=@provinceCode;",
+                                                       new Dictionary<string, string> { { "@provinceCode", cboProvince.SelectedValue.ToString() } });
             cboCity.ValueMember = "Key";
             cboCity.DisplayMember = "Value";
         }

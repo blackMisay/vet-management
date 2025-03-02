@@ -2,7 +2,7 @@
 
 namespace app.core
 {
-    internal class Types
+    public class Types
     {
         public int Id;
 

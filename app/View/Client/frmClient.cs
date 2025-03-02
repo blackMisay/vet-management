@@ -1,6 +1,7 @@
 using app.Core.Repository;
 using System;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace app.view.Client
 {
@@ -9,7 +10,7 @@ namespace app.view.Client
         app.Core.Model.Client client;
         int selectedClientId = 0;
         int clientId = 0;
-        
+
         public frmClient()
         {
             InitializeComponent();
@@ -23,12 +24,12 @@ namespace app.view.Client
         }
 
         private void btnAddClient_Click(object sender, EventArgs e)
-        {             
+        {
             MessageBox.Show("Are you sure you want to ADD new pet owner record?", "Please Provide the Information Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             frmClientModal newClientForm = new frmClientModal();
             newClientForm.ShowDialog();
             dgvClient.Refresh();
-               
+
         }
 
 
@@ -45,11 +46,11 @@ namespace app.view.Client
                 this.LoadClient();
             }
             else
-            { 
+            {
                 MessageBox.Show("No pet owner record selected, please select pet owner record first before UPDATE.", "No Selected Pet Owner Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-           
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -124,12 +125,12 @@ namespace app.view.Client
                 {
                     int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
                     frmClientPatientModal frm = new frmClientPatientModal(petId);
-                    frm.ShowDialog();   
+                    frm.ShowDialog();
                     dgvPatient.RefreshEdit();
                 }
             }
         }
-        
+
         private void dgvClient_DoubleClick(object sender, EventArgs e)
         {
             this.LoadClient();
@@ -203,5 +204,55 @@ namespace app.view.Client
                 MessageBox.Show("The search field is empty, please provide.", "Empty field", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            // Get the text from the TextBox
+            string name = txtSearch.Text;
+
+            // Check if the text is not empty
+            if (!string.IsNullOrEmpty(name))
+            {
+                // Trim any leading or trailing spaces
+                name = name.Trim();
+
+                // If there is any text, convert it to sentence case
+                if (name.Length > 0)
+                {
+                    // Convert the first character to uppercase and the rest to lowercase
+                    name = char.ToUpper(name[0]) + name.Substring(1).ToLower();
+                }
+
+                // To avoid triggering the TextChanged event, use this:
+                txtSearch.Text = name;
+                txtSearch.SelectionStart = name.Length;  // Keep the cursor at the end of the text
+            }
+        }
+
+        private void txtSearchPet_TextChanged(object sender, EventArgs e)
+        {
+            // Get the text from the TextBox
+            string name = txtSearchPet.Text;
+
+            // Check if the text is not empty
+            if (!string.IsNullOrEmpty(name))
+            {
+                // Trim any leading or trailing spaces
+                name = name.Trim();
+
+                // If there is any text, convert it to sentence case
+                if (name.Length > 0)
+                {
+                    // Convert the first character to uppercase and the rest to lowercase
+                    name = char.ToUpper(name[0]) + name.Substring(1).ToLower();
+                }
+
+                // To avoid triggering the TextChanged event, use this:
+                txtSearchPet.Text = name;
+                txtSearchPet.SelectionStart = name.Length;  // Keep the cursor at the end of the text
+            }
+        }
     }
-    }
+}
+    
+    
