@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientPatientModal));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSelectBreed = new System.Windows.Forms.Button();
             this.txtBreed = new System.Windows.Forms.TextBox();
             this.cmbSize = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -76,7 +75,6 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox1.Controls.Add(this.btnSelectBreed);
             this.groupBox1.Controls.Add(this.txtBreed);
             this.groupBox1.Controls.Add(this.cmbSize);
             this.groupBox1.Controls.Add(this.label24);
@@ -115,17 +113,6 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General Information";
-            // 
-            // btnSelectBreed
-            // 
-            this.btnSelectBreed.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectBreed.Location = new System.Drawing.Point(110, 361);
-            this.btnSelectBreed.Name = "btnSelectBreed";
-            this.btnSelectBreed.Size = new System.Drawing.Size(83, 29);
-            this.btnSelectBreed.TabIndex = 48;
-            this.btnSelectBreed.Text = "&Select";
-            this.btnSelectBreed.UseVisualStyleBackColor = true;
-            this.btnSelectBreed.Click += new System.EventHandler(this.btnSelectBreed_Click);
             // 
             // txtBreed
             // 
@@ -233,6 +220,7 @@
             this.cboSpecies.Name = "cboSpecies";
             this.cboSpecies.Size = new System.Drawing.Size(357, 35);
             this.cboSpecies.TabIndex = 8;
+            this.cboSpecies.SelectedIndexChanged += new System.EventHandler(this.cboSpecies_SelectedIndexChanged);
             // 
             // btnAddColor
             // 
@@ -514,7 +502,7 @@
             this.btnAddPhoto.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAddPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPhoto.Image = global::app.Properties.Resources.icons8_add_image_32;
-            this.btnAddPhoto.Location = new System.Drawing.Point(97, 376);
+            this.btnAddPhoto.Location = new System.Drawing.Point(143, 376);
             this.btnAddPhoto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddPhoto.Name = "btnAddPhoto";
             this.btnAddPhoto.Size = new System.Drawing.Size(178, 51);
@@ -590,6 +578,5 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label10;
         public   System.Windows.Forms.TextBox txtBreed;
-        private System.Windows.Forms.Button btnSelectBreed;
     }
 }

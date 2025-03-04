@@ -72,20 +72,30 @@ namespace app.view.Client
 
         private void dgvBreed_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0) // Ensure a valid row is selected
             {
-                // Get the selected breed ID from the clicked row (Assume the ID is in the "id" column)
                 DataGridViewRow selectedRow = dgvBreed.Rows[e.RowIndex];
-                int breedId = Convert.ToInt32(selectedRow.Cells["id"].Value);
 
-                // Trigger the event to notify the parent form with the breed ID
-                BreedSelected?.Invoke(breedId);  // Raise the event with the breed ID
+                // Ensure the value is not null and convert it safely to string
+                string breedDescription = selectedRow.Cells["description"].Value?.ToString() ?? string.Empty;
 
-                // Close frmBreed after selection
-                this.Close();
+                BreedSelected?.Invoke(breedDescription); // Raise event with description
+                this.Close(); // Close selection form
 
             }
+        }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmClientPatientModal frm = new frmClientPatientModal();
+            frmNewBreed frmbreed = new frmNewBreed();
+            {
+                if (frmbreed.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the combobox to include the new color
+                    frm.PopulateCmb();
+                }
+            }
         }
     }
 }
