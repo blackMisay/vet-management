@@ -6,6 +6,7 @@ using app.Core.Model;
 using Core;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Collections.Generic;
 
 namespace app.view.Client
 {
@@ -55,18 +56,11 @@ namespace app.view.Client
         {
             // Save pet details
             SavePet();
-
-            // Load the data into the DataGridView of frmClient
             UpgradeFile upgradeFile = new UpgradeFile();
             frmClient clientForm = new frmClient();
 
-            // Ensure dgvPatient is accessed properly
             clientForm.dgvPatient.DataSource = upgradeFile.Load("SELECT * FROM vwpatient WHERE isDeleted = 0");
-
-            // Show the frmClient form (optional, depends on your application flow)
-            clientForm.Show();
-
-            // Dispose of the current form
+            clientForm.Show();    
             this.Dispose();
         }
 
@@ -154,7 +148,7 @@ namespace app.view.Client
             }
         }
 
-        private void PopulateCmb()
+        public void PopulateCmb()
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
@@ -231,20 +225,6 @@ namespace app.view.Client
 
         private void btnBreed_Click(object sender, EventArgs e)
         {
-            frmNewBreed frm = new frmNewBreed();
-            {
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    // Refresh the combobox to include the new color
-                    frmBreed breed = new frmBreed();
-                    breed.dgvBreed.RefreshEdit();
-                }
-            }
-
-        }
-
-        private void btnSelectBreed_Click(object sender, EventArgs e)
-        {
             frmBreed breedForm = new frmBreed();
 
             // Subscribe to the event
@@ -252,13 +232,11 @@ namespace app.view.Client
 
             // Show the frmBreed form
             breedForm.ShowDialog();
+
         }
         private void OnBreedSelected(int breedId)
         {
-            // When the event is triggered, set the breed ID in the hidden field
-            txtBreed.Text = breedId.ToString(); // Assuming you want to display the breed ID in the textbox
-
-            // Optionally, store the breed ID in a variable for saving
+            txtBreed.Text = breedId.ToString(); 
             this.selectedBreedId = breedId;
         }
 
@@ -284,6 +262,16 @@ namespace app.view.Client
                 txtName.Text = name;
                 txtName.SelectionStart = name.Length;  // Keep the cursor at the end of the text
             }
+        }
+
+        private void cboSpecies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            cboSpecies.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_species where id=@Id;",
+                                                       new Dictionary<string, string> { { "id", cboSpecies.SelectedValue.ToString() } });
+            cboSpecies.ValueMember = "Key";
+            cboSpecies.DisplayMember = "Value";
         }
     }
 }
