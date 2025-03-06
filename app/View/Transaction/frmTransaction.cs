@@ -12,6 +12,8 @@ namespace app.view.Transaction
         int patientId = 0;
         int selectedRecord = 0;
 
+        double totalAmount = 0;
+        
         public frmTransaction()
         {
             InitializeComponent();
@@ -46,6 +48,7 @@ namespace app.view.Transaction
 
                     items = frm.GetAllItems();
                     dgvTransaction.Rows.Clear();
+                    LoadServiceList(service);
                     LoadItemList(items);
 
                     frm.Dispose();
@@ -58,6 +61,7 @@ namespace app.view.Transaction
                     frm.ShowDialog();
 
                     items = frm.GetAllItems();
+                    LoadServiceList(service);
                     LoadItemList(items);
 
                     frm.Dispose();
@@ -69,45 +73,57 @@ namespace app.view.Transaction
         void LoadItemList(Dictionary<int, app.core.model.Inventory> items)
         {
             app.core.model.Inventory item = new app.core.model.Inventory();
-            double subtotal = 0;
-
+           
             foreach (KeyValuePair<int, app.core.model.Inventory> kvp in items)
             {
                 item = kvp.Value;
-                //dgvTransaction.Rows.Add(item.Id,"ClientId",item.Description,item.Qty,item.TotalAmount);
+                dgvTransaction.Rows.Add(item.Id,"ClientId",item.Description,item.Qty,item.UnitPrice.ToString("N2"));
 
-                //subtotal += item.TotalAmount;
             }
-            
-            lblSubtotal.Text = subtotal.ToString("C");
+
+            CalculateTotalPrice();
         }
         private void btnServiceLookUp_Click(object sender, EventArgs e)
         {
+            if (dgvTransaction.RowCount > 0)
+            {
+                using (frmServiceLookUp frm = new frmServiceLookUp(service))
+                {
+                    frm.ShowDialog();
+
+                    service = frm.GetAllServices();
+                    dgvTransaction.Rows.Clear();
+                    LoadServiceList(service);
+                    LoadItemList(items);
+
+                    frm.Dispose();
+                }
+            }
+            else
+            {
                 using (frmServiceLookUp frm = new frmServiceLookUp())
                 {
                     frm.ShowDialog();
 
                     service = frm.GetAllServices();
                     LoadServiceList(service);
+                    LoadItemList(items);
 
                     frm.Dispose();
                 }
             }
+        }
         
         Dictionary<int, app.core.model.Services> service = new Dictionary<int, core.model.Services>();
         void LoadServiceList(Dictionary<int, app.core.model.Services> service)
         {
-            double totalPrice = 0; // Initialize total price
-
             foreach (KeyValuePair<int, app.core.model.Services> key in service)
             {
                 var serviceItem = key.Value; // Get the service item
-                //dgvTransService.Rows.Add(serviceItem.Id, "ClientId", serviceItem.Description, serviceItem.Price);
-
-                totalPrice += serviceItem.Price; // Add the price of the current service to the total
+                dgvTransaction.Rows.Add(serviceItem.Id, "ClientId", serviceItem.Description, 1,serviceItem.Price);
             }
 
-            lblSubtotal.Text = totalPrice.ToString("C"); // Display subtotal in currency format
+            CalculateTotalPrice();
         }
 
 
@@ -115,6 +131,23 @@ namespace app.view.Transaction
         {
             frmItemQuantity frm = new frmItemQuantity();
             frm.ShowDialog();
+        }
+
+        
+        private void btnVoidItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CalculateTotalPrice()
+        {
+            totalAmount = 0;
+            foreach (DataGridViewRow row in dgvTransaction.Rows)
+            {
+                totalAmount += Convert.ToDouble(row.Cells["colQuantity"].Value) * Convert.ToDouble(row.Cells["colPrice"].Value);
+            }
+
+            this.lblTotal.Text = totalAmount.ToString("N2");
         }
     }
 }

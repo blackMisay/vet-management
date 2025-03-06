@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemLookUp));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDesc = new System.Windows.Forms.Label();
@@ -41,18 +42,14 @@
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBatchNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +68,7 @@
             this.lblDesc.AutoSize = true;
             this.lblDesc.Location = new System.Drawing.Point(8, 49);
             this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(0, 21);
+            this.lblDesc.Size = new System.Drawing.Size(0, 19);
             this.lblDesc.TabIndex = 1;
             // 
             // label1
@@ -80,7 +77,7 @@
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(8, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 23);
+            this.label1.Size = new System.Drawing.Size(111, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Item Look-Up";
             // 
@@ -90,18 +87,14 @@
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column13,
-            this.Column2,
+            this.colBatchNum,
             this.Column3,
             this.Column4,
             this.Column5,
             this.Column6,
-            this.Column7,
             this.Column8,
-            this.Column9,
-            this.Column10,
-            this.Column11,
-            this.Column12});
+            this.Column7,
+            this.Column11});
             this.dgvProducts.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvProducts.Location = new System.Drawing.Point(7, 102);
             this.dgvProducts.Name = "dgvProducts";
@@ -145,7 +138,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(854, 502);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 21);
+            this.label2.Size = new System.Drawing.Size(70, 19);
             this.label2.TabIndex = 4;
             this.label2.Text = "Quantity";
             // 
@@ -153,7 +146,7 @@
             // 
             this.txtQuantity.Location = new System.Drawing.Point(930, 499);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(100, 28);
+            this.txtQuantity.Size = new System.Drawing.Size(100, 24);
             this.txtQuantity.TabIndex = 5;
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
@@ -163,7 +156,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(854, 538);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 21);
+            this.label3.Size = new System.Drawing.Size(46, 19);
             this.label3.TabIndex = 6;
             this.label3.Text = "TOTAL";
             // 
@@ -172,7 +165,7 @@
             this.txtTotal.Enabled = false;
             this.txtTotal.Location = new System.Drawing.Point(930, 535);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(100, 28);
+            this.txtTotal.Size = new System.Drawing.Size(100, 24);
             this.txtTotal.TabIndex = 7;
             // 
             // btnRemove
@@ -191,56 +184,53 @@
             // 
             // Column1
             // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column1.DataPropertyName = "stockID";
             this.Column1.HeaderText = "Id";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column1.Visible = false;
-            this.Column1.Width = 125;
+            this.Column1.Width = 28;
             // 
-            // Column13
+            // colBatchNum
             // 
-            this.Column13.DataPropertyName = "batchNum";
-            this.Column13.HeaderText = "Batch Number";
-            this.Column13.MinimumWidth = 6;
-            this.Column13.Name = "Column13";
-            this.Column13.Visible = false;
-            this.Column13.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "stocksNum";
-            this.Column2.HeaderText = "Stock Number";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
-            this.Column2.Width = 125;
+            this.colBatchNum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colBatchNum.DataPropertyName = "batchNum";
+            this.colBatchNum.HeaderText = "Batch No.";
+            this.colBatchNum.Name = "colBatchNum";
+            this.colBatchNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBatchNum.Width = 102;
             // 
             // Column3
             // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column3.DataPropertyName = "categoryDescription";
             this.Column3.HeaderText = "Category";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
-            this.Column3.Width = 200;
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.Width = 99;
             // 
             // Column4
             // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column4.DataPropertyName = "typeDescription";
             this.Column4.FillWeight = 150F;
             this.Column4.HeaderText = "Product Type";
             this.Column4.MinimumWidth = 20;
             this.Column4.Name = "Column4";
-            this.Column4.Visible = false;
-            this.Column4.Width = 200;
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column4.Width = 124;
             // 
             // Column5
             // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column5.DataPropertyName = "brandDesc";
             this.Column5.HeaderText = "Brand";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
-            this.Column5.Width = 200;
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Column6
             // 
@@ -250,40 +240,29 @@
             this.Column6.Name = "Column6";
             this.Column6.Width = 280;
             // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Column8.DataPropertyName = "price";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column8.HeaderText = "Price";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column8.Width = 67;
+            // 
             // Column7
             // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.Column7.DataPropertyName = "qty";
             this.Column7.HeaderText = "Quantity";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
-            this.Column7.Visible = false;
-            this.Column7.Width = 125;
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.DataPropertyName = "price";
-            this.Column8.HeaderText = "Price";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "totalAmount";
-            this.Column9.HeaderText = "Total Amount";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            this.Column9.Width = 125;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "dateReceived";
-            this.Column10.HeaderText = "Date Received";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.Visible = false;
-            this.Column10.Width = 125;
+            this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column7.Width = 95;
             // 
             // Column11
             // 
@@ -291,21 +270,11 @@
             this.Column11.HeaderText = "Date Expired";
             this.Column11.MinimumWidth = 6;
             this.Column11.Name = "Column11";
-            this.Column11.Visible = false;
             this.Column11.Width = 125;
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "isDeleted";
-            this.Column12.HeaderText = "isDeleted";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.Visible = false;
-            this.Column12.Width = 125;
             // 
             // frmItemLookUp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1042, 641);
@@ -347,17 +316,13 @@
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBatchNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
     }
 }

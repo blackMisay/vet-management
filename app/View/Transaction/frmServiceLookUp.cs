@@ -9,6 +9,7 @@ namespace app.view.Transaction
     public partial class frmServiceLookUp : Form
 
     {
+
         private Dictionary<int, app.core.model.Services> selectedService;
         
         public frmServiceLookUp()
@@ -34,6 +35,8 @@ namespace app.view.Transaction
 
             dgvServices.DataSource = upgradeFile.Load("SELECT * FROM vwservices WHERE status = 'Active'");
         }
+
+
 
         private void btnSelect_Click(object sender, EventArgs e)
         {

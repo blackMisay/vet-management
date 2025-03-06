@@ -19,6 +19,8 @@ namespace app.core.model
        public Brand BrandID { get; set; }
 
        public int Qty { get; set;}
+
+       public double UnitPrice { get; set; }
        public DateTime DateReceived { get; set; }
 
        public DateTime ExpiredDate { get; set; } 

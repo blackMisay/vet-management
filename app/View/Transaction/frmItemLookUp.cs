@@ -38,7 +38,7 @@ namespace app.view.Transaction
            
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            dgvProducts.DataSource = upgradeFile.Load("SELECT * FROM vwinventory WHERE isDeleted = 0");
+            dgvProducts.DataSource = upgradeFile.Load("SELECT stockID,batchNum,categoryDescription,typeDescription,brandDesc,stockDescription,price,qty,expDate FROM vwinventory WHERE isDeleted = 0");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace app.view.Transaction
                 Id = selectedId,
                 Description = selectedItemDescription,
                 Qty = Convert.ToInt32(txtQuantity.Text),
-                //TotalAmount = Convert.ToInt32(txtTotal.Text),
+                UnitPrice = this.selectedItemPrice,
                 
             };
 
@@ -92,8 +92,9 @@ namespace app.view.Transaction
                 int selectedRowIndex = dgvProducts.SelectedCells[0].RowIndex;
 
                 this.selectedId = Convert.ToInt32(dgvProducts.Rows[selectedRowIndex].Cells[0].Value?.ToString());
-                this.selectedItemPrice = Convert.ToDouble(dgvProducts.Rows[selectedRowIndex].Cells[7].Value?.ToString());
-                this.selectedItemDescription = dgvProducts.Rows[selectedRowIndex].Cells[4].Value?.ToString() + " - " + dgvProducts.Rows[selectedRowIndex].Cells[5].Value?.ToString();
+                
+                this.selectedItemPrice = Convert.ToInt32(dgvProducts.Rows[selectedRowIndex].Cells[6].Value?.ToString());
+                this.selectedItemDescription = dgvProducts.Rows[selectedRowIndex].Cells[5].Value?.ToString() + " - " + dgvProducts.Rows[selectedRowIndex].Cells[5].Value?.ToString();
 
                 if (selectedItem.Count > 0)
                 {
