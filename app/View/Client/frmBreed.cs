@@ -16,7 +16,7 @@ namespace app.view.Client
 
     public partial class frmBreed : Form
     {
-        public event Action<int> BreedSelected;
+        public event Action<string> BreedSelected;
         private string _speciesId;
 
         public frmBreed()
@@ -32,13 +32,6 @@ namespace app.view.Client
             // Load breeds based on the selected species
             LoadBreedData();
         }
-
-        private void frmBreed_Load(object sender, EventArgs e)
-        {
-            UpgradeFile upgradeFile = new UpgradeFile();
-            dgvBreed.DataSource = upgradeFile.Load("SELECT * FROM patient_breed ORDER BY description;");
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtSearch.Text) || !string.IsNullOrWhiteSpace(txtSearch.Text))
@@ -63,29 +56,55 @@ namespace app.view.Client
             return file.Load(query, parameters);
         }
 
-        private void LoadBreedData()
+        public void LoadBreedData()
         {
+            frmClientPatientModal frm = new frmClientPatientModal();
             UpgradeFile upgradeFile = new UpgradeFile();
-            string query = $"SELECT * FROM patient_breed WHERE species_id = '{_speciesId}' ORDER BY description;";
-            dgvBreed.DataSource = upgradeFile.Load(query);
+
+            // Define the query properly
+            string query = "SELECT id, description FROM patient_breed WHERE species_id = @species_id ORDER BY description";
+
+            // Define parameters correctly
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                { "@species_id", frm.cboSpecies.SelectedValue.ToString() }
+            };
+
+            // Pass both query and parameters to Load
+            dgvBreed.DataSource = upgradeFile.Load(query, parameters);
+
         }
 
         private void dgvBreed_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            frmClientPatientModal frm = new frmClientPatientModal();
+            if (e.RowIndex >= 0) // Ensure a valid row is selected
             {
-                // Get the selected breed ID from the clicked row (Assume the ID is in the "id" column)
                 DataGridViewRow selectedRow = dgvBreed.Rows[e.RowIndex];
-                int breedId = Convert.ToInt32(selectedRow.Cells["id"].Value);
 
-                // Trigger the event to notify the parent form with the breed ID
-                BreedSelected?.Invoke(breedId);  // Raise the event with the breed ID
+                // Ensure the value is not null and convert it safely to int
+                if (selectedRow.Cells["id"].Value != null)
+                {
+                    int breedId = Convert.ToInt32(selectedRow.Cells["id"].Value);
 
-                // Close frmBreed after selection
-                this.Close();
-
+                    string breedDescription = frm.GetBreedDescription(breedId); // Fetch description
+                    BreedSelected?.Invoke(breedDescription); // Pass description
+                    this.Close(); // Close selection form
+                }
             }
+        }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmClientPatientModal frm = new frmClientPatientModal();
+            frmNewBreed frmbreed = new frmNewBreed();
+            {
+                if (frmbreed.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the combobox to include the new color
+                    frm.PopulateCmb();
+                }
+            }
         }
     }
 }

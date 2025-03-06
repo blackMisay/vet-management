@@ -46,7 +46,7 @@ namespace Core
         /// <param>None</param>
         /// <returns>None</returns>
         /// <exception cref="Exception">It catches any exceptions that occur during the execution of the query and rethrows them with a new exception containing the error message.</exception>
-        private protected void Connect()
+        public void Connect()
         {
             try
             {
@@ -177,51 +177,51 @@ namespace Core
         /// It catches any exceptions that occur during the execution of the query and rethrows them 
         /// with a new exception containing the error message.
         /// </exception>
-        public List<KeyValuePair<int, string>> Populate(string query, Dictionary<string, string> parameters)
-        {
-            List<KeyValuePair<int, string>> keyValueList;
-            try
+            public List<KeyValuePair<int, string>> Populate(string query, Dictionary<string, string> parameters)
             {
-                this.Connect();
-                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                List<KeyValuePair<int, string>> keyValueList;
+                try
                 {
-                    if (parameters != null)
+                    this.Connect();
+                    using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
                     {
-                        foreach (KeyValuePair<string, string> kvp in parameters)
+                        if (parameters != null)
                         {
-                            cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                            foreach (KeyValuePair<string, string> kvp in parameters)
+                            {
+                                cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                            }
                         }
-                    }
-                    using (MySqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        keyValueList = new List<KeyValuePair<int, string>>();
-                        while (dr.Read())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
-                            int Id = dr.GetInt32(0);
-                            string Description = dr.GetString(1);
+                            keyValueList = new List<KeyValuePair<int, string>>();
+                            while (dr.Read())
+                            {
+                                int Id = dr.GetInt32(0);
+                                string Description = dr.GetString(1);
 
-                            KeyValuePair<int, string> category = new KeyValuePair<int, string>(Id, Description);
-                            keyValueList.Add(category);
+                                KeyValuePair<int, string> category = new KeyValuePair<int, string>(Id, Description);
+                                keyValueList.Add(category);
+                            }
+
+                            dr.Dispose();
+                            cmd.Dispose();
+                            return keyValueList;
                         }
-
-                        dr.Dispose();
-                        cmd.Dispose();
-                        return keyValueList;
                     }
                 }
+                catch (MySqlException ex)
+                {
+                    // Log or handle specific MySql errors here
+                    throw new Exception($"Error executing query: {ex.Message}");
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Unexpected error: {e.Message}");
+                }
+                finally { this.connection.Close(); }
             }
-            catch (MySqlException ex)
-            {
-                // Log or handle specific MySql errors here
-                throw new Exception($"Error executing query: {ex.Message}");
             }
-            catch (Exception e)
-            {
-                throw new Exception($"Unexpected error: {e.Message}");
-            }
-            finally { this.connection.Close(); }
-        }
-        }
 
 
 

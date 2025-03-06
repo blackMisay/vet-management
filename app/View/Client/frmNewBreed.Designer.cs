@@ -38,14 +38,13 @@
             this.cmbSpecie = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNewPetBreed = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-
-
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -121,6 +120,7 @@
             this.panel2.Controls.Add(this.txtNewPetBreed);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(1, 84);
             this.panel2.Margin = new System.Windows.Forms.Padding(5);
@@ -156,6 +156,17 @@
             this.txtNewPetBreed.Size = new System.Drawing.Size(267, 28);
             this.txtNewPetBreed.TabIndex = 19;
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel3.Location = new System.Drawing.Point(0, 128);
+            this.panel3.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(431, 79);
+            this.panel3.TabIndex = 33;
+            // 
             // frmNewBreed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -188,5 +199,6 @@
         private System.Windows.Forms.TextBox txtNewPetBreed;
         private System.Windows.Forms.ComboBox cmbSpecie;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

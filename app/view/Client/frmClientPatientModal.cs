@@ -6,6 +6,11 @@ using app.Core.Model;
 using Core;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Collections.Generic;
+using MySqlConnector;
+using System.Data;
+using System.Data.SqlClient;
+
 
 namespace app.view.Client
 {
@@ -22,6 +27,7 @@ namespace app.view.Client
             this.Id = petId;
             btnSave.Text = "Update";
             label5.Text = "Update Pet Information";
+            cboSpecies.SelectedIndexChanged += cboSpecies_SelectedIndexChanged;
 
         }
 
@@ -55,18 +61,11 @@ namespace app.view.Client
         {
             // Save pet details
             SavePet();
-
-            // Load the data into the DataGridView of frmClient
             UpgradeFile upgradeFile = new UpgradeFile();
             frmClient clientForm = new frmClient();
 
-            // Ensure dgvPatient is accessed properly
             clientForm.dgvPatient.DataSource = upgradeFile.Load("SELECT * FROM vwpatient WHERE isDeleted = 0");
-
-            // Show the frmClient form (optional, depends on your application flow)
             clientForm.Show();
-
-            // Dispose of the current form
             this.Dispose();
         }
 
@@ -154,19 +153,14 @@ namespace app.view.Client
             }
         }
 
-        private void PopulateCmb()
+        public void PopulateCmb()
         {
             UpgradeFile upgradeFile = new UpgradeFile();
-
-
-            //cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed ORDER BY description;");
-            //cboBreed.ValueMember = "KEY";
-            //cboBreed.DisplayMember = "VALUE";
 
             cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern ORDER BY description;");
             cboColor.ValueMember = "KEY";
             cboColor.DisplayMember = "VALUE";
-       
+
             cboGender.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_gender ORDER BY description;");
             cboGender.ValueMember = "KEY";
             cboGender.DisplayMember = "VALUE";
@@ -231,35 +225,87 @@ namespace app.view.Client
 
         private void btnBreed_Click(object sender, EventArgs e)
         {
-            frmNewBreed frm = new frmNewBreed();
+            if (cboSpecies.SelectedValue == null)
             {
-                if (frm.ShowDialog() == DialogResult.OK)
+                MessageBox.Show("Please select a species first.");
+                return;
+            }
+
+            // Convert species ID to string
+            string selectedSpecies = cboSpecies.SelectedValue.ToString();
+
+            // Open breed selection form
+            frmBreed breedForm = new frmBreed();
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            // SQL query to fetch breeds based on selected species
+            string query = "SELECT id, description FROM patient_breed WHERE species_id = @species_id ORDER BY description";
+
+            // Define query parameters (using string values)
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                { "@species_id", selectedSpecies }
+            };
+
+            // Load breed data
+            DataTable dt = upgradeFile.Load(query, parameters);
+
+            // Check if data exists
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                MessageBox.Show("No breeds found for the selected species.");
+                return;
+            }
+
+            // Assign data to DataGridView
+            breedForm.dgvBreed.DataSource = dt;
+
+            // Show the breed form
+            breedForm.ShowDialog();
+
+        }
+        public string GetBreedDescription(int breedId)
+        {
+
+            string breedDescription = string.Empty;
+            UpgradeFile db = new UpgradeFile();
+
+            try
+            {
+                db.Connect(); // Now accessible
+
+                string query = "SELECT description FROM patient_breed WHERE id = @id;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, db.connection))
                 {
-                    // Refresh the combobox to include the new color
-                    frmBreed breed = new frmBreed();
-                    breed.dgvBreed.RefreshEdit();
+                    cmd.Parameters.AddWithValue("@id", breedId);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            breedDescription = reader["description"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception($"MySQL Error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Unexpected Error: {ex.Message}");
+            }
+            finally
+            {
+                if (db.connection.State == ConnectionState.Open)
+                {
+                    db.connection.Close();
                 }
             }
 
-        }
-
-        private void btnSelectBreed_Click(object sender, EventArgs e)
-        {
-            frmBreed breedForm = new frmBreed();
-
-            // Subscribe to the event
-            breedForm.BreedSelected += OnBreedSelected;
-
-            // Show the frmBreed form
-            breedForm.ShowDialog();
-        }
-        private void OnBreedSelected(int breedId)
-        {
-            // When the event is triggered, set the breed ID in the hidden field
-            txtBreed.Text = breedId.ToString(); // Assuming you want to display the breed ID in the textbox
-
-            // Optionally, store the breed ID in a variable for saving
-            this.selectedBreedId = breedId;
+            return breedDescription;
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
@@ -283,6 +329,28 @@ namespace app.view.Client
                 // To avoid triggering the TextChanged event, use this:
                 txtName.Text = name;
                 txtName.SelectionStart = name.Length;  // Keep the cursor at the end of the text
+            }
+        }
+
+        private void cboSpecies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            frmBreed frm = new frmBreed();
+            // Ensure a species is selected before loading breeds
+            if (cboSpecies.SelectedValue != null)
+            {
+                UpgradeFile upgradeFile = new UpgradeFile();
+
+                // Define the query properly with parameterized query (Avoid SQL injection)
+                string query = "SELECT id, description FROM patient_breed WHERE species_id = @species_id ORDER BY description";
+
+                // Define parameters correctly
+                Dictionary<string, string> parameters = new Dictionary<string, string>
+        {
+            { "@species_id", cboSpecies.SelectedValue.ToString() } // Convert to string
+        };
+
+                // Load breed data into DataGridView
+                frm.dgvBreed.DataSource = upgradeFile.Load(query, parameters);
             }
         }
     }
