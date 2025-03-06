@@ -135,4 +135,29 @@
   <metadata name="dataGridViewTextBoxColumn2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAOi/zGTluMqO5bjKjuW4yo7luMqO5bjKjuW4yo7luMqO5bjKjuW4yo7luMqO5bjKjuW4
+        yo7ov8xkAAAAAAAAAADtz9q97c7a/+3O2v/tztr/7c7a/+3O2v/tztr/7c7a/+3O2v/tztr/7c7a/+3O
+        2v/tztr/7c/avQAAAAAAAAAA9uftqvbn7f/25+3/9uft//bn7f/25+3/dXny/3V58v/25+3/9uft//bn
+        7f/25+3/9uft//bn7aoAAAAAAAAAAPbn7ar25+3/9uft//bn7f/25+3/9uft/zZD9P82Q/T/9uft//bn
+        7f/25+3/9uft//bn7f/25+2qAAAAAAAAAAD25+2q9uft//bn7f/h1e7/trDv/7aw7/82Q/T/NkP0/7aw
+        7/+2sO//4dXu//bn7f/25+3/9uftqgAAAAAAAAAA9uftqvbn7f/25+3/trDv/zZD9P82Q/T/NkP0/zZD
+        9P82Q/T/NkP0/7aw7//25+3/9uft//bn7aoAAAAAAAAAAPbn7ar25+3/9uft/8zD7/91efL/dXny/zZD
+        9P82Q/T/dXny/3V58v/Mw+//9uft//bn7f/25+2qAAAAAAAAAADh0tKz9uft//bn7f/25+3/9uft//bn
+        7f82Q/T/NkP0//bn7f/25+3/9uft//bn7f/25+3/4dLSswAAAAAAAAAAZ1xJ+62gmf/x4uf/9uft//bn
+        7f/25+3/NkP0/zZD9P/25+3/9uft//bn7f/y5On/t6mk/2hdSfoAAAAAAAAAAGRZRJ1kWkX+dGpY/MS3
+        tP/15uz/9uft//bn7f/25+3/9uft//Xm7P/Et7T/dGlY/WRaRf5lWkWeAAAAAAAAAAAAAAAAZltHMmdd
+        SMVkWkX/gndo/tXHx//25+3/9uft/9rMzf+HfG3/ZFpF/2ZdSM1iWUM5AAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAY1pFVWhdSeRkWkX/nJCF/5yQhf9lWkX/aF1K5WNaRVUAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAABVVVUGZltGcGddSPZmXEf4Y1lFgF9fPwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABmW0cZZltHGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAA//8AAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAADAAwAA8A8AAPgf
+        AAD+fwAA//8AAA==
+</value>
+  </data>
 </root>

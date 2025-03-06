@@ -33,7 +33,15 @@
             this.lblDesc = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,13 +53,6 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtTotal = new System.Windows.Forms.TextBox();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -89,6 +90,7 @@
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
+            this.Column13,
             this.Column2,
             this.Column3,
             this.Column4,
@@ -110,110 +112,6 @@
             this.dgvProducts.Size = new System.Drawing.Size(1023, 370);
             this.dgvProducts.TabIndex = 1;
             this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "stockID";
-            this.Column1.HeaderText = "Id";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "stocksNum";
-            this.Column2.HeaderText = "Stock Number";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "categoryDescription";
-            this.Column3.HeaderText = "Category";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 200;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "typeDescription";
-            this.Column4.FillWeight = 150F;
-            this.Column4.HeaderText = "Product Type";
-            this.Column4.MinimumWidth = 20;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "brandDesc";
-            this.Column5.HeaderText = "Brand";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 200;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "stockDescription";
-            this.Column6.HeaderText = "Description";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 280;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "qty";
-            this.Column7.HeaderText = "Quantity";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.Visible = false;
-            this.Column7.Width = 125;
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.DataPropertyName = "unitPrice";
-            this.Column8.HeaderText = "Price";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "totalAmount";
-            this.Column9.HeaderText = "Total Amount";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            this.Column9.Width = 125;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "dateReceived";
-            this.Column10.HeaderText = "Date Received";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.Visible = false;
-            this.Column10.Width = 125;
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "expDate";
-            this.Column11.HeaderText = "Date Expired";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.Visible = false;
-            this.Column11.Width = 125;
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "isDeleted";
-            this.Column12.HeaderText = "isDeleted";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.Visible = false;
-            this.Column12.Width = 125;
             // 
             // btnAdd
             // 
@@ -291,6 +189,120 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "stockID";
+            this.Column1.HeaderText = "Id";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            this.Column1.Width = 125;
+            // 
+            // Column13
+            // 
+            this.Column13.DataPropertyName = "batchNum";
+            this.Column13.HeaderText = "Batch Number";
+            this.Column13.MinimumWidth = 6;
+            this.Column13.Name = "Column13";
+            this.Column13.Visible = false;
+            this.Column13.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "stocksNum";
+            this.Column2.HeaderText = "Stock Number";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "categoryDescription";
+            this.Column3.HeaderText = "Category";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 200;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "typeDescription";
+            this.Column4.FillWeight = 150F;
+            this.Column4.HeaderText = "Product Type";
+            this.Column4.MinimumWidth = 20;
+            this.Column4.Name = "Column4";
+            this.Column4.Visible = false;
+            this.Column4.Width = 200;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "brandDesc";
+            this.Column5.HeaderText = "Brand";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 200;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "stockDescription";
+            this.Column6.HeaderText = "Description";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 280;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "qty";
+            this.Column7.HeaderText = "Quantity";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.Visible = false;
+            this.Column7.Width = 125;
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.DataPropertyName = "price";
+            this.Column8.HeaderText = "Price";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "totalAmount";
+            this.Column9.HeaderText = "Total Amount";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
+            this.Column9.Width = 125;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "dateReceived";
+            this.Column10.HeaderText = "Date Received";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.Visible = false;
+            this.Column10.Width = 125;
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "expDate";
+            this.Column11.HeaderText = "Date Expired";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            this.Column11.Visible = false;
+            this.Column11.Width = 125;
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "isDeleted";
+            this.Column12.HeaderText = "isDeleted";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            this.Column12.Visible = false;
+            this.Column12.Width = 125;
+            // 
             // frmItemLookUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -329,7 +341,13 @@
         private System.Windows.Forms.DataGridView dgvProducts;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtQuantity;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
@@ -341,10 +359,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtQuantity;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.Button btnRemove;
     }
 }

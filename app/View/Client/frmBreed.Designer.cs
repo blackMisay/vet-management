@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBreed));
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvBreed = new System.Windows.Forms.DataGridView();
@@ -40,7 +41,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBreed)).BeginInit();
             this.panel2.SuspendLayout();
@@ -72,6 +72,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(722, 72);
             this.panel1.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(406, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(158, 21);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Search by (Breed)";
             // 
             // btnSearch
             // 
@@ -117,7 +126,7 @@
             this.dgvBreed.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvBreed.RowTemplate.Height = 24;
             this.dgvBreed.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBreed.Size = new System.Drawing.Size(722, 661);
+            this.dgvBreed.Size = new System.Drawing.Size(722, 622);
             this.dgvBreed.TabIndex = 15;
             this.dgvBreed.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBreed_CellDoubleClick);
             // 
@@ -153,7 +162,7 @@
             this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 736);
+            this.panel2.Location = new System.Drawing.Point(0, 697);
             this.panel2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(722, 65);
@@ -182,20 +191,11 @@
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(406, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 21);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Search by (SPECIE)";
-            // 
             // frmBreed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 801);
+            this.ClientSize = new System.Drawing.Size(722, 762);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvBreed);
             this.Controls.Add(this.panel1);
