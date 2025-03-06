@@ -32,23 +32,6 @@ namespace app.view.Client
             // Load breeds based on the selected species
             LoadBreedData();
         }
-
-        private void frmBreed_Load(object sender, EventArgs e)
-        {
-
-            //frmClientPatientModal frm = new frmClientPatientModal();
-            //UpgradeFile upgradeFile = new UpgradeFile();
-
-        //    MessageBox.Show(frm.cboSpecies.Text);
-
-        //    if (frm.cboSpecies.Text == "Cat")
-        //    {
-        //        UpgradeFile upgradeFile = new UpgradeFile();
-        //        dgvBreed.DataSource = upgradeFile.Load("SELECT * FROM patient_breed where species_id = 2 ORDER BY description;");
-        //    }
-        //    //dgvBreed.DataSource = upgradeFile.Load("SELECT * FROM patient_breed ORDER BY description;");
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtSearch.Text) || !string.IsNullOrWhiteSpace(txtSearch.Text))

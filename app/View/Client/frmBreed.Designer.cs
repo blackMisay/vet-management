@@ -205,7 +205,6 @@
             this.Name = "frmBreed";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " SAHAGUN Veterinary Clinic v2.0";
-            this.Load += new System.EventHandler(this.frmBreed_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBreed)).EndInit();

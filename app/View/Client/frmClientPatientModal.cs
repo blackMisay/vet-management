@@ -157,11 +157,6 @@ namespace app.view.Client
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
-
-            //cboBreed.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_breed ORDER BY description;");
-            //cboBreed.ValueMember = "KEY";
-            //cboBreed.DisplayMember = "VALUE";
-
             cboColor.DataSource = upgradeFile.Populate("SELECT id, description FROM patient_colour_pattern ORDER BY description;");
             cboColor.ValueMember = "KEY";
             cboColor.DisplayMember = "VALUE";
@@ -230,13 +225,6 @@ namespace app.view.Client
 
         private void btnBreed_Click(object sender, EventArgs e)
         {
-            //frmBreed breedForm = new frmBreed();
-
-            //breedForm.BreedSelected += OnBreedSelected;
-
-            //breedForm.ShowDialog();
-
-            // Ensure species is selected
             if (cboSpecies.SelectedValue == null)
             {
                 MessageBox.Show("Please select a species first.");
@@ -276,11 +264,6 @@ namespace app.view.Client
             breedForm.ShowDialog();
 
         }
-        private void OnBreedSelected(string breedDescription)
-        {
-            txtBreed.Text = breedDescription;
-        }
-
         public string GetBreedDescription(int breedId)
         {
 
