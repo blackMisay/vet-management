@@ -32,6 +32,7 @@ namespace app.view.Client
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClient));
             this.dgvPatient = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -186,6 +187,8 @@ namespace app.view.Client
             // Column10
             // 
             this.Column10.DataPropertyName = "weight";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column10.HeaderText = "Weight";
             this.Column10.MinimumWidth = 6;
             this.Column10.Name = "Column10";
@@ -222,8 +225,8 @@ namespace app.view.Client
             // Column4
             // 
             this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column4.HeaderText = "Birthday";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -485,7 +488,7 @@ namespace app.view.Client
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(124, 160);
+            this.label6.Location = new System.Drawing.Point(19, 154);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(141, 20);
             this.label6.TabIndex = 3;
@@ -509,7 +512,7 @@ namespace app.view.Client
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearch.Location = new System.Drawing.Point(7, 149);
+            this.btnSearch.Location = new System.Drawing.Point(212, 148);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(99, 31);
             this.btnSearch.TabIndex = 0;

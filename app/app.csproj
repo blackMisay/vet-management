@@ -65,6 +65,7 @@
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
@@ -200,6 +201,12 @@
     <Compile Include="view\Consultation\frmConsultationModal.Designer.cs">
       <DependentUpon>frmConsultationModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Dashboard\frmDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Dashboard\frmDashboard.Designer.cs">
+      <DependentUpon>frmDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,11 +291,11 @@
     <Compile Include="view\Transaction\frmItemLookUp.Designer.cs">
       <DependentUpon>frmItemLookUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\Transaction\frmItemQuantity.cs">
+    <Compile Include="view\Transaction\frmTransactionDeposit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\Transaction\frmItemQuantity.Designer.cs">
-      <DependentUpon>frmItemQuantity.cs</DependentUpon>
+    <Compile Include="view\Transaction\frmTransactionDeposit.Designer.cs">
+      <DependentUpon>frmTransactionDeposit.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Transaction\frmServiceLookUp.cs">
       <SubType>Form</SubType>
@@ -346,6 +353,9 @@
     <EmbeddedResource Include="view\Consultation\frmConsultationModal.resx">
       <DependentUpon>frmConsultationModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Dashboard\frmDashboard.resx">
+      <DependentUpon>frmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -391,8 +401,8 @@
       <DependentUpon>frmItemLookUp.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\Transaction\frmItemQuantity.resx">
-      <DependentUpon>frmItemQuantity.cs</DependentUpon>
+    <EmbeddedResource Include="view\Transaction\frmTransactionDeposit.resx">
+      <DependentUpon>frmTransactionDeposit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Transaction\frmServiceLookUp.resx">
       <DependentUpon>frmServiceLookUp.cs</DependentUpon>

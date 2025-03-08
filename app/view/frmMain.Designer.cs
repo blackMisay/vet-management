@@ -47,13 +47,16 @@
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlBody = new System.Windows.Forms.Panel();
             this.toolTip_Main = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlHeader.SuspendLayout();
             this.pnlMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
             // 
             this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
+            this.pnlHeader.Controls.Add(this.pictureBox1);
             this.pnlHeader.Controls.Add(this.lblCompanyName);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
@@ -64,10 +67,10 @@
             // lblCompanyName
             // 
             this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompanyName.Location = new System.Drawing.Point(391, 4);
+            this.lblCompanyName.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompanyName.Location = new System.Drawing.Point(62, 14);
             this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(449, 37);
+            this.lblCompanyName.Size = new System.Drawing.Size(447, 37);
             this.lblCompanyName.TabIndex = 0;
             this.lblCompanyName.Text = "SAHAGUN VETERINARY CLINIC";
             // 
@@ -122,6 +125,8 @@
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Size = new System.Drawing.Size(109, 56);
             this.btnDashboard.TabIndex = 1;
+            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip_Main.SetToolTip(this.btnDashboard, "Dashboard");
             this.btnDashboard.UseVisualStyleBackColor = false;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
@@ -173,7 +178,7 @@
             this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnSettings.Image = global::app.Properties.Resources.medsettings_24px;
-            this.btnSettings.Location = new System.Drawing.Point(1369, 10);
+            this.btnSettings.Location = new System.Drawing.Point(1251, 10);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(109, 56);
             this.btnSettings.TabIndex = 20;
@@ -288,7 +293,7 @@
             this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(183)))), ((int)(((byte)(84)))));
             this.btnLogout.Image = global::app.Properties.Resources.logout_24px;
-            this.btnLogout.Location = new System.Drawing.Point(1254, 10);
+            this.btnLogout.Location = new System.Drawing.Point(1366, 10);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(109, 56);
             this.btnLogout.TabIndex = 17;
@@ -310,11 +315,24 @@
             // pnlBody
             // 
             this.pnlBody.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlBody.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBody.Location = new System.Drawing.Point(0, 130);
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Size = new System.Drawing.Size(1487, 556);
             this.pnlBody.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = global::app.Properties.Resources.icons8_dog_and_cat_45;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(55, 42);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // frmMain
             // 
@@ -336,6 +354,7 @@
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -359,5 +378,6 @@
         private System.Windows.Forms.Button btnMedicalRecords;
         private System.Windows.Forms.ToolTip toolTip_Main;
         private System.Windows.Forms.Label lblCompanyName;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

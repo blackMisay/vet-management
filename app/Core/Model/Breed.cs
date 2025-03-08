@@ -2,7 +2,7 @@
 
 namespace app.Core.Model
 {
-    internal class Breed
+    public class Breed
     {
         public int Id
         {

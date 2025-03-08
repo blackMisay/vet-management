@@ -41,11 +41,11 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvConsultation = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Patient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsultation)).BeginInit();
@@ -59,7 +59,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1740, 78);
+            this.panel1.Size = new System.Drawing.Size(1740, 54);
             this.panel1.TabIndex = 4;
             // 
             // label1
@@ -67,7 +67,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(14, 23);
+            this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(196, 34);
@@ -82,10 +82,10 @@
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 78);
+            this.panel2.Location = new System.Drawing.Point(0, 54);
             this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1740, 98);
+            this.panel2.Size = new System.Drawing.Size(1740, 58);
             this.panel2.TabIndex = 5;
             // 
             // btnNewConsultation
@@ -94,10 +94,10 @@
             this.btnNewConsultation.BackColor = System.Drawing.Color.White;
             this.btnNewConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewConsultation.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnNewConsultation.Location = new System.Drawing.Point(1297, 26);
+            this.btnNewConsultation.Location = new System.Drawing.Point(1297, 10);
             this.btnNewConsultation.Margin = new System.Windows.Forms.Padding(5);
             this.btnNewConsultation.Name = "btnNewConsultation";
-            this.btnNewConsultation.Size = new System.Drawing.Size(196, 49);
+            this.btnNewConsultation.Size = new System.Drawing.Size(196, 39);
             this.btnNewConsultation.TabIndex = 12;
             this.btnNewConsultation.Text = "&New Consultation";
             this.btnNewConsultation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -110,10 +110,10 @@
             this.btnEditConsultation.BackColor = System.Drawing.Color.White;
             this.btnEditConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditConsultation.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEditConsultation.Location = new System.Drawing.Point(1503, 26);
+            this.btnEditConsultation.Location = new System.Drawing.Point(1503, 10);
             this.btnEditConsultation.Margin = new System.Windows.Forms.Padding(5);
             this.btnEditConsultation.Name = "btnEditConsultation";
-            this.btnEditConsultation.Size = new System.Drawing.Size(105, 49);
+            this.btnEditConsultation.Size = new System.Drawing.Size(105, 39);
             this.btnEditConsultation.TabIndex = 11;
             this.btnEditConsultation.Text = "&Update";
             this.btnEditConsultation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -126,10 +126,10 @@
             this.btnRemoveConsultation.BackColor = System.Drawing.Color.White;
             this.btnRemoveConsultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveConsultation.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemoveConsultation.Location = new System.Drawing.Point(1618, 26);
+            this.btnRemoveConsultation.Location = new System.Drawing.Point(1618, 10);
             this.btnRemoveConsultation.Margin = new System.Windows.Forms.Padding(5);
             this.btnRemoveConsultation.Name = "btnRemoveConsultation";
-            this.btnRemoveConsultation.Size = new System.Drawing.Size(108, 49);
+            this.btnRemoveConsultation.Size = new System.Drawing.Size(108, 39);
             this.btnRemoveConsultation.TabIndex = 10;
             this.btnRemoveConsultation.Text = "&Remove";
             this.btnRemoveConsultation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -138,7 +138,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(129, 38);
+            this.txtSearch.Location = new System.Drawing.Point(14, 16);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(295, 28);
@@ -148,10 +148,10 @@
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearch.Location = new System.Drawing.Point(24, 27);
+            this.btnSearch.Location = new System.Drawing.Point(319, 14);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(5);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(95, 49);
+            this.btnSearch.Size = new System.Drawing.Size(95, 31);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -166,23 +166,24 @@
             this.dgvConsultation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvConsultation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-            this.Column2,
-            this.Column1,
+            this.Owner,
+            this.Patient,
             this.Column4,
             this.Column5,
-            this.Column3});
+            this.date});
             this.dgvConsultation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvConsultation.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvConsultation.Location = new System.Drawing.Point(0, 176);
+            this.dgvConsultation.Location = new System.Drawing.Point(0, 112);
             this.dgvConsultation.Margin = new System.Windows.Forms.Padding(5);
             this.dgvConsultation.Name = "dgvConsultation";
             this.dgvConsultation.RowHeadersVisible = false;
             this.dgvConsultation.RowHeadersWidth = 51;
             this.dgvConsultation.RowTemplate.Height = 24;
             this.dgvConsultation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvConsultation.Size = new System.Drawing.Size(1740, 879);
+            this.dgvConsultation.Size = new System.Drawing.Size(1740, 567);
             this.dgvConsultation.TabIndex = 6;
             this.dgvConsultation.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultation_CellClick);
+            this.dgvConsultation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultation_CellDoubleClick);
             // 
             // Id
             // 
@@ -194,19 +195,19 @@
             this.Id.Name = "Id";
             this.Id.Visible = false;
             // 
-            // Column2
+            // Owner
             // 
-            this.Column2.DataPropertyName = "client_fullname";
-            this.Column2.HeaderText = "Owner";
-            this.Column2.MinimumWidth = 200;
-            this.Column2.Name = "Column2";
+            this.Owner.DataPropertyName = "client_fullname";
+            this.Owner.HeaderText = "Owner";
+            this.Owner.MinimumWidth = 200;
+            this.Owner.Name = "Owner";
             // 
-            // Column1
+            // Patient
             // 
-            this.Column1.DataPropertyName = "petname";
-            this.Column1.HeaderText = "Patient Name";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
+            this.Patient.DataPropertyName = "petname";
+            this.Patient.HeaderText = "Patient Name";
+            this.Patient.MinimumWidth = 6;
+            this.Patient.Name = "Patient";
             // 
             // Column4
             // 
@@ -222,21 +223,21 @@
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
             // 
-            // Column3
+            // date
             // 
-            this.Column3.DataPropertyName = "date";
+            this.date.DataPropertyName = "consult_date";
             dataGridViewCellStyle2.Format = "d";
             dataGridViewCellStyle2.NullValue = null;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column3.HeaderText = "Consult Date";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
+            this.date.DefaultCellStyle = dataGridViewCellStyle2;
+            this.date.HeaderText = "Consult Date";
+            this.date.MinimumWidth = 6;
+            this.date.Name = "date";
             // 
             // frmConsultation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1740, 1055);
+            this.ClientSize = new System.Drawing.Size(1740, 679);
             this.Controls.Add(this.dgvConsultation);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -267,10 +268,10 @@
         private System.Windows.Forms.Button btnSearch;
         public System.Windows.Forms.DataGridView dgvConsultation;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Owner;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Patient;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
     }
 }

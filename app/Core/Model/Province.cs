@@ -2,7 +2,7 @@
 
 namespace app.Core.Model
 {
-    internal class Province
+    public class Province
     {
         public int Id 
         { 

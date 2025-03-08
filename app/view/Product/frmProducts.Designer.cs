@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProducts));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProducts));
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,14 +49,14 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -233,6 +233,7 @@
             this.dgvProducts.AllowUserToDeleteRows = false;
             this.dgvProducts.AllowUserToResizeColumns = false;
             this.dgvProducts.AllowUserToResizeRows = false;
+            this.dgvProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProducts.BackgroundColor = System.Drawing.Color.White;
             this.dgvProducts.ColumnHeadersHeight = 29;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -245,59 +246,12 @@
             this.dgvProducts.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dgvProducts.Location = new System.Drawing.Point(1, 111);
             this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.RowHeadersVisible = false;
             this.dgvProducts.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProducts.Size = new System.Drawing.Size(1529, 706);
             this.dgvProducts.TabIndex = 2;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "prodID";
-            this.Id.HeaderText = "ID";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            this.Id.Width = 125;
-            // 
-            // Category
-            // 
-            this.Category.DataPropertyName = "categoryDescription";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Category.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Category.HeaderText = "Category";
-            this.Category.MinimumWidth = 100;
-            this.Category.Name = "Category";
-            this.Category.Width = 200;
-            // 
-            // Brand
-            // 
-            this.Brand.DataPropertyName = "brandDesc";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Brand.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Brand.HeaderText = "Brand";
-            this.Brand.MinimumWidth = 50;
-            this.Brand.Name = "Brand";
-            this.Brand.Width = 200;
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.DataPropertyName = "prodDesc";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Description.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Description.HeaderText = "Description";
-            this.Description.MinimumWidth = 400;
-            this.Description.Name = "Description";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "isDeleted";
-            this.Column1.HeaderText = "isDeleted";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            this.Column1.Width = 125;
             // 
             // printDialog1
             // 
@@ -316,6 +270,51 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "prodID";
+            this.Id.HeaderText = "ID";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Category
+            // 
+            this.Category.DataPropertyName = "categoryDescription";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Category.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Category.HeaderText = "Category";
+            this.Category.MinimumWidth = 100;
+            this.Category.Name = "Category";
+            this.Category.Visible = false;
+            // 
+            // Brand
+            // 
+            this.Brand.DataPropertyName = "brandDesc";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Brand.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Brand.HeaderText = "Brand";
+            this.Brand.MinimumWidth = 50;
+            this.Brand.Name = "Brand";
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.DataPropertyName = "prodDesc";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Description.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Description.HeaderText = "Description";
+            this.Description.MinimumWidth = 400;
+            this.Description.Name = "Description";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "isDeleted";
+            this.Column1.HeaderText = "isDeleted";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
             // 
             // frmProducts
             // 

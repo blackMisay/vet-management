@@ -2,7 +2,7 @@
 
 namespace app.Core.Model
 {
-    internal class ColourPattern
+    public class ColourPattern
     {
         public int Id
         {

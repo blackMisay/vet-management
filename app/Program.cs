@@ -17,7 +17,7 @@ namespace app
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new view.Transaction.frmTransaction());
+            Application.Run(new view.Administration.frmLogin());
         }
     }
 }

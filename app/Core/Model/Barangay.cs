@@ -1,6 +1,6 @@
 ﻿namespace app.Core.Model
 {
-    internal class Barangay
+    public class Barangay
     {
        public int Id 
         { 

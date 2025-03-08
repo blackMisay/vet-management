@@ -16,5 +16,6 @@ namespace app.core.model
         public Findings Findings { get; set; }
         public Treatment PlanTreatment { get; set; }
         public Medication Medication { get; set; }
+        public DateTime ConsultDate { get; set; }
     }
 }

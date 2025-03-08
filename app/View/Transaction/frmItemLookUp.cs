@@ -3,6 +3,7 @@ using Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace app.view.Transaction
@@ -45,21 +46,32 @@ namespace app.view.Transaction
         {
             if (string.IsNullOrEmpty(txtQuantity.Text) || string.IsNullOrWhiteSpace(txtQuantity.Text))
             {
-                MessageBox.Show("Please input a quantity for the selected item","Invalid Quantity");
+                MessageBox.Show("Please input a quantity for the selected item", "Invalid Quantity");
                 return;
             }
 
+            // Ensure the quantity is a valid integer
+            if (!int.TryParse(txtQuantity.Text, out int quantity) || quantity <= 0)
+            {
+                MessageBox.Show("Please enter a valid quantity greater than 0.", "Invalid Quantity");
+                return;
+            }
+
+            // Calculate total price for the item
+            double unitPrice = this.selectedItemPrice;
+            double totalPrice = quantity * unitPrice;
+
+            // Create item object
             app.core.model.Inventory item = new app.core.model.Inventory()
             {
                 Id = selectedId,
                 Description = selectedItemDescription,
-                Qty = Convert.ToInt32(txtQuantity.Text),
-                UnitPrice = this.selectedItemPrice,
-                
+                Qty = quantity,
+                UnitPrice = unitPrice,
             };
 
-
-            if (selectedItem.Count > 0 && selectedItem.ContainsKey(selectedId))
+            // Update selectedItem dictionary
+            if (selectedItem.ContainsKey(selectedId))
             {
                 selectedItem[selectedId] = item;
             }
@@ -68,9 +80,52 @@ namespace app.view.Transaction
                 selectedItem.Add(selectedId, item);
             }
 
-            MessageBox.Show("Item " + this.selectedItemDescription + " has been added successfully","Added successfully",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            // **Update subtotal and display**
+            UpdateSubTotal();
+
+            MessageBox.Show($"Item {this.selectedItemDescription} has been added successfully",
+                            "Added successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             btnRemove.Enabled = false;
             ResetItemField();
+            this.Close();
+
+
+        }
+        private void UpdateSubTotal()
+        {
+            // Find the active frmTransaction instance
+            frmTransaction frm = Application.OpenForms.OfType<frmTransaction>().FirstOrDefault();
+
+            // If the form is not open, exit
+            if (frm == null) return;
+
+            // Ensure dictionary has data
+            if (selectedItem.Count == 0)
+            {
+                frm.lblSubtotal.Text = "$0.00";
+                return;
+            }
+
+            // Calculate subtotal
+            double subTotal = selectedItem.Values.Sum(i => i.Qty * i.UnitPrice);
+
+            // Debugging output
+            Console.WriteLine($"Subtotal: {subTotal}");
+            Console.WriteLine($"Total Items: {selectedItem.Count}");
+
+            // Ensure UI updates safely
+            if (frm.InvokeRequired)
+            {
+                frm.Invoke((MethodInvoker)(() => frm.lblSubtotal.Text = subTotal.ToString("C2")));
+            }
+            else
+            {
+                frm.lblSubtotal.Text = subTotal.ToString("C2");
+            }
+
+            // Force UI refresh
+            frm.lblSubtotal.Refresh();
         }
 
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)

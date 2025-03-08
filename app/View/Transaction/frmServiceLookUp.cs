@@ -61,6 +61,7 @@ namespace app.view.Transaction
             // Reset UI elements
             btnRemove.Enabled = false;
             ResetItemField();
+            this.Close();
  
 
 

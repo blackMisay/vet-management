@@ -121,7 +121,6 @@
             this.txtBreed.Name = "txtBreed";
             this.txtBreed.Size = new System.Drawing.Size(308, 36);
             this.txtBreed.TabIndex = 47;
-            this.txtBreed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cmbSize
             // 
@@ -406,6 +405,7 @@
             this.dtpBday.Name = "dtpBday";
             this.dtpBday.Size = new System.Drawing.Size(357, 36);
             this.dtpBday.TabIndex = 2;
+            this.dtpBday.Value = new System.DateTime(2025, 3, 7, 0, 0, 0, 0);
             this.dtpBday.ValueChanged += new System.EventHandler(this.dtpBday_ValueChanged);
             // 
             // txtName

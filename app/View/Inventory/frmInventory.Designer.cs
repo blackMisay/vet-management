@@ -55,9 +55,11 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateReceived = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -232,9 +234,11 @@
             this.dgvInventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Column2,
+            this.Column12,
+            this.Column10,
+            this.Column3,
             this.Column11,
             this.Column1,
-            this.Column3,
             this.Qty,
             this.dateReceived,
             this.expDate,
@@ -287,6 +291,31 @@
             this.Column2.HeaderText = "Batch No.";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "typeDescription";
+            this.Column12.HeaderText = "Type of Product";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            this.Column12.Visible = false;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "price";
+            this.Column10.HeaderText = "Price";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.Visible = false;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "stockDescription";
+            this.Column3.FillWeight = 150F;
+            this.Column3.HeaderText = "Description";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
             // 
             // Column11
             // 
@@ -295,6 +324,7 @@
             this.Column11.HeaderText = "Category";
             this.Column11.MinimumWidth = 6;
             this.Column11.Name = "Column11";
+            this.Column11.Visible = false;
             // 
             // Column1
             // 
@@ -305,14 +335,6 @@
             this.Column1.HeaderText = "Brand";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "stockDescription";
-            this.Column3.FillWeight = 150F;
-            this.Column3.HeaderText = "Description";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
             // 
             // Qty
             // 
@@ -402,9 +424,11 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateReceived;
         private System.Windows.Forms.DataGridViewTextBoxColumn expDate;

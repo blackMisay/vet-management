@@ -43,26 +43,29 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(620, 565);
+            this.btnCancel.Location = new System.Drawing.Point(895, 67);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(133, 41);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSelect
             // 
             this.btnSelect.Image = global::app.Properties.Resources.icons8_edit_16;
-            this.btnSelect.Location = new System.Drawing.Point(898, 565);
+            this.btnSelect.Location = new System.Drawing.Point(620, 67);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(133, 41);
             this.btnSelect.TabIndex = 6;
@@ -83,14 +86,15 @@
             this.Column4,
             this.Column5,
             this.Column6});
+            this.dgvServices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvServices.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvServices.Location = new System.Drawing.Point(12, 112);
+            this.dgvServices.Location = new System.Drawing.Point(0, 98);
             this.dgvServices.Name = "dgvServices";
             this.dgvServices.RowHeadersVisible = false;
             this.dgvServices.RowHeadersWidth = 51;
             this.dgvServices.RowTemplate.Height = 24;
             this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvServices.Size = new System.Drawing.Size(1023, 338);
+            this.dgvServices.Size = new System.Drawing.Size(1043, 400);
             this.dgvServices.TabIndex = 5;
             this.dgvServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellClick);
             // 
@@ -147,28 +151,31 @@
             // lblDesc
             // 
             this.lblDesc.AutoSize = true;
-            this.lblDesc.Location = new System.Drawing.Point(12, 51);
+            this.lblDesc.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDesc.Location = new System.Drawing.Point(12, 64);
             this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(0, 24);
+            this.lblDesc.Size = new System.Drawing.Size(0, 23);
             this.lblDesc.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 17);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 28);
+            this.label1.Size = new System.Drawing.Size(175, 34);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Services Look-Up";
+            this.label1.Text = "Services List";
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.lblDesc);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1023, 98);
+            this.panel1.Size = new System.Drawing.Size(1043, 98);
             this.panel1.TabIndex = 4;
             // 
             // btnRemove
@@ -188,9 +195,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(829, 515);
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(849, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 24);
+            this.label3.Size = new System.Drawing.Size(73, 19);
             this.label3.TabIndex = 12;
             this.label3.Text = "Amount";
             // 
@@ -199,22 +208,33 @@
             this.txtTotal.Enabled = false;
             this.txtTotal.Location = new System.Drawing.Point(928, 512);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(100, 33);
+            this.txtTotal.Size = new System.Drawing.Size(100, 28);
             this.txtTotal.TabIndex = 13;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.btnSelect);
+            this.panel2.Controls.Add(this.btnCancel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 498);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1043, 120);
+            this.panel2.TabIndex = 5;
             // 
             // frmServiceLookUp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1043, 618);
+            this.ControlBox = false;
             this.Controls.Add(this.txtTotal);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.dgvServices);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmServiceLookUp";
@@ -223,6 +243,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,5 +266,6 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Panel panel2;
     }
 }
