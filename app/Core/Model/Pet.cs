@@ -1,7 +1,7 @@
 ﻿
 namespace app.Core.Model
 {
-    internal class Pet
+    public class Pet
     {
         public int Id { get; set; }
         public Client Client { get; set; }

@@ -1,5 +1,6 @@
 ﻿using app.Core.Model;
 using app.Core.Repository;
+using app.view.Transaction;
 using System;
 using System.Windows.Forms;
 
@@ -23,7 +24,7 @@ namespace app.view.Utilities
             return patient.Name;
         }
 
-        internal Pet GetPatientDetails()
+        public Pet GetPatientDetails()
         {
             return this.patient;
         }
@@ -47,6 +48,7 @@ namespace app.view.Utilities
             {
                 int selectedRowIndex = dgvOwner.SelectedCells[0].RowIndex;
                 this.ownerId = Convert.ToInt32(dgvOwner.Rows[selectedRowIndex].Cells[0].Value?.ToString());
+                
             }
         }
 
@@ -54,10 +56,11 @@ namespace app.view.Utilities
         {
             PetRepository p = new PetRepository();
             p.GetAllPetsByOwner(dgvPet, this.ownerId.ToString());
+                               
         }
 
-        int selectedRecord = 0;
-        private void dgvPet_CellClick(object sender, DataGridViewCellEventArgs e)
+         int selectedRecord = 0;
+        public void dgvPet_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvPet.RowCount > 0)
             {
@@ -66,26 +69,45 @@ namespace app.view.Utilities
             }
         }
 
+        public app.Core.Model.Pet SelectedPatient { get; private set; }
         private void dgvPet_DoubleClick(object sender, EventArgs e)
         {
-            
-            if (MessageBox.Show("Do you want to proceed with the selected patient?","Confirm to select",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Do you want to proceed with the selected patient?", "Confirm to select", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+
                 GetDetails();
-                this.Close();
+
+                if (this.patient != null) // Ensure patient is set
+                {
+
+                    this.DialogResult = DialogResult.OK; // ✅ Mark dialog as successful
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("No valid patient details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
-
+        
         private void GetDetails()
         {
             PetRepository pr = new PetRepository();
 
             this.patient = pr.GetPetCompleteDetails(this.selectedRecord);
+
+            if (this.patient == null)
+            {
+                MessageBox.Show("Failed to retrieve patient details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
+
+       
+      
     }
 }

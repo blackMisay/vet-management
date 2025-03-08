@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using app.Core.Model;
 using System.Collections.Generic;
+using app.view.Consultation;
 
 
 namespace app.view.Transaction
@@ -11,7 +12,6 @@ namespace app.view.Transaction
     {
         int patientId = 0;
         int selectedRecord = 0;
-
         double totalAmount = 0;
         
         public frmTransaction()
@@ -19,13 +19,68 @@ namespace app.view.Transaction
             InitializeComponent();
             decimal price = 0.000m; // Example price
             lblTotal.Text = $"₱   {price:N2}"; // Format as currency with 2 decimal places
-            lblProductPrice.Text = $"₱   {price:N2}";
+            lblDeposit.Text = $"₱   {price:N2}";
+            lblSubtotal.Text = $"₱   {price:N2}";
+            lblBalance.Text = $"₱   {price:N2}";
+           
         }
-
+        
         private void btnNewTrans_Click(object sender, EventArgs e)
         {
+            // Set the current date and invoice number
             lblDate.Text = DateTime.Now.ToString();
             lblInvoice.Text = DateTime.Now.ToString("yyyyMMddhhmmss");
+
+            // Ask the user if it's an existing patient
+            DialogResult result = MessageBox.Show(
+                "Is this transaction for an existing patient?",
+                "Patient Type",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes) // Existing patient → Open Consultation Form
+            {
+                frmConsultation frm = new frmConsultation();
+
+                if (frm.ShowDialog() == DialogResult.OK && frm.SelectedRecord != null)
+                {
+                    this.patientId = frm.SelectedRecord.Id; // Store patient ID
+                    txtName.Text = frm.SelectedRecord.Client.GetFullName(); // Display full client name
+                    txtPet.Text = frm.SelectedRecord.Name; // Display pet name
+                }
+                else
+                {
+                    MessageBox.Show("No patient selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else // New patient → Open Client Patient Form
+            {
+                //frmClientPatientForm frmNew = new frmClientPatientForm();
+
+                if (result== DialogResult.No) 
+                {
+                    frmClientPatientForm frmNew = new frmClientPatientForm();
+                    //Pet selectedPatient = frmNew.GetPatientDetails();
+
+                    if (frmNew.ShowDialog() == DialogResult.OK && frmNew.SelectedPatient != null) 
+                    {
+                        this.patientId = frmNew.SelectedPatient.Id; 
+                        txtName.Text = frmNew.SelectedPatient.Client.GetFullName(); 
+                        txtPet.Text = frmNew.SelectedPatient.Name; 
+                    }
+                    else
+                    {
+                        MessageBox.Show("No valid patient details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No new patient selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -129,11 +184,10 @@ namespace app.view.Transaction
 
         private void btnQuantity_Click(object sender, EventArgs e)
         {
-            frmItemQuantity frm = new frmItemQuantity();
+            frmTransactionDeposit frm = new frmTransactionDeposit();
             frm.ShowDialog();
-        }
 
-        
+        }
         private void btnVoidItem_Click(object sender, EventArgs e)
         {
 
@@ -148,6 +202,33 @@ namespace app.view.Transaction
             }
 
             this.lblTotal.Text = totalAmount.ToString("N2");
+        }
+
+        private void btnPayment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public app.Core.Model.Pet SelectedPatient { get; private set; }
+        private void GetPatient()
+        {
+            frmClientPatientForm frm = new frmClientPatientForm();
+
+            if (frm.ShowDialog() == DialogResult.OK) // Ensure user confirms selection
+            {
+                Pet selectedPet = frm.GetPatientDetails(); // ✅ Retrieve patient details correctly
+
+                if (selectedPet != null) // Ensure a valid patient is selected
+                {
+                    SelectedPatient = selectedPet;
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("No valid patient details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

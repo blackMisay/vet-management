@@ -1,8 +1,10 @@
 ﻿
 
+using System.Linq;
+
 namespace app.Core.Model
 {
-    internal class Client
+    public class Client
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -20,7 +22,7 @@ namespace app.Core.Model
 
         public string GetFullName()
         {
-            return this.FirstName + " " + MiddleName + ". " + LastName + " " + Suffix;
+            return this.FirstName + " " + MiddleName + " " + LastName + " " + Suffix;
         }
 
         public string GetAllContact()
@@ -33,6 +35,12 @@ namespace app.Core.Model
         public string GetFullAddress()
         {
             return this.StreetNo + " " + Region + " " + City + " " + Brgy + " " + Province;
+        }
+
+        public string GetClientFullName()
+        {
+            return string.Join(" ", new[] { FirstName, MiddleName, LastName, Suffix }
+                .Where(s => !string.IsNullOrWhiteSpace(s)));
         }
     }
 }

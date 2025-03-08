@@ -190,12 +190,13 @@
             this.Column5.HeaderText = "Service Type";
             this.Column5.MinimumWidth = 100;
             this.Column5.Name = "Column5";
+            this.Column5.Visible = false;
             // 
             // Column2
             // 
             this.Column2.DataPropertyName = "serviceCode";
             this.Column2.HeaderText = "Service Code";
-            this.Column2.MinimumWidth = 200;
+            this.Column2.MinimumWidth = 300;
             this.Column2.Name = "Column2";
             // 
             // Column1

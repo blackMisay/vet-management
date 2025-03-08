@@ -16,6 +16,7 @@ namespace app.view.Consultation
         {
             InitializeComponent();
             PopulateCmb();
+            
         }
 
         public frmConsultationModal(int Id)
@@ -95,7 +96,10 @@ namespace app.view.Consultation
                 Findings = new Findings { Id = SafeConvertToInt(cboFindings.SelectedValue) },
                 PlanTreatment = new Treatment { Id = SafeConvertToInt(cboTreatment.SelectedValue) },
                 ComplaintRequest = new Complaint { Id = SafeConvertToInt(cboComplaint.SelectedValue) },
-                Medication = new Medication { Id = SafeConvertToInt(cboMedication.SelectedValue) }
+                Medication = new Medication { Id = SafeConvertToInt(cboMedication.SelectedValue) },
+               
+                              //DateTime.TryParse(dtpDate.Value, out DateTime date) ? date.Date : DateTime.Now.Date
+
             };
 
             try

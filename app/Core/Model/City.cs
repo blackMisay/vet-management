@@ -2,7 +2,7 @@
 
 namespace app.Core.Model
 {
-    internal class City
+    public class City
     {
         public int Id 
         { 

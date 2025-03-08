@@ -32,6 +32,13 @@ namespace app.view.Client
             // Load breeds based on the selected species
             LoadBreedData();
         }
+
+        public frmBreed(DataTable breedData)
+        {
+            InitializeComponent();
+            dgvBreed.DataSource = breedData; // Assign the DataTable to the DataGridView
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtSearch.Text) || !string.IsNullOrWhiteSpace(txtSearch.Text))
@@ -77,20 +84,16 @@ namespace app.view.Client
 
         private void dgvBreed_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            frmClientPatientModal frm = new frmClientPatientModal();
-            if (e.RowIndex >= 0) // Ensure a valid row is selected
+            if (e.RowIndex >= 0)
             {
-                DataGridViewRow selectedRow = dgvBreed.Rows[e.RowIndex];
+                // Get the selected breed description
+                string breedDescription = dgvBreed.Rows[e.RowIndex].Cells["description"].Value.ToString();
 
-                // Ensure the value is not null and convert it safely to int
-                if (selectedRow.Cells["id"].Value != null)
-                {
-                    int breedId = Convert.ToInt32(selectedRow.Cells["id"].Value);
+                // Invoke the event and pass the selected breed description
+                BreedSelected?.Invoke(breedDescription);
 
-                    string breedDescription = frm.GetBreedDescription(breedId); // Fetch description
-                    BreedSelected?.Invoke(breedDescription); // Pass description
-                    this.Close(); // Close selection form
-                }
+                // Close the form
+                this.Close();
             }
         }
 

@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientPatientForm));
             this.label1 = new System.Windows.Forms.Label();
             this.dgvOwner = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvPet = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -69,7 +69,7 @@
             this.dgvOwner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOwner.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-            this.Column2});
+            this.Owner});
             this.dgvOwner.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvOwner.Location = new System.Drawing.Point(522, 117);
             this.dgvOwner.Name = "dgvOwner";
@@ -90,16 +90,16 @@
             this.Id.Name = "Id";
             this.Id.Visible = false;
             // 
-            // Column2
+            // Owner
             // 
-            this.Column2.DataPropertyName = "name";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column2.HeaderText = "Owner";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
+            this.Owner.DataPropertyName = "name";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Owner.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Owner.HeaderText = "Owner";
+            this.Owner.MinimumWidth = 6;
+            this.Owner.Name = "Owner";
             // 
             // dgvPet
             // 
@@ -111,7 +111,7 @@
             this.dataGridViewTextBoxColumn1,
             this.Column1,
             this.Column3,
-            this.dataGridViewTextBoxColumn2});
+            this.Pet});
             this.dgvPet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPet.Location = new System.Drawing.Point(36, 117);
             this.dgvPet.Name = "dgvPet";
@@ -146,16 +146,16 @@
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
-            // dataGridViewTextBoxColumn2
+            // Pet
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "petName";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Pet name";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.Pet.DataPropertyName = "petName";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Pet.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Pet.HeaderText = "Pet name";
+            this.Pet.MinimumWidth = 6;
+            this.Pet.Name = "Pet";
             // 
             // label2
             // 
@@ -253,13 +253,13 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Owner;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pet;
     }
 }

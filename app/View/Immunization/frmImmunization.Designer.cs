@@ -93,12 +93,11 @@
             // 
             // btnVaccination
             // 
-            this.btnVaccination.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVaccination.Image = global::app.Properties.Resources.immunity_24px;
-            this.btnVaccination.Location = new System.Drawing.Point(1205, 14);
-            this.btnVaccination.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVaccination.Location = new System.Drawing.Point(13, 11);
+            this.btnVaccination.Margin = new System.Windows.Forms.Padding(4);
             this.btnVaccination.Name = "btnVaccination";
-            this.btnVaccination.Size = new System.Drawing.Size(249, 39);
+            this.btnVaccination.Size = new System.Drawing.Size(249, 47);
             this.btnVaccination.TabIndex = 13;
             this.btnVaccination.Text = "New Vaccination";
             this.btnVaccination.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -112,7 +111,7 @@
             this.btnImmunization.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImmunization.Image = global::app.Properties.Resources.diagnosis_24px;
             this.btnImmunization.Location = new System.Drawing.Point(1721, 16);
-            this.btnImmunization.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnImmunization.Margin = new System.Windows.Forms.Padding(5);
             this.btnImmunization.Name = "btnImmunization";
             this.btnImmunization.Size = new System.Drawing.Size(254, 46);
             this.btnImmunization.TabIndex = 12;
@@ -122,17 +121,19 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(136, 21);
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Location = new System.Drawing.Point(1072, 25);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(414, 28);
+            this.txtSearch.Size = new System.Drawing.Size(255, 28);
             this.txtSearch.TabIndex = 2;
             // 
             // btnSearch
             // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearch.Location = new System.Drawing.Point(9, 15);
+            this.btnSearch.Location = new System.Drawing.Point(1335, 15);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(119, 38);
@@ -184,7 +185,7 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "name";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             dataGridViewCellStyle2.Format = "N0";
             dataGridViewCellStyle2.NullValue = null;
             this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
@@ -226,7 +227,7 @@
             // Column12
             // 
             this.Column12.DataPropertyName = "expiration_date";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             dataGridViewCellStyle4.Format = "d";
             dataGridViewCellStyle4.NullValue = null;
             this.Column12.DefaultCellStyle = dataGridViewCellStyle4;

@@ -77,7 +77,7 @@ namespace app.view.Consultation
             LoadAllConsultationRecords();
         }
 
-        private void LoadAllConsultationRecords()
+        public void LoadAllConsultationRecords()
         {
             ConsultationRepository cr = new ConsultationRepository();
 
@@ -89,6 +89,30 @@ namespace app.view.Consultation
             ConsultationRepository cr = new ConsultationRepository();
 
             cr.GetSpecificConsultation(txtSearch.Text);
+        }
+
+        public app.Core.Model.Pet SelectedRecord { get; private set; }
+
+
+        private void dgvConsultation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                SelectedRecord = new app.Core.Model.Pet
+                {
+                    Id = Convert.ToInt32(dgvConsultation.Rows[e.RowIndex].Cells["Id"].Value),
+                    Client = new app.Core.Model.Client
+                    {
+                        FirstName = dgvConsultation.Rows[e.RowIndex].Cells["Owner"].Value.ToString(),
+
+                    },
+                    Name = dgvConsultation.Rows[e.RowIndex].Cells["Patient"].Value.ToString()
+                };
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+
         }
     }
 }

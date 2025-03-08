@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using app.view.Administration;
 using app.view.Immunization;
+using app.view.Transaction;
 
 namespace app.view
 {
@@ -142,12 +143,13 @@ namespace app.view
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-
+            this.openFormModule(new Dashboard.frmDashboard());
         }
 
         private void btnMedicalRecords_Click(object sender, EventArgs e)
         {
             this.openFormModule(new Transaction.frmTransaction());
+           
         }
     }
 }

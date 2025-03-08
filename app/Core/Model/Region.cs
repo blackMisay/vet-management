@@ -2,7 +2,7 @@
 
 namespace app.Core.Model
 {
-    internal class Region
+    public class Region
     {
         public int Id 
         { 

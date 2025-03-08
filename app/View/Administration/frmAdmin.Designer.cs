@@ -56,7 +56,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -67,11 +67,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(17, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(299, 38);
+            this.label1.Size = new System.Drawing.Size(323, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "Account Management";
             // 
@@ -191,11 +191,11 @@
             // 
             this.btnSearch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearch.Location = new System.Drawing.Point(258, 126);
+            this.btnSearch.Location = new System.Drawing.Point(294, 115);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(95, 24);
+            this.btnSearch.Size = new System.Drawing.Size(95, 35);
             this.btnSearch.TabIndex = 5;
             this.btnSearch.Text = "Search";
             this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -204,9 +204,9 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(40, 126);
+            this.txtSearch.Location = new System.Drawing.Point(40, 122);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(212, 28);
+            this.txtSearch.Size = new System.Drawing.Size(248, 28);
             this.txtSearch.TabIndex = 6;
             // 
             // btnEdit
@@ -229,10 +229,10 @@
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Image = global::app.Properties.Resources.icons8_dog_and_cat_16;
-            this.btnAdd.Location = new System.Drawing.Point(895, 119);
+            this.btnAdd.Image = global::app.Properties.Resources.icons8_create_16;
+            this.btnAdd.Location = new System.Drawing.Point(866, 119);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(127, 31);
+            this.btnAdd.Size = new System.Drawing.Size(156, 31);
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "&Add Account";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -243,10 +243,10 @@
             // 
             this.btnLoad.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoad.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoad.Location = new System.Drawing.Point(359, 126);
+            this.btnLoad.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoad.Location = new System.Drawing.Point(395, 115);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(95, 24);
+            this.btnLoad.Size = new System.Drawing.Size(95, 35);
             this.btnLoad.TabIndex = 13;
             this.btnLoad.Text = "Load";
             this.btnLoad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -256,7 +256,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 104);
+            this.label2.Location = new System.Drawing.Point(36, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(252, 21);
             this.label2.TabIndex = 14;

@@ -29,6 +29,8 @@ namespace app.view.Client
             label5.Text = "Update Pet Information";
             cboSpecies.SelectedIndexChanged += cboSpecies_SelectedIndexChanged;
 
+            
+
         }
 
         // Use for adding new client's pet
@@ -225,42 +227,45 @@ namespace app.view.Client
 
         private void btnBreed_Click(object sender, EventArgs e)
         {
+            // Ensure a species is selected
             if (cboSpecies.SelectedValue == null)
             {
                 MessageBox.Show("Please select a species first.");
                 return;
             }
 
-            // Convert species ID to string
+            // Get the selected species ID as a string
             string selectedSpecies = cboSpecies.SelectedValue.ToString();
 
-            // Open breed selection form
-            frmBreed breedForm = new frmBreed();
+            // Create an instance of UpgradeFile to load data
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            // SQL query to fetch breeds based on selected species
+            // SQL query to fetch breeds filtered by species
             string query = "SELECT id, description FROM patient_breed WHERE species_id = @species_id ORDER BY description";
 
-            // Define query parameters (using string values)
+            // Define query parameters
             Dictionary<string, string> parameters = new Dictionary<string, string>
-            {
-                { "@species_id", selectedSpecies }
-            };
+    {
+        { "@species_id", selectedSpecies }
+    };
 
-            // Load breed data
+            // Load breed data into DataTable
             DataTable dt = upgradeFile.Load(query, parameters);
 
-            // Check if data exists
+            // Check if the query returned data
             if (dt == null || dt.Rows.Count == 0)
             {
                 MessageBox.Show("No breeds found for the selected species.");
                 return;
             }
 
-            // Assign data to DataGridView
-            breedForm.dgvBreed.DataSource = dt;
+            // Open breed selection form and pass the DataTable
+            frmBreed breedForm = new frmBreed(dt);
 
-            // Show the breed form
+            // Handle breed selection event
+            breedForm.BreedSelected += (breed) => txtBreed.Text = breed;
+
+            // Show breed selection form
             breedForm.ShowDialog();
 
         }
@@ -353,5 +358,12 @@ namespace app.view.Client
                 frm.dgvBreed.DataSource = upgradeFile.Load(query, parameters);
             }
         }
+
+        public void SetBreed(string breed)
+        {
+            txtBreed.Text = breed;
+        }
+
+
     }
 }
