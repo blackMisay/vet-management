@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -72,7 +72,8 @@
             // 
             // panel4
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.lblTotal);
@@ -86,18 +87,19 @@
             this.panel4.Controls.Add(this.label5);
             this.panel4.Location = new System.Drawing.Point(1147, 189);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(378, 416);
+            this.panel4.Size = new System.Drawing.Size(378, 425);
             this.panel4.TabIndex = 1;
             // 
             // lblTotal
             // 
+            this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblTotal.AutoSize = true;
             this.lblTotal.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblTotal.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.Black;
-            this.lblTotal.Location = new System.Drawing.Point(140, 266);
+            this.lblTotal.Location = new System.Drawing.Point(139, 307);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(97, 47);
+            this.lblTotal.Size = new System.Drawing.Size(118, 56);
             this.lblTotal.TabIndex = 26;
             this.lblTotal.Text = "0.00";
             // 
@@ -105,9 +107,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(16, 232);
+            this.label6.Location = new System.Drawing.Point(16, 186);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(149, 22);
+            this.label6.Size = new System.Drawing.Size(179, 26);
             this.label6.TabIndex = 25;
             this.label6.Text = "TOTAL AMOUNT:";
             // 
@@ -115,9 +117,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(17, 165);
+            this.label8.Location = new System.Drawing.Point(16, 138);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(95, 22);
+            this.label8.Size = new System.Drawing.Size(117, 26);
             this.label8.TabIndex = 24;
             this.label8.Text = "BALANCE:";
             // 
@@ -125,9 +127,9 @@
             // 
             this.lblBalance.AutoSize = true;
             this.lblBalance.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBalance.Location = new System.Drawing.Point(223, 189);
+            this.lblBalance.Location = new System.Drawing.Point(223, 131);
             this.lblBalance.Name = "lblBalance";
-            this.lblBalance.Size = new System.Drawing.Size(57, 27);
+            this.lblBalance.Size = new System.Drawing.Size(71, 34);
             this.lblBalance.TabIndex = 23;
             this.lblBalance.Text = "0.00";
             // 
@@ -135,17 +137,18 @@
             // 
             this.lblDeposit.AutoSize = true;
             this.lblDeposit.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeposit.Location = new System.Drawing.Point(223, 114);
+            this.lblDeposit.Location = new System.Drawing.Point(223, 79);
             this.lblDeposit.Name = "lblDeposit";
-            this.lblDeposit.Size = new System.Drawing.Size(57, 27);
+            this.lblDeposit.Size = new System.Drawing.Size(71, 34);
             this.lblDeposit.TabIndex = 22;
             this.lblDeposit.Text = "0.00";
             // 
             // btnQuantity
             // 
+            this.btnQuantity.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnQuantity.Image = global::app.Properties.Resources.plus_minus;
             this.btnQuantity.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnQuantity.Location = new System.Drawing.Point(7, 350);
+            this.btnQuantity.Location = new System.Drawing.Point(9, 366);
             this.btnQuantity.Name = "btnQuantity";
             this.btnQuantity.Size = new System.Drawing.Size(355, 42);
             this.btnQuantity.TabIndex = 9;
@@ -160,7 +163,7 @@
             this.label7.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(17, 86);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 22);
+            this.label7.Size = new System.Drawing.Size(100, 26);
             this.label7.TabIndex = 21;
             this.label7.Text = "DEPOSIT:";
             // 
@@ -168,9 +171,9 @@
             // 
             this.lblSubtotal.AutoSize = true;
             this.lblSubtotal.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubtotal.Location = new System.Drawing.Point(223, 46);
+            this.lblSubtotal.Location = new System.Drawing.Point(223, 26);
             this.lblSubtotal.Name = "lblSubtotal";
-            this.lblSubtotal.Size = new System.Drawing.Size(57, 27);
+            this.lblSubtotal.Size = new System.Drawing.Size(71, 34);
             this.lblSubtotal.TabIndex = 20;
             this.lblSubtotal.Text = "0.00";
             // 
@@ -180,7 +183,7 @@
             this.label5.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(16, 33);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(106, 22);
+            this.label5.Size = new System.Drawing.Size(127, 26);
             this.label5.TabIndex = 19;
             this.label5.Text = "SUB-TOTAL:";
             // 
@@ -190,13 +193,14 @@
             this.lblDate.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.Location = new System.Drawing.Point(144, 17);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(0, 19);
+            this.lblDate.Size = new System.Drawing.Size(0, 25);
             this.lblDate.TabIndex = 7;
             // 
             // dgvTransaction
             // 
             this.dgvTransaction.AllowUserToAddRows = false;
-            this.dgvTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTransaction.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTransaction.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -214,7 +218,7 @@
             this.dgvTransaction.RowHeadersWidth = 51;
             this.dgvTransaction.RowTemplate.Height = 24;
             this.dgvTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransaction.Size = new System.Drawing.Size(1128, 416);
+            this.dgvTransaction.Size = new System.Drawing.Size(1128, 425);
             this.dgvTransaction.TabIndex = 5;
             // 
             // colId
@@ -245,10 +249,10 @@
             // 
             // colPrice
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.colPrice.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "N2";
+            dataGridViewCellStyle14.NullValue = null;
+            this.colPrice.DefaultCellStyle = dataGridViewCellStyle14;
             this.colPrice.HeaderText = "Price";
             this.colPrice.MinimumWidth = 6;
             this.colPrice.Name = "colPrice";
@@ -285,7 +289,7 @@
             this.lblInvoice.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblInvoice.Location = new System.Drawing.Point(0, 92);
             this.lblInvoice.Name = "lblInvoice";
-            this.lblInvoice.Size = new System.Drawing.Size(305, 39);
+            this.lblInvoice.Size = new System.Drawing.Size(372, 47);
             this.lblInvoice.TabIndex = 11;
             this.lblInvoice.Text = "0000000000000000";
             // 
@@ -295,13 +299,14 @@
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 19);
+            this.label2.Size = new System.Drawing.Size(140, 25);
             this.label2.TabIndex = 10;
             this.label2.Text = "Invoice No. :";
             // 
             // panel5
             // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.label4);
@@ -319,7 +324,7 @@
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(26, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 23);
+            this.label1.Size = new System.Drawing.Size(218, 28);
             this.label1.TabIndex = 10;
             this.label1.Text = "Client Information";
             // 
@@ -328,7 +333,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(26, 119);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 21);
+            this.label4.Size = new System.Drawing.Size(114, 24);
             this.label4.TabIndex = 9;
             this.label4.Text = "Pet Name";
             // 
@@ -344,7 +349,7 @@
             // 
             this.txtName.Location = new System.Drawing.Point(126, 78);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(229, 28);
+            this.txtName.Size = new System.Drawing.Size(229, 33);
             this.txtName.TabIndex = 7;
             // 
             // label3
@@ -352,15 +357,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(26, 85);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 21);
+            this.label3.Size = new System.Drawing.Size(75, 24);
             this.label3.TabIndex = 6;
             this.label3.Text = "Name";
             // 
             // btnPayment
             // 
+            this.btnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPayment.Image = global::app.Properties.Resources.coins;
             this.btnPayment.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPayment.Location = new System.Drawing.Point(1223, 611);
+            this.btnPayment.Location = new System.Drawing.Point(1223, 622);
             this.btnPayment.Name = "btnPayment";
             this.btnPayment.Size = new System.Drawing.Size(150, 42);
             this.btnPayment.TabIndex = 7;
@@ -371,9 +377,10 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Image = global::app.Properties.Resources.close;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.Location = new System.Drawing.Point(1379, 611);
+            this.btnCancel.Location = new System.Drawing.Point(1379, 622);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(143, 42);
             this.btnCancel.TabIndex = 8;
@@ -383,10 +390,11 @@
             // 
             // btnServiceLookUp
             // 
+            this.btnServiceLookUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnServiceLookUp.Image = global::app.Properties.Resources.services_24px;
-            this.btnServiceLookUp.Location = new System.Drawing.Point(527, 611);
+            this.btnServiceLookUp.Location = new System.Drawing.Point(448, 620);
             this.btnServiceLookUp.Name = "btnServiceLookUp";
-            this.btnServiceLookUp.Size = new System.Drawing.Size(199, 42);
+            this.btnServiceLookUp.Size = new System.Drawing.Size(213, 42);
             this.btnServiceLookUp.TabIndex = 14;
             this.btnServiceLookUp.Text = "&Service Look-Up";
             this.btnServiceLookUp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -395,10 +403,11 @@
             // 
             // btnVoidTrans
             // 
+            this.btnVoidTrans.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidTrans.Image = global::app.Properties.Resources.deleted;
-            this.btnVoidTrans.Location = new System.Drawing.Point(937, 611);
+            this.btnVoidTrans.Location = new System.Drawing.Point(823, 620);
             this.btnVoidTrans.Name = "btnVoidTrans";
-            this.btnVoidTrans.Size = new System.Drawing.Size(199, 42);
+            this.btnVoidTrans.Size = new System.Drawing.Size(226, 42);
             this.btnVoidTrans.TabIndex = 13;
             this.btnVoidTrans.Text = "&Void Transaction";
             this.btnVoidTrans.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -406,10 +415,11 @@
             // 
             // btnVoidItem
             // 
+            this.btnVoidItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidItem.Image = global::app.Properties.Resources.deleted;
-            this.btnVoidItem.Location = new System.Drawing.Point(732, 611);
+            this.btnVoidItem.Location = new System.Drawing.Point(667, 620);
             this.btnVoidItem.Name = "btnVoidItem";
-            this.btnVoidItem.Size = new System.Drawing.Size(199, 42);
+            this.btnVoidItem.Size = new System.Drawing.Size(150, 42);
             this.btnVoidItem.TabIndex = 12;
             this.btnVoidItem.Text = "&Void Item";
             this.btnVoidItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -418,8 +428,9 @@
             // 
             // btnItemLookUp
             // 
+            this.btnItemLookUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnItemLookUp.Image = global::app.Properties.Resources.procurement;
-            this.btnItemLookUp.Location = new System.Drawing.Point(323, 611);
+            this.btnItemLookUp.Location = new System.Drawing.Point(244, 620);
             this.btnItemLookUp.Name = "btnItemLookUp";
             this.btnItemLookUp.Size = new System.Drawing.Size(198, 42);
             this.btnItemLookUp.TabIndex = 11;
@@ -430,10 +441,11 @@
             // 
             // btnNewTrans
             // 
+            this.btnNewTrans.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNewTrans.Image = global::app.Properties.Resources.icons8_save_button_35;
-            this.btnNewTrans.Location = new System.Drawing.Point(118, 611);
+            this.btnNewTrans.Location = new System.Drawing.Point(12, 621);
             this.btnNewTrans.Name = "btnNewTrans";
-            this.btnNewTrans.Size = new System.Drawing.Size(199, 42);
+            this.btnNewTrans.Size = new System.Drawing.Size(226, 42);
             this.btnNewTrans.TabIndex = 10;
             this.btnNewTrans.Text = "&New Transaction";
             this.btnNewTrans.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -442,10 +454,10 @@
             // 
             // frmTransaction
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1537, 680);
+            this.ClientSize = new System.Drawing.Size(1537, 675);
             this.Controls.Add(this.btnServiceLookUp);
             this.Controls.Add(this.btnVoidTrans);
             this.Controls.Add(this.btnVoidItem);
