@@ -29,35 +29,6 @@ namespace app.view.Transaction
             lblDate.Text = DateTime.Now.ToString();
             lblInvoice.Text = DateTime.Now.ToString("yyyyMMddhhmmss");
 
-            // Ask the user if it's an existing patient
-            DialogResult result = MessageBox.Show(
-                "Is this transaction for an existing patient?",
-                "Patient Type",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (result == DialogResult.Yes) // Existing patient → Open Consultation Form
-            {
-                frmConsultation frm = new frmConsultation();
-
-                if (frm.ShowDialog() == DialogResult.OK && frm.SelectedRecord != null)
-                {
-                    this.patientId = frm.SelectedRecord.Id; // Store patient ID
-                    txtName.Text = frm.SelectedRecord.Client.GetFullName(); // Display full client name
-                    txtPet.Text = frm.SelectedRecord.Name; // Display pet name
-                }
-                else
-                {
-                    MessageBox.Show("No patient selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            else // New patient → Open Client Patient Form
-            {
-                //frmClientPatientForm frmNew = new frmClientPatientForm();
-
-                if (result== DialogResult.No) 
-                {
                     frmClientPatientForm frmNew = new frmClientPatientForm();
                     //Pet selectedPatient = frmNew.GetPatientDetails();
 
@@ -71,13 +42,6 @@ namespace app.view.Transaction
                     {
                         MessageBox.Show("No valid patient details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("No new patient selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-
 
         }
 
