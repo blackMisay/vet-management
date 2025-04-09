@@ -19,9 +19,7 @@ namespace app.view.Transaction
             InitializeComponent();
             decimal price = 0.000m; // Example price
             lblTotal.Text = $"₱   {price:N2}"; // Format as currency with 2 decimal places
-            lblDeposit.Text = $"₱   {price:N2}";
-            lblSubtotal.Text = $"₱   {price:N2}";
-            lblBalance.Text = $"₱   {price:N2}";
+            lblSubTotal.Text = $"₱   {price:N2}";
            
         }
         
@@ -179,14 +177,6 @@ namespace app.view.Transaction
             }
 
             CalculateTotalPrice();
-        }
-
-
-        private void btnQuantity_Click(object sender, EventArgs e)
-        {
-            frmTransactionDeposit frm = new frmTransactionDeposit();
-            frm.ShowDialog();
-
         }
         private void btnVoidItem_Click(object sender, EventArgs e)
         {
