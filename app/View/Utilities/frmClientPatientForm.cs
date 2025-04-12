@@ -15,6 +15,11 @@ namespace app.view.Utilities
             InitializeComponent();
         }
 
+        public int GetPatientOwnerId()
+        {
+            return patient.Client.Id;
+        }
+
         public int GetPatientId()
         {
             return patient.Id;
@@ -22,6 +27,11 @@ namespace app.view.Utilities
         public string GetPatientName()
         {
             return patient.Name;
+        }
+
+        public string GetPatientOwnerFullname()
+        {
+            return patient.Client.GetClientFullName();
         }
 
         public Pet GetPatientDetails()
@@ -69,7 +79,6 @@ namespace app.view.Utilities
             }
         }
 
-        public app.Core.Model.Pet SelectedPatient { get; private set; }
         private void dgvPet_DoubleClick(object sender, EventArgs e)
         {
             if (MessageBox.Show("Do you want to proceed with the selected patient?", "Confirm to select", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

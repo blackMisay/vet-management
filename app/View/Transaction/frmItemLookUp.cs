@@ -81,7 +81,7 @@ namespace app.view.Transaction
             }
 
             // **Update subtotal and display**
-            UpdateSubTotal();
+            //UpdateSubTotal();
 
             MessageBox.Show($"Item {this.selectedItemDescription} has been added successfully",
                             "Added successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
