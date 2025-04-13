@@ -46,11 +46,7 @@ namespace app.view.Transaction
             double subtotal = 0, balance = 0, total = 0;
 
             // Remove currency formatting (e.g., "$1,234.56" → "1234.56")
-            double.TryParse(frm.lblSubtotal.Text.Replace("₱", "").Replace("$", "").Replace(",", "").Trim(), out subtotal);
-            double.TryParse(frm.lblBalance.Text.Replace("₱", "").Replace("$", "").Replace(",", "").Trim(), out balance);
-
-            // Update lblDeposit with the entered amount (formatted as currency)
-            frm.lblDeposit.Text = depositAmount.ToString("C2");
+            double.TryParse(frm.lblSubTotal.Text.Replace("₱", "").Replace("$", "").Replace(",", "").Trim(), out subtotal);
 
             // Compute the correct total
             total = (subtotal + balance) - depositAmount;  // Ensuring proper computation

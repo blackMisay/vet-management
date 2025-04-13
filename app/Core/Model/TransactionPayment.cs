@@ -10,10 +10,13 @@ namespace app.core.model
     internal class TransactionPayment
     {
         public int Id { get; set; }
-        public int InvoiceNumber { get; set; }
+        public string InvoiceNumber { get; set; }
         public Client Client { get; set; }
+        public Pet Pet { get; set; }
         public string Name { get; set; }
-        public decimal Total {  get; set; }
+        public double SubTotalAmount { get; set; }
+        public double TotalAmount {  get; set; }
+        public double ChangeAmount { get; set; }
         public DateTime Date { get; set; }
 
     }

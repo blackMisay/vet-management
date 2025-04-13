@@ -81,7 +81,7 @@ namespace app.view.Transaction
             }
 
             // **Update subtotal and display**
-            UpdateSubTotal();
+            //UpdateSubTotal();
 
             MessageBox.Show($"Item {this.selectedItemDescription} has been added successfully",
                             "Added successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -103,7 +103,7 @@ namespace app.view.Transaction
             // Ensure dictionary has data
             if (selectedItem.Count == 0)
             {
-                frm.lblSubtotal.Text = "$0.00";
+                frm.lblSubTotal.Text = "$0.00";
                 return;
             }
 
@@ -117,15 +117,15 @@ namespace app.view.Transaction
             // Ensure UI updates safely
             if (frm.InvokeRequired)
             {
-                frm.Invoke((MethodInvoker)(() => frm.lblSubtotal.Text = subTotal.ToString("C2")));
+                frm.Invoke((MethodInvoker)(() => frm.lblSubTotal.Text = subTotal.ToString("C2")));
             }
             else
             {
-                frm.lblSubtotal.Text = subTotal.ToString("C2");
+                frm.lblSubTotal.Text = subTotal.ToString("C2");
             }
 
             // Force UI refresh
-            frm.lblSubtotal.Refresh();
+            frm.lblSubTotal.Refresh();
         }
 
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)

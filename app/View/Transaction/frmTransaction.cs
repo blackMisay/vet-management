@@ -4,6 +4,9 @@ using System.Windows.Forms;
 using app.Core.Model;
 using System.Collections.Generic;
 using app.view.Consultation;
+using app.core.model;
+using System.Diagnostics;
+using app.core.repository;
 
 
 namespace app.view.Transaction
@@ -12,16 +15,18 @@ namespace app.view.Transaction
     {
         int patientId = 0;
         int selectedRecord = 0;
+
+        double subTotalAmount = 0;
         double totalAmount = 0;
-        
+        double discountAmount = 0;
+        double otherFeeAmount = 0;
+
         public frmTransaction()
         {
             InitializeComponent();
             decimal price = 0.000m; // Example price
-            lblTotal.Text = $"₱   {price:N2}"; // Format as currency with 2 decimal places
-            lblDeposit.Text = $"₱   {price:N2}";
-            lblSubtotal.Text = $"₱   {price:N2}";
-            lblBalance.Text = $"₱   {price:N2}";
+            lblTotal.Text = $"{price:N2}"; // Format as currency with 2 decimal places
+            lblSubTotal.Text = $"{price:N2}";
            
         }
         
@@ -31,55 +36,19 @@ namespace app.view.Transaction
             lblDate.Text = DateTime.Now.ToString();
             lblInvoice.Text = DateTime.Now.ToString("yyyyMMddhhmmss");
 
-            // Ask the user if it's an existing patient
-            DialogResult result = MessageBox.Show(
-                "Is this transaction for an existing patient?",
-                "Patient Type",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (result == DialogResult.Yes) // Existing patient → Open Consultation Form
+            frmClientPatientForm frmNew = new frmClientPatientForm();
+            frmNew.ShowDialog();
+            if (frmNew.GetPatientId() != 0) 
             {
-                frmConsultation frm = new frmConsultation();
-
-                if (frm.ShowDialog() == DialogResult.OK && frm.SelectedRecord != null)
-                {
-                    this.patientId = frm.SelectedRecord.Id; // Store patient ID
-                    txtName.Text = frm.SelectedRecord.Client.GetFullName(); // Display full client name
-                    txtPet.Text = frm.SelectedRecord.Name; // Display pet name
-                }
-                else
-                {
-                    MessageBox.Show("No patient selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                this.SelectedPatient = frmNew.GetPatientDetails();
+                this.patientId = frmNew.GetPatientId();
+                txtName.Text = frmNew.GetPatientOwnerFullname(); 
+                txtPet.Text = frmNew.GetPatientName();
             }
-            else // New patient → Open Client Patient Form
+            else
             {
-                //frmClientPatientForm frmNew = new frmClientPatientForm();
-
-                if (result== DialogResult.No) 
-                {
-                    frmClientPatientForm frmNew = new frmClientPatientForm();
-                    //Pet selectedPatient = frmNew.GetPatientDetails();
-
-                    if (frmNew.ShowDialog() == DialogResult.OK && frmNew.SelectedPatient != null) 
-                    {
-                        this.patientId = frmNew.SelectedPatient.Id; 
-                        txtName.Text = frmNew.SelectedPatient.Client.GetFullName(); 
-                        txtPet.Text = frmNew.SelectedPatient.Name; 
-                    }
-                    else
-                    {
-                        MessageBox.Show("No valid patient details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No new patient selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                MessageBox.Show("No valid patient details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
 
         }
 
@@ -180,14 +149,6 @@ namespace app.view.Transaction
 
             CalculateTotalPrice();
         }
-
-
-        private void btnQuantity_Click(object sender, EventArgs e)
-        {
-            frmTransactionDeposit frm = new frmTransactionDeposit();
-            frm.ShowDialog();
-
-        }
         private void btnVoidItem_Click(object sender, EventArgs e)
         {
 
@@ -195,21 +156,49 @@ namespace app.view.Transaction
 
         private void CalculateTotalPrice()
         {
-            totalAmount = 0;
             foreach (DataGridViewRow row in dgvTransaction.Rows)
             {
-                totalAmount += Convert.ToDouble(row.Cells["colQuantity"].Value) * Convert.ToDouble(row.Cells["colPrice"].Value);
+                this.subTotalAmount += Convert.ToDouble(row.Cells["colQuantity"].Value) * Convert.ToDouble(row.Cells["colPrice"].Value);
             }
+
+            this.lblSubTotal.Text = subTotalAmount.ToString("N2");
+
+            this.totalAmount = (subTotalAmount - (discountAmount + otherFeeAmount));
 
             this.lblTotal.Text = totalAmount.ToString("N2");
         }
 
         private void btnPayment_Click(object sender, EventArgs e)
         {
+            if (lblSubTotal.Text == "0.00")//₱
+            {
+                return;
+            }
+            using (frmPayment pay = new frmPayment(Convert.ToDouble(lblSubTotal.Text)))
+            {
+                pay.ShowDialog();
 
+                if (pay.ProceedPayment())
+                {
+                    TransactionPayment transPay = new TransactionPayment();
+                    
+                    transPay.InvoiceNumber = lblInvoice.Text;
+                    transPay.Client = new app.Core.Model.Client { Id = SelectedPatient.Client.Id };
+                    transPay.Pet = new Pet { Id = SelectedPatient.Id };
+                    transPay.SubTotalAmount = this.subTotalAmount;
+                    transPay.TotalAmount = this.totalAmount;
+                    transPay.ChangeAmount = pay.GetChangeAmount();
+
+                    TransactionPaymentRepository transPayService = new TransactionPaymentRepository();
+                    if (transPayService.Save(transPay))
+                    {
+                        MessageBox.Show("Payment Completed!");
+                    }
+                }
+            }
         }
 
-        public app.Core.Model.Pet SelectedPatient { get; private set; }
+        public Pet SelectedPatient { get; set; }
         private void GetPatient()
         {
             frmClientPatientForm frm = new frmClientPatientForm();

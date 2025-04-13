@@ -200,23 +200,26 @@ namespace app.view.Client
 
         private void cboRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Check if the selected value is null to avoid exceptions
-            if (cboRegion.SelectedValue == null || this.SelectedRegion.Equals(cboRegion.SelectedValue))
+            if (!(this.Id == 0))
             {
-                return; // No need to update cboProvince if no changes were committed in cboRegion.
+                // Check if the selected value is null to avoid exceptions
+                if (cboRegion.SelectedValue == null || this.SelectedRegion.Equals(cboRegion.SelectedValue))
+                {
+                    return; // No need to update cboProvince if no changes were committed in cboRegion.
 
+                }
+
+                Console.WriteLine(cboRegion.SelectedValue);
+
+                UpgradeFile upgradeFile = new UpgradeFile();
+                cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
+                                                               new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
+                cboProvince.ValueMember = "Key";
+                cboProvince.DisplayMember = "Value";
+
+                // Update the selected region after successful change
+                this.SelectedRegion = Convert.ToInt32(cboRegion.SelectedValue);// TODO:
             }
-
-            Console.WriteLine(cboRegion.SelectedValue);
-
-            UpgradeFile upgradeFile = new UpgradeFile();
-            cboProvince.DataSource = upgradeFile.Populate("SELECT province_code, description FROM addr_province WHERE region_code='@regionCode';",
-                                                           new Dictionary<string, string> { { "@regionCode", cboRegion.SelectedValue.ToString() } });
-            cboProvince.ValueMember = "Key";
-            cboProvince.DisplayMember = "Value";
-
-            // Update the selected region after successful change
-            this.SelectedRegion = Convert.ToInt32(cboRegion.SelectedValue);
         }
 
         private void cboProvince_SelectionChangeCommitted(object sender, EventArgs e)
