@@ -44,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPet = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnPayment = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -54,10 +53,9 @@
             this.btnItemLookUp = new System.Windows.Forms.Button();
             this.btnNewTrans = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lblSubTotal = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTotalAmount = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -71,7 +69,7 @@
             this.lblDate.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.Location = new System.Drawing.Point(144, 17);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(0, 25);
+            this.lblDate.Size = new System.Drawing.Size(0, 19);
             this.lblDate.TabIndex = 7;
             // 
             // dgvTransaction
@@ -157,7 +155,7 @@
             this.panel1.Controls.Add(this.lblDate);
             this.panel1.Location = new System.Drawing.Point(1134, 8);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(363, 150);
+            this.panel1.Size = new System.Drawing.Size(363, 158);
             this.panel1.TabIndex = 15;
             // 
             // lblInvoice
@@ -167,7 +165,7 @@
             this.lblInvoice.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblInvoice.Location = new System.Drawing.Point(0, 92);
             this.lblInvoice.Name = "lblInvoice";
-            this.lblInvoice.Size = new System.Drawing.Size(372, 47);
+            this.lblInvoice.Size = new System.Drawing.Size(305, 39);
             this.lblInvoice.TabIndex = 11;
             this.lblInvoice.Text = "0000000000000000";
             // 
@@ -177,7 +175,7 @@
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 25);
+            this.label2.Size = new System.Drawing.Size(115, 19);
             this.label2.TabIndex = 10;
             this.label2.Text = "Invoice No. :";
             // 
@@ -189,62 +187,53 @@
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.txtPet);
-            this.panel5.Controls.Add(this.txtName);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Location = new System.Drawing.Point(14, 8);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1113, 150);
+            this.panel5.Size = new System.Drawing.Size(1113, 158);
             this.panel5.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 19);
+            this.label1.Location = new System.Drawing.Point(17, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 28);
+            this.label1.Size = new System.Drawing.Size(184, 23);
             this.label1.TabIndex = 10;
             this.label1.Text = "Client Information";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 119);
+            this.label4.Location = new System.Drawing.Point(26, 56);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 24);
+            this.label4.Size = new System.Drawing.Size(94, 21);
             this.label4.TabIndex = 9;
             this.label4.Text = "Pet Name";
             // 
             // txtPet
             // 
-            this.txtPet.Location = new System.Drawing.Point(126, 112);
+            this.txtPet.Location = new System.Drawing.Point(126, 49);
             this.txtPet.Multiline = true;
             this.txtPet.Name = "txtPet";
             this.txtPet.Size = new System.Drawing.Size(229, 28);
             this.txtPet.TabIndex = 8;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(126, 78);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(229, 33);
-            this.txtName.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(26, 85);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 24);
+            this.label3.Size = new System.Drawing.Size(0, 21);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Name";
             // 
             // btnPayment
             // 
             this.btnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPayment.Image = global::app.Properties.Resources.coins;
             this.btnPayment.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPayment.Location = new System.Drawing.Point(18, 324);
+            this.btnPayment.Location = new System.Drawing.Point(18, 183);
             this.btnPayment.Name = "btnPayment";
             this.btnPayment.Size = new System.Drawing.Size(344, 57);
             this.btnPayment.TabIndex = 7;
@@ -283,9 +272,9 @@
             // 
             this.btnVoidTrans.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidTrans.Image = global::app.Properties.Resources.deleted;
-            this.btnVoidTrans.Location = new System.Drawing.Point(938, 618);
+            this.btnVoidTrans.Location = new System.Drawing.Point(18, 256);
             this.btnVoidTrans.Name = "btnVoidTrans";
-            this.btnVoidTrans.Size = new System.Drawing.Size(191, 46);
+            this.btnVoidTrans.Size = new System.Drawing.Size(344, 46);
             this.btnVoidTrans.TabIndex = 13;
             this.btnVoidTrans.Text = "&Void Transaction";
             this.btnVoidTrans.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -295,9 +284,9 @@
             // 
             this.btnVoidItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidItem.Image = global::app.Properties.Resources.deleted;
-            this.btnVoidItem.Location = new System.Drawing.Point(741, 618);
+            this.btnVoidItem.Location = new System.Drawing.Point(18, 326);
             this.btnVoidItem.Name = "btnVoidItem";
-            this.btnVoidItem.Size = new System.Drawing.Size(191, 46);
+            this.btnVoidItem.Size = new System.Drawing.Size(344, 46);
             this.btnVoidItem.TabIndex = 12;
             this.btnVoidItem.Text = "&Void Item";
             this.btnVoidItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -335,9 +324,10 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.lblSubTotal);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.lblTotal);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.lblTotalAmount);
+            this.panel3.Controls.Add(this.btnVoidItem);
+            this.panel3.Controls.Add(this.btnVoidTrans);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.btnPayment);
             this.panel3.Location = new System.Drawing.Point(1147, 189);
@@ -345,56 +335,46 @@
             this.panel3.Size = new System.Drawing.Size(378, 416);
             this.panel3.TabIndex = 15;
             // 
-            // lblSubTotal
+            // lblTotalAmount
             // 
-            this.lblSubTotal.AutoSize = true;
-            this.lblSubTotal.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal.Location = new System.Drawing.Point(211, 18);
-            this.lblSubTotal.Name = "lblSubTotal";
-            this.lblSubTotal.Size = new System.Drawing.Size(97, 47);
-            this.lblSubTotal.TabIndex = 18;
-            this.lblSubTotal.Text = "0.00";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 35);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(148, 34);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Sub-Total:";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(211, 82);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(97, 47);
-            this.lblTotal.TabIndex = 16;
-            this.lblTotal.Text = "0.00";
+            this.lblTotalAmount.AutoSize = true;
+            this.lblTotalAmount.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblTotalAmount.Location = new System.Drawing.Point(83, 55);
+            this.lblTotalAmount.Name = "lblTotalAmount";
+            this.lblTotalAmount.Size = new System.Drawing.Size(123, 59);
+            this.lblTotalAmount.TabIndex = 16;
+            this.lblTotalAmount.Text = "0.00";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(13, 87);
+            this.label5.Location = new System.Drawing.Point(23, 20);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(201, 34);
+            this.label5.Size = new System.Drawing.Size(166, 27);
             this.label5.TabIndex = 15;
             this.label5.Text = "Total Amount:";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(18, 55);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 59);
+            this.label6.TabIndex = 60;
+            this.label6.Text = "₱";
+            // 
             // frmTransaction
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1537, 680);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.btnServiceLookUp);
-            this.Controls.Add(this.btnVoidTrans);
-            this.Controls.Add(this.btnVoidItem);
             this.Controls.Add(this.btnItemLookUp);
             this.Controls.Add(this.btnNewTrans);
             this.Controls.Add(this.btnCancel);
@@ -435,7 +415,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox txtPet;
-        public System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colId;
         private System.Windows.Forms.DataGridViewTextBoxColumn colClientId;
@@ -443,9 +422,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
         private System.Windows.Forms.Panel panel3;
-        public System.Windows.Forms.Label lblSubTotal;
-        private System.Windows.Forms.Label label7;
-        public System.Windows.Forms.Label lblTotal;
+        public System.Windows.Forms.Label lblTotalAmount;
         private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label6;
     }
 }

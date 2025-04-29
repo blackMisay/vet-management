@@ -55,7 +55,7 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -234,7 +234,7 @@
             this.dgvInventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Column2,
-            this.Column12,
+            this.typeID,
             this.Column10,
             this.Column3,
             this.Column11,
@@ -293,13 +293,13 @@
             this.Column2.Name = "Column2";
             this.Column2.Visible = false;
             // 
-            // Column12
+            // typeID
             // 
-            this.Column12.DataPropertyName = "typeDescription";
-            this.Column12.HeaderText = "Type of Product";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.Visible = false;
+            this.typeID.DataPropertyName = "typeDescription";
+            this.typeID.HeaderText = "Type of Product";
+            this.typeID.MinimumWidth = 6;
+            this.typeID.Name = "typeID";
+            this.typeID.Visible = false;
             // 
             // Column10
             // 
@@ -424,7 +424,7 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;

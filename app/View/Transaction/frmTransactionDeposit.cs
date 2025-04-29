@@ -44,15 +44,11 @@ namespace app.view.Transaction
 
             // Convert lblSubtotal and lblBalance safely after removing currency symbols
             double subtotal = 0, balance = 0, total = 0;
-
-            // Remove currency formatting (e.g., "$1,234.56" → "1234.56")
-            double.TryParse(frm.lblSubTotal.Text.Replace("₱", "").Replace("$", "").Replace(",", "").Trim(), out subtotal);
-
             // Compute the correct total
             total = (subtotal + balance) - depositAmount;  // Ensuring proper computation
 
             // Update lblTotal
-            frm.lblTotal.Text = total.ToString("C2"); // Display as currency format
+            frm.lblTotalAmount.Text = total.ToString("C2"); // Display as currency format
 
             // Optional: Clear txtDeposit after updating
             txtDeposit.Clear();
