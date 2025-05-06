@@ -118,6 +118,7 @@
     <Compile Include="core\repository\ClientRepository.cs" />
     <Compile Include="core\repository\ConsultationRepository.cs" />
     <Compile Include="core\repository\InventoryRepository.cs" />
+    <Compile Include="core\repository\MainRepository.cs" />
     <Compile Include="core\repository\MaintenanceRepository.cs" />
     <Compile Include="core\repository\PetRepository.cs" />
     <Compile Include="core\repository\PetVaccinationRepository.cs" />

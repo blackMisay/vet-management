@@ -7,6 +7,8 @@ using app.view.Consultation;
 using app.core.model;
 using System.Diagnostics;
 using app.core.repository;
+using System.Reflection.Emit;
+using System.Linq;
 
 
 namespace app.view.Transaction
@@ -25,13 +27,40 @@ namespace app.view.Transaction
         {
             InitializeComponent();
             decimal price = 0.000m; // Example price
-            lblTotal.Text = $"{price:N2}"; // Format as currency with 2 decimal places
-            lblSubTotal.Text = $"{price:N2}";
+            lblTotalAmount.Text = $"{price:N2}"; // Format as currency with 2 decimal places
            
         }
-        
+
+        public void New()
+        {
+            lblInvoice.Text = DateTime.Now.ToString("yyMMddHHmmss");
+            btnNewTrans.Enabled = false;
+            btnServiceLookUp.Enabled = true;
+            btnVoidItem.Enabled = true;
+            btnVoidTrans.Enabled = true;
+            btnPayment.Enabled = true;
+            btnItemLookUp.Enabled = true;
+            panel1.Enabled = true;
+        }
+
+        public void NewTransaction()
+        {
+            lblInvoice.Text = "000000000000";
+            btnNewTrans.Enabled = true;
+            btnServiceLookUp.Enabled = false;
+            btnVoidItem.Enabled = false;
+            btnVoidTrans.Enabled = false;
+            btnItemLookUp.Enabled = false;
+            btnPayment.Enabled = false;
+            this.KeyPreview = true;
+            txtPet.Text = "";
+            lblTotalAmount.Text = "0.00";
+            dgvTransaction.Rows.Clear();
+        }
+
         private void btnNewTrans_Click(object sender, EventArgs e)
         {
+            this.New();
             // Set the current date and invoice number
             lblDate.Text = DateTime.Now.ToString();
             lblInvoice.Text = DateTime.Now.ToString("yyyyMMddhhmmss");
@@ -42,7 +71,6 @@ namespace app.view.Transaction
             {
                 this.SelectedPatient = frmNew.GetPatientDetails();
                 this.patientId = frmNew.GetPatientId();
-                txtName.Text = frmNew.GetPatientOwnerFullname(); 
                 txtPet.Text = frmNew.GetPatientName();
             }
             else
@@ -161,20 +189,15 @@ namespace app.view.Transaction
                 this.subTotalAmount += Convert.ToDouble(row.Cells["colQuantity"].Value) * Convert.ToDouble(row.Cells["colPrice"].Value);
             }
 
-            this.lblSubTotal.Text = subTotalAmount.ToString("N2");
-
+            
             this.totalAmount = (subTotalAmount - (discountAmount + otherFeeAmount));
 
-            this.lblTotal.Text = totalAmount.ToString("N2");
+            this.lblTotalAmount.Text = totalAmount.ToString("N2");
         }
 
         private void btnPayment_Click(object sender, EventArgs e)
         {
-            if (lblSubTotal.Text == "0.00")//₱
-            {
-                return;
-            }
-            using (frmPayment pay = new frmPayment(Convert.ToDouble(lblSubTotal.Text)))
+            using (frmPayment pay = new frmPayment(Convert.ToDouble(lblTotalAmount.Text)))
             {
                 pay.ShowDialog();
 
@@ -185,7 +208,6 @@ namespace app.view.Transaction
                     transPay.InvoiceNumber = lblInvoice.Text;
                     transPay.Client = new app.Core.Model.Client { Id = SelectedPatient.Client.Id };
                     transPay.Pet = new Pet { Id = SelectedPatient.Id };
-                    transPay.SubTotalAmount = this.subTotalAmount;
                     transPay.TotalAmount = this.totalAmount;
                     transPay.ChangeAmount = pay.GetChangeAmount();
 
@@ -193,7 +215,9 @@ namespace app.view.Transaction
                     if (transPayService.Save(transPay))
                     {
                         MessageBox.Show("Payment Completed!");
+                        
                     }
+                    this.NewTransaction();
                 }
             }
         }

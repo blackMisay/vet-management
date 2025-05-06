@@ -14,6 +14,11 @@ namespace app.core.model
         public Client Client { get; set; }
         public Pet Pet { get; set; }
         public string Name { get; set; }
+        public double Cash { get; set; }
+        public double GCash { get; set; }
+        public string GCashReferenceNumber { get; set; }
+        public double PayMaya { get; set; }
+        public string PayMayaReferenceNumber { get; set; }
         public double SubTotalAmount { get; set; }
         public double TotalAmount {  get; set; }
         public double ChangeAmount { get; set; }

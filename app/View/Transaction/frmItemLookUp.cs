@@ -92,41 +92,7 @@ namespace app.view.Transaction
 
 
         }
-        private void UpdateSubTotal()
-        {
-            // Find the active frmTransaction instance
-            frmTransaction frm = Application.OpenForms.OfType<frmTransaction>().FirstOrDefault();
-
-            // If the form is not open, exit
-            if (frm == null) return;
-
-            // Ensure dictionary has data
-            if (selectedItem.Count == 0)
-            {
-                frm.lblSubTotal.Text = "$0.00";
-                return;
-            }
-
-            // Calculate subtotal
-            double subTotal = selectedItem.Values.Sum(i => i.Qty * i.UnitPrice);
-
-            // Debugging output
-            Console.WriteLine($"Subtotal: {subTotal}");
-            Console.WriteLine($"Total Items: {selectedItem.Count}");
-
-            // Ensure UI updates safely
-            if (frm.InvokeRequired)
-            {
-                frm.Invoke((MethodInvoker)(() => frm.lblSubTotal.Text = subTotal.ToString("C2")));
-            }
-            else
-            {
-                frm.lblSubTotal.Text = subTotal.ToString("C2");
-            }
-
-            // Force UI refresh
-            frm.lblSubTotal.Refresh();
-        }
+       
 
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
