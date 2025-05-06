@@ -83,6 +83,20 @@ namespace app.core.repository
         //                    VALUES(@Transaction,@User,@Cash,@GCash,@GCashRefNo,@PayMaya,@PayMayaRefNo,@Vatable,@Vat,@Discount,@Type,@Name,@IdNumber,@Total,@ChangeAmount)", parameters);
         //    }
         //}
+
+        public bool DeleteHoldOrder(string InvoiceNumber)
+        {
+            
+            {
+                UpgradeFile db = new UpgradeFile();
+                Dictionary<string, string> parameters = new Dictionary<string, string>()
+                {
+                    { "@InvoiceNumber", InvoiceNumber }
+                };
+
+                return db.Save("DELETE hop FROM holdorderproducts hop JOIN holdorders ho ON hop.holdorderId = ho.holdorderId WHERE ho.transactionNo=@TransactionNumber; DELETE ho FROM holdorders ho WHERE ho.transactionNo=@TransactionNumber;", parameters);
+            }
+        }
     }
         }
     

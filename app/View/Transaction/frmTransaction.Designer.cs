@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblDate = new System.Windows.Forms.Label();
             this.dgvTransaction = new System.Windows.Forms.DataGridView();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,9 +53,9 @@
             this.btnItemLookUp = new System.Windows.Forms.Button();
             this.btnNewTrans = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.lblTotalAmount = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -125,10 +125,10 @@
             // 
             // colPrice
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.colPrice.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colPrice.DefaultCellStyle = dataGridViewCellStyle1;
             this.colPrice.HeaderText = "Price";
             this.colPrice.MinimumWidth = 6;
             this.colPrice.Name = "colPrice";
@@ -272,21 +272,22 @@
             // 
             this.btnVoidTrans.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidTrans.Image = global::app.Properties.Resources.deleted;
-            this.btnVoidTrans.Location = new System.Drawing.Point(18, 256);
+            this.btnVoidTrans.Location = new System.Drawing.Point(18, 309);
             this.btnVoidTrans.Name = "btnVoidTrans";
-            this.btnVoidTrans.Size = new System.Drawing.Size(344, 46);
+            this.btnVoidTrans.Size = new System.Drawing.Size(344, 57);
             this.btnVoidTrans.TabIndex = 13;
             this.btnVoidTrans.Text = "&Void Transaction";
             this.btnVoidTrans.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoidTrans.UseVisualStyleBackColor = true;
+            this.btnVoidTrans.Click += new System.EventHandler(this.btnVoidTrans_Click);
             // 
             // btnVoidItem
             // 
             this.btnVoidItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidItem.Image = global::app.Properties.Resources.deleted;
-            this.btnVoidItem.Location = new System.Drawing.Point(18, 326);
+            this.btnVoidItem.Location = new System.Drawing.Point(18, 246);
             this.btnVoidItem.Name = "btnVoidItem";
-            this.btnVoidItem.Size = new System.Drawing.Size(344, 46);
+            this.btnVoidItem.Size = new System.Drawing.Size(344, 57);
             this.btnVoidItem.TabIndex = 12;
             this.btnVoidItem.Text = "&Void Item";
             this.btnVoidItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -335,6 +336,17 @@
             this.panel3.Size = new System.Drawing.Size(378, 416);
             this.panel3.TabIndex = 15;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(18, 55);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 59);
+            this.label6.TabIndex = 60;
+            this.label6.Text = "₱";
+            // 
             // lblTotalAmount
             // 
             this.lblTotalAmount.AutoSize = true;
@@ -355,17 +367,6 @@
             this.label5.Size = new System.Drawing.Size(166, 27);
             this.label5.TabIndex = 15;
             this.label5.Text = "Total Amount:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(18, 55);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 59);
-            this.label6.TabIndex = 60;
-            this.label6.Text = "₱";
             // 
             // frmTransaction
             // 
