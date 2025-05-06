@@ -9,6 +9,7 @@ using System.Diagnostics;
 using app.core.repository;
 using System.Reflection.Emit;
 using System.Linq;
+using Core;
 
 
 namespace app.view.Transaction
@@ -17,7 +18,7 @@ namespace app.view.Transaction
     {
         int patientId = 0;
         int selectedRecord = 0;
-
+        private Dictionary<int, int> localStockCount = new Dictionary<int, int>();
         double subTotalAmount = 0;
         double totalAmount = 0;
         double discountAmount = 0;
@@ -177,9 +178,59 @@ namespace app.view.Transaction
 
             CalculateTotalPrice();
         }
+
+        private void VoidItem()
+        {
+            if (dgvTransaction.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dgvTransaction.SelectedRows[0];
+                int id = Convert.ToInt32(selectedRow.Cells["colId"].Value);
+                string productDesc = Convert.ToString(selectedRow.Cells["colDescription"].Value);
+                int quantity = Convert.ToInt32(selectedRow.Cells["colQuantity"].Value);
+                decimal price = Convert.ToDecimal(selectedRow.Cells["colPrice"].Value);
+
+                decimal itemTotal = price * quantity;
+
+                dgvTransaction.Rows.Remove(selectedRow);
+
+                if (localStockCount.ContainsKey(id))
+                {
+                    localStockCount[id] -= quantity;
+                    if (localStockCount[id] < 0)
+                    {
+                        localStockCount[id] = 0;
+                    }
+                }
+
+                // If no more rows, clear the label
+                if (dgvTransaction.Rows.Count == 0)
+                {
+                    lblTotalAmount.Text = "0.00";
+                }
+                else
+                {
+                    // Recalculate from lblTotalAmount
+                    if (decimal.TryParse(lblTotalAmount.Text, System.Globalization.NumberStyles.Currency, null, out decimal currentTotal))
+                    {
+                        decimal newTotal = currentTotal - itemTotal;
+                        lblTotalAmount.Text = newTotal.ToString("0.00");
+                    }
+                    else
+                    {
+                        lblTotalAmount.Text = "0.00";
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to delete.", "Remove", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
         private void btnVoidItem_Click(object sender, EventArgs e)
         {
-
+            this.VoidItem();
         }
 
         private void CalculateTotalPrice()
@@ -243,5 +294,53 @@ namespace app.view.Transaction
                 }
             }
         }
+
+        private void btnVoidTrans_Click(object sender, EventArgs e)
+        {
+            VoidEntireTransaction();
+        }
+        private void VoidEntireTransaction()
+        {
+            if (dgvTransaction.Rows.Count == 0)
+            {
+                MessageBox.Show("There are no items to void.", "Void Transaction", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show("Are you sure you want to void the entire transaction?",
+                                                   "Confirm Void", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                // Loop through and restore stock
+                foreach (DataGridViewRow row in dgvTransaction.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    int id = Convert.ToInt32(row.Cells["colId"].Value);
+                    int quantity = Convert.ToInt32(row.Cells["colQuantity"].Value);
+
+                    if (localStockCount.ContainsKey(id))
+                    {
+                        localStockCount[id] -= quantity;
+                        if (localStockCount[id] < 0)
+                            localStockCount[id] = 0;
+                    }
+                }
+
+                // Clear DataGridView
+                dgvTransaction.Rows.Clear();
+                txtPet.Text = string.Empty;
+                btnNewTrans .Enabled = true;
+                lblDate.Text = string.Empty;
+                lblInvoice.Text = string.Empty;
+
+                // Clear total amount label
+                lblTotalAmount.Text = "0.00";
+
+                MessageBox.Show("Transaction has been voided.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }

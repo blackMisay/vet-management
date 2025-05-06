@@ -177,52 +177,78 @@ namespace Core
         /// It catches any exceptions that occur during the execution of the query and rethrows them 
         /// with a new exception containing the error message.
         /// </exception>
-            public List<KeyValuePair<int, string>> Populate(string query, Dictionary<string, string> parameters)
+        public List<KeyValuePair<int, string>> Populate(string query, Dictionary<string, string> parameters)
+        {
+            List<KeyValuePair<int, string>> keyValueList;
+            try
             {
-                List<KeyValuePair<int, string>> keyValueList;
-                try
+                this.Connect();
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
                 {
-                    this.Connect();
-                    using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                    if (parameters != null)
                     {
-                        if (parameters != null)
+                        foreach (KeyValuePair<string, string> kvp in parameters)
                         {
-                            foreach (KeyValuePair<string, string> kvp in parameters)
-                            {
-                                cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
-                            }
-                        }
-                        using (MySqlDataReader dr = cmd.ExecuteReader())
-                        {
-                            keyValueList = new List<KeyValuePair<int, string>>();
-                            while (dr.Read())
-                            {
-                                int Id = dr.GetInt32(0);
-                                string Description = dr.GetString(1);
-
-                                KeyValuePair<int, string> category = new KeyValuePair<int, string>(Id, Description);
-                                keyValueList.Add(category);
-                            }
-
-                            dr.Dispose();
-                            cmd.Dispose();
-                            return keyValueList;
+                            cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                         }
                     }
+                    using (MySqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        keyValueList = new List<KeyValuePair<int, string>>();
+                        while (dr.Read())
+                        {
+                            int Id = dr.GetInt32(0);
+                            string Description = dr.GetString(1);
+
+                            KeyValuePair<int, string> category = new KeyValuePair<int, string>(Id, Description);
+                            keyValueList.Add(category);
+                        }
+
+                        dr.Dispose();
+                        cmd.Dispose();
+                        return keyValueList;
+                    }
                 }
-                catch (MySqlException ex)
-                {
-                    // Log or handle specific MySql errors here
-                    throw new Exception($"Error executing query: {ex.Message}");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception($"Unexpected error: {e.Message}");
-                }
-                finally { this.connection.Close(); }
             }
+            catch (MySqlException ex)
+            {
+                // Log or handle specific MySql errors here
+                throw new Exception($"Error executing query: {ex.Message}");
             }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+            finally { this.connection.Close(); }
+        }
 
+        private int id = 0;
 
+        public int Id
+        {
+            get { return id; }
+            private set { id = value; }
+        }
+        public bool Save(string query, Dictionary<string, string> parameters)
+        {
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                {
+                    foreach (KeyValuePair<string, string> kvp in parameters)
+                    {
+                        cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                    }
+                    this.Id = Convert.ToInt32(cmd.ExecuteScalar());
 
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+        }
+
+    }
     }
