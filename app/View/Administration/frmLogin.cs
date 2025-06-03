@@ -46,31 +46,43 @@ namespace app.view.Administration
 
         private void AuthenticateUserCredential()
         {
-            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrWhiteSpace(txtUsername.Text))
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
                 MessageBox.Show("Kindly provide your correct username.", "Username is required", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            if (string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
                 MessageBox.Show("Kindly provide your correct password.", "Password is required", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             User account = new User() { Username = txtUsername.Text, Password = txtPassword.Text };
+
             if (!UserAuthentication.IsAuthenticated(account))
             {
                 MessageBox.Show("The username or password you've entered is invalid.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            using (frmMain main = new frmMain())
+            try
             {
-                this.Hide();
-                main.ShowDialog();
+                using (frmMain main = new frmMain())
+                {
+                    this.Hide();
+                    main.ShowDialog();
+                  
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load the main form: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
                 this.Show();
-                txtPassword.Text = String.Empty;
+                txtPassword.Text = string.Empty;
                 txtUsername.Focus();
             }
         }

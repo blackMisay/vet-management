@@ -121,6 +121,7 @@ namespace app.view.Client
             this.dgvPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPatient.Size = new System.Drawing.Size(1048, 399);
             this.dgvPatient.TabIndex = 2;
+            this.dgvPatient.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellDoubleClick);
             // 
             // Id
             // 
@@ -556,7 +557,6 @@ namespace app.view.Client
             this.dgvClient.TabIndex = 1;
             this.dgvClient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClient_CellClick);
             this.dgvClient.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClient_CellDoubleClick);
-            this.dgvClient.DoubleClick += new System.EventHandler(this.dgvClient_DoubleClick);
             // 
             // panel2
             // 

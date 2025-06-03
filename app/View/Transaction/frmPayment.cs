@@ -1,4 +1,5 @@
-﻿using System;
+﻿using app.core.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,29 +45,67 @@ namespace app.view.Transaction
 
         }
 
+        private TransactionPayment payment = new TransactionPayment();
+        private bool PaymentSuccess = false;
         private void btnPay_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtTotal.Text) || String.IsNullOrWhiteSpace(txtTotal.Text))
-            {
-                MessageBox.Show("Please enter amount.");
-                return;
-            }
+           if (string.IsNullOrWhiteSpace(txtTotal.Text))
+{
+    MessageBox.Show("Please enter an amount.", "Missing Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    return;
+}
 
-            if (Convert.ToDouble(txtTotal.Text) < this.totalAmount)
-            {
-                MessageBox.Show("Invalid entered amount");
-                return;
-            }
+if (!double.TryParse(txtTotal.Text, out double enteredAmount))
+{
+    MessageBox.Show("Invalid amount. Please enter a valid number.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    return;
+}
 
-            this.changeAmount = Convert.ToDouble(txtTotal.Text) - this.totalAmount;
-            
-            this.lblChangeAmount.Text = "Change Amount: " + this.changeAmount.ToString("N2");
+if (enteredAmount < this.totalAmount)
+{
+    MessageBox.Show("Entered amount is less than the total due.", "Insufficient Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    return;
+}
 
-            if (MessageBox.Show("Do you want to proceed on the payment?","Payment",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                isPaymentSuccess = true;
-                this.Close();
-            }
+// Calculate change
+this.changeAmount = enteredAmount - this.totalAmount;
+lblChangeAmount.Text = "Change Amount: " + this.changeAmount.ToString("N2");
+
+// Confirm payment
+var result = MessageBox.Show("Do you want to proceed with the payment?", "Confirm Payment",
+    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+if (result == DialogResult.Yes)
+{
+    // Assign values to payment model
+    payment.TotalAmount = this.totalAmount;
+    payment.ChangeAmount = this.changeAmount;
+    payment.Cash = enteredAmount;
+
+    // Save to database
+    bool saved = SavePayment(payment);
+    if (saved)
+    {
+        PaymentSuccess = true;
+
+        // Show receipt
+        var receiptForm = new frmReceipt(payment);
+        receiptForm.ShowPreview();
+
+        this.Close(); // Optionally close this form
+    }
+    else
+    {
+        MessageBox.Show("Failed to save payment. Please try again.", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+}
+
+
+        }
+        private bool SavePayment(TransactionPayment payment)
+        {
+            // Your real database saving logic
+            return true;
         }
 
         private string Mode(int index)
@@ -105,43 +144,47 @@ namespace app.view.Transaction
 
         private void ComputeChange()
         {
-            double total = Convert.ToDouble(this.lblTotalAmount.Text);
-            double paid = dgvPayment.Rows.Cast<DataGridViewRow>().Sum(row => Convert.ToDouble(row.Cells["Amount"].Value.ToString()));
-            double change = paid - total;
+            double total = Convert.ToDouble(lblTotalAmount.Text);
+            double paid = dgvPayment.Rows.Cast<DataGridViewRow>()
+                            .Sum(row => Convert.ToDouble(row.Cells["Amount"].Value.ToString()));
 
-            if (change > 0)
-            {
-                txtChange.Text = change.ToString("#,##0.00");
-            }
-            else
-            {
-                txtChange.Text = "0.00";
-            }
+            double change = paid - total;
+            txtChange.Text = change > 0 ? change.ToString("#,##0.00") : "0.00";
         }
 
+        private List<PaymentDetail> paymentDetails = new List<PaymentDetail>();
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            string modeOfPayment = Mode(cboMode.SelectedIndex);
-            string referenceNumber = txtRefNum.Text;
-            double amount;
+           string modeOfPayment = Mode(cboMode.SelectedIndex);
+    string referenceNumber = txtRefNum.Text.Trim();
+    double amount;
 
-            if (!double.TryParse(txtCashTendered.Text, out amount))
-            {
-                MessageBox.Show("Invalid amount entered. Please enter a valid numeric value.", "POS App", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+    if (!double.TryParse(txtCashTendered.Text, out amount) || amount <= 0)
+    {
+        MessageBox.Show("Invalid amount entered. Please enter a valid positive number.", "POS App", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        return;
+    }
 
-            if ((modeOfPayment == "GCash" || modeOfPayment == "PayMaya") && string.IsNullOrEmpty(referenceNumber))
-            {
-                MessageBox.Show("Please input the reference number for " + modeOfPayment + " payment.", "POS App", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+    if ((modeOfPayment == "GCash" || modeOfPayment == "PayMaya") && string.IsNullOrEmpty(referenceNumber))
+    {
+        MessageBox.Show($"Please input the reference number for {modeOfPayment} payment.", "POS App", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        return;
+    }
 
-            AddToDGV(modeOfPayment, referenceNumber, amount);
+    // Add payment detail to list
+    paymentDetails.Add(new PaymentDetail
+    {
+        Mode = modeOfPayment,
+        ReferenceNumber = referenceNumber,
+        Amount = amount
+    });
 
-            cboMode.SelectedIndex = 0;
-            txtCashTendered.Clear();
-            txtRefNum.Clear();
+    AddToDGV(modeOfPayment, referenceNumber, amount);
+
+    // Reset inputs
+    cboMode.SelectedIndex = 0;
+    txtCashTendered.Clear();
+    txtRefNum.Clear();
         }
 
         private void cboMode_SelectedIndexChanged(object sender, EventArgs e)

@@ -235,65 +235,134 @@ namespace app.view.Transaction
 
         private void CalculateTotalPrice()
         {
+            subTotalAmount = 0; // Reset the subtotal every time you recalculate
+
             foreach (DataGridViewRow row in dgvTransaction.Rows)
             {
-                this.subTotalAmount += Convert.ToDouble(row.Cells["colQuantity"].Value) * Convert.ToDouble(row.Cells["colPrice"].Value);
+                if (row.IsNewRow) continue;
+
+                int quantity = 1;
+                double price = 0;
+
+                // Try getting quantity safely (default to 1 if parsing fails)
+                if (int.TryParse(row.Cells["colQuantity"].Value?.ToString(), out int parsedQty))
+                {
+                    quantity = parsedQty;
+                }
+
+                // Get the price safely
+                if (double.TryParse(row.Cells["colPrice"].Value?.ToString(), out double parsedPrice))
+                {
+                    price = parsedPrice;
+                }
+
+                subTotalAmount += quantity * price;
             }
 
-            
-            this.totalAmount = (subTotalAmount - (discountAmount + otherFeeAmount));
-
-            this.lblTotalAmount.Text = totalAmount.ToString("N2");
+            totalAmount = subTotalAmount - (discountAmount + otherFeeAmount);
+            lblTotalAmount.Text = totalAmount.ToString("N2");
         }
 
+        private List<PaymentDetail> paymentDetails = new List<PaymentDetail>();
         private void btnPayment_Click(object sender, EventArgs e)
         {
             using (frmPayment pay = new frmPayment(Convert.ToDouble(lblTotalAmount.Text)))
             {
-                pay.ShowDialog();
+                    pay.ShowDialog();
 
-                if (pay.ProceedPayment())
-                {
-                    TransactionPayment transPay = new TransactionPayment();
-                    
-                    transPay.InvoiceNumber = lblInvoice.Text;
-                    transPay.Client = new app.Core.Model.Client { Id = SelectedPatient.Client.Id };
-                    transPay.Pet = new Pet { Id = SelectedPatient.Id };
-                    transPay.TotalAmount = this.totalAmount;
-                    transPay.ChangeAmount = pay.GetChangeAmount();
+                    if (!pay.ProceedPayment())
+                        return;
 
-                    TransactionPaymentRepository transPayService = new TransactionPaymentRepository();
-                    if (transPayService.Save(transPay))
+                    // Null checks before using SelectedPatient
+                    if (SelectedPatient == null || SelectedPatient.Client == null)
                     {
-                        MessageBox.Show("Payment Completed!");
-                        
+                        MessageBox.Show("Patient or client information is missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
-                    this.NewTransaction();
+
+                    // Create payment object safely
+                    TransactionPayment transPay = new TransactionPayment
+                    {
+                        InvoiceNumber = lblInvoice.Text,
+                        Client = new Core.Model.Client { Id = SelectedPatient.Client.Id },
+                        Pet = new Pet { Id = SelectedPatient.Id },
+                        TotalAmount = totalAmount,
+                        ChangeAmount = pay.GetChangeAmount(),
+                        Date = DateTime.Now,
+                        PaymentDetails = new List<PaymentDetail>(), // important initialization
+                        TransactionDetails = new List<TransactionDetail>() // for items & services
+                    };
+
+                    // Collect payment methods
+                    foreach (DataGridViewRow row in pay.dgvPayment.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        string mode = row.Cells["ModeOfPayment"].Value?.ToString();
+                        string reference = row.Cells["Reference"].Value?.ToString();
+                        double amount = Convert.ToDouble(row.Cells["Amount"].Value);
+
+                        transPay.PaymentDetails.Add(new PaymentDetail
+                        {
+                            Mode = mode,
+                            ReferenceNumber = reference ?? string.Empty,
+                            Amount = amount
+                        });
+
+                        switch (mode)
+                        {
+                            case "Cash":
+                                transPay.Cash += amount;
+                                break;
+                            case "GCash":
+                                transPay.GCash += amount;
+                                transPay.GCashReferenceNumber = reference;
+                                break;
+                            case "PayMaya":
+                                transPay.PayMaya += amount;
+                                transPay.PayMayaReferenceNumber = reference;
+                                break;
+                        }
+                    }
+
+                    // Collect transaction items and services
+                    foreach (DataGridViewRow row in dgvTransaction.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        var detail = new TransactionDetail
+                        {
+                            ItemOrServiceId = Convert.ToInt32(row.Cells["colId"].Value),
+                            Description = row.Cells["colDescription"].Value?.ToString() ?? "",
+                            Quantity = Convert.ToInt32(row.Cells["colQuantity"].Value),
+                            Price = Convert.ToDouble(row.Cells["colPrice"].Value)
+                        };
+
+                        transPay.TransactionDetails.Add(detail);
+                    }
+
+                    try
+                    {
+                        TransactionPaymentRepository repo = new TransactionPaymentRepository();
+                        if (repo.SavePayment(transPay))
+                        {
+                            MessageBox.Show("Payment Completed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.NewTransaction(); // reset form
+                        }
+                        else
+                        {
+                            MessageBox.Show("Payment failed to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
-        }
 
         public Pet SelectedPatient { get; set; }
-        private void GetPatient()
-        {
-            frmClientPatientForm frm = new frmClientPatientForm();
-
-            if (frm.ShowDialog() == DialogResult.OK) // Ensure user confirms selection
-            {
-                Pet selectedPet = frm.GetPatientDetails(); // ✅ Retrieve patient details correctly
-
-                if (selectedPet != null) // Ensure a valid patient is selected
-                {
-                    SelectedPatient = selectedPet;
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("No valid patient details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
+        
 
         private void btnVoidTrans_Click(object sender, EventArgs e)
         {

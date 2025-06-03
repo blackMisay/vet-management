@@ -63,7 +63,7 @@ namespace app.core.repository
         public bool Delete(int VaccinationId)
         {
             UpgradeFile ug = new UpgradeFile();
-            return ug.ExecuteQuery("DELETE FROM patient_vaccine WHERE patient_vaccine_id=@Id;",new Dictionary<string, string> { { "@Id", VaccinationId.ToString() } });
+            return ug.ExecuteQuery("DELETE FROM patient_vaccine WHERE patient_vaccine_id=@Id;", new Dictionary<string, string> { { "@Id", VaccinationId.ToString() } });
         }
 
         public void LoadListOfVaccine(ComboBox cmb)
@@ -79,7 +79,7 @@ namespace app.core.repository
         {
             UpgradeFile ug = new UpgradeFile();
             DataTable dt = new DataTable();
-            dt = ug.Load("SELECT * FROM vwpatientvaccination WHERE patient_vaccine_id=@Id;",new Dictionary<string, string> { { "@Id", vaccinationId } });
+            dt = ug.Load("SELECT * FROM vwpatientvaccination WHERE patient_vaccine_id=@Id;", new Dictionary<string, string> { { "@Id", vaccinationId } });
 
             if (dt.Rows.Count == 0)
             {
@@ -99,6 +99,17 @@ namespace app.core.repository
                 VeterinarianId = Convert.ToInt32(dt.Rows[0][8])
             };
             return pv;
+        }
+
+        public DataTable GetUpcomingVaccinations()
+        {
+            string sql = @"SELECT `name`, vaccine, administered_date, expiration_date, veterinarian_id
+                   FROM vwpatientvaccination 
+                   WHERE expiration_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+                   ORDER BY expiration_date ASC;";
+
+            UpgradeFile ug = new UpgradeFile();
+            return ug.Load(sql);
         }
     }
 }

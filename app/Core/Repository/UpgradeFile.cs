@@ -229,26 +229,159 @@ namespace Core
             get { return id; }
             private set { id = value; }
         }
-        public bool Save(string query, Dictionary<string, string> parameters)
+        public bool Save(string query, Dictionary<string, object> parameters)
         {
             try
             {
+                this.Connect();
                 using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
                 {
-                    foreach (KeyValuePair<string, string> kvp in parameters)
+                    foreach (var param in parameters)
                     {
-                        cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                        cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
                     }
-                    this.Id = Convert.ToInt32(cmd.ExecuteScalar());
-
+                    cmd.ExecuteNonQuery();
                     return true;
                 }
             }
-            catch (Exception e)
+            catch (MySqlException ex)
             {
-                throw new Exception(e.Message.ToString());
+                Console.WriteLine("ExecuteQuery MySqlException: " + ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ExecuteQuery Exception: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                this.connection.Close();
             }
         }
 
+        public int ExecuteScalar(string sql, Dictionary<string, object> parameters)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    foreach (var param in parameters)
+                        cmd.Parameters.AddWithValue(param.Key, param.Value);
+
+                    object result = cmd.ExecuteScalar();
+                    return Convert.ToInt32(result);
+                }
+            }
+        }
+
+        public int ExecuteInsertWithId(string sql, Dictionary<string, object> parameters)
+        {
+            try
+            {
+                this.Connect(); // <- Ensure the connection is opened
+                using (var cmd = new MySqlCommand(sql, connection))
+                {
+                    foreach (var p in parameters)
+                        cmd.Parameters.AddWithValue(p.Key, p.Value ?? DBNull.Value);
+
+                    object result = cmd.ExecuteScalar();
+                    return Convert.ToInt32(result);
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public bool ExecuteNonQuery(string sql, Dictionary<string, object> parameters)
+        {
+            try
+            {
+                connection.Open();
+                using (var cmd = new MySqlCommand(sql, connection))
+                {
+                    foreach (var p in parameters)
+                        cmd.Parameters.AddWithValue(p.Key, p.Value);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public Dictionary<string, object> QuerySingle(string sql, Dictionary<string, object> parameters)
+        {
+            try
+            {
+                this.Connect();
+                using (var cmd = new MySqlCommand(sql, connection))
+                {
+                    foreach (var p in parameters)
+                        cmd.Parameters.AddWithValue(p.Key, p.Value ?? DBNull.Value);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var row = new Dictionary<string, object>();
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                row[reader.GetName(i)] = reader.IsDBNull(i) ? null : reader.GetValue(i);
+                            }
+                            return row;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public List<Dictionary<string, object>> Query(string sql, Dictionary<string, object> parameters)
+        {
+            var results = new List<Dictionary<string, object>>();
+            try
+            {
+                this.Connect();
+                using (var cmd = new MySqlCommand(sql, connection))
+                {
+                    foreach (var p in parameters)
+                        cmd.Parameters.AddWithValue(p.Key, p.Value ?? DBNull.Value);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var row = new Dictionary<string, object>();
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                row[reader.GetName(i)] = reader.IsDBNull(i) ? null : reader.GetValue(i);
+                            }
+                            results.Add(row);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return results;
+        }
+
+
     }
-    }
+}

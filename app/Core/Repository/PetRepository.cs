@@ -172,9 +172,9 @@ namespace app.Core.Repository
         {
             string query = "SELECT * FROM vwpatient WHERE petId=@Id;";
             Dictionary<string, string> parameters = new Dictionary<string, string>()
-            {
-                { "@Id", Id.ToString() }
-            };
+    {
+        { "@Id", Id.ToString() }
+    };
 
             UpgradeFile upgrade = new UpgradeFile();
             DataTable dt = upgrade.Load(query, parameters);
@@ -193,6 +193,7 @@ namespace app.Core.Repository
                     Age = row.IsNull("age") ? "" : row["age"].ToString(),
                     Size = row.IsNull("size") ? "" : row["size"].ToString(),
                     Weight = row.IsNull("weight") ? "" : row["weight"].ToString(),
+
                     ColourPattern = new ColourPattern()
                     {
                         Description = row.IsNull("colorName") ? "" : row["colorName"].ToString()
@@ -207,12 +208,12 @@ namespace app.Core.Repository
                     },
                     Breed = new Breed()
                     {
-                        Id = int.TryParse(row["breedDesc"]?.ToString(), out int breedId) ? breedId : 0
+                        Description = row.IsNull("breedDesc") ? "" : row["breedDesc"].ToString()
                     },
+                    Image = row.IsNull("image") ? "" : row["image"].ToString()
                 };
             }
             return null;
-
         }
 
         public void GetAllPetsByOwner(DataGridView dgv, string ownerId)
