@@ -4,13 +4,9 @@ using app.Core.Repository;
 using System;
 using app.Core.Model;
 using Core;
-using System.IO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Collections.Generic;
 using MySqlConnector;
 using System.Data;
-using System.Data.SqlClient;
-
 
 namespace app.view.Client
 {
@@ -19,6 +15,9 @@ namespace app.view.Client
         private int Id = 0;
         private int clientId = 0;
         private int selectedBreedId;
+        private Pet pet;
+        public bool IsViewOnly { get; set; } = false;
+
 
         //Use for updating pet record
         public frmClientPatientModal(int petId)
@@ -29,7 +28,7 @@ namespace app.view.Client
             label5.Text = "Update Pet Information";
             cboSpecies.SelectedIndexChanged += cboSpecies_SelectedIndexChanged;
 
-            
+
 
         }
 
@@ -45,6 +44,8 @@ namespace app.view.Client
         {
             InitializeComponent();
             dtpBday.ValueChanged += new EventHandler(dtpBday_ValueChanged);
+
+           
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -130,22 +131,47 @@ namespace app.view.Client
                 MessageBox.Show("Unable to save the pet record.");
             }
         }
-        private void LoadDetails(app.Core.Model.Pet pet)
+        public void LoadDetails(app.Core.Model.Pet pet)
         {
+            // Make sure combo boxes are populated first!
+            PopulateCmb();
+
+            if (DateTime.TryParse(pet.BirthDate, out DateTime birthDate))
+            {
+                dtpBday.Value = birthDate;
+            }
+
             txtName.Text = pet.Name;
-            //dtpBday.Value = pet.BirthDate;
-            txtAge.Text = pet.Age.ToString();
-            cmbSize.Text = pet.Size.ToString();
+            txtAge.Text = pet.Age?.ToString();
+            cmbSize.Text = pet.Size?.ToString();
             txtWeight.Text = pet.Weight;
-            cboGender.SelectedValue = pet.Gender.Id;
-            cboColor.SelectedValue = pet.ColourPattern.Id;
-            cboSpecies.SelectedValue = pet.Specie.Id;
-            txtBreed.Text = pet.Breed.ToString();
-            pbPetPhoto.ImageLocation = pet.Image; //enhance/VCMS49
+
+            cboGender.SelectedValue = pet.Gender?.Id;
+            cboColor.SelectedValue = pet.ColourPattern?.Id;
+            cboSpecies.SelectedValue = pet.Specie?.Id;
+            txtBreed.Text = pet.Breed?.Description;
+            pbPetPhoto.ImageLocation = pet.Image;
+
+            if (IsViewOnly)
+            {
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+
+                txtName.ReadOnly = true;
+                txtAge.ReadOnly = true;
+                txtWeight.ReadOnly = true;
+                txtBreed.ReadOnly = true;
+                cmbSize.Enabled = false;
+                cboGender.Enabled = false;
+                cboColor.Enabled = false;
+                cboSpecies.Enabled = false;
+                dtpBday.Enabled = false;
+                pbPetPhoto.Enabled = false;
+            }
 
         }
 
-        private void LoadPetDetails()
+        public void LoadPetDetails()
         {
             PetRepository petRepository = new PetRepository();
             var pet = petRepository.GetPetDetails(new app.Core.Model.Pet() { Id = this.Id });

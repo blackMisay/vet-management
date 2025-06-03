@@ -398,12 +398,12 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox txtCashTendered;
+        public System.Windows.Forms.TextBox txtCashTendered;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.TextBox txtRefNum;
+        public System.Windows.Forms.TextBox txtRefNum;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dgvPayment;
+        public System.Windows.Forms.DataGridView dgvPayment;
         private System.Windows.Forms.TextBox txtChange;
         private System.Windows.Forms.DataGridViewTextBoxColumn modeOfPayment;
         private System.Windows.Forms.DataGridViewTextBoxColumn Reference;

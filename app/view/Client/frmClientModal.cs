@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Core;
+using System.Text.RegularExpressions;
 
 namespace app.view.Client
 {
@@ -14,14 +15,19 @@ namespace app.view.Client
         public frmClientModal()
         {
             InitializeComponent();
+            CapitalizeAllTextBoxes(this);
+            SetupMobileNumberTextbox(txtMobile);
+            SetupTelephoneTextbox(txtPhone);
 
             UpgradeFile upgradeFile = new UpgradeFile();
-
             cboRegion.DataSource = upgradeFile.Populate("SELECT code, description FROM addr_region;");
             cboRegion.ValueMember = "Key";
             cboRegion.DisplayMember = "Value";
 
-            PopulateCmb();
+            if (this.Id > 0)
+            {
+                LoadClientDetails();
+            }
         }
 
         public frmClientModal(int clientId)
@@ -35,9 +41,13 @@ namespace app.view.Client
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Save pet details
-            SaveClient();
-            this.Dispose();
+            bool saved = SaveClient(); // SaveClient returns true if successful, false otherwise
+
+            if (saved)
+            {
+                this.Close();  // Close form only if saved successfully
+            }
+            // else: do nothing, so the form stays open for corrections
         }
 
         private void frmClientModal_Load(object sender, EventArgs e)
@@ -109,44 +119,89 @@ namespace app.view.Client
             }
         }
 
-        private void SaveClient()
+        private bool SaveClient()
         {
-            // Create a new client instance and set properties from input fields
+            // Create new client from input with trimmed values
             Core.Model.Client client = new Core.Model.Client
             {
                 Id = this.Id,
-                FirstName = txtFname.Text,
-                LastName = txtLname.Text,
-                MiddleName = txtMname.Text,
-                Suffix = txtSuffix.Text,
-                PhoneNumber = txtPhone.Text,
-                MobileNumber = txtMobile.Text,
-                EmailAddress = txtEmail.Text,
-                StreetNo = richHousenum.Text,
+                FirstName = txtFname.Text.Trim(),
+                LastName = txtLname.Text.Trim(),
+                MiddleName = txtMname.Text.Trim(),
+                Suffix = txtSuffix.Text.Trim(),
+                PhoneNumber = txtPhone.Text.Trim(),
+                MobileNumber = txtMobile.Text.Trim(),
+                EmailAddress = txtEmail.Text.Trim(),
+                StreetNo = richHousenum.Text.Trim(),
                 Region = new Core.Model.Region() { Id = Convert.ToInt32(cboRegion.SelectedValue) },
                 City = new City() { Id = Convert.ToInt32(cboCity.SelectedValue) },
                 Brgy = new Barangay() { Id = Convert.ToInt32(cboBrgy.SelectedValue) },
                 Province = new Province() { Id = Convert.ToInt32(cboProvince.SelectedValue) }
             };
 
-            // Validate email address format
+            // Email validation
             if (!client.EmailAddress.Contains("@") || !client.EmailAddress.Contains(".com"))
             {
                 MessageBox.Show("Invalid Email Address");
-                txtEmail.Focus(); // Set focus to the email input field
-                return; // Exit the method if the email is invalid
+                txtEmail.Focus();
+                return false;
             }
 
-            // Attempt to save the client
+            // Mobile number validation
+            if (!IsValidPhilippineCellphone(client.MobileNumber))
+            {
+                MessageBox.Show("Invalid Philippine mobile number format. It should start with 09 or +639 and be 11 digits.");
+                txtMobile.Focus();
+                return false;
+            }
+
+            // Phone number validation (optional, only if not empty)
+            if (!string.IsNullOrEmpty(client.PhoneNumber) && !IsValidPhilippineTelephone(client.PhoneNumber))
+            {
+                MessageBox.Show("Invalid Philippine telephone number format.");
+                txtPhone.Focus();
+                return false;
+            }
+
+            // Check duplicate client by full name
             ClientRepository clientRepository = new ClientRepository();
+
+            if (clientRepository.ClientExists(client.FirstName, client.LastName, client.MiddleName))
+            {
+                MessageBox.Show("Client with the same full name already exists.");
+                txtFname.Focus();
+                return false;
+            }
+
+            // Save client
             if (clientRepository.Save(client))
             {
                 MessageBox.Show("Saved successfully");
+                return true;
             }
             else
             {
                 MessageBox.Show("Unable to save record");
+                return false;
             }
+        }
+
+        private bool IsValidPhilippineCellphone(string number)
+        {
+            if (string.IsNullOrWhiteSpace(number))
+                return false;
+
+            string pattern = @"^(09|\+639)\d{9}$";
+            return Regex.IsMatch(number.Trim(), pattern);
+        }
+
+        private bool IsValidPhilippineTelephone(string number)
+        {
+            if (string.IsNullOrWhiteSpace(number))
+                return false;
+
+            string pattern = @"^\d{2,4}[- ]?\d{6,8}$";
+            return Regex.IsMatch(number.Trim(), pattern);
         }
 
         private void LoadDetails(app.Core.Model.Client client)
@@ -240,6 +295,112 @@ namespace app.view.Client
                                                        new Dictionary<string, string> { { "@provinceCode", cboProvince.SelectedValue.ToString() } });
             cboCity.ValueMember = "Key";
             cboCity.DisplayMember = "Value";
+        }
+
+        private void CapitalizeAllTextBoxes(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl is TextBox tb)
+                {
+                    tb.TextChanged += (s, e) =>
+                    {
+                        int selStart = tb.SelectionStart;
+                        string original = tb.Text;
+                        string capitalized = CapitalizeWords(original);
+
+                        if (capitalized != original)
+                        {
+                            tb.Text = capitalized;
+                            tb.SelectionStart = selStart; // Preserve caret position
+                        }
+                    };
+                }
+                else if (ctrl.Controls.Count > 0)
+                {
+                    CapitalizeAllTextBoxes(ctrl);
+                }
+            }
+        }
+
+        private string CapitalizeWords(string input)
+        {
+            var words = input.Split(' ');
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrWhiteSpace(words[i]))
+                    words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1).ToLower();
+            }
+            return string.Join(" ", words);
+        }
+        private void SetupMobileNumberTextbox(TextBox textBox)
+        {
+            textBox.Text = "+639"; // Set default on form load
+
+            textBox.Enter += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text) || !textBox.Text.StartsWith("+639"))
+                    textBox.Text = "+639";
+                textBox.SelectionStart = textBox.Text.Length;
+            };
+
+            textBox.KeyPress += (s, e) =>
+            {
+                // Allow only digits and control keys after +639
+                if (textBox.SelectionStart <= 4)
+                {
+                    // Block editing "+639"
+                    e.Handled = true;
+                }
+                else if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            };
+
+            textBox.TextChanged += (s, e) =>
+            {
+                if (!textBox.Text.StartsWith("+639"))
+                {
+                    int cursor = textBox.SelectionStart;
+                    textBox.Text = "+639";
+                    textBox.SelectionStart = textBox.Text.Length;
+                }
+            };
+        }
+
+        private void SetupTelephoneTextbox(TextBox textBox)
+        {
+            textBox.Text = "(0";
+
+            textBox.Enter += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text) || !textBox.Text.StartsWith("(0"))
+                    textBox.Text = "(0";
+                textBox.SelectionStart = textBox.Text.Length;
+            };
+
+            textBox.KeyPress += (s, e) =>
+            {
+                // Prevent editing area code
+                if (textBox.SelectionStart <= 2)
+                {
+                    e.Handled = true;
+                }
+                else if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            };
+
+            textBox.TextChanged += (s, e) =>
+            {
+                if (!textBox.Text.StartsWith("(0"))
+                {
+                    textBox.Text = "(0";
+                    textBox.SelectionStart = textBox.Text.Length;
+                }
+            };
         }
     }
 }

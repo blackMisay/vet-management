@@ -2,9 +2,11 @@
 using app.Properties;
 using Core;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace app.view.Product
@@ -25,6 +27,10 @@ namespace app.view.Product
             dgvProducts.DataSource = upgradeFile.Load("SELECT * FROM vwproduct WHERE isDeleted=0 ORDER BY categoryDescription ASC;");
 
             ProductRepository productRepository = new ProductRepository();
+
+            LoadCategoryComboBox();
+            LoadAllProducts();
+            cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged;
 
         }
 
@@ -61,26 +67,26 @@ namespace app.view.Product
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //TODO: Populate the datagridview based on the filtered name provided in Search box.
-            if (!string.IsNullOrEmpty(txtSearch.Text) || !string.IsNullOrWhiteSpace(txtSearch.Text))
-            {
-                ProductRepository productRepository = new ProductRepository();
-                DataTable dt = productRepository.SearchProduct(txtSearch.Text);
+            ////TODO: Populate the datagridview based on the filtered name provided in Search box.
+            //if (!string.IsNullOrEmpty(txtSearch.Text) || !string.IsNullOrWhiteSpace(txtSearch.Text))
+            //{
+            //    ProductRepository productRepository = new ProductRepository();
+            //    DataTable dt = productRepository.SearchProduct(txtSearch.Text);
 
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    dgvProducts.DataSource = dt;
-                    this.dgvProducts.Columns["Id"].Visible = false;
-                }
-                else
-                {
-                    MessageBox.Show("No results found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("The search field is empty, please provide.", "Empty field", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //    if (dt != null && dt.Rows.Count > 0)
+            //    {
+            //        dgvProducts.DataSource = dt;
+            //        this.dgvProducts.Columns["Id"].Visible = false;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("No results found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("The search field is empty, please provide.", "Empty field", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
 
         }
 
@@ -296,6 +302,48 @@ namespace app.view.Product
 
             }
 
+        private void LoadCategoryComboBox()
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            var rawList = upgradeFile.Populate("SELECT id, description FROM product_category;", null);
+
+            var distinctList = rawList
+                .GroupBy(kv => kv.Key)
+                .Select(g => g.First())
+                .ToList();
+
+            distinctList.Insert(0, new KeyValuePair<int, string>(-1, "All Categories")); // Optional: show all option
+
+            cmbCategory.DataSource = new BindingSource(distinctList, null);
+            cmbCategory.DisplayMember = "Value";
+            cmbCategory.ValueMember = "Key";
+        }
+
+        private void LoadAllProducts()
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+            DataTable dt = upgradeFile.Load("SELECT * FROM vwproduct WHERE isDeleted = 0 ORDER BY categoryDescription ASC;");
+            dgvProducts.DataSource = dt;
+        }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCategory.SelectedIndex != -1)
+            {
+                int selectedCategoryId = ((KeyValuePair<int, string>)cmbCategory.SelectedItem).Key;
+
+                if (selectedCategoryId == -1)
+                {
+                    LoadAllProducts(); // Show everything
+                }
+                else
+                {
+                    ProductRepository productRepo = new ProductRepository();
+                    DataTable filtered = productRepo.GetProductsByCategoryId(selectedCategoryId);
+                    dgvProducts.DataSource = filtered;
+                }
+            }
+        }
     }
 }
 

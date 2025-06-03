@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using app.view.Dashboard;
+using Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,20 +12,23 @@ namespace app.core.repository
 {
     internal class MainRepository
     {
-        public string ComputeAll()
+           public string ComputeAll()
         {
-            string sales = "";
+            decimal total = 0m;
             DataTable dt;
 
             UpgradeFile upgradeFile = new UpgradeFile();
-            dt = upgradeFile.Load("SELECT SUM(total_amount - change_amount) AS todaysales FROM transaction WHERE DATE(date) = CURDATE();");
+            dt = upgradeFile.Load("SELECT IFNULL(SUM(total - `change`), 0) AS todaysales FROM transaction_payment WHERE DATE(date) = CURDATE();");
 
-        if (dt.Rows.Count > 0)
+            if (dt != null && dt.Rows.Count > 0 && dt.Rows[0]["todaysales"] != DBNull.Value)
             {
-                sales = dt.Rows[0]["todaysales"].ToString();
+                decimal.TryParse(dt.Rows[0]["todaysales"].ToString(), out total);
             }
-        return sales;
+
+            return total.ToString("N2"); // Format with 2 decimal places, e.g. 1234.56
         }
+
+        
 
         public string ComputeAllClients()
         {
@@ -39,5 +43,6 @@ namespace app.core.repository
 
             return clients;
         }
-        }
+
+    }
 }

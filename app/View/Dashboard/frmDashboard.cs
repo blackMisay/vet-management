@@ -16,14 +16,14 @@ namespace app.view.Dashboard
         {
             InitializeComponent();
             CheckExpiringItems();
-            SetupDatePicker();
             ComputeTotalSales();
             ComputeTotalClients();
         }
 
         private void frmDashboard_Load(object sender, EventArgs e)
         {
-
+            dgvReminders.CellFormatting += dgvReminders_CellFormatting;
+            LoadVaccinationReminders(); // The method that loads the reminders
         }
 
         private void CheckExpiringItems()
@@ -81,39 +81,6 @@ namespace app.view.Dashboard
                 dgvExpiredItems.DataSource = null;
             }
         }
-        private void SetupDatePicker()
-        {
-            dtpMonthYear.Format = DateTimePickerFormat.Custom;
-            dtpMonthYear.CustomFormat = "MMMM yyyy";
-            dtpMonthYear.ShowUpDown = true;
-        }
-
-        private void btnLoadChart_Click(object sender, EventArgs e)
-        {
-            DateTime selectedDate = dtpMonthYear.Value;
-            int daysInMonth = DateTime.DaysInMonth(selectedDate.Year, selectedDate.Month);
-
-            // Generate dummy data for selected month
-            Random rand = new Random();
-            chartSales.Series.Clear();
-            chartSales.ChartAreas.Clear();
-
-            ChartArea area = new ChartArea("MainArea");
-            chartSales.ChartAreas.Add(area);
-
-            Series series = new Series("Sample Data");
-            series.ChartType = SeriesChartType.Line;
-            series.BorderWidth = 2;
-
-            for (int day = 1; day <= daysInMonth; day++)
-            {
-                DateTime current = new DateTime(selectedDate.Year, selectedDate.Month, day);
-                int value = rand.Next(10, 100); // Random data
-                series.Points.AddXY(current.Day, value);
-            }
-
-            chartSales.Series.Add(series);
-        }
 
         private void ComputeTotalSales()
         {
@@ -145,8 +112,32 @@ namespace app.view.Dashboard
             }
         }
 
+        private void dgvReminders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvReminders.Columns[e.ColumnIndex].Name == "expiration_date")
+            {
+                DateTime expDate = Convert.ToDateTime(e.Value);
+                if (expDate <= DateTime.Now.AddDays(2))
+                {
+                    dgvReminders.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSalmon;
+                }
+                else
+                {
+                    dgvReminders.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+                }
+            }
+        }
+
+        private void LoadVaccinationReminders()
+        {
+            PetVaccinationRepository repo = new PetVaccinationRepository();
+            DataTable upcomingVaccines = repo.GetUpcomingVaccinations();
+
+            dgvReminders.DataSource = upcomingVaccines; // Make sure dgvReminders exists
+        }
+
     }
-    }
+}
 
     
 

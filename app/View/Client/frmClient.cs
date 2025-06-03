@@ -1,3 +1,4 @@
+using app.Core.Model;
 using app.Core.Repository;
 using System;
 using System.Windows.Forms;
@@ -14,8 +15,8 @@ namespace app.view.Client
         public frmClient()
         {
             InitializeComponent();
+            dgvPatient.CellDoubleClick += dgvPatient_CellDoubleClick;
         }
-
 
         public frmClient(int selectedClientId)
         {
@@ -29,15 +30,11 @@ namespace app.view.Client
             frmClientModal newClientForm = new frmClientModal();
             newClientForm.ShowDialog();
             dgvClient.Refresh();
-
         }
-
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            // TODO: Create another constructor for Updating Client record by passing
-            // the Id as parameter.
-            if (dgvClient.RowCount > 0)
+            if (dgvClient.RowCount > 0 && dgvClient.SelectedRows.Count > 0)
             {
                 MessageBox.Show("Are you sure you want to UPDATE pet owner record?", "Please Provide the Information Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 int clientId = Convert.ToInt32(dgvClient.SelectedRows[0].Cells["Id"].Value);
@@ -51,11 +48,9 @@ namespace app.view.Client
             }
         }
 
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //TODO: Populate the datagridview based on the filtered name provided in Search box.
-            if (!string.IsNullOrEmpty(txtSearch.Text) || !string.IsNullOrWhiteSpace(txtSearch.Text))
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
             {
                 ClientRepository repo = new ClientRepository();
                 dgvClient.DataSource = repo.RetrieveSelectedClient(txtSearch.Text);
@@ -69,56 +64,93 @@ namespace app.view.Client
 
         private void dgvClient_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO: Get the id of the selected record.
-            if (dgvClient.RowCount > 0)
+            // Ignore header clicks
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            var cellValue = dgvClient.Rows[e.RowIndex].Cells["Id"]?.Value;
+
+            if (cellValue == null || !int.TryParse(cellValue.ToString(), out int clientId))
             {
-                int selectedRowIndex = dgvClient.SelectedCells[0].RowIndex;
-                this.selectedClientId = Convert.ToInt32(dgvClient.Rows[selectedRowIndex].Cells[0].Value?.ToString());
+                MessageBox.Show("Invalid client id.");
+                return;
             }
+
+            // Optional: Do something with clientId
         }
 
         private void dgvClient_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO: Using the returned id from the cellClick event. Used it to
-            // retrieve the record from the database.
+
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            try
+            {
+                var cellValue = dgvClient.Rows[e.RowIndex].Cells["Id"].Value;
+
+                if (cellValue == null)
+                {
+                    MessageBox.Show("No client ID found.");
+                    return;
+                }
+
+                int clientId = Convert.ToInt32(cellValue);
+
+                // Set the class-level selectedClientId for LoadClient and LoadPets to use
+                this.selectedClientId = clientId;
+
+                var repo = new ClientRepository();
+                var client = repo.GetClientInformation(new app.Core.Model.Client { Id = clientId });
+
+                if (client != null)
+                {
+                    MessageBox.Show("Client: " + client.GetFullName()); // or GetClientFullName() if implemented
+
+                    // Load details into UI using the selectedClientId
+                    this.LoadClient();
+                    this.LoadPets();
+                }
+                else
+                {
+                    MessageBox.Show("Client not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error: " + ex.Message);
+            }
+
         }
 
         private void btnAddPatient_Click(object sender, EventArgs e)
         {
             if (dgvClient.SelectedRows.Count == 0)
             {
-                // If the user wants to add a record, inform them to select a pet owner
                 MessageBox.Show("Please select a pet owner, you cannot add a new patient/pet if there's no selected pet owner", "Select Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                // Confirm with the user before adding new record
                 DialogResult addConfirmation = MessageBox.Show("Are you sure you want to ADD new pet record?", "Add New Pet Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (addConfirmation == DialogResult.Yes)
                 {
-                    // Proceed with adding a new record
                     int clientId = Convert.ToInt32(dgvClient.SelectedRows[0].Cells["Id"].Value);
                     int petId = 0;
                     frmClientPatientModal frm = new frmClientPatientModal(petId, clientId);
                     frm.ShowDialog();
                     dgvPatient.Refresh();
-
                 }
             }
-
         }
 
         private void btnEditPatient_Click(object sender, EventArgs e)
         {
             if (dgvPatient.SelectedRows.Count == 0)
             {
-                // Inform the user to select a record to update
                 MessageBox.Show("Please select a pet record first to update.", "Select Pet Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                // Confirm with the user before updating the record
                 DialogResult updateConfirmation = MessageBox.Show("Are you sure you want to UPDATE the pet record?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (updateConfirmation == DialogResult.Yes)
@@ -131,21 +163,33 @@ namespace app.view.Client
             }
         }
 
-        private void dgvClient_DoubleClick(object sender, EventArgs e)
-        {
-            this.LoadClient();
-            this.LoadPets();
-        }
-
         private void LoadClient()
         {
             ClientRepository repo = new ClientRepository();
-            client = new Core.Model.Client();
-            client = repo.GetClientInformation(new Core.Model.Client() { Id = this.selectedClientId });
+            client = repo.GetClientInformation(new app.Core.Model.Client() { Id = this.selectedClientId });
 
-            txtFullname.Text = client.GetFullName();
-            txtContacts.Text = client.GetAllContact();
-            txtAddress.Text = client.GetFullAddress();
+            if (client == null)
+            {
+                MessageBox.Show("Client not found.");
+                ClearClientFields();
+                return;
+            }
+
+            if (txtFullname != null)
+                txtFullname.Text = client.GetFullName();
+
+            if (txtContacts != null)
+                txtContacts.Text = client.GetAllContact();
+
+            if (txtAddress != null)
+                txtAddress.Text = client.GetFullAddress();
+        }
+
+        private void ClearClientFields()
+        {
+            if (txtFullname != null) txtFullname.Text = "";
+            if (txtContacts != null) txtContacts.Text = "";
+            if (txtAddress != null) txtAddress.Text = "";
         }
 
         private void LoadPets()
@@ -158,29 +202,23 @@ namespace app.view.Client
         {
             if (dgvPatient.SelectedRows.Count == 0)
             {
-                // Inform the user to select a record to update
                 MessageBox.Show("Please select a pet record first to DELETE.", "Select Pet Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                // Confirm with the user before deleting the record
                 DialogResult deleteConfirmation = MessageBox.Show("Are you sure you want to DELETE the pet record?", "Delete Record", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (deleteConfirmation == DialogResult.OK)
                 {
-                    // Get the ID of the selected record
                     int petId = Convert.ToInt32(dgvPatient.SelectedRows[0].Cells["Id"].Value);
 
-                    // Call a method to delete the record from the database
                     PetRepository pet = new PetRepository();
                     bool isDeleted = pet.Delete(petId);
 
                     if (isDeleted)
                     {
-                        // Remove the selected row from the DataGridView
                         dgvPatient.Rows.Remove(dgvPatient.SelectedRows[0]);
                         dgvPatient.RefreshEdit();
-
                         MessageBox.Show("Record deleted successfully.", "Delete Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -193,7 +231,7 @@ namespace app.view.Client
 
         private void btnSearchPet_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtSearchPet.Text) || !string.IsNullOrWhiteSpace(txtSearchPet.Text))
+            if (!string.IsNullOrWhiteSpace(txtSearchPet.Text))
             {
                 PetRepository repo = new PetRepository();
                 dgvPatient.DataSource = repo.RetrieveSelectedPatient(txtSearchPet.Text);
@@ -207,52 +245,59 @@ namespace app.view.Client
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            // Get the text from the TextBox
             string name = txtSearch.Text;
-
-            // Check if the text is not empty
             if (!string.IsNullOrEmpty(name))
             {
-                // Trim any leading or trailing spaces
-                name = name.Trim();
-
-                // If there is any text, convert it to sentence case
-                if (name.Length > 0)
-                {
-                    // Convert the first character to uppercase and the rest to lowercase
-                    name = char.ToUpper(name[0]) + name.Substring(1).ToLower();
-                }
-
-                // To avoid triggering the TextChanged event, use this:
+                name = char.ToUpper(name[0]) + name.Substring(1).ToLower();
                 txtSearch.Text = name;
-                txtSearch.SelectionStart = name.Length;  // Keep the cursor at the end of the text
+                txtSearch.SelectionStart = name.Length;
             }
         }
 
         private void txtSearchPet_TextChanged(object sender, EventArgs e)
         {
-            // Get the text from the TextBox
             string name = txtSearchPet.Text;
-
-            // Check if the text is not empty
             if (!string.IsNullOrEmpty(name))
             {
-                // Trim any leading or trailing spaces
-                name = name.Trim();
-
-                // If there is any text, convert it to sentence case
-                if (name.Length > 0)
-                {
-                    // Convert the first character to uppercase and the rest to lowercase
-                    name = char.ToUpper(name[0]) + name.Substring(1).ToLower();
-                }
-
-                // To avoid triggering the TextChanged event, use this:
+                name = char.ToUpper(name[0]) + name.Substring(1).ToLower();
                 txtSearchPet.Text = name;
-                txtSearchPet.SelectionStart = name.Length;  // Keep the cursor at the end of the text
+                txtSearchPet.SelectionStart = name.Length;
             }
         }
+
+        private void dgvPatient_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dgvPatient.Enabled = false;
+
+                try
+                {
+                    int petId = Convert.ToInt32(dgvPatient.Rows[e.RowIndex].Cells["Id"].Value);
+                    PetRepository repo = new PetRepository();
+                    Pet selectedPet = repo.GetPetCompleteDetails(petId);
+
+                    if (selectedPet != null)
+                    {
+                        using (frmClientPatientModal modal = new frmClientPatientModal())
+                        {
+                            modal.IsViewOnly = true;
+                            modal.LoadDetails(selectedPet);
+                            modal.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to find details for the selected pet.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                finally
+                {
+                    dgvPatient.Enabled = true;
+                }
+            }
+
+        }
     }
-}
-    
-    
+    }
+

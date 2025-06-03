@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProducts));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,22 +41,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnReport = new System.Windows.Forms.Button();
             this.btnSaveProduct = new System.Windows.Forms.Button();
             this.btnEditProduct = new System.Windows.Forms.Button();
             this.btnRemoveProduct = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -89,8 +88,8 @@
             // Column4
             // 
             this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column4.HeaderText = "Birthday";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -126,17 +125,25 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cmbCategory);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnReport);
             this.panel2.Controls.Add(this.btnSaveProduct);
             this.panel2.Controls.Add(this.btnEditProduct);
             this.panel2.Controls.Add(this.btnRemoveProduct);
-            this.panel2.Controls.Add(this.txtSearch);
-            this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Location = new System.Drawing.Point(1, 56);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1529, 56);
             this.panel2.TabIndex = 1;
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Location = new System.Drawing.Point(195, 20);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(332, 29);
+            this.cmbCategory.TabIndex = 18;
+            this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -207,26 +214,6 @@
             this.btnRemoveProduct.UseVisualStyleBackColor = false;
             this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(195, 20);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(332, 28);
-            this.txtSearch.TabIndex = 1;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Image = global::app.Properties.Resources.icons8_google_web_search_16;
-            this.btnSearch.Location = new System.Drawing.Point(533, 18);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(95, 31);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // dgvProducts
             // 
             this.dgvProducts.AllowUserToAddRows = false;
@@ -253,6 +240,51 @@
             this.dgvProducts.Size = new System.Drawing.Size(1529, 706);
             this.dgvProducts.TabIndex = 2;
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "prodID";
+            this.Id.HeaderText = "ID";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Category
+            // 
+            this.Category.DataPropertyName = "categoryDescription";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Category.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Category.HeaderText = "Category";
+            this.Category.MinimumWidth = 100;
+            this.Category.Name = "Category";
+            this.Category.Visible = false;
+            // 
+            // Brand
+            // 
+            this.Brand.DataPropertyName = "brandDesc";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Brand.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Brand.HeaderText = "Brand";
+            this.Brand.MinimumWidth = 50;
+            this.Brand.Name = "Brand";
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.DataPropertyName = "prodDesc";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Description.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Description.HeaderText = "Description";
+            this.Description.MinimumWidth = 400;
+            this.Description.Name = "Description";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "isDeleted";
+            this.Column1.HeaderText = "isDeleted";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            // 
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
@@ -270,51 +302,6 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "prodID";
-            this.Id.HeaderText = "ID";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Category
-            // 
-            this.Category.DataPropertyName = "categoryDescription";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Category.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Category.HeaderText = "Category";
-            this.Category.MinimumWidth = 100;
-            this.Category.Name = "Category";
-            this.Category.Visible = false;
-            // 
-            // Brand
-            // 
-            this.Brand.DataPropertyName = "brandDesc";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Brand.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Brand.HeaderText = "Brand";
-            this.Brand.MinimumWidth = 50;
-            this.Brand.Name = "Brand";
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.DataPropertyName = "prodDesc";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Description.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Description.HeaderText = "Description";
-            this.Description.MinimumWidth = 400;
-            this.Description.Name = "Description";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "isDeleted";
-            this.Column1.HeaderText = "isDeleted";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
             // 
             // frmProducts
             // 
@@ -349,8 +336,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.DataGridView dgvProducts;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnSaveProduct;
         private System.Windows.Forms.Button btnEditProduct;
         private System.Windows.Forms.Button btnRemoveProduct;
@@ -364,5 +349,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Brand;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.ComboBox cmbCategory;
     }
 }

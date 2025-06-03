@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using Core;
+using System.Linq;
+using System.Windows.Forms;
 
 
 namespace app.core.repository
@@ -12,7 +14,8 @@ namespace app.core.repository
         int prodId;
         public DataTable SearchProduct(string searchValue)
         {
-            string query = "SELECT * FROM vwproduct WHERE `categoryDescription` LIKE @searchValue;";
+            string query = "SELECT * FROM vwproduct WHERE isDeleted = 0 AND categoryDescription = @categID;";
+
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
                 {"@searchValue", "%" + searchValue + "%" }
@@ -84,9 +87,21 @@ namespace app.core.repository
                 };
             }
             return null;
-
-
-
         }
+        public DataTable GetProductsByCategoryId(int categID)
+        {
+            string query = "SELECT * FROM vwproduct WHERE isDeleted = 0 AND categoryDescription = @categID;";
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+    {
+        { "@categID", categID.ToString() }
+    };
+
+            UpgradeFile upgradeFile = new UpgradeFile();
+            return upgradeFile.Load(query, parameters);
+        }
+
+        
+
+
     }
 }

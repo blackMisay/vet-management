@@ -40,7 +40,7 @@ namespace app.Core.Model
         public string GetClientFullName()
         {
             return string.Join(" ", new[] { FirstName, MiddleName, LastName, Suffix }
-                .Where(s => !string.IsNullOrWhiteSpace(s)));
+        .Where(s => !string.IsNullOrWhiteSpace(s)));
         }
     }
 }

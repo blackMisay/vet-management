@@ -110,9 +110,9 @@
     <Compile Include="core\model\Region.cs" />
     <Compile Include="core\model\Services.cs" />
     <Compile Include="core\model\Species.cs" />
-    <Compile Include="core\model\TransactionItem.cs" />
+    <Compile Include="core\model\PaymentDetail.cs" />
     <Compile Include="core\model\TransactionPayment.cs" />
-    <Compile Include="core\model\TransactionService.cs" />
+    <Compile Include="core\model\TransactionDetail.cs" />
     <Compile Include="core\model\Treatment.cs" />
     <Compile Include="core\model\User.cs" />
     <Compile Include="core\repository\ClientRepository.cs" />
@@ -299,6 +299,12 @@
     <Compile Include="view\Transaction\frmPayment.Designer.cs">
       <DependentUpon>frmPayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Transaction\frmReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Transaction\frmReceipt.Designer.cs">
+      <DependentUpon>frmReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Transaction\frmTransactionDeposit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -411,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Transaction\frmPayment.resx">
       <DependentUpon>frmPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Transaction\frmReceipt.resx">
+      <DependentUpon>frmReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Transaction\frmTransactionDeposit.resx">
       <DependentUpon>frmTransactionDeposit.cs</DependentUpon>
