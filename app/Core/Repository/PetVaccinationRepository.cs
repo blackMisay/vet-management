@@ -1,115 +1,162 @@
-﻿using app.Core.Model;
+﻿using app.core.model;
 using Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data;
-using System.Threading.Tasks;
-using app.core.model;
 using System.Windows.Forms;
 
 namespace app.core.repository
 {
     internal class PetVaccinationRepository
     {
-        public PetVaccinationRepository() { }
+        private readonly UpgradeFile _db;
 
-        public void LoadVaccination(DataGridView datagridview)
+        public PetVaccinationRepository()
         {
-            UpgradeFile ug = new UpgradeFile();
-            datagridview.DataSource = ug.Load("SELECT patient_vaccine_id,`name`,vaccine,lot_number,dosage,administered_date,expiration_date,veterinarian_id FROM vwpatientvaccination;");
+            _db = new UpgradeFile();
         }
 
-        public void SearchVaccination(DataGridView datagridview, string petName)
+        public void LoadVaccinations(DataGridView grid)
         {
-            UpgradeFile ug = new UpgradeFile();
-            datagridview.DataSource = ug.Load("SELECT patient_vaccine_id,`name`,vaccine,lot_number,dosage,administered_date,expiration_date FROM vwpatientvaccination WHERE `name`=@PetName;", new Dictionary<string, string> { { "@PetName", petName } });
+            string query = @"SELECT record_id,patient_name,vaccine_name,administered_date,expiration_date,veterinarian_name FROM vw_patient_vaccine_record";
+            grid.DataSource = _db.Load(query);
         }
+
+        public void SearchVaccination(DataGridView dgv, string keyword)
+        {
+            string query = @"
+        SELECT * FROM vw_patient_vaccination 
+        WHERE pet_name LIKE @Keyword 
+           OR vaccine_name LIKE @Keyword 
+           OR lot_number LIKE @Keyword 
+           OR veterinarian_name LIKE @Keyword";
+
+            var parameters = new Dictionary<string, string>
+    {
+        { "@Keyword", $"%{keyword}%" }
+    };
+
+            var result = _db.Load(query, parameters);
+            dgv.DataSource = result;
+        }
+
 
         public bool Save(PetVaccination vaccination)
         {
-            string sql;
+            bool isUpdate = vaccination.Id > 0;
 
-            bool saveState = vaccination.Id > 0 ? true : false;
+            string query;
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
 
-
-            Dictionary<string, string> parameters = new Dictionary<string, string>()
+            if (isUpdate)
             {
-                {"@Id", Convert.ToString(vaccination.Id) },
-                {"@PetId", Convert.ToString(vaccination.PetId) },
-                {"@VaccinationId", vaccination.VaccinationId.ToString() },
-                {"@LotNumber", vaccination.LotNumber },
-                {"@Dosage", vaccination.Dosage},
-                {"@AdministeredDate", vaccination.AdministeredDate},
-                {"@ExpirationDate", vaccination.ExpirationDate },
-                {"@VeterinarianId", vaccination.VeterinarianId.ToString() }
-            };
+                query = @"
+            UPDATE patient_pet_vaccine
+            SET patient_id = @PetId,
+                vaccine_id = @VaccineId,
+                lot_number = @LotNumber,
+                administered_date = @AdministeredDate,
+                expiration_date = @ExpirationDate,
+                veterinarian_id = @VeterinarianId
+            WHERE patient_vaccine_id = @Id";
 
-            if (saveState)
-            {
-                sql = "UPDATE patient_vaccine SET patient_id=@PetId,vaccine_id=@VaccinationId,lot_number=@LotNumber,dosage=@Dosage,administered_date=@AdministeredDate,expiration_date=@ExpirationDate,veterinarian_id=@VeterinarianId WHERE patient_vaccine_id=@Id;";
+                parameters.Add("@Id", vaccination.Id.ToString());
             }
             else
             {
-                sql = "INSERT INTO patient_vaccine(patient_id,vaccine_id,lot_number,dosage,administered_date,expiration_date,veterinarian_id) VALUES(@PetId,@VaccinationId,@LotNumber,@Dosage,@AdministeredDate,@ExpirationDate,@VeterinarianId);";
+                query = @"
+            INSERT INTO patient_pet_vaccine
+            (patient_id, vaccine_id, lot_number, administered_date, expiration_date, veterinarian_id)
+            VALUES
+            (@PetId, @VaccineId, @LotNumber, @AdministeredDate, @ExpirationDate, @VeterinarianId)";
             }
 
-            UpgradeFile upgradeFile = new UpgradeFile();
-            if (upgradeFile.ExecuteQuery(sql, parameters))
-                return true;
-            return false;
+            parameters.Add("@PetId", vaccination.PetId.ToString());
+            parameters.Add("@VaccineId", vaccination.VaccinationId.ToString());
+            parameters.Add("@LotNumber", vaccination.LotNumber ?? "");
+            parameters.Add("@AdministeredDate", vaccination.AdministeredDate.ToString("yyyy-MM-dd"));
+            parameters.Add("@ExpirationDate", vaccination.ExpirationDate.ToString("yyyy-MM-dd"));
+            parameters.Add("@VeterinarianId", vaccination.VeterinarianId.ToString());
+
+            return _db.ExecuteQuery(query, parameters);
         }
 
-        public bool Delete(int VaccinationId)
+        public bool Delete(int vaccinationId)
         {
-            UpgradeFile ug = new UpgradeFile();
-            return ug.ExecuteQuery("DELETE FROM patient_vaccine WHERE patient_vaccine_id=@Id;", new Dictionary<string, string> { { "@Id", VaccinationId.ToString() } });
+            string query = "DELETE FROM patient_pet_vaccine WHERE patient_vaccine_id = @Id";
+            var parameters = new Dictionary<string, string> { { "@Id", vaccinationId.ToString() } };
+            return _db.ExecuteQuery(query, parameters);
         }
 
-        public void LoadListOfVaccine(ComboBox cmb)
+        public PetVaccination GetById(string id)
         {
-            string sql = "SELECT id,serviceCode FROM services WHERE serviceType=5 ORDER BY serviceCode;";
-            UpgradeFile ug = new UpgradeFile();
-            cmb.DataSource = ug.Load(sql);
-            cmb.ValueMember = "id";
-            cmb.DisplayMember = "serviceCode";
-        }
+            string query = "SELECT record_id,patient_name,vaccine_name,administered_date,expiration_date,veterinarian_name FROM vw_patient_vaccine_record WHERE record_id = @Id";
+            var parameters = new Dictionary<string, string> { { "@Id", id } };
+            var dt = _db.Load(query, parameters);
 
-        public PetVaccination GetVaccinationDetails(string vaccinationId)
-        {
-            UpgradeFile ug = new UpgradeFile();
-            DataTable dt = new DataTable();
-            dt = ug.Load("SELECT * FROM vwpatientvaccination WHERE patient_vaccine_id=@Id;", new Dictionary<string, string> { { "@Id", vaccinationId } });
+            if (dt.Rows.Count == 0) return null;
 
-            if (dt.Rows.Count == 0)
+            var row = dt.Rows[0];
+            return new PetVaccination
             {
-                return null;
-            }
-
-            PetVaccination pv = new PetVaccination()
-            {
-                Id = Convert.ToInt32(dt.Rows[0][0]),
-                PetId = Convert.ToInt32(dt.Rows[0][1]),
-                PetName = dt.Rows[0][2].ToString(),
-                VaccinationName = dt.Rows[0][3].ToString(),
-                LotNumber = dt.Rows[0][4].ToString(),
-                Dosage = dt.Rows[0][5].ToString(),
-                AdministeredDate = dt.Rows[0][6].ToString(),
-                ExpirationDate = dt.Rows[0][7].ToString(),
-                VeterinarianId = Convert.ToInt32(dt.Rows[0][8])
+                Id = Convert.ToInt32(row["record_id"]),
+                PetName = row["patient_name"].ToString(),
+                VaccinationName = row["vaccine_name"].ToString(),
+                AdministeredDate = DateTime.Parse(row["administered_date"].ToString()),
+                ExpirationDate = DateTime.Parse(row["expiration_date"].ToString()),
+                VeterinarianName = row["veterinarian_name"].ToString()
             };
-            return pv;
         }
 
-        public DataTable GetUpcomingVaccinations()
+        public DataTable GetUpcomingExpirations()
         {
-            string sql = @"SELECT `name`, vaccine, administered_date, expiration_date, veterinarian_id
-                   FROM vwpatientvaccination 
-                   WHERE expiration_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
-                   ORDER BY expiration_date ASC;";
+            string query = @"SELECT pet_name, vaccine_name, administered_date, expiration_date, veterinarian_name
+                             FROM vw_patient_vaccination
+                             WHERE expiration_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+                             ORDER BY expiration_date";
 
-            UpgradeFile ug = new UpgradeFile();
-            return ug.Load(sql);
+            return _db.Load(query);
         }
+        public List<KeyValuePair<int, string>> LoadistofVaccine()
+        {
+            var vaccines = new List<KeyValuePair<int, string>>();
+            string query = "SELECT id, description FROM consultation_medication"; // <- Fix this if needed
+            var dt = _db.Load(query);
+
+            if (dt == null || dt.Rows.Count == 0)
+                return vaccines;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                int id = Convert.ToInt32(row["id"]);
+                string description = row["description"].ToString();
+                vaccines.Add(new KeyValuePair<int, string>(id, description));
+            }
+
+            return vaccines;
+        }
+
+        public void LoadListOfVaccine(ComboBox comboBox)
+        {
+            string query = "SELECT id AS Key, description AS Value FROM consultation_medication WHERE type = 'Vaccine'";
+            var dt = _db.Load(query);
+
+            comboBox.DataSource = dt;
+            comboBox.DisplayMember = "Value";
+            comboBox.ValueMember = "Key";
+            comboBox.SelectedIndex = -1;
+        }
+
+        public DataTable GetUpcomingVaccinations(int daysAhead = 7)
+        {
+            string query = $@"
+        SELECT * FROM vw_patient_vaccination
+        WHERE expiration_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL {daysAhead} DAY)";
+
+            return _db.Load(query, null);
+        }
+
+
+
     }
 }

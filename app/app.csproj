@@ -89,10 +89,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\Extensions\extension.cs" />
     <Compile Include="core\model\Barangay.cs" />
     <Compile Include="core\model\Brand.cs" />
     <Compile Include="core\model\Breed.cs" />
+    <Compile Include="core\model\Category.cs" />
     <Compile Include="core\model\City.cs" />
+    <Compile Include="core\model\Supplier.cs" />
     <Compile Include="core\model\Transaction.cs" />
     <Compile Include="core\model\ColourPattern.cs" />
     <Compile Include="core\model\Complaint.cs" />
@@ -197,11 +200,23 @@
     <Compile Include="view\Consultation\frmConsultation.Designer.cs">
       <DependentUpon>frmConsultation.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Consultation\frmConsultationHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Consultation\frmConsultationHistory.Designer.cs">
+      <DependentUpon>frmConsultationHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Consultation\frmConsultationModal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="view\Consultation\frmConsultationModal.Designer.cs">
       <DependentUpon>frmConsultationModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Consultation\frmMedicines.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Consultation\frmMedicines.Designer.cs">
+      <DependentUpon>frmMedicines.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Dashboard\frmDashboard.cs">
       <SubType>Form</SubType>
@@ -227,6 +242,12 @@
     <Compile Include="view\Immunization\frmImmunizationModal.Designer.cs">
       <DependentUpon>frmImmunizationModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Immunization\frmVaccine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Immunization\frmVaccine.Designer.cs">
+      <DependentUpon>frmVaccine.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Inventory\frmInventory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +259,12 @@
     </Compile>
     <Compile Include="view\Inventory\frmInventoryModal.Designer.cs">
       <DependentUpon>frmInventoryModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Inventory\frmStockTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Inventory\frmStockTransaction.Designer.cs">
+      <DependentUpon>frmStockTransaction.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Maintenance\frmMaintenanceModal.cs">
       <SubType>Form</SubType>
@@ -286,6 +313,12 @@
     </Compile>
     <Compile Include="view\Services\frmServicesModal.Designer.cs">
       <DependentUpon>frmServicesModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Transaction\frmConsultationLookUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Transaction\frmConsultationLookUp.Designer.cs">
+      <DependentUpon>frmConsultationLookUp.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Transaction\frmItemLookUp.cs">
       <SubType>Form</SubType>
@@ -364,8 +397,14 @@
     <EmbeddedResource Include="view\Consultation\frmConsultation.resx">
       <DependentUpon>frmConsultation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Consultation\frmConsultationHistory.resx">
+      <DependentUpon>frmConsultationHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Consultation\frmConsultationModal.resx">
       <DependentUpon>frmConsultationModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Consultation\frmMedicines.resx">
+      <DependentUpon>frmMedicines.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Dashboard\frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
@@ -380,12 +419,18 @@
     <EmbeddedResource Include="view\Immunization\frmImmunizationModal.resx">
       <DependentUpon>frmImmunizationModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\Immunization\frmVaccine.resx">
+      <DependentUpon>frmVaccine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\Inventory\frmInventory.resx">
       <DependentUpon>frmInventory.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Inventory\frmInventoryModal.resx">
       <DependentUpon>frmInventoryModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Inventory\frmStockTransaction.resx">
+      <DependentUpon>frmStockTransaction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Maintenance\frmMaintenanceModal.resx">
       <DependentUpon>frmMaintenanceModal.cs</DependentUpon>
@@ -410,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Services\frmServicesModal.resx">
       <DependentUpon>frmServicesModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Transaction\frmConsultationLookUp.resx">
+      <DependentUpon>frmConsultationLookUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Transaction\frmItemLookUp.resx">
       <DependentUpon>frmItemLookUp.cs</DependentUpon>

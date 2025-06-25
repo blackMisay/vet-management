@@ -32,6 +32,15 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtStock = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSKU = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnAddBrand = new System.Windows.Forms.Button();
             this.btnAddCateg = new System.Windows.Forms.Button();
             this.cmbCateg = new System.Windows.Forms.ComboBox();
@@ -40,10 +49,9 @@
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -71,6 +79,13 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.txtStock);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.txtPrice);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.txtSKU);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.btnAddBrand);
             this.panel2.Controls.Add(this.btnAddCateg);
             this.panel2.Controls.Add(this.cmbCateg);
@@ -82,12 +97,115 @@
             this.panel2.Location = new System.Drawing.Point(0, 56);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(570, 170);
+            this.panel2.Size = new System.Drawing.Size(570, 428);
             this.panel2.TabIndex = 21;
+            // 
+            // txtStock
+            // 
+            this.txtStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtStock.Location = new System.Drawing.Point(162, 306);
+            this.txtStock.Margin = new System.Windows.Forms.Padding(4);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(307, 28);
+            this.txtStock.TabIndex = 27;
+            this.txtStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 309);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 21);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Stock";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
+            this.panel3.Controls.Add(this.btnSave);
+            this.panel3.Controls.Add(this.btnCancel);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 369);
+            this.panel3.Margin = new System.Windows.Forms.Padding(5);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(570, 59);
+            this.panel3.TabIndex = 21;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
+            this.btnSave.Location = new System.Drawing.Point(459, 9);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(100, 39);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Text = "&Save";
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
+            this.btnCancel.Location = new System.Drawing.Point(13, 9);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(100, 39);
+            this.btnCancel.TabIndex = 7;
+            this.btnCancel.Text = "C&ancel";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrice.Location = new System.Drawing.Point(162, 270);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(307, 28);
+            this.txtPrice.TabIndex = 25;
+            this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(14, 273);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 21);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Price";
+            // 
+            // txtSKU
+            // 
+            this.txtSKU.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSKU.Location = new System.Drawing.Point(162, 37);
+            this.txtSKU.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSKU.Name = "txtSKU";
+            this.txtSKU.Size = new System.Drawing.Size(307, 28);
+            this.txtSKU.TabIndex = 23;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 169);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 21);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Description";
             // 
             // btnAddBrand
             // 
-            this.btnAddBrand.Location = new System.Drawing.Point(475, 72);
+            this.btnAddBrand.Location = new System.Drawing.Point(475, 119);
             this.btnAddBrand.Name = "btnAddBrand";
             this.btnAddBrand.Size = new System.Drawing.Size(43, 29);
             this.btnAddBrand.TabIndex = 22;
@@ -97,7 +215,7 @@
             // 
             // btnAddCateg
             // 
-            this.btnAddCateg.Location = new System.Drawing.Point(475, 24);
+            this.btnAddCateg.Location = new System.Drawing.Point(475, 71);
             this.btnAddCateg.Name = "btnAddCateg";
             this.btnAddCateg.Size = new System.Drawing.Size(43, 29);
             this.btnAddCateg.TabIndex = 21;
@@ -108,7 +226,7 @@
             // cmbCateg
             // 
             this.cmbCateg.FormattingEnabled = true;
-            this.cmbCateg.Location = new System.Drawing.Point(162, 25);
+            this.cmbCateg.Location = new System.Drawing.Point(162, 72);
             this.cmbCateg.Name = "cmbCateg";
             this.cmbCateg.Size = new System.Drawing.Size(307, 29);
             this.cmbCateg.TabIndex = 16;
@@ -116,7 +234,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 25);
+            this.label5.Location = new System.Drawing.Point(14, 72);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 21);
@@ -126,80 +244,50 @@
             // cmbBrand
             // 
             this.cmbBrand.FormattingEnabled = true;
-            this.cmbBrand.Location = new System.Drawing.Point(162, 73);
+            this.cmbBrand.Location = new System.Drawing.Point(162, 120);
             this.cmbBrand.Name = "cmbBrand";
             this.cmbBrand.Size = new System.Drawing.Size(307, 29);
             this.cmbBrand.TabIndex = 1;
             // 
             // txtDesc
             // 
-            this.txtDesc.Location = new System.Drawing.Point(162, 118);
+            this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDesc.Location = new System.Drawing.Point(162, 169);
             this.txtDesc.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(307, 28);
+            this.txtDesc.Size = new System.Drawing.Size(307, 93);
             this.txtDesc.TabIndex = 2;
             this.txtDesc.TextChanged += new System.EventHandler(this.txtDesc_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 121);
+            this.label4.Location = new System.Drawing.Point(14, 44);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 21);
+            this.label4.Size = new System.Drawing.Size(74, 21);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Description";
+            this.label4.Text = "SKU No.";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 76);
+            this.label2.Location = new System.Drawing.Point(14, 123);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 21);
             this.label2.TabIndex = 0;
             this.label2.Text = "Brand";
             // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Image = global::app.Properties.Resources.icons8_create_16;
-            this.btnSave.Location = new System.Drawing.Point(13, 240);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 39);
-            this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "&Create";
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Image = global::app.Properties.Resources.icons8_cancel_16__1_;
-            this.btnCancel.Location = new System.Drawing.Point(459, 240);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 39);
-            this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "C&ancel";
-            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // frmProductModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(572, 287);
+            this.ClientSize = new System.Drawing.Size(572, 486);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
             this.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -211,6 +299,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -232,5 +321,12 @@
         private System.Windows.Forms.Button btnAddNewType;
         private System.Windows.Forms.Button btnAddBrand;
         private System.Windows.Forms.Button btnAddCateg;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtSKU;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox txtStock;
+        private System.Windows.Forms.Label label7;
     }
 }

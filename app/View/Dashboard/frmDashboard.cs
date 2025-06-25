@@ -12,76 +12,72 @@ namespace app.view.Dashboard
     public partial class frmDashboard : Form
     {
         private string connectionString = "";
+        private ConsultationRepository consultationRepo;
         public frmDashboard()
         {
             InitializeComponent();
-            CheckExpiringItems();
+            CheckLowStock();
             ComputeTotalSales();
             ComputeTotalClients();
+            consultationRepo = new ConsultationRepository();
+            ComputeTotalUpcomingFollowUps();
         }
 
         private void frmDashboard_Load(object sender, EventArgs e)
         {
             dgvReminders.CellFormatting += dgvReminders_CellFormatting;
             LoadVaccinationReminders(); // The method that loads the reminders
+
+            LoadUpcomingFollowUps();
+
+            dgvLowStock.CellClick += dgvLowStock_CellClick;
+
         }
 
-        private void CheckExpiringItems()
+        private void CheckLowStock()
         {
             UpgradeFile upgradeFile = new UpgradeFile();
 
             string query = @"
-        SELECT stockID, stockDescription, DATE(expDate) AS expDate
-        FROM vwinventory
-        WHERE expDate <= CURDATE() + INTERVAL 7 DAY";
+                    SELECT id, description, stock,
+                           CASE 
+                               WHEN stock = 0 THEN 'No Stock'
+                               WHEN stock <= 10 THEN 'Low Stock'
+                               ELSE 'OK'
+                           END AS Status
+                    FROM vw_inventory_products
+                    WHERE stock <= 10";
 
             DataTable dt = upgradeFile.Load(query, null);
 
             if (dt != null && dt.Rows.Count > 0)
             {
-                // Add Status column
-                if (!dt.Columns.Contains("Status"))
-                    dt.Columns.Add("Status", typeof(string));
+                dgvLowStock.DataSource = dt;
 
-                DateTime today = DateTime.Today;
-
-                foreach (DataRow row in dt.Rows)
+                if (dt != null && dt.Rows.Count > 0)
                 {
-                    if (DateTime.TryParse(row["expDate"].ToString(), out DateTime expDate))
+                    ////Show low stock alert before populating DataGridView
+                    //MessageBox.Show($"⚠ {dt.Rows.Count} item(s) are low or out of stock.", "Stock Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    dgvLowStock.DataSource = dt;
+
+                    // Apply row colors based on stock level
+                    foreach (DataGridViewRow row in dgvLowStock.Rows)
                     {
-                        if (expDate < today)
-                            row["Status"] = "Expired";
-                        else
-                            row["Status"] = "Expiring Soon";
+                        string status = row.Cells["Status"]?.Value?.ToString();
+
+                        if (status == "No Stock")
+                            row.DefaultCellStyle.BackColor = Color.LightCoral;
+                        else if (status == "Low Stock")
+                            row.DefaultCellStyle.BackColor = Color.Khaki;
                     }
                 }
-
-                dgvExpiredItems.DataSource = dt;
-
-                // Color-code rows based on expiration
-                foreach (DataGridViewRow row in dgvExpiredItems.Rows)
+                else
                 {
-                    if (row.Cells["expDate"].Value != null)
-                    {
-                        DateTime expDate = Convert.ToDateTime(row.Cells["expDate"].Value);
-
-                        if (expDate < today)
-                        {
-                            row.DefaultCellStyle.BackColor = Color.LightCoral; // Expired - red
-                        }
-                        else if (expDate <= today.AddDays(7))
-                        {
-                            row.DefaultCellStyle.BackColor = Color.Khaki; // Expiring soon - yellow
-                        }
-                    }
+                    dgvLowStock.DataSource = null;
                 }
-            }
-            else
-            {
-                dgvExpiredItems.DataSource = null;
             }
         }
-
         private void ComputeTotalSales()
         {
             MainRepository MainRepository = new MainRepository();
@@ -136,6 +132,48 @@ namespace app.view.Dashboard
             dgvReminders.DataSource = upcomingVaccines; // Make sure dgvReminders exists
         }
 
+        private void LoadUpcomingFollowUps()
+        {
+            ConsultationRepository repo = new ConsultationRepository();
+            DataTable dt = repo.GetUpcomingFollowUps();
+
+            dgvFollowUps.DataSource = dt;
+            dgvFollowUps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvFollowUps.ReadOnly = true;
+            dgvFollowUps.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // ✅ Count follow-ups for today
+            int todayCount = dt.Select($"CONVERT([Follow-Up Date], System.DateTime) = '{DateTime.Today.ToShortDateString()}'").Length;
+
+            // ✅ Show total count in label
+            lblUpcomingCount.Text = todayCount.ToString();
+        }
+        private void ComputeTotalUpcomingFollowUps()
+        {
+            ConsultationRepository consultationRepository = new ConsultationRepository();
+            string followUps = consultationRepository.ComputeUpcomingFollowUpsCount();
+
+            if (int.TryParse(followUps, out int followUpCount))
+            {
+                lblUpcomingCount.Text = followUpCount.ToString("N0"); // just the number with commas
+            }
+            else
+            {
+                lblUpcomingCount.Text = "0";
+            }
+        }
+
+        private void dgvLowStock_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            string id = dgvLowStock.Rows[e.RowIndex].Cells["id"].Value?.ToString();
+            string desc = dgvLowStock.Rows[e.RowIndex].Cells["description"].Value?.ToString();
+            string stock = dgvLowStock.Rows[e.RowIndex].Cells["stock"].Value?.ToString();
+
+            MessageBox.Show($"Selected: {desc}\nStock: {stock}", "Item Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
 

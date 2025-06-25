@@ -39,60 +39,53 @@ namespace app.view.Transaction
            
             UpgradeFile upgradeFile = new UpgradeFile();
 
-            dgvProducts.DataSource = upgradeFile.Load("SELECT stockID,batchNum,categoryDescription,typeDescription,brandDesc,stockDescription,price,qty,expDate FROM vwinventory WHERE isDeleted = 0");
+            dgvProducts.DataSource = upgradeFile.Load("SELECT * FROM vw_inventory_products");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtQuantity.Text) || string.IsNullOrWhiteSpace(txtQuantity.Text))
+            // Validate quantity input
+            if (string.IsNullOrWhiteSpace(txtQuantity.Text))
             {
-                MessageBox.Show("Please input a quantity for the selected item", "Invalid Quantity");
+                MessageBox.Show("Please input a quantity for the selected item.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Ensure the quantity is a valid integer
-            if (!int.TryParse(txtQuantity.Text, out int quantity) || quantity <= 0)
+            if (!int.TryParse(txtQuantity.Text.Trim(), out int quantity) || quantity <= 0)
             {
-                MessageBox.Show("Please enter a valid quantity greater than 0.", "Invalid Quantity");
+                MessageBox.Show("Please enter a valid quantity greater than 0.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Calculate total price for the item
-            double unitPrice = this.selectedItemPrice;
-            double totalPrice = quantity * unitPrice;
+            // Calculate total price
+            double price = this.selectedItemPrice;
+            double totalPrice = quantity * price;
 
-            // Create item object
-            app.core.model.Inventory item = new app.core.model.Inventory()
+            // Create or update Inventory item
+            var item = new app.core.model.Inventory
             {
                 Id = selectedId,
                 Description = selectedItemDescription,
-                Qty = quantity,
-                UnitPrice = unitPrice,
+                Stock = quantity,
+                Price = price
             };
 
-            // Update selectedItem dictionary
-            if (selectedItem.ContainsKey(selectedId))
-            {
-                selectedItem[selectedId] = item;
-            }
-            else
-            {
-                selectedItem.Add(selectedId, item);
-            }
+            // Add or update in dictionary
+            selectedItem[selectedId] = item;
 
-            // **Update subtotal and display**
-            //UpdateSubTotal();
+            // Optionally update UI like subtotal
+            // UpdateSubTotal();
 
-            MessageBox.Show($"Item {this.selectedItemDescription} has been added successfully",
-                            "Added successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Item \"{selectedItemDescription}\" has been added/updated successfully.",
+                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // Reset form
             btnRemove.Enabled = false;
             ResetItemField();
             this.Close();
-
-
         }
-       
+
+
 
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -108,40 +101,53 @@ namespace app.view.Transaction
         string selectedItemDescription;
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvProducts.RowCount > 0)
+            if (dgvProducts.RowCount > 0 && dgvProducts.SelectedCells.Count > 0)
             {
                 int selectedRowIndex = dgvProducts.SelectedCells[0].RowIndex;
 
-                this.selectedId = Convert.ToInt32(dgvProducts.Rows[selectedRowIndex].Cells[0].Value?.ToString());
-                
-                this.selectedItemPrice = Convert.ToInt32(dgvProducts.Rows[selectedRowIndex].Cells[6].Value?.ToString());
-                this.selectedItemDescription = dgvProducts.Rows[selectedRowIndex].Cells[5].Value?.ToString() + " - " + dgvProducts.Rows[selectedRowIndex].Cells[5].Value?.ToString();
+                // Get selected product details
+                int selectedId = Convert.ToInt32(dgvProducts.Rows[selectedRowIndex].Cells[0].Value);
+                int selectedPrice = Convert.ToInt32(dgvProducts.Rows[selectedRowIndex].Cells[6].Value);
+                string selectedDescription = dgvProducts.Rows[selectedRowIndex].Cells[3].Value?.ToString() + " - " +
+                                             dgvProducts.Rows[selectedRowIndex].Cells[4].Value?.ToString();
 
-                if (selectedItem.Count > 0)
+                // Store to class-level variables
+                this.selectedId = selectedId;
+                this.selectedItemPrice = selectedPrice;
+                this.selectedItemDescription = selectedDescription;
+
+                // Check if product was already selected
+                if (selectedItem.ContainsKey(selectedId))
                 {
-                    if (selectedItem.ContainsKey(selectedId))
-                    {
-                        btnRemove.Enabled = true;
+                    btnRemove.Enabled = true;
 
-                        if (MessageBox.Show("Do you want to update already selected item?", "Confirm to update", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            app.core.model.Inventory item = new app.core.model.Inventory();
-                            item = selectedItem[selectedId];
+                    DialogResult result = MessageBox.Show(
+                        "This product is already selected. Do you want to update it?",
+                        "Confirm Update",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
 
-                            txtQuantity.Text = item.Qty.ToString();
-                            //txtTotal.Text = item.TotalAmount.ToString();
-                        }
-                    }
-                    else
+                    if (result == DialogResult.Yes)
                     {
-                        btnRemove.Enabled = false;
+                        // Load item data to fields for editing
+                        var item = selectedItem[selectedId];
+                        txtQuantity.Text = item.Stock.ToString();
+                        // txtTotal.Text = item.TotalAmount.ToString(); // if applicable
                     }
+                    // If user says No, nothing happens — keeps current selection
                 }
                 else
                 {
+                    btnRemove.Enabled = false;
+
+                    // Prepare for new item entry
                     ResetItemField();
+
+                    //// Optionally pre-fill quantity field or other fields
+                    //txtQuantity.Text = "1";
                 }
             }
+
         }
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)

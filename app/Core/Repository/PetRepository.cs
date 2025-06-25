@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Data;
 using Core;
-
+using app.core.model;
 namespace app.Core.Repository
 {
     internal class PetRepository
@@ -72,7 +72,7 @@ namespace app.Core.Repository
             }
         }
 
-        
+
 
         public DataTable LoadClientsPatients(int clientId)
         {
@@ -114,12 +114,12 @@ namespace app.Core.Repository
                 Id = Convert.ToInt32(dt.Rows[0][0]),
                 Client = new Client() { Id = Convert.ToInt32(dt.Rows[0][1]) },
                 Name = dt.Rows[0][6].ToString(),
-                BirthDate= Convert.ToString(dt.Rows[0][7]),
+                BirthDate = Convert.ToString(dt.Rows[0][7]),
                 ColourPattern = new ColourPattern() { Id = Convert.ToInt32(dt.Rows[0][5]) },
                 Specie = new Species() { Id = Convert.ToInt32(dt.Rows[0][2]) },
-                Gender= new Gender() { Id = Convert.ToInt32(dt.Rows[0][4]) },
+                Gender = new Gender() { Id = Convert.ToInt32(dt.Rows[0][4]) },
                 Breed = new Breed() { Id = Convert.ToInt32(dt.Rows[0][3]) },
-               // Image = dt.Rows[0][8].ToString(),
+                // Image = dt.Rows[0][8].ToString(),
             };
         }
 
@@ -186,7 +186,12 @@ namespace app.Core.Repository
                     Id = Id,
                     Client = new Client()
                     {
-                        Id = int.TryParse(row["clientId"]?.ToString(), out int clientId) ? clientId : 0
+                        Id = int.TryParse(row["clientId"]?.ToString(), out int clientId) ? clientId : 0,
+                        FirstName = row.IsNull("firstName") ? "" : row["firstName"].ToString(),
+                        MiddleName = row.IsNull("middleName") ? "" : row["middleName"].ToString(),
+                        LastName = row.IsNull("lastName") ? "" : row["lastName"].ToString(),
+                        Suffix = row.IsNull("suffix") ? "" : row["suffix"].ToString(),
+
                     },
                     Name = row.IsNull("petname") ? "" : row["petname"].ToString(),
                     BirthDate = row.IsNull("bday") ? "" : Convert.ToDateTime(row["bday"]).ToString("yyyy-MM-dd"),
@@ -212,6 +217,7 @@ namespace app.Core.Repository
                     },
                     Image = row.IsNull("image") ? "" : row["image"].ToString()
                 };
+
             }
             return null;
         }
@@ -221,5 +227,51 @@ namespace app.Core.Repository
             UpgradeFile upgrade = new UpgradeFile();
             dgv.DataSource = upgrade.Load("SELECT petId,petname,speciesName,breedDesc FROM vwpatient WHERE clientId=@owner;", new Dictionary<string, string> { { "@owner", ownerId } });
         }
+
+        public Pet GetPatientWithClientById(int id)
+        {
+            var upgrade = new UpgradeFile();
+            string query = "SELECT * FROM vw_pet_with_client WHERE petId = @id";
+            var parameters = new Dictionary<string, object> { { "@Id", id } };
+            var table = upgrade.LoadDataTable(query, parameters);
+
+            if (table.Rows.Count == 0)
+                return null;
+
+            var row = table.Rows[0];
+
+            var client = new Client
+            {
+                Id = Convert.ToInt32(row["ownerId"]),
+                FirstName = row["fname"]?.ToString(),
+                MiddleName = row["mi"]?.ToString(),
+                LastName = row["lname"]?.ToString(),
+                Suffix = row["suffix"]?.ToString(),
+                MobileNumber = row["cellnum"]?.ToString(),
+                EmailAddress = row["email"]?.ToString(),
+                StreetNo = row["Address"]?.ToString()
+            };
+
+            var pet = new Pet
+            {
+                Id = Convert.ToInt32(row["petId"]),
+                Name = row["petname"]?.ToString(),
+                BirthDate = (row["bday"]).ToString(),
+                Age = row["age"]?.ToString(),
+                Gender = new Gender { Description = row["sexname"]?.ToString() },
+                Specie = new Species { Description = row["speciesName"]?.ToString() },
+                Size = row["size"]?.ToString(),
+                Weight = row["weight"]?.ToString(),
+                Breed = new Breed { Description = row["breedDesc"]?.ToString() },
+                ColourPattern = new ColourPattern { Description = row["colorName"]?.ToString() },
+                //Image = row["image"] is DBNull ? null : (byte[])row["image"],
+                Client = client
+            };
+
+            return pet;
+        }
+
+
     }
 }
+    

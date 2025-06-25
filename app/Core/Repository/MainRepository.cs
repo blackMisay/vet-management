@@ -36,7 +36,7 @@ namespace app.core.repository
             DataTable dt;
 
             UpgradeFile upgradeFile = new UpgradeFile();
-            dt = upgradeFile.Load("SELECT patient FROM consultation WHERE DATE(consult_date) = CURDATE();");
+            dt = upgradeFile.Load("SELECT patient FROM patient_consultation WHERE DATE(consult_date) = CURDATE();");
 
             int totalClients = dt.Rows.Count;
             clients = totalClients.ToString();

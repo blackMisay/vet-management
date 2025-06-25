@@ -13,13 +13,15 @@ namespace app.view.Immunization
 
         private void frmImmunization_Load(object sender, EventArgs e)
         {
+           
             LoadPatientVaccinationRecords();
+
         }
 
         void LoadPatientVaccinationRecords()
         {
             PetVaccinationRepository vr = new PetVaccinationRepository();
-            vr.LoadVaccination(this.dgvImmunization);
+            vr.LoadVaccinations(this.dgvImmunization);
         }
 
         void SearchPatientVaccinationRecords()
@@ -31,11 +33,47 @@ namespace app.view.Immunization
         int selectedId = 0;
         private void dgvImmunication_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvImmunization.RowCount > 0)
+            try
             {
-                int selectedRowIndex = dgvImmunization.SelectedCells[0].RowIndex;
-                this.selectedId = Convert.ToInt32(dgvImmunization.Rows[selectedRowIndex].Cells[0].Value?.ToString());
+                // Step 1: Prevent actions on header row
+                if (e.RowIndex == -1 || e.ColumnIndex < 0)
+                    return;
+
+                // Step 2: Ensure column "Id" exists
+                if (!dgvImmunization.Columns.Contains("id"))
+                {
+                    MessageBox.Show("Column 'Id' not found in the grid.");
+                    return;
+                }
+
+                // Step 3: Get the clicked row
+                var row = dgvImmunization.Rows[e.RowIndex];
+                if (row == null)
+                    return;
+
+                // Step 4: Get the "Id" cell value
+                var cell = row.Cells["id"];
+                if (cell?.Value == null)
+                {
+                    MessageBox.Show("No ID found in selected row.");
+                    return;
+                }
+
+                // Step 5: Try parsing the ID
+                if (int.TryParse(cell.Value.ToString(), out int immunizationId))
+                {
+                    selectedId = immunizationId;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid ID format.");
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {

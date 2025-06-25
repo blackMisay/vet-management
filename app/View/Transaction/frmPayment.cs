@@ -1,8 +1,13 @@
 ﻿using app.core.model;
+using app.core.repository;
+using app.Core.Model;
+using app.view.Client;
+using app.view.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,18 +22,43 @@ namespace app.view.Transaction
         double totalAmount = 0;
         double changeAmount = 0;
         bool isPaymentSuccess = false;
-        
+        frmClientPatientForm frmClientPatientForm;
+        private int clientId;
+        private int petId;
+        private string clientName;
+        private string petName;
+        private string invoiceNumber;
+        private List<TransactionDetail> _details;
+        private app.Core.Model.Client selectedClient;
+        private Pet selectedPet;
+
         public frmPayment()
         {
             InitializeComponent();
         }
-
-        public frmPayment(double amount)
+        public frmPayment(frmTransaction frm)
         {
             InitializeComponent();
-            this.totalAmount = amount;
-            this.lblTotalAmount.Text = amount.ToString("N2");
+
         }
+        public frmPayment(List<TransactionDetail> transactionDetails, double totalAmount,
+            int clientId, string clientName, int petId, string petName, string invoiceNumber,
+            app.Core.Model.Client selectedClient = null,
+            Pet selectedPet = null)
+        {
+            InitializeComponent();
+            this.transactionDetails = transactionDetails;
+            this.totalAmount = totalAmount;
+            this.clientId = clientId;
+            this.clientName = clientName;
+            this.petId = petId;
+            this.petName = petName;
+            this.invoiceNumber = invoiceNumber;
+            this.selectedClient = selectedClient;
+            this.selectedPet = selectedPet;
+        }
+
+
 
         public double GetChangeAmount()
         {
@@ -42,66 +72,84 @@ namespace app.view.Transaction
 
         private void frmPayment_Load(object sender, EventArgs e)
         {
+            lblClient.Text = selectedClient != null
+        ? $"{selectedClient.FirstName} {selectedClient.LastName}"
+        : clientName;
 
+            lblPet.Text = selectedPet?.Name ?? petName;
+            lblTotalAmount.Text = totalAmount.ToString("N2");
         }
 
         private TransactionPayment payment = new TransactionPayment();
         private bool PaymentSuccess = false;
         private void btnPay_Click(object sender, EventArgs e)
         {
-           if (string.IsNullOrWhiteSpace(txtTotal.Text))
-{
-    MessageBox.Show("Please enter an amount.", "Missing Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-    return;
-}
+            double enteredAmount;
 
-if (!double.TryParse(txtTotal.Text, out double enteredAmount))
-{
-    MessageBox.Show("Invalid amount. Please enter a valid number.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-    return;
-}
+            if (!double.TryParse(txtTotal.Text, out enteredAmount))
+            {
+                MessageBox.Show("Invalid amount. Please enter a valid number.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-if (enteredAmount < this.totalAmount)
-{
-    MessageBox.Show("Entered amount is less than the total due.", "Insufficient Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-    return;
-}
+            if (enteredAmount < totalAmount)
+            {
+                MessageBox.Show("Entered amount is less than the total due.", "Insufficient Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-// Calculate change
-this.changeAmount = enteredAmount - this.totalAmount;
-lblChangeAmount.Text = "Change Amount: " + this.changeAmount.ToString("N2");
+            changeAmount = enteredAmount - totalAmount;
+            lblChangeAmount.Text = "Change Amount: " + changeAmount.ToString("N2");
 
-// Confirm payment
-var result = MessageBox.Show("Do you want to proceed with the payment?", "Confirm Payment",
-    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (MessageBox.Show("Do you want to proceed with the payment?", "Confirm Payment", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                payment.TotalAmount = totalAmount;
+                payment.ChangeAmount = changeAmount;
+                payment.Cash = enteredAmount; // ✅ this is now in scope
 
-if (result == DialogResult.Yes)
-{
-    // Assign values to payment model
-    payment.TotalAmount = this.totalAmount;
-    payment.ChangeAmount = this.changeAmount;
-    payment.Cash = enteredAmount;
+                payment.Client = selectedClient ?? new app.Core.Model.Client { Id = clientId };
+                payment.Pet = selectedPet ?? new Pet { Id = petId };
+                payment.InvoiceNumber = invoiceNumber;
+                payment.Date = DateTime.Now;
+                payment.PaymentDetails = paymentDetails;
+                payment.TransactionDetails = transactionDetails;
 
-    // Save to database
-    bool saved = SavePayment(payment);
-    if (saved)
-    {
-        PaymentSuccess = true;
+                try
+                {
+                    var repository = new TransactionPaymentRepository();
+                    bool saved = repository.SavePayment(payment);
 
-        // Show receipt
-        var receiptForm = new frmReceipt(payment);
-        receiptForm.ShowPreview();
-
-        this.Close(); // Optionally close this form
-    }
-    else
-    {
-        MessageBox.Show("Failed to save payment. Please try again.", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-}
-
-
+                    if (saved)
+                    {
+                        isPaymentSuccess = true;
+                        MessageBox.Show("Payment Complete. Success.", "Save Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ShowReceiptPrintPreview(payment, paymentDetails);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to save payment. Please try again.", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
+        private void ShowReceiptPrintPreview(TransactionPayment payment, List<PaymentDetail> paymentDetails)
+        {
+            if (payment == null)
+                throw new ArgumentNullException(nameof(payment));
+
+            if (paymentDetails == null)
+                paymentDetails = new List<PaymentDetail>(); // fallback to empty if not available
+
+             var receiptForm = new frmReceipt(payment, paymentDetails);
+            receiptForm.ShowPreview();
+        }
+
+
         private bool SavePayment(TransactionPayment payment)
         {
             // Your real database saving logic
@@ -153,11 +201,12 @@ if (result == DialogResult.Yes)
         }
 
         private List<PaymentDetail> paymentDetails = new List<PaymentDetail>();
+        private List<TransactionDetail> transactionDetails = new List<TransactionDetail>();
         private void btnConfirm_Click(object sender, EventArgs e)
         {
            string modeOfPayment = Mode(cboMode.SelectedIndex);
-    string referenceNumber = txtRefNum.Text.Trim();
-    double amount;
+           string referenceNumber = txtRefNum.Text.Trim();
+           double amount;
 
     if (!double.TryParse(txtCashTendered.Text, out amount) || amount <= 0)
     {

@@ -28,10 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProducts));
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,18 +38,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cmbCategory = new System.Windows.Forms.ComboBox();
+            this.cboCategory = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnReport = new System.Windows.Forms.Button();
-            this.btnSaveProduct = new System.Windows.Forms.Button();
+            this.btnAddNew = new System.Windows.Forms.Button();
             this.btnEditProduct = new System.Windows.Forms.Button();
             this.btnRemoveProduct = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
@@ -88,8 +79,8 @@
             // Column4
             // 
             this.Column4.DataPropertyName = "bday";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column4.HeaderText = "Birthday";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -107,9 +98,10 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(212)))), ((int)(((byte)(175)))));
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(1, 1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1529, 57);
+            this.panel1.Size = new System.Drawing.Size(1530, 75);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -119,31 +111,29 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(11, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 34);
+            this.label1.Size = new System.Drawing.Size(131, 34);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Product Lists";
+            this.label1.Text = "Products";
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.cmbCategory);
+            this.panel2.Controls.Add(this.cboCategory);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.btnReport);
-            this.panel2.Controls.Add(this.btnSaveProduct);
+            this.panel2.Controls.Add(this.btnAddNew);
             this.panel2.Controls.Add(this.btnEditProduct);
             this.panel2.Controls.Add(this.btnRemoveProduct);
-            this.panel2.Location = new System.Drawing.Point(1, 56);
+            this.panel2.Location = new System.Drawing.Point(1, 68);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1529, 56);
+            this.panel2.Size = new System.Drawing.Size(1529, 68);
             this.panel2.TabIndex = 1;
             // 
-            // cmbCategory
+            // cboCategory
             // 
-            this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(195, 20);
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(332, 29);
-            this.cmbCategory.TabIndex = 18;
-            this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
+            this.cboCategory.FormattingEnabled = true;
+            this.cboCategory.Location = new System.Drawing.Point(195, 20);
+            this.cboCategory.Name = "cboCategory";
+            this.cboCategory.Size = new System.Drawing.Size(185, 29);
+            this.cboCategory.TabIndex = 18;
             // 
             // label2
             // 
@@ -154,35 +144,20 @@
             this.label2.TabIndex = 17;
             this.label2.Text = "Search by Category";
             // 
-            // btnReport
+            // btnAddNew
             // 
-            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReport.BackColor = System.Drawing.Color.White;
-            this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReport.Image = global::app.Properties.Resources.project_management;
-            this.btnReport.Location = new System.Drawing.Point(1375, 18);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(142, 31);
-            this.btnReport.TabIndex = 6;
-            this.btnReport.Text = "&Print Report";
-            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnReport.UseVisualStyleBackColor = false;
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click_1);
-            // 
-            // btnSaveProduct
-            // 
-            this.btnSaveProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveProduct.BackColor = System.Drawing.Color.White;
-            this.btnSaveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveProduct.Image = global::app.Properties.Resources.diagnosis_24px;
-            this.btnSaveProduct.Location = new System.Drawing.Point(953, 18);
-            this.btnSaveProduct.Name = "btnSaveProduct";
-            this.btnSaveProduct.Size = new System.Drawing.Size(199, 31);
-            this.btnSaveProduct.TabIndex = 3;
-            this.btnSaveProduct.Text = "&Add New Product";
-            this.btnSaveProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSaveProduct.UseVisualStyleBackColor = false;
-            this.btnSaveProduct.Click += new System.EventHandler(this.btnSaveProduct_Click);
+            this.btnAddNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddNew.BackColor = System.Drawing.Color.White;
+            this.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddNew.Image = global::app.Properties.Resources.diagnosis_24px;
+            this.btnAddNew.Location = new System.Drawing.Point(1098, 13);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(199, 31);
+            this.btnAddNew.TabIndex = 3;
+            this.btnAddNew.Text = "&Add New Product";
+            this.btnAddNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddNew.UseVisualStyleBackColor = false;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // btnEditProduct
             // 
@@ -190,7 +165,7 @@
             this.btnEditProduct.BackColor = System.Drawing.Color.White;
             this.btnEditProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditProduct.Image = global::app.Properties.Resources.icons8_update_16;
-            this.btnEditProduct.Location = new System.Drawing.Point(1158, 18);
+            this.btnEditProduct.Location = new System.Drawing.Point(1303, 13);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(103, 31);
             this.btnEditProduct.TabIndex = 4;
@@ -205,7 +180,7 @@
             this.btnRemoveProduct.BackColor = System.Drawing.Color.White;
             this.btnRemoveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveProduct.Image = global::app.Properties.Resources.icons8_remove_16;
-            this.btnRemoveProduct.Location = new System.Drawing.Point(1267, 18);
+            this.btnRemoveProduct.Location = new System.Drawing.Point(1412, 13);
             this.btnRemoveProduct.Name = "btnRemoveProduct";
             this.btnRemoveProduct.Size = new System.Drawing.Size(105, 31);
             this.btnRemoveProduct.TabIndex = 5;
@@ -224,66 +199,16 @@
             this.dgvProducts.BackgroundColor = System.Drawing.Color.White;
             this.dgvProducts.ColumnHeadersHeight = 29;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Category,
-            this.Brand,
-            this.Description,
-            this.Column1});
             this.dgvProducts.GridColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.dgvProducts.Location = new System.Drawing.Point(1, 111);
+            this.dgvProducts.Location = new System.Drawing.Point(1, 136);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowHeadersVisible = false;
             this.dgvProducts.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProducts.Size = new System.Drawing.Size(1529, 706);
+            this.dgvProducts.Size = new System.Drawing.Size(1529, 681);
             this.dgvProducts.TabIndex = 2;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "prodID";
-            this.Id.HeaderText = "ID";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Category
-            // 
-            this.Category.DataPropertyName = "categoryDescription";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Category.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Category.HeaderText = "Category";
-            this.Category.MinimumWidth = 100;
-            this.Category.Name = "Category";
-            this.Category.Visible = false;
-            // 
-            // Brand
-            // 
-            this.Brand.DataPropertyName = "brandDesc";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Brand.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Brand.HeaderText = "Brand";
-            this.Brand.MinimumWidth = 50;
-            this.Brand.Name = "Brand";
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.DataPropertyName = "prodDesc";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Description.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Description.HeaderText = "Description";
-            this.Description.MinimumWidth = 400;
-            this.Description.Name = "Description";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "isDeleted";
-            this.Column1.HeaderText = "isDeleted";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
+            this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
             // 
             // printDialog1
             // 
@@ -336,19 +261,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.DataGridView dgvProducts;
-        private System.Windows.Forms.Button btnSaveProduct;
+        private System.Windows.Forms.Button btnAddNew;
         private System.Windows.Forms.Button btnEditProduct;
         private System.Windows.Forms.Button btnRemoveProduct;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Brand;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.ComboBox cmbCategory;
+        private System.Windows.Forms.ComboBox cboCategory;
     }
 }

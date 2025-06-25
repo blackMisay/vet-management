@@ -42,10 +42,13 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvImmunization = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -151,13 +154,16 @@
             this.dgvImmunization.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvImmunization.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvImmunization.BackgroundColor = System.Drawing.Color.White;
-            this.dgvImmunization.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvImmunization.ColumnHeadersHeight = 29;
             this.dgvImmunization.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
+            this.name,
+            this.Column3,
             this.Column2,
             this.Column1,
-            this.Column3,
+            this.Column5,
             this.Column10,
+            this.Column6,
             this.Column11,
             this.Column12,
             this.Column4});
@@ -176,29 +182,24 @@
             // 
             // Id
             // 
-            this.Id.DataPropertyName = "patient_vaccine_id";
+            this.Id.DataPropertyName = "record_id";
             this.Id.HeaderText = "ImmunizationId";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
             this.Id.Visible = false;
             // 
-            // Column2
+            // name
             // 
-            this.Column2.DataPropertyName = "name";
+            this.name.DataPropertyName = "patient_name";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             dataGridViewCellStyle2.Format = "N0";
             dataGridViewCellStyle2.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column2.HeaderText = "Patient";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "vaccine";
-            this.Column1.HeaderText = "Vaccine";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
+            this.name.DefaultCellStyle = dataGridViewCellStyle2;
+            this.name.HeaderText = "Patient";
+            this.name.MinimumWidth = 6;
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
             // 
             // Column3
             // 
@@ -206,13 +207,49 @@
             this.Column3.HeaderText = "Lot Number";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "vaccine_code";
+            this.Column2.HeaderText = "Vaccine Code";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "vaccine_name";
+            this.Column1.HeaderText = "Vaccine";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "typical_dose";
+            this.Column5.HeaderText = "Dose";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Visible = false;
             // 
             // Column10
             // 
-            this.Column10.DataPropertyName = "dosage";
+            this.Column10.DataPropertyName = "recommended_dosage";
             this.Column10.HeaderText = "Dosage";
             this.Column10.MinimumWidth = 6;
             this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "notes";
+            this.Column6.HeaderText = "Notes";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Visible = false;
             // 
             // Column11
             // 
@@ -223,6 +260,7 @@
             this.Column11.HeaderText = "Administered Date";
             this.Column11.MinimumWidth = 6;
             this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
             // 
             // Column12
             // 
@@ -234,13 +272,15 @@
             this.Column12.HeaderText = "Expiration Date";
             this.Column12.MinimumWidth = 6;
             this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
             // 
             // Column4
             // 
-            this.Column4.DataPropertyName = "veterinarian_id";
+            this.Column4.DataPropertyName = "veterinarian_name";
             this.Column4.HeaderText = "Veterinarian";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // frmImmunization
             // 
@@ -276,10 +316,13 @@
         public System.Windows.Forms.DataGridView dgvImmunization;
         private System.Windows.Forms.Button btnVaccination;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;

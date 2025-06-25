@@ -36,6 +36,9 @@ namespace app.view.Client
             this.Id = clientId;
             btnSave.Text = "Update";
             label1.Text = "Update Client Information";
+            CapitalizeAllTextBoxes(this);
+            SetupMobileNumberTextbox(txtMobile);
+            SetupTelephoneTextbox(txtPhone);
         }
 
 
@@ -155,13 +158,16 @@ namespace app.view.Client
                 return false;
             }
 
-            // Phone number validation (optional, only if not empty)
-            if (!string.IsNullOrEmpty(client.PhoneNumber) && !IsValidPhilippineTelephone(client.PhoneNumber))
-            {
-                MessageBox.Show("Invalid Philippine telephone number format.");
-                txtPhone.Focus();
-                return false;
-            }
+           //string phone = client.PhoneNumber?.Trim();
+
+           // if (!string.IsNullOrWhiteSpace(phone) && !IsValidPhilippineTelephone(phone))
+           // {
+           //     MessageBox.Show("Invalid Philippine telephone number format.");
+           //     txtPhone.Focus();
+           //     return false;
+           // }
+
+
 
             // Check duplicate client by full name
             ClientRepository clientRepository = new ClientRepository();
@@ -188,22 +194,19 @@ namespace app.view.Client
 
         private bool IsValidPhilippineCellphone(string number)
         {
-            if (string.IsNullOrWhiteSpace(number))
-                return false;
 
             string pattern = @"^(09|\+639)\d{9}$";
             return Regex.IsMatch(number.Trim(), pattern);
         }
 
-        private bool IsValidPhilippineTelephone(string number)
-        {
-            if (string.IsNullOrWhiteSpace(number))
-                return false;
+       private bool IsValidPhilippineTelephone(string number)
+{
+    if (string.IsNullOrWhiteSpace(number))
+        return false;
 
-            string pattern = @"^\d{2,4}[- ]?\d{6,8}$";
-            return Regex.IsMatch(number.Trim(), pattern);
-        }
-
+    string pattern = @"^\d{2,4}[- ]?\d{6,8}$";
+    return Regex.IsMatch(number.Trim(), pattern);
+}
         private void LoadDetails(app.Core.Model.Client client)
         {
             PopulateCmb();
@@ -339,20 +342,20 @@ namespace app.view.Client
 
             textBox.Enter += (s, e) =>
             {
-                if (string.IsNullOrWhiteSpace(textBox.Text) || !textBox.Text.StartsWith("+639"))
+                if (!textBox.Text.StartsWith("+639"))
                     textBox.Text = "+639";
                 textBox.SelectionStart = textBox.Text.Length;
             };
 
             textBox.KeyPress += (s, e) =>
             {
-                // Allow only digits and control keys after +639
-                if (textBox.SelectionStart <= 4)
+                if (textBox.SelectionStart < 4)
                 {
-                    // Block editing "+639"
-                    e.Handled = true;
+                    // Allow navigation keys like arrow, backspace (only when caret is not at start)
+                    if (!char.IsControl(e.KeyChar))
+                        e.Handled = true;
                 }
-                else if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                else if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -362,9 +365,9 @@ namespace app.view.Client
             {
                 if (!textBox.Text.StartsWith("+639"))
                 {
-                    int cursor = textBox.SelectionStart;
+                    int sel = textBox.SelectionStart;
                     textBox.Text = "+639";
-                    textBox.SelectionStart = textBox.Text.Length;
+                    textBox.SelectionStart = Math.Max(sel, textBox.Text.Length);
                 }
             };
         }
@@ -375,19 +378,19 @@ namespace app.view.Client
 
             textBox.Enter += (s, e) =>
             {
-                if (string.IsNullOrWhiteSpace(textBox.Text) || !textBox.Text.StartsWith("(0"))
+                if (!textBox.Text.StartsWith("(0"))
                     textBox.Text = "(0";
                 textBox.SelectionStart = textBox.Text.Length;
             };
 
             textBox.KeyPress += (s, e) =>
             {
-                // Prevent editing area code
-                if (textBox.SelectionStart <= 2)
+                if (textBox.SelectionStart < 2)
                 {
-                    e.Handled = true;
+                    if (!char.IsControl(e.KeyChar))
+                        e.Handled = true;
                 }
-                else if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                else if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -397,8 +400,9 @@ namespace app.view.Client
             {
                 if (!textBox.Text.StartsWith("(0"))
                 {
+                    int sel = textBox.SelectionStart;
                     textBox.Text = "(0";
-                    textBox.SelectionStart = textBox.Text.Length;
+                    textBox.SelectionStart = Math.Max(sel, textBox.Text.Length);
                 }
             };
         }
