@@ -70,9 +70,9 @@ namespace app.view.Administration
             {
                 using (frmMain main = new frmMain())
                 {
-                    this.Hide();
+                    //this.Hide();
                     main.ShowDialog();
-                  
+                    this.Hide();
                 }
             }
             catch (Exception ex)

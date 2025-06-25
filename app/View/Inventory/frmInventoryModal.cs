@@ -19,14 +19,14 @@ namespace app.view.Inventory
 
         }
 
-        public frmInventoryModal(int inventoryID) : this()
-        {
-            this.inventoryID = inventoryID;
-            LoadInventoryDetails();
+        //public frmInventoryModal(int inventoryID) : this()
+        //{
+        //    this.inventoryID = inventoryID;
+        //    LoadInventoryDetails();
             
-            btnSave.Text = "Update";
-            label1.Text = "Update Item";
-        }
+        //    btnSave.Text = "Update";
+        //    label1.Text = "Update Item";
+        //}
         private void frmInventoryModal_Load(object sender, EventArgs e)
         {
             PopulateCmb();
@@ -84,11 +84,11 @@ namespace app.view.Inventory
             var inventory = new app.core.model.Inventory
             {
                 Id = this.Id,
-                BatchNumber = txtBatch.Text,
+                //Stock = ,
                 Description = txtDesc.Text,
-                BrandID = new app.core.model.Brand { Id = Convert.ToInt32(cmbBrand.SelectedValue) },
-                CategID = new app.core.model.ProductCategory { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
-                Qty = quantity,
+                //Brand = ,
+                //CategID = new app.core.model.ProductCategory { Id = Convert.ToInt32(cmbCateg.SelectedValue) },
+               // Qty = quantity,
                 DateReceived = dtpReceived.Value,  
                 ExpiredDate = dtpExp.Value       
             };
@@ -135,25 +135,25 @@ namespace app.view.Inventory
         private void LoadDetails(app.core.model.Inventory inventory)
         {
             
-            txtBatch.Text = inventory.BatchNumber.ToString();
-            cmbBrand.SelectedValue = inventory.BrandID.Id;
-            cmbCateg.SelectedValue = inventory.CategID.Id;
+            //txtBatch.Text = inventory.BatchNumber.ToString();
+            //cmbBrand.SelectedValue = inventory.BrandID.Id;
+            //cmbCateg.SelectedValue = inventory.CategID.Id;
             txtDesc.Text = inventory.Description;
-            txtQty.Text = inventory.Qty.ToString();
+           // txtQty.Text = inventory.Qty.ToString();
             dtpReceived.Text = inventory.DateReceived.ToString();
             dtpExp.Text = inventory.ExpiredDate.ToString();
         }
 
-        private void LoadInventoryDetails()
-        {
-            InventoryRepository inventoryRepository = new InventoryRepository();
-            var inventory = inventoryRepository.GetInventory(new app.core.model.Inventory() { Id = this.inventoryID });
+        ////private void LoadInventoryDetails()
+        //{
+        //    InventoryRepository inventoryRepository = new InventoryRepository();
+        //    var inventory = inventoryRepository.GetInventory(new app.core.model.Inventory() { Id = this.inventoryID });
 
-            if (inventory != null)
-            {
-               LoadDetails(inventory);
-            }
-        }
+        //    if (inventory != null)
+        //    {
+        //       LoadDetails(inventory);
+        //    }
+        //}
 
         private void PopulateCmb()
         {

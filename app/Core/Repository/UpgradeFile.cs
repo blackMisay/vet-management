@@ -12,6 +12,7 @@ namespace Core
     {
         internal MySqlConnection connection;
         private string connectionString;
+        public string ConnectionString => connectionString;
 
 
         /// <summary>
@@ -276,25 +277,52 @@ namespace Core
             }
         }
 
+        public int ExecuteInsertWithId(string sql, Dictionary<string, object> parameters, MySqlConnection conn, MySqlTransaction transaction)
+        {
+            using (var cmd = new MySqlCommand(sql, conn, transaction))
+            {
+                foreach (var p in parameters)
+                    cmd.Parameters.AddWithValue(p.Key, p.Value ?? DBNull.Value);
+
+                object result = cmd.ExecuteScalar();
+                return Convert.ToInt32(result);
+            }
+        }
+
+        // Overload that manages its own connection and transaction
         public int ExecuteInsertWithId(string sql, Dictionary<string, object> parameters)
         {
+            this.Connect(); // Ensure this.connection is initialized
+
+            var conn = this.connection;
+
             try
             {
-                this.Connect(); // <- Ensure the connection is opened
-                using (var cmd = new MySqlCommand(sql, connection))
-                {
-                    foreach (var p in parameters)
-                        cmd.Parameters.AddWithValue(p.Key, p.Value ?? DBNull.Value);
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
 
-                    object result = cmd.ExecuteScalar();
-                    return Convert.ToInt32(result);
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        int id = ExecuteInsertWithId(sql, parameters, conn, transaction);
+                        transaction.Commit();
+                        return id;
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
                 }
             }
             finally
             {
-                connection.Close();
+                if (conn.State != ConnectionState.Closed)
+                    conn.Close();
             }
         }
+
 
         public bool ExecuteNonQuery(string sql, Dictionary<string, object> parameters)
         {
@@ -381,6 +409,106 @@ namespace Core
             }
             return results;
         }
+
+        public int ExecuteNonQuery(string sql, Dictionary<string, object> parameters, MySqlConnection conn, MySqlTransaction transaction)
+        {
+            using (var cmd = new MySqlCommand(sql, conn, transaction))
+            {
+                foreach (var p in parameters)
+                {
+                    cmd.Parameters.AddWithValue(p.Key, p.Value ?? DBNull.Value);
+                }
+
+                return cmd.ExecuteNonQuery(); // ✅ returns int now
+            }
+        }
+
+        public DataTable LoadDataTable(string query, Dictionary<string, object> parameters)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                this.Connect(); // Make sure this sets this.connection properly
+
+                if (this.connection == null)
+                {
+                    MessageBox.Show("Database connection not initialized.");
+                    return null;
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                {
+                    if (parameters != null)
+                    {
+                        foreach (var kvp in parameters)
+                        {
+                            cmd.Parameters.AddWithValue(kvp.Key, kvp.Value ?? DBNull.Value);
+                        }
+                    }
+
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"MySQL error: {ex.Message}");
+                return null;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Unexpected error: {e.Message}");
+                return null;
+            }
+            finally
+            {
+                if (this.connection != null && this.connection.State == ConnectionState.Open)
+                {
+                    this.connection.Close();
+                }
+            }
+
+            return dt;
+        }
+
+
+        public DataTable Pagination(string query, Dictionary<string, int> param)
+        {
+            try
+            {
+                DataTable dt;
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                {
+                    if (param != null)
+                    {
+                        foreach (KeyValuePair<string, int> kvp in param)
+                        {
+                            cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                        }
+                    }
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                    {
+                        dt = new DataTable();
+                        da.Fill(dt);
+
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+
+
+
+
+
 
 
     }

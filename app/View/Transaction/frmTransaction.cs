@@ -10,6 +10,7 @@ using app.core.repository;
 using System.Reflection.Emit;
 using System.Linq;
 using Core;
+using System.Globalization;
 
 
 namespace app.view.Transaction
@@ -23,14 +24,15 @@ namespace app.view.Transaction
         double totalAmount = 0;
         double discountAmount = 0;
         double otherFeeAmount = 0;
-
+        int TransactionId = 0;
         public frmTransaction()
         {
             InitializeComponent();
             decimal price = 0.000m; // Example price
             lblTotalAmount.Text = $"{price:N2}"; // Format as currency with 2 decimal places
-           
+
         }
+
 
         public void New()
         {
@@ -61,36 +63,39 @@ namespace app.view.Transaction
 
         private void btnNewTrans_Click(object sender, EventArgs e)
         {
+
             this.New();
-            // Set the current date and invoice number
             lblDate.Text = DateTime.Now.ToString();
             lblInvoice.Text = DateTime.Now.ToString("yyyyMMddhhmmss");
 
-            frmClientPatientForm frmNew = new frmClientPatientForm();
-            frmNew.ShowDialog();
-            if (frmNew.GetPatientId() != 0) 
+            using (frmClientPatientForm frmNew = new frmClientPatientForm())
             {
-                this.SelectedPatient = frmNew.GetPatientDetails();
-                this.patientId = frmNew.GetPatientId();
-                txtPet.Text = frmNew.GetPatientName();
-            }
-            else
-            {
-                MessageBox.Show("No valid patient details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var result = frmNew.ShowDialog();
+
+                if (result == DialogResult.OK && frmNew.GetPatientId() != 0)
+                {
+                    this.SelectedPatient = frmNew.GetPatientDetails();
+                    this.patientId = frmNew.GetPatientId();
+
+                    txtOwner.Text = frmNew.GetPatientOwnerFullname();
+                    txtAddress.Text = frmNew.GetPatientOwnerAddress();
+                    txtContact.Text = frmNew.GetPatientOwnerContact();
+                    txtPet.Text = frmNew.GetPatientName();
+                    txtAge.Text = frmNew.GetPatientAge();
+                    txtColor.Text = frmNew.GetPatientColor().Description;
+                    txtBreed.Text = frmNew.GetPatientBreed().Description;
+                    txtGender.Text = frmNew.GetPatientGender().Description;
+                    txtWeight.Text = frmNew.GetPatientWeight();
+                    txtBday.Text = frmNew.GetPatientBday();
+                    txtSpecie.Text = frmNew.GetPatientSpecie().Description;
+                }
+                else
+                {
+                    MessageBox.Show("No valid patient details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
-
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            frmClientPatientForm cpf = new frmClientPatientForm();
-            cpf.ShowDialog();
-            this.patientId = cpf.GetPatientId();
-            txtPet.Text = cpf.GetPatientName();
-            cpf.Dispose();
-        }
-
-        
         private void btnItemLookUp_Click(object sender, EventArgs e)
         {
             if (dgvTransaction.RowCount > 0)
@@ -126,11 +131,11 @@ namespace app.view.Transaction
         void LoadItemList(Dictionary<int, app.core.model.Inventory> items)
         {
             app.core.model.Inventory item = new app.core.model.Inventory();
-           
+
             foreach (KeyValuePair<int, app.core.model.Inventory> kvp in items)
             {
                 item = kvp.Value;
-                dgvTransaction.Rows.Add(item.Id,"ClientId",item.Description,item.Qty,item.UnitPrice.ToString("N2"));
+                dgvTransaction.Rows.Add(item.Id, "ClientId", item.Description, item.Stock, item.Price.ToString("N2"));
 
             }
 
@@ -166,14 +171,14 @@ namespace app.view.Transaction
                 }
             }
         }
-        
+
         Dictionary<int, app.core.model.Services> service = new Dictionary<int, core.model.Services>();
         void LoadServiceList(Dictionary<int, app.core.model.Services> service)
         {
             foreach (KeyValuePair<int, app.core.model.Services> key in service)
             {
                 var serviceItem = key.Value; // Get the service item
-                dgvTransaction.Rows.Add(serviceItem.Id, "ClientId", serviceItem.Description, 1,serviceItem.Price);
+                dgvTransaction.Rows.Add(serviceItem.Id, "ClientId", serviceItem.Description, 1, serviceItem.Price);
             }
 
             CalculateTotalPrice();
@@ -235,134 +240,228 @@ namespace app.view.Transaction
 
         private void CalculateTotalPrice()
         {
-            subTotalAmount = 0; // Reset the subtotal every time you recalculate
+            double subtotal = 0;
 
             foreach (DataGridViewRow row in dgvTransaction.Rows)
             {
                 if (row.IsNewRow) continue;
 
-                int quantity = 1;
-                double price = 0;
+                // Parse quantity
+                int quantity = int.TryParse(row.Cells["colQuantity"].Value?.ToString(), out int q) ? q : 1;
 
-                // Try getting quantity safely (default to 1 if parsing fails)
-                if (int.TryParse(row.Cells["colQuantity"].Value?.ToString(), out int parsedQty))
-                {
-                    quantity = parsedQty;
-                }
+                // Parse price
+                double unitPrice = double.TryParse(row.Cells["colPrice"].Value?.ToString(), out double p) ? p : 0;
 
-                // Get the price safely
-                if (double.TryParse(row.Cells["colPrice"].Value?.ToString(), out double parsedPrice))
-                {
-                    price = parsedPrice;
-                }
-
-                subTotalAmount += quantity * price;
+                subtotal += quantity * unitPrice;
             }
 
-            totalAmount = subTotalAmount - (discountAmount + otherFeeAmount);
+            // Update subtotal display
+            subTotalAmount = subtotal;
+            lblSubtotal.Text = subTotalAmount.ToString("N2");
+
+            // Parse doctor fee from label
+            double doctorFee = double.TryParse(lblDoctorFee.Text, out double fee) ? fee : 0;
+
+            // Calculate total (subtotal + doctor fee - discounts/other fees)
+            totalAmount = subTotalAmount + doctorFee - (discountAmount + otherFeeAmount);
             lblTotalAmount.Text = totalAmount.ToString("N2");
         }
 
         private List<PaymentDetail> paymentDetails = new List<PaymentDetail>();
+        private List<TransactionDetail> transactionDetails = new List<TransactionDetail>();
         private void btnPayment_Click(object sender, EventArgs e)
         {
-            using (frmPayment pay = new frmPayment(Convert.ToDouble(lblTotalAmount.Text)))
+            ProcessPayment();
+        }
+        private bool TryGetTotalAmount(out double totalAmount)
+        {
+            if (!double.TryParse(lblTotalAmount.Text, out totalAmount))
             {
-                    pay.ShowDialog();
+                MessageBox.Show("Invalid total amount.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
 
-                    if (!pay.ProceedPayment())
-                        return;
+        private bool ValidateSelectedPatient()
+        {
+            if (SelectedPatient == null || SelectedPatient.Client == null)
+            {
+                MessageBox.Show("Patient or client information is missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+        private TransactionPayment BuildTransactionPayment(frmPayment payForm, double totalAmount)
+        {
+            var transPay = new TransactionPayment
+            {
+                Id = TransactionId,
+                InvoiceNumber = lblInvoice.Text,
+                Client = new Core.Model.Client { Id = SelectedPatient.Client.Id },
+                Pet = new Pet { Id = SelectedPatient.Id },
+                TotalAmount = totalAmount,
+                ChangeAmount = payForm.GetChangeAmount(),
+                Date = DateTime.Now,
+                PaymentDetails = new List<PaymentDetail>(),
+                TransactionDetails = new List<TransactionDetail>()
+            };
 
-                    // Null checks before using SelectedPatient
-                    if (SelectedPatient == null || SelectedPatient.Client == null)
-                    {
-                        MessageBox.Show("Patient or client information is missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+            // Add payment details
+            foreach (DataGridViewRow row in payForm.dgvPayment.Rows)
+            {
+                if (row.IsNewRow) continue;
 
-                    // Create payment object safely
-                    TransactionPayment transPay = new TransactionPayment
-                    {
-                        InvoiceNumber = lblInvoice.Text,
-                        Client = new Core.Model.Client { Id = SelectedPatient.Client.Id },
-                        Pet = new Pet { Id = SelectedPatient.Id },
-                        TotalAmount = totalAmount,
-                        ChangeAmount = pay.GetChangeAmount(),
-                        Date = DateTime.Now,
-                        PaymentDetails = new List<PaymentDetail>(), // important initialization
-                        TransactionDetails = new List<TransactionDetail>() // for items & services
-                    };
+                string mode = row.Cells["ModeOfPayment"]?.Value?.ToString();
+                string reference = row.Cells["Reference"]?.Value?.ToString() ?? "";
+                if (!double.TryParse(row.Cells["Amount"]?.Value?.ToString(), out double amount))
+                {
+                    throw new InvalidOperationException("Invalid payment amount in payment details.");
+                }
 
-                    // Collect payment methods
-                    foreach (DataGridViewRow row in pay.dgvPayment.Rows)
-                    {
-                        if (row.IsNewRow) continue;
+                transPay.PaymentDetails.Add(new PaymentDetail
+                {
+                    Mode = mode,
+                    ReferenceNumber = reference,
+                    Amount = amount
+                });
 
-                        string mode = row.Cells["ModeOfPayment"].Value?.ToString();
-                        string reference = row.Cells["Reference"].Value?.ToString();
-                        double amount = Convert.ToDouble(row.Cells["Amount"].Value);
-
-                        transPay.PaymentDetails.Add(new PaymentDetail
-                        {
-                            Mode = mode,
-                            ReferenceNumber = reference ?? string.Empty,
-                            Amount = amount
-                        });
-
-                        switch (mode)
-                        {
-                            case "Cash":
-                                transPay.Cash += amount;
-                                break;
-                            case "GCash":
-                                transPay.GCash += amount;
-                                transPay.GCashReferenceNumber = reference;
-                                break;
-                            case "PayMaya":
-                                transPay.PayMaya += amount;
-                                transPay.PayMayaReferenceNumber = reference;
-                                break;
-                        }
-                    }
-
-                    // Collect transaction items and services
-                    foreach (DataGridViewRow row in dgvTransaction.Rows)
-                    {
-                        if (row.IsNewRow) continue;
-
-                        var detail = new TransactionDetail
-                        {
-                            ItemOrServiceId = Convert.ToInt32(row.Cells["colId"].Value),
-                            Description = row.Cells["colDescription"].Value?.ToString() ?? "",
-                            Quantity = Convert.ToInt32(row.Cells["colQuantity"].Value),
-                            Price = Convert.ToDouble(row.Cells["colPrice"].Value)
-                        };
-
-                        transPay.TransactionDetails.Add(detail);
-                    }
-
-                    try
-                    {
-                        TransactionPaymentRepository repo = new TransactionPaymentRepository();
-                        if (repo.SavePayment(transPay))
-                        {
-                            MessageBox.Show("Payment Completed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.NewTransaction(); // reset form
-                        }
-                        else
-                        {
-                            MessageBox.Show("Payment failed to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error occurred: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                switch (mode)
+                {
+                    case "Cash": transPay.Cash += amount; break;
+                    case "GCash":
+                        transPay.GCash += amount;
+                        transPay.GCashReferenceNumber = reference;
+                        break;
+                    case "PayMaya":
+                        transPay.PayMaya += amount;
+                        transPay.PayMayaReferenceNumber = reference;
+                        break;
                 }
             }
 
+            // Add transaction details
+            foreach (DataGridViewRow row in dgvTransaction.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string description = row.Cells["colDescription"]?.Value?.ToString();
+
+                if (!double.TryParse(row.Cells["colPrice"]?.Value?.ToString(), out double price))
+                    throw new InvalidOperationException("Invalid price in transaction details.");
+
+                if (!int.TryParse(row.Cells["colQuantity"]?.Value?.ToString(), out int quantity))
+                    throw new InvalidOperationException("Invalid quantity in transaction details.");
+
+                transPay.TransactionDetails.Add(new TransactionDetail
+                {
+                    Description = description,
+                    Quantity = quantity,
+                    UnitPrice = price,
+                    TotalAmount = quantity * price
+                });
+            }
+
+            return transPay;
+        }
+
+        private bool ValidatePaymentInputs()
+        {
+            if (string.IsNullOrWhiteSpace(txtOwner.Text) ||
+                string.IsNullOrWhiteSpace(txtPet.Text) ||
+                string.IsNullOrWhiteSpace(lblInvoice.Text))
+            {
+                MessageBox.Show("Please make sure owner, pet, and invoice details are filled in.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private void ProcessPayment()
+        {
+            if (!ValidatePaymentInputs()) return;
+
+            if (!TryGetTotalAmount(out double totalAmount)) return;
+
+            string clientName = txtOwner.Text.Trim();
+            string petName = txtPet.Text.Trim();
+            string invoiceNumber = lblInvoice.Text.Trim();
+            int clientId = SelectedPatient?.Client?.Id ?? 0;
+            int petId = SelectedPatient?.Id ?? 0;
+
+            var transactionDetails = BuildTransactionDetails();
+            if (transactionDetails == null || transactionDetails.Count == 0)
+            {
+                MessageBox.Show("No valid transaction details found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (frmPayment payForm = new frmPayment(
+                transactionDetails,
+                totalAmount,
+                clientId,
+                clientName,
+                petId,
+                petName,
+                invoiceNumber,
+                SelectedPatient?.Client,
+                SelectedPatient
+            ))
+            {
+                payForm.ShowDialog();
+
+                if (payForm.ProceedPayment())
+                {
+                    NewTransaction();
+                    ClearFields();
+                }
+            }
+        }
+        private List<TransactionDetail> BuildTransactionDetails()
+        {
+            var transactionDetails = new List<TransactionDetail>();
+
+            foreach (DataGridViewRow row in dgvTransaction.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string description = row.Cells["colDescription"]?.Value?.ToString() ?? "";
+
+                int productId = 0;
+                if (row.Cells["colId"]?.Value != null)
+                {
+                    int.TryParse(row.Cells["colId"].Value.ToString(), out productId);
+                }
+
+                if (!double.TryParse(row.Cells["colPrice"]?.Value?.ToString(), out double price))
+                {
+                    MessageBox.Show("Invalid price in transaction details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+                if (!int.TryParse(row.Cells["colQuantity"]?.Value?.ToString(), out int quantity))
+                {
+                    MessageBox.Show("Invalid quantity in transaction details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+                transactionDetails.Add(new TransactionDetail
+                {
+                    ProductId = productId,
+                    Description = description,
+                    Quantity = quantity,
+                    UnitPrice = price,
+                    TotalAmount = quantity * price
+                });
+            }
+
+            return transactionDetails;
+        }
+
+
+
         public Pet SelectedPatient { get; set; }
-        
+
 
         private void btnVoidTrans_Click(object sender, EventArgs e)
         {
@@ -381,7 +480,6 @@ namespace app.view.Transaction
 
             if (confirm == DialogResult.Yes)
             {
-                // Loop through and restore stock
                 foreach (DataGridViewRow row in dgvTransaction.Rows)
                 {
                     if (row.IsNewRow) continue;
@@ -397,19 +495,84 @@ namespace app.view.Transaction
                     }
                 }
 
-                // Clear DataGridView
                 dgvTransaction.Rows.Clear();
-                txtPet.Text = string.Empty;
-                btnNewTrans .Enabled = true;
-                lblDate.Text = string.Empty;
-                lblInvoice.Text = string.Empty;
-
-                // Clear total amount label
                 lblTotalAmount.Text = "0.00";
-
-                MessageBox.Show("Transaction has been voided.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                localStockCount.Clear();
             }
         }
 
+        public void ClearFields()
+        {
+            txtOwner.Text = "";
+            txtAddress.Text = "";
+            txtContact.Text = "";
+            txtPet.Text = "";
+            txtAge.Text = "";
+            txtColor.Text = "";
+            txtBreed.Text = "";
+            txtGender.Text = "";
+            txtWeight.Text = "";
+            txtBday.Text = "";
+            txtSpecie.Text = "";
+            lblTotalAmount.Text = "0.00";
+            lblDoctorFee.Text = "0.00";
+            lblSubtotal.Text = "0.00";
+            dgvTransaction.Rows.Clear();
+            localStockCount.Clear();
+            SelectedPatient = null;
+        }
+
+        private Dictionary<int, Diagnosis> diagnosis = new Dictionary<int, Diagnosis>(); //  class-level field
+        private Diagnosis SelectedPet = null;
+
+        private void btnAddConsult_Click(object sender, EventArgs e)
+        {
+            this.New();
+            lblDate.Text = DateTime.Now.ToString();
+            using (var frm = new frmConsultationLookUp())
+            {
+                if (frm.ShowDialog() == DialogResult.OK && frm.SelectedOwner != null && frm.SelectedPet != null)
+                {
+                    var owner = frm.SelectedOwner;
+                    var pet = frm.SelectedPet;
+
+                    // Owner Info
+                    txtOwner.Text = owner.GetFullName();
+                    txtAddress.Text = owner.GetFullAddress();
+                    txtContact.Text = owner.GetAllContact();
+
+                    // Pet Info
+                    txtPet.Text = pet.Name;
+                    txtAge.Text = pet.Age;
+                    txtColor.Text = pet.ColourPattern.Description;
+                    txtBreed.Text = pet.Breed.Description;
+                    txtGender.Text = pet.Gender.Description;
+                    txtWeight.Text = pet.Weight; // optional, if you included in Pet
+                    txtBday.Text = pet.BirthDate;
+                    txtSpecie.Text = pet.Specie.Description;
+
+                    // Clear and reset
+                    lblDoctorFee.Text = "200.00";
+                    lblSubtotal.Text = lblDoctorFee.Text;
+                    lblTotalAmount.Text = "0.00";
+                    dgvTransaction.Rows.Clear();
+                    localStockCount.Clear();
+
+                    SelectedPatient = pet;
+                }
+            }
+        }
+            //Dictionary<int, app.core.model.Diagnosis> diagnosis = new Dictionary<int, core.model.Diagnosis>();
+            void LoadConsultationList(Dictionary<int, app.core.model.Diagnosis> diagnosis)
+            {
+                foreach (KeyValuePair<int, app.core.model.Diagnosis> key in diagnosis)
+                {
+                    var consultationItem = key.Value; // Get the service item
+                    dgvTransaction.Rows.Add(consultationItem.Id, "ClientId", consultationItem.Patient, consultationItem.MedicationsWithFrequency, 1);
+                }
+
+                CalculateTotalPrice();
+            }
+        }
     }
-}
+

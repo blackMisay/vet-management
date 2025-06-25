@@ -1,17 +1,15 @@
 ﻿
 
-namespace app.Core.Model
-{
-    public class Breed
+    namespace app.Core.Model
     {
-        public int Id
+        public class Breed
         {
-            get; set;
-        }
-        public Species Specie { get; set; }
-        public string Description
+        public int Id { get; set; }
+        public string Description { get; set; }
+
+        public override string ToString()
         {
-            get; set;
+            return Description;  // So ComboBox shows Description
         }
     }
-}
+    }

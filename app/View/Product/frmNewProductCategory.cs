@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using app.core.model;
+using Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,6 +9,7 @@ namespace app.view.Product
 {
     public partial class frmNewProductCategory : Form
     {
+        private int id;
         public frmNewProductCategory()
         {
             InitializeComponent();
@@ -27,62 +29,96 @@ namespace app.view.Product
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Validate input field
-            if (string.IsNullOrEmpty(txtNewCategory.Text))
+            id = 0;
+            panel3.Enabled = true;
+            btnEdit.Enabled = true;
+            btnDelete.Enabled = true;
+            btnAdd.Enabled = true;
+            txtNewCategory.Clear();
+            txtNewCategory.Focus();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            ProductRepository categoryRepository = new ProductRepository();
+
+            if (string.IsNullOrWhiteSpace(txtNewCategory.Text))
             {
-                MessageBox.Show("Please enter a new category.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show("Please input a valid category.", "VET App", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            try
+            else
             {
-                // Prepare the SQL query for checking if the product type already exists and is not marked as deleted
-                string checkQuery = "SELECT * FROM product_category WHERE description = @CategoryName AND isDeleted = 0;";
-
-
-                Dictionary<string, string> parameters = new Dictionary<string, string>
+                if (categoryRepository.CheckCategory(txtNewCategory.Text, this.id))
                 {
-                    { "@CategoryName", txtNewCategory.Text }
-                    };
-
-
-                UpgradeFile upgradeFile = new UpgradeFile();
-                DataTable resultTable = upgradeFile.Load(checkQuery, parameters);
-
-                if (resultTable != null && resultTable.Rows.Count > 0)
-                {
-                    // Notify the user that the product type already exists and is active
-                    MessageBox.Show("This category already exists. No new entry was added.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                    frmProductModal frmProductModal = new frmProductModal();
-                    frmProductModal.ShowDialog();
+                    MessageBox.Show("The same category is already existing.", "VET App", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNewCategory.Clear();
                     return;
                 }
 
-
-                string insertQuery = "INSERT INTO product_category (Description) VALUES (@CategoryName);";
-
-                bool result = upgradeFile.ExecuteQuery(insertQuery, parameters);
-
-                if (result)
+                Category category = new Category()
                 {
-                    MessageBox.Show("New category successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                    frmProductModal frm = new frmProductModal();
-                    frm.ShowDialog();
-                    frm.Refresh();
+                    Id = this.id,
+                    Name = txtNewCategory.Text
+                };
+                if (categoryRepository.AddCategory(category))
+                {
+                    MessageBox.Show("A new category has been added.", "VET App", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
-                else
+                categoryRepository.LoadCategory(dgvCategory);
+            }
+            txtNewCategory.Clear();
+        }
+
+        private void frmNewProductCategory_Load(object sender, EventArgs e)
+        {
+            ProductRepository categoryRepository = new ProductRepository();
+            categoryRepository.LoadCategory(dgvCategory);
+        }
+
+        private void dgvCategory_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvCategory.SelectedRows.Count > 0)
+            {
+                id = Convert.ToInt32(dgvCategory.SelectedRows[0].Cells["Column1"].Value);
+                txtNewCategory.Text = dgvCategory.SelectedRows[0].Cells["Column2"].Value.ToString();
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (dgvCategory.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a category to edit.", "POS App", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            txtNewCategory.Focus();
+            txtNewCategory.SelectAll();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete this category?", "VET App", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int Id = Convert.ToInt32(dgvCategory.SelectedRows[0].Cells["Id"].Value);
+                ProductRepository categoryRepository = new ProductRepository();
                 {
-                    MessageBox.Show("Failed to add the new category.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (categoryRepository.Delete(Id))
+                    {
+                        MessageBox.Show("The selected category has been deleted successfully", "VET App", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    categoryRepository.LoadCategory(dgvCategory);
                 }
             }
-            catch (Exception ex)
-            {
+        }
 
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        private void dgvCategory_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Prevent header row issues
+            {
+                DataGridViewRow row = dgvCategory.Rows[e.RowIndex];
+                txtNewCategory.Text = row.Cells["column2"].Value.ToString();
             }
         }
     }

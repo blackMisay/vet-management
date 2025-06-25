@@ -13,8 +13,6 @@ namespace app.core.model
         public string InvoiceNumber { get; set; }
         public Client Client { get; set; }
         public Pet Pet { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
         public double Cash { get; set; }
         public double GCash { get; set; }
         public double PayMaya { get; set; }
@@ -27,6 +25,11 @@ namespace app.core.model
 
         public List<PaymentDetail> PaymentDetails { get; set; } = new List<PaymentDetail>();
         public List<TransactionDetail> TransactionDetails { get; set; } = new List<TransactionDetail>();
+        public string GetFullName()
+        {
+            return this.Client.FirstName + " " + Client.MiddleName + " " + Client.LastName + " " + Client.Suffix;
+        }
+
     }
 
 }

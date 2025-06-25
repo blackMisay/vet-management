@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientPatientModal));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtBreed = new System.Windows.Forms.TextBox();
+            this.cboBreed = new System.Windows.Forms.ComboBox();
             this.cmbSize = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -46,7 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.btnBreed = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtWeight = new System.Windows.Forms.TextBox();
@@ -75,7 +74,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox1.Controls.Add(this.txtBreed);
+            this.groupBox1.Controls.Add(this.cboBreed);
             this.groupBox1.Controls.Add(this.cmbSize);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.label10);
@@ -91,7 +90,6 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.btnBreed);
-            this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.txtWeight);
@@ -114,13 +112,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General Information";
             // 
-            // txtBreed
+            // cboBreed
             // 
-            this.txtBreed.Location = new System.Drawing.Point(200, 356);
-            this.txtBreed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtBreed.Name = "txtBreed";
-            this.txtBreed.Size = new System.Drawing.Size(308, 36);
-            this.txtBreed.TabIndex = 47;
+            this.cboBreed.FormattingEnabled = true;
+            this.cboBreed.Location = new System.Drawing.Point(200, 358);
+            this.cboBreed.Name = "cboBreed";
+            this.cboBreed.Size = new System.Drawing.Size(308, 35);
+            this.cboBreed.TabIndex = 47;
+            this.cboBreed.SelectedIndexChanged += new System.EventHandler(this.cboBreed_SelectedIndexChanged);
+            this.cboBreed.TextChanged += new System.EventHandler(this.cboBreed_TextChanged);
             // 
             // cmbSize
             // 
@@ -290,17 +290,6 @@
             this.btnBreed.Text = "+";
             this.btnBreed.UseVisualStyleBackColor = true;
             this.btnBreed.Click += new System.EventHandler(this.btnBreed_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Red;
-            this.label16.Location = new System.Drawing.Point(564, 156);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(22, 27);
-            this.label16.TabIndex = 39;
-            this.label16.Text = "*";
             // 
             // label15
             // 
@@ -571,12 +560,11 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cmbSize;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label10;
-        public   System.Windows.Forms.TextBox txtBreed;
+        private System.Windows.Forms.ComboBox cboBreed;
     }
 }

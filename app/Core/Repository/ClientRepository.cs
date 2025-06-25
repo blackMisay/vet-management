@@ -244,6 +244,19 @@ namespace app.Core.Repository
             }
 
         }
+        public void LoadPetNameAsList(DataGridView dgv, string search)
+        {
+            UpgradeFile ug = new UpgradeFile();
+            if (string.IsNullOrEmpty(search) || string.IsNullOrWhiteSpace(search))
+            {
+                dgv.DataSource = ug.Load("SELECT petId,`petName`,speciesName,breedDesc FROM vwpatient;");
+            }
+            else
+            {
+                dgv.DataSource = ug.Load("SELECT petId,`petName` FROM vwpatient WHERE petname LIKE @search;", new Dictionary<string, string> { { "@search", search } });
+            }
+
+        }
 
         public bool ClientExists(string firstName, string lastName, string middleName)
         {
@@ -260,5 +273,7 @@ namespace app.Core.Repository
             int count = upgradeFile.ExecuteScalar(query, parameters);
             return count > 0;
         }
+
+        
     }
 }

@@ -7,6 +7,7 @@ using System.Security.Policy;
 using System.Xml.Linq;
 using System.Windows.Forms;
 using app.Core.Model;
+using MySqlConnector;
 
 namespace app.core.repository
 {
@@ -15,82 +16,139 @@ namespace app.core.repository
         public TransactionPaymentRepository() { }
         public bool SavePayment(TransactionPayment payment)
         {
-            bool isUpdate = payment.Id > 0;
-            string sql;
+            if (payment == null)
+                throw new ArgumentNullException(nameof(payment));
 
-            var parameters = new Dictionary<string, object>
+            if (payment.Client?.Id <= 0)
+                throw new ArgumentException("Client Id must be a positive integer.", nameof(payment.Client));
+
+            if (payment.Pet?.Id <= 0)
+                throw new ArgumentException("Pet Id must be a positive integer.", nameof(payment.Pet));
+
+            if (payment.Id > 0)
+            {
+                // Update logic (not implemented here)
+                return false;
+            }
+
+            string paymentSql = @"
+        INSERT INTO transaction_payment (
+            client_id, pet_id, cash, gcash, gcashReferenceNo, payMaya, payMayaReferenceNo,
+            invoice_number, total, date, `change`
+        )
+        VALUES (
+            @ClientId, @PetId, @Cash, @GCash, @GCashReferenceNumber, @PayMaya,
+            @PayMayaReferenceNumber, @InvoiceNumber, @TotalAmount, @Date, @ChangeAmount
+        );
+        SELECT LAST_INSERT_ID();";
+
+            var paymentParams = new Dictionary<string, object>
     {
-        { "@ClientId", payment.Client.Id},
-        { "@PetId", payment.Pet.Id},
+        { "@ClientId", payment.Client.Id },
+        { "@PetId", payment.Pet.Id },
         { "@Cash", payment.Cash },
         { "@GCash", payment.GCash },
         { "@GCashReferenceNumber", payment.GCashReferenceNumber ?? string.Empty },
         { "@PayMaya", payment.PayMaya },
         { "@PayMayaReferenceNumber", payment.PayMayaReferenceNumber ?? string.Empty },
-        { "@Type", payment.Type ?? string.Empty },
-        { "@Name", payment.Name ?? string.Empty },
         { "@InvoiceNumber", payment.InvoiceNumber ?? string.Empty },
         { "@TotalAmount", payment.TotalAmount },
         { "@ChangeAmount", payment.ChangeAmount },
         { "@Date", payment.Date }
     };
 
-            if (isUpdate)
-            {
-                // Optional: Add update query if needed
-                return false;
-            }
-
-            sql = @"
-        INSERT INTO transaction_payment (
-            client_id, pet_id, cash, gcash, gcashReferenceNo, payMaya, payMayaReferenceNo,
-            type, name, invoice_number, total, date, `change`
-        )
-        VALUES (
-            @ClientId, @PetId, @Cash, @GCash, @GCashReferenceNumber, @PayMaya,
-            @PayMayaReferenceNumber, @Type, @Name, @InvoiceNumber, @TotalAmount, @Date, @ChangeAmount
-        ); SELECT LAST_INSERT_ID();";
-
             try
             {
-                UpgradeFile upgradeFile = new UpgradeFile(); // Your DB helper
-                int paymentId = upgradeFile.ExecuteInsertWithId(sql, parameters);
+                UpgradeFile upgradeFile = new UpgradeFile();
+                int paymentId = upgradeFile.ExecuteInsertWithId(paymentSql, paymentParams);
 
                 if (paymentId <= 0)
                 {
+                    MessageBox.Show("Payment ID not generated.", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
-                // Save each payment detail
-                foreach (var detail in payment.PaymentDetails)
+                // Save each transaction detail
+                foreach (var detail in payment.TransactionDetails)
                 {
                     string detailSql = @"
-                INSERT INTO payment_detail (
-                    transaction_payment_id, mode, reference_number, amount
+                INSERT INTO transaction_payment_detail (
+                    transaction_payment_id, product_id, description, quantity, unit_price, total
                 )
                 VALUES (
-                    @TransactionPaymentId, @Mode, @ReferenceNumber, @Amount
+                    @TransactionPaymentId, @ProductId, @Description, @Quantity, @UnitPrice, @TotalAmount
                 );";
 
                     var detailParams = new Dictionary<string, object>
             {
                 { "@TransactionPaymentId", paymentId },
-                { "@Mode", detail.Mode },
-                { "@ReferenceNumber", detail.ReferenceNumber ?? string.Empty },
-                { "@Amount", detail.Amount }
+                { "@ProductId", detail.ProductId },
+                { "@Description", detail.Description ?? string.Empty },
+                { "@Quantity", detail.Quantity },
+                { "@UnitPrice", detail.UnitPrice },
+                { "@TotalAmount", detail.TotalAmount }
             };
 
                     upgradeFile.Save(detailSql, detailParams);
+
+                    // Deduct stock for this product
+                    DeductStock(detail.ProductId, detail.Quantity, upgradeFile);
+
                 }
 
                 return true;
             }
             catch (Exception ex)
             {
-                // TODO: Log the error
-                MessageBox.Show("Failed to save payment: " + ex.Message);
+                MessageBox.Show("Failed to save transaction and payment: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+        private void DeductStock(int productId, int quantity, UpgradeFile upgradeFile)
+        {
+            if (productId <= 0)
+            {
+                throw new Exception($"Invalid productId: {productId}. Must be > 0.");
+            }
+
+            // Check if product exists
+            string checkSql = "SELECT stock FROM products WHERE id = @id;";
+            var checkParams = new Dictionary<string, object> { { "@id", productId } };
+
+            object result = upgradeFile.ExecuteScalar(checkSql, checkParams);
+
+            if (result == null || result == DBNull.Value)
+            {
+                MessageBox.Show($"Product not found or stock is NULL. ProductId = {productId}", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception($"Product with ID {productId} not found or stock is NULL.");
+            }
+
+            if (!int.TryParse(result.ToString(), out int currentStock))
+            {
+                MessageBox.Show($"Stock value is invalid: {result}", "Invalid Stock", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception($"Invalid stock value for product ID {productId}: {result}");
+            }
+
+            if (currentStock < quantity)
+            {
+                MessageBox.Show($"Stock too low. Available = {currentStock}, Needed = {quantity}, ProductId = {productId}", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw new Exception($"Insufficient stock for product ID {productId}: available={currentStock}, requested={quantity}");
+            }
+
+            // Deduct stock
+            string deductSql = @"
+        UPDATE products
+        SET stock = stock - @qty
+        WHERE id = @id;";
+            var deductParams = new Dictionary<string, object>
+    {
+        { "@qty", quantity },
+        { "@id", productId }
+    };
+
+            bool updated = upgradeFile.ExecuteNonQuery(deductSql, deductParams);
+            if (!updated)
+                throw new Exception($"Failed to deduct stock for product ID {productId}");
         }
 
         //public bool DeleteHoldOrder(string InvoiceNumber)
@@ -109,80 +167,86 @@ namespace app.core.repository
 
         public TransactionPayment LoadFullPayment(int paymentId)
         {
-            var upgradeFile = new UpgradeFile();
-            var payment = new TransactionPayment();
 
-            var parameters = new Dictionary<string, object> { { "@PaymentId", paymentId } };
+            if (paymentId <= 0)
+                throw new ArgumentException("Invalid Payment ID", nameof(paymentId));
+
+            var upgradeFile = new UpgradeFile();
+            var parameters = new Dictionary<string, object> { { "@Id", paymentId } };
 
             string sqlMain = @"
-        SELECT p.id, p.invoice_number, p.total, p.`change`, p.date,
-               c.id AS ClientId, c.firstname, c.lastname,
-               pet.id AS PetId, pet.name AS PetName
+        SELECT 
+            p.id, p.invoice_number, p.total, p.`change`, p.date,
+            p.cash, p.gcash, p.gcashReferenceNo, p.payMaya, p.payMayaReferenceNo,
+            c.id AS ClientId, c.firstname, c.lastname,
+            pet.id AS PetId, pet.name AS PetName
         FROM transaction_payment p
         LEFT JOIN client c ON p.client_id = c.id
-        LEFT JOIN pet pet ON p.pet_id = pet.id
-        WHERE p.id = @PaymentId";
+        LEFT JOIN patient pet ON p.pet_id = pet.id
+        WHERE p.id = @Id";
 
             var mainResult = upgradeFile.QuerySingle(sqlMain, parameters);
+
             if (mainResult == null)
+            {
+                MessageBox.Show($"No payment found for ID {paymentId}.", "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
-
-            payment.Id = Convert.ToInt32(mainResult["id"]);
-            payment.InvoiceNumber = mainResult["invoice_number"]?.ToString();
-            payment.TotalAmount = Convert.ToDouble(mainResult["total"]);
-            payment.ChangeAmount = Convert.ToDouble(mainResult["change"]);
-            payment.Date = Convert.ToDateTime(mainResult["date"]);
-
-            payment.Client = new Client
-            {
-                Id = Convert.ToInt32(mainResult["ClientId"]),
-                FirstName = mainResult["firstname"]?.ToString(),
-                LastName = mainResult["lastname"]?.ToString()
-            };
-
-            payment.Pet = new Pet
-            {
-                Id = Convert.ToInt32(mainResult["PetId"]),
-                Name = mainResult["PetName"]?.ToString()
-            };
-
-            string sqlPaymentDetails = "SELECT mode, reference_number, amount FROM payment_detail WHERE transaction_payment_id = @PaymentId";
-            var paymentDetailsRows = upgradeFile.Query(sqlPaymentDetails, parameters);
-
-            payment.PaymentDetails = new List<PaymentDetail>();
-            foreach (var row in paymentDetailsRows)
-            {
-                payment.PaymentDetails.Add(new PaymentDetail
-                {
-                    Mode = row["mode"]?.ToString(),
-                    ReferenceNumber = row["reference_number"]?.ToString(),
-                    Amount = Convert.ToDouble(row["amount"])
-                });
             }
 
-            string sqlTransactionDetails = @"
-        SELECT item_or_service_id, description, quantity, price
-        FROM transaction_detail
-        WHERE transaction_payment_id = @PaymentId";
-
-            var transactionDetailsRows = upgradeFile.Query(sqlTransactionDetails, parameters);
-
-            payment.TransactionDetails = new List<TransactionDetail>();
-            foreach (var row in transactionDetailsRows)
+            var payment = new TransactionPayment
             {
-                payment.TransactionDetails.Add(new TransactionDetail
+                Id = Convert.ToInt32(mainResult["id"]),
+                InvoiceNumber = mainResult["invoice_number"]?.ToString(),
+                TotalAmount = Convert.ToDouble(mainResult["total"]),
+                ChangeAmount = Convert.ToDouble(mainResult["change"]),
+                Date = Convert.ToDateTime(mainResult["date"]),
+                Cash = Convert.ToDouble(mainResult["cash"]),
+                GCash = Convert.ToDouble(mainResult["gcash"]),
+                GCashReferenceNumber = mainResult["gcashReferenceNo"]?.ToString(),
+                PayMaya = Convert.ToDouble(mainResult["payMaya"]),
+                PayMayaReferenceNumber = mainResult["payMayaReferenceNo"]?.ToString(),
+                Client = new Client
                 {
-                    ItemOrServiceId = Convert.ToInt32(row["item_or_service_id"]),
+                    Id = Convert.ToInt32(mainResult["ClientId"]),
+                    FirstName = mainResult["firstname"]?.ToString(),
+                    LastName = mainResult["lastname"]?.ToString()
+                },
+                Pet = new Pet
+                {
+                    Id = Convert.ToInt32(mainResult["PetId"]),
+                    Name = mainResult["PetName"]?.ToString()
+                }
+            };
+
+            // Load transaction details
+            string sqlDetails = @"
+        SELECT 
+            id, transaction_payment_id, product_id, description, quantity, unit_price, total
+        FROM transaction_payment_detail
+        WHERE transaction_payment_id = @TransactionPaymentId";
+
+            var detailRows = upgradeFile.Query(sqlDetails, parameters);
+            payment.TransactionDetails = new List<TransactionDetail>();
+
+            foreach (var row in detailRows)
+            {
+                var detail = new TransactionDetail
+                {
+                    Id = Convert.ToInt32(row["id"]),
+                    TransactionPaymentId = Convert.ToInt32(row["transaction_payment_id"]),
+                    ProductId = Convert.ToInt32(row["product_id"]),
                     Description = row["description"]?.ToString(),
                     Quantity = Convert.ToInt32(row["quantity"]),
-                    Price = Convert.ToDouble(row["price"])
-                });
+                    UnitPrice = Convert.ToDouble(row["unit_price"]),
+                    TotalAmount = Convert.ToDouble(row["total"])
+                };
+
+                payment.TransactionDetails.Add(detail);
             }
 
             return payment;
-        }
 
+        }
     }
 }
-    
 

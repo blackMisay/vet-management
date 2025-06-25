@@ -122,6 +122,7 @@
             this.dgvBreed.Location = new System.Drawing.Point(0, 67);
             this.dgvBreed.Margin = new System.Windows.Forms.Padding(4);
             this.dgvBreed.Name = "dgvBreed";
+            this.dgvBreed.RowHeadersVisible = false;
             this.dgvBreed.RowHeadersWidth = 51;
             this.dgvBreed.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvBreed.RowTemplate.Height = 24;

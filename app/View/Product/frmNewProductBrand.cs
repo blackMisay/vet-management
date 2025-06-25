@@ -42,7 +42,7 @@ namespace app.view.Product
             try
             {
                 // Prepare the SQL query for checking if the product type already exists and is not marked as deleted
-                string checkQuery = "SELECT * FROM product_brands WHERE Description = @Brand AND isDeleted = 0;";
+                string checkQuery = "SELECT * FROM product_brand WHERE brandDesc = @Brand AND isDeleted = 0;";
 
 
                 Dictionary<string, string> parameters = new Dictionary<string, string>
@@ -65,24 +65,24 @@ namespace app.view.Product
                 }
 
 
-                string insertQuery = "INSERT INTO product_types (Description) VALUES (@Brand);";
+                //string insertQuery = "INSERT INTO product_types (Description) VALUES (@Brand);";
 
-                bool result = upgradeFile.ExecuteQuery(insertQuery, parameters);
+                //bool result = upgradeFile.ExecuteQuery(insertQuery, parameters);
 
-                if (result)
-                {
-                    MessageBox.Show("New product type successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //if (result)
+                //{
+                //    MessageBox.Show("New product type successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-                    frmProductModal frm = new frmProductModal();
-                    frm.ShowDialog();
-                    frm.Refresh();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to add the new product type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                //    frmProductModal frm = new frmProductModal();
+                //    frm.ShowDialog();
+                //    frm.Refresh();
+                //    this.Close();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Failed to add the new product type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
             catch (Exception ex)
             {

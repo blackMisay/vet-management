@@ -7,6 +7,7 @@ using Core;
 using System.Collections.Generic;
 using MySqlConnector;
 using System.Data;
+using System.Linq;
 
 namespace app.view.Client
 {
@@ -17,6 +18,9 @@ namespace app.view.Client
         private int selectedBreedId;
         private Pet pet;
         public bool IsViewOnly { get; set; } = false;
+
+        private UpgradeFile upgradeFile;
+        private List<KeyValuePair<int, string>> breedList;
 
 
         //Use for updating pet record
@@ -44,8 +48,39 @@ namespace app.view.Client
         {
             InitializeComponent();
             dtpBday.ValueChanged += new EventHandler(dtpBday_ValueChanged);
+            LoadBreedComboBox();
 
-           
+
+        }
+        private void LoadBreedComboBox()
+        {
+            upgradeFile = new UpgradeFile();
+
+            // Load breed data from DB
+            breedList = upgradeFile.Populate("SELECT id, description FROM patient_breed ORDER BY description;");
+
+            if (breedList == null || breedList.Count == 0)
+            {
+                MessageBox.Show("No breed data found.");
+                return;
+            }
+
+            // Setup AutoComplete source with breed descriptions
+            var autoCompleteSource = new AutoCompleteStringCollection();
+            autoCompleteSource.AddRange(breedList.Select(b => b.Value).ToArray());
+
+            cboBreed.DropDownStyle = ComboBoxStyle.DropDown;
+            cboBreed.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboBreed.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            cboBreed.AutoCompleteCustomSource = autoCompleteSource;
+
+            // Bind full breed list as DataSource
+            cboBreed.DataSource = breedList.ToList(); // Use ToList to detach any binding references
+            cboBreed.DisplayMember = "Value";
+            cboBreed.ValueMember = "Key";
+
+            // Attach event for filtering dropdown on typing
+            cboBreed.TextChanged += cboBreed_TextChanged;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -68,7 +103,7 @@ namespace app.view.Client
             frmClient clientForm = new frmClient();
 
             clientForm.dgvPatient.DataSource = upgradeFile.Load("SELECT * FROM vwpatient WHERE isDeleted = 0");
-            clientForm.Show();
+            clientForm.Refresh();
             this.Dispose();
         }
 
@@ -125,6 +160,8 @@ namespace app.view.Client
             if (isSaved)
             {
                 MessageBox.Show("Pet saved successfully!");
+                frmClient frm = new frmClient();
+                frm.dgvPatient.RefreshEdit();
             }
             else
             {
@@ -133,9 +170,11 @@ namespace app.view.Client
         }
         public void LoadDetails(app.Core.Model.Pet pet)
         {
-            // Make sure combo boxes are populated first!
+            // 1. Populate all combo boxes first (including breed)
+            // This method should populate Gender, Color, Species combo boxes
             PopulateCmb();
 
+            // 2. Set pet info fields
             if (DateTime.TryParse(pet.BirthDate, out DateTime birthDate))
             {
                 dtpBday.Value = birthDate;
@@ -148,10 +187,23 @@ namespace app.view.Client
 
             cboGender.SelectedValue = pet.Gender?.Id;
             cboColor.SelectedValue = pet.ColourPattern?.Id;
+
+            // Temporarily detach SelectedIndexChanged to avoid auto reload of breeds overriding breed selection
+            cboSpecies.SelectedIndexChanged -= cboSpecies_SelectedIndexChanged;
+
             cboSpecies.SelectedValue = pet.Specie?.Id;
-            txtBreed.Text = pet.Breed?.Description;
+
+            // Now load breeds for this species
+            LoadBreedsBySpecies(pet.Specie?.Id ?? 0);
+
+            // Set breed selected value
+            cboBreed.SelectedValue = pet.Breed?.Id;
+
+            cboSpecies.SelectedIndexChanged += cboSpecies_SelectedIndexChanged;
+
             pbPetPhoto.ImageLocation = pet.Image;
 
+            // Disable controls if view-only mode
             if (IsViewOnly)
             {
                 btnSave.Visible = false;
@@ -160,7 +212,7 @@ namespace app.view.Client
                 txtName.ReadOnly = true;
                 txtAge.ReadOnly = true;
                 txtWeight.ReadOnly = true;
-                txtBreed.ReadOnly = true;
+                cboBreed.Enabled = false;
                 cmbSize.Enabled = false;
                 cboGender.Enabled = false;
                 cboColor.Enabled = false;
@@ -170,6 +222,20 @@ namespace app.view.Client
             }
 
         }
+        private void LoadBreedsBySpecies(int speciesId)
+        {
+            UpgradeFile upgradeFile = new UpgradeFile();
+
+            string query = "SELECT id, description FROM patient_breed WHERE species_id = @species_id ORDER BY description";
+            var parameters = new Dictionary<string, string> { { "@species_id", speciesId.ToString() } };
+
+            var breeds = upgradeFile.Populate(query, parameters);
+
+            cboBreed.DataSource = breeds;
+            cboBreed.ValueMember = "KEY";
+            cboBreed.DisplayMember = "VALUE";
+        }
+
 
         public void LoadPetDetails()
         {
@@ -253,90 +319,7 @@ namespace app.view.Client
 
         private void btnBreed_Click(object sender, EventArgs e)
         {
-            // Ensure a species is selected
-            if (cboSpecies.SelectedValue == null)
-            {
-                MessageBox.Show("Please select a species first.");
-                return;
-            }
 
-            // Get the selected species ID as a string
-            string selectedSpecies = cboSpecies.SelectedValue.ToString();
-
-            // Create an instance of UpgradeFile to load data
-            UpgradeFile upgradeFile = new UpgradeFile();
-
-            // SQL query to fetch breeds filtered by species
-            string query = "SELECT id, description FROM patient_breed WHERE species_id = @species_id ORDER BY description";
-
-            // Define query parameters
-            Dictionary<string, string> parameters = new Dictionary<string, string>
-    {
-        { "@species_id", selectedSpecies }
-    };
-
-            // Load breed data into DataTable
-            DataTable dt = upgradeFile.Load(query, parameters);
-
-            // Check if the query returned data
-            if (dt == null || dt.Rows.Count == 0)
-            {
-                MessageBox.Show("No breeds found for the selected species.");
-                return;
-            }
-
-            // Open breed selection form and pass the DataTable
-            frmBreed breedForm = new frmBreed(dt);
-
-            // Handle breed selection event
-            breedForm.BreedSelected += (breed) => txtBreed.Text = breed;
-
-            // Show breed selection form
-            breedForm.ShowDialog();
-
-        }
-        public string GetBreedDescription(int breedId)
-        {
-
-            string breedDescription = string.Empty;
-            UpgradeFile db = new UpgradeFile();
-
-            try
-            {
-                db.Connect(); // Now accessible
-
-                string query = "SELECT description FROM patient_breed WHERE id = @id;";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, db.connection))
-                {
-                    cmd.Parameters.AddWithValue("@id", breedId);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            breedDescription = reader["description"].ToString();
-                        }
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                throw new Exception($"MySQL Error: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Unexpected Error: {ex.Message}");
-            }
-            finally
-            {
-                if (db.connection.State == ConnectionState.Open)
-                {
-                    db.connection.Close();
-                }
-            }
-
-            return breedDescription;
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
@@ -365,31 +348,95 @@ namespace app.view.Client
 
         private void cboSpecies_SelectedIndexChanged(object sender, EventArgs e)
         {
-            frmBreed frm = new frmBreed();
-            // Ensure a species is selected before loading breeds
-            if (cboSpecies.SelectedValue != null)
+            // Make sure selected value is valid and is an integer id
+            if (cboSpecies.SelectedValue == null || !(cboSpecies.SelectedValue is int))
             {
-                UpgradeFile upgradeFile = new UpgradeFile();
+                // Clear breed combobox if species not selected properly
+                cboBreed.DataSource = null;
+                cboBreed.Items.Clear();
+                return;
+            }
 
-                // Define the query properly with parameterized query (Avoid SQL injection)
-                string query = "SELECT id, description FROM patient_breed WHERE species_id = @species_id ORDER BY description";
+            int selectedSpeciesId = (int)cboSpecies.SelectedValue;
 
-                // Define parameters correctly
-                Dictionary<string, string> parameters = new Dictionary<string, string>
-        {
-            { "@species_id", cboSpecies.SelectedValue.ToString() } // Convert to string
-        };
+            UpgradeFile upgradeFile = new UpgradeFile();
 
-                // Load breed data into DataGridView
-                frm.dgvBreed.DataSource = upgradeFile.Load(query, parameters);
+            string query = "SELECT id, description FROM patient_breed WHERE species_id = @species_id ORDER BY description";
+
+            var parameters = new Dictionary<string, string>
+    {
+        { "@species_id", selectedSpeciesId.ToString() }
+    };
+
+            try
+            {
+                // Use Populate method to get List<KeyValuePair<int, string>>
+                var breedList = upgradeFile.Populate(query, parameters);
+
+                if (breedList != null && breedList.Count > 0)
+                {
+                    cboBreed.DataSource = breedList;
+                    cboBreed.DisplayMember = "Value";
+                    cboBreed.ValueMember = "Key";
+                }
+                else
+                {
+                    // Clear if no breeds found
+                    cboBreed.DataSource = null;
+                    cboBreed.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading breeds: " + ex.Message);
             }
         }
 
-        public void SetBreed(string breed)
+        private void cboBreed_TextChanged(object sender, EventArgs e)
         {
-            txtBreed.Text = breed;
+            string typedText = cboBreed.Text;
+
+            if (breedList == null || breedList.Count == 0)
+                return;
+
+            if (string.IsNullOrWhiteSpace(typedText))
+            {
+                // Reset to full list if empty
+                cboBreed.DataSource = breedList.ToList();
+                cboBreed.DroppedDown = false;
+                return;
+            }
+
+            // Filter breeds by typed text (case-insensitive contains)
+            var filtered = breedList
+                .Where(b => b.Value != null && b.Value.IndexOf(typedText, StringComparison.OrdinalIgnoreCase) >= 0)
+                .ToList();
+
+            if (filtered.Count > 0)
+            {
+                cboBreed.DataSource = filtered;
+                cboBreed.DisplayMember = "Value";
+                cboBreed.ValueMember = "Key";
+
+                cboBreed.DroppedDown = true;
+                cboBreed.SelectionStart = typedText.Length;
+                cboBreed.SelectionLength = 0;
+            }
+            else
+            {
+                cboBreed.DroppedDown = false;
+            }
         }
-
-
+        private void cboBreed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboBreed.SelectedValue != null && int.TryParse(cboBreed.SelectedValue.ToString(), out int breedId))
+            {
+                selectedBreedId = breedId;
+            }
+            else
+            {
+                selectedBreedId = 0; // or some invalid value
+            }
+        }
     }
 }

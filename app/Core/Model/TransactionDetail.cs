@@ -9,9 +9,12 @@ namespace app.core.model
 {
     public class TransactionDetail
     {
-        public int ItemOrServiceId { get; set; }
-        public string Description { get; set; }
-        public int Quantity { get; set; }
-        public double Price { get; set; }
+            public int Id { get; set; } // Optional
+            public int TransactionPaymentId { get; set; }
+            public int ProductId { get; set; }
+            public string Description { get; set; }
+            public int Quantity { get; set; }
+            public double UnitPrice { get; set; }
+            public double TotalAmount { get; set; }
     }
-}
+    }
